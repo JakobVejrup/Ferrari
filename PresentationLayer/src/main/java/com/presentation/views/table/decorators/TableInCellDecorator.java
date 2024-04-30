@@ -1,6 +1,6 @@
 package com.presentation.views.table.decorators;
 
-import com.presentation.views.table.factory.NodeFactory;
+import com.presentation.controllers.table.factory.NodeFactory;
 import com.presentation.views.table.ui.GuiColumn;
 import com.presentation.views.table.ui.GuiTable;
 

@@ -2,7 +2,7 @@ package com.presentation.views.table.decorators;
 
 
 import com.presentation.controllers.table.commands.CellCommand;
-import com.presentation.views.table.factory.ButtonFactory;
+import com.presentation.controllers.table.factory.ButtonFactory;
 import com.presentation.views.table.ui.GuiColumn;
 import com.presentation.views.table.ui.GuiTable;
 
