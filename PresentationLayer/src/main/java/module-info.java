@@ -6,6 +6,7 @@ module com.presentation {
     requires org.kordamp.ikonli.javafx;
     requires com.model;
     requires com.logic;
+    requires com.rki;
 
     opens com.presentation to javafx.fxml;
     exports com.presentation;

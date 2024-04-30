@@ -1,8 +1,9 @@
 package com.presentation.views.table.ui;
 
 import com.presentation.controllers.table.commands.CellCommand;
+import com.presentation.controllers.table.factory.NodeFactory;
 import com.presentation.views.table.GuiItem;
-import com.presentation.views.table.factory.NodeFactory;
+
 import javafx.beans.property.BooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
