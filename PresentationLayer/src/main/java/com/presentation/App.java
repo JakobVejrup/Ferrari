@@ -1,6 +1,7 @@
 package com.presentation;
 
 import com.presentation.tools.ScreenWatcher;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
@@ -10,7 +11,6 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         ScreenWatcher.getInstance().setStage(stage);
-
         VBox box = new VBox();
         Scene scene = new Scene(box, 900, 900);
         //in a lambda/dynamic method, to use a variable in of polymorphic nature you must ensure that its "final" and wont change class, to do this you can ensure its set once or you can make another "final" reference
