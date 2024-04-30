@@ -1,4 +1,4 @@
 package com.model.entities;
 
-public class Agreement {
+public class OpenAgreement {
 }

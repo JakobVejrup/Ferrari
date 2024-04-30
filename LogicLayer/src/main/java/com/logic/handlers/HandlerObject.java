@@ -1,7 +1,5 @@
-package com.logic.services.handlers;
+package com.logic.handlers;
 
-
-import com.logic.services.Request;
 
 public abstract class HandlerObject implements Handler {
     private int order;

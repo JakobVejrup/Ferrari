@@ -1,4 +1,4 @@
-package com.logic.services.handlers;
+package com.logic.handlers;
 
 public abstract class HandlerHolder implements Handler {
     protected HandlerObject root;
