@@ -5,24 +5,22 @@ import com.logic.handlers.HandlerObject;
 import com.logic.handlers.Request;
 import com.logic.services.enums.CRUDType;
 
-public class SimpleReadHandler extends HandlerObject {
+public class SimpleUpdateHandler extends HandlerObject {
     private Data data;
-    private CRUDType type;
-    public SimpleReadHandler(Data data, CRUDType type) {
+    public SimpleUpdateHandler(Data data) {
         this.data = data;
-        this.type = type;
     }
-    public SimpleReadHandler(Data data, CRUDType type, HandlerObject handler) {
-        this(data, type);
+    public SimpleUpdateHandler(Data data, HandlerObject handler) {
+        this(data);
         setNext(handler);
     }
     @Override
     protected boolean check(Request request) {
-        return request.getCrud() == type;
+        return request.getCrud() == CRUDType.Update;
     }
 
     @Override
     protected void action(Request request) {
-        request.getSetter().action(data.create(request.getObject()));
+        request.getSetter().action(data.update(request.getObject()));
     }
 }

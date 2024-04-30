@@ -1,9 +1,6 @@
 package com.presentation.controllers.guiloading.modal;
 
-import com.logic.services.Request;
-import com.logic.services.enums.ServiceType;
-import com.presentation.App;
-import javafx.fxml.FXMLLoader;
+import com.logic.handlers.Request;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;

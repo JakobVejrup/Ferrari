@@ -5,20 +5,18 @@ import com.logic.handlers.Request;
 import com.logic.services.enums.CRUDType;
 import com.logic.handlers.HandlerObject;
 
-public class CreateEmployee extends HandlerObject {
+public class SimpleCreateHandler extends HandlerObject {
     private Data data;
-    private CRUDType type;
-    public CreateEmployee(Data data, CRUDType type) {
+    public SimpleCreateHandler(Data data) {
         this.data = data;
-        this.type = type;
     }
-    public CreateEmployee(Data data, CRUDType type, HandlerObject handler) {
-        this(data, type);
+    public SimpleCreateHandler(Data data, HandlerObject handler) {
+        this(data);
         setNext(handler);
     }
     @Override
     protected boolean check(Request request) {
-        return request.getCrud() == type;
+        return request.getCrud() == CRUDType.Create;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.logic.services;
+package com.logic.handlers;
 
 
 import com.logic.services.enums.CRUDType;

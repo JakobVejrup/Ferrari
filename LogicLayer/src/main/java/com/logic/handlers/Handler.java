@@ -1,6 +1,4 @@
-package com.logic.services.handlers;
-
-import com.logic.services.Request;
+package com.logic.handlers;
 
 public interface Handler {
     public void query(Request request);

@@ -1,7 +1,4 @@
-package com.logic.services.handlers;
-
-import com.logic.services.Request;
-import com.logic.services.handlers.HandlerHolder;
+package com.logic.handlers;
 
 public class SimpleHolder extends HandlerHolder {
     public SimpleHolder(HandlerObject... handlers) {
