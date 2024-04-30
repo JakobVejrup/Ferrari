@@ -1,7 +1,8 @@
 package com.logic.services;
 
-import com.logic.services.handlers.HandlerHolder;
-import com.logic.services.handlers.HandlerObject;
+import com.logic.handlers.HandlerHolder;
+import com.logic.handlers.HandlerObject;
+import com.logic.handlers.Request;
 
 public class ServiceManager extends HandlerHolder {
     public ServiceManager(HandlerObject... handlers) {

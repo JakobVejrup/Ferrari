@@ -1,9 +1,9 @@
 package com.logic;
 
-import com.logic.services.Request;
+import com.logic.handlers.Request;
 import com.logic.services.ServiceManager;
-import com.logic.services.handlers.Handler;
-import com.logic.services.handlers.HandlerHolder;
+import com.logic.handlers.Handler;
+import com.logic.handlers.HandlerHolder;
 import com.logic.validation.ValidationManager;
 
 public class ServiceSingleton implements Handler {
