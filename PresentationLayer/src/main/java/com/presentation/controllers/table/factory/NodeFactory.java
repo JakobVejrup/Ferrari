@@ -1,4 +1,4 @@
-package com.presentation.views.table.factory;
+package com.presentation.controllers.table.factory;
 
 import com.presentation.views.table.ui.GuiCell;
 import com.presentation.views.table.ui.GuiColumn;

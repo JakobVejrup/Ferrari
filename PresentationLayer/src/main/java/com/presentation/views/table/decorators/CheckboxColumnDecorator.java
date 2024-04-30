@@ -2,7 +2,7 @@ package com.presentation.views.table.decorators;
 
 
 import com.presentation.controllers.table.commands.CellCommand;
-import com.presentation.views.table.factory.CheckboxFactory;
+import com.presentation.controllers.table.factory.CheckboxFactory;
 import com.presentation.views.table.ui.ButtonPlacement;
 import com.presentation.views.table.ui.GuiColumn;
 import com.presentation.views.table.ui.GuiTable;
