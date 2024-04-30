@@ -1,4 +1,4 @@
 package com.model.entities;
 
-public class Customer {
+public class Customer extends Information{
 }
