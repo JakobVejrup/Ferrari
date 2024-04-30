@@ -1,0 +1,45 @@
+
+.bigTable {
+    -fx-background-color: transparent;
+}
+.tablecell {
+    -fx-pref-height: 150;
+}
+.table-row-cell:empty {
+    -fx-background-color: transparent;
+    -fx-pref-height: 5;
+    -fx-min-height: 5;
+    -fx-max-height: 5;
+}
+.table-row-cell:empty .table-cell {
+    -fx-border-width: 0px;
+    -fx-pref-height: 5;
+    -fx-min-height: 5;
+    -fx-max-height: 5;
+}
+.guiCell {
+    -fx-alignment: center;
+
+}
+.cellCheck {
+
+}
+.cellCheck .box {
+    -fx-min-width: 30;
+    -fx-min-height: 30;
+
+}
+.cellCheck .text {
+    -fx-font-size: 20;
+}
+.cellCheck .mark {
+    -fx-min-width: 30;
+    -fx-min-height: 30;
+}
+.cellCheck:selected .mark {
+    -fx-background-color: grey;
+}
+
+.cellCheck:selected .box {
+    -fx-background-color: brown;
+}
