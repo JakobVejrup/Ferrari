@@ -6,7 +6,7 @@ public class Vehicle {
     private Double Price;
 
 // Konstruktør 
-    public Vehicle(int VehicleID, String VehicleName, float Price) {
+    public Vehicle(int VehicleID, String VehicleName, Double Price) {
         this.VehicleID = VehicleID;
         this.VehicleName = VehicleName;
         this.Price = Price;
@@ -29,11 +29,11 @@ public class Vehicle {
         this.VehicleName = VehicleName;
     }
 
-    public float getPrice () {
+    public Double getPrice () {
         return Price;
     }
 
-    public void setPrice (float Price) {
+    public void setPrice (Double Price) {
         this.Price = Price;
     }
 }
