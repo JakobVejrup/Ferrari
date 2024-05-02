@@ -3,7 +3,7 @@ package com.model.entities;
 public class Vehicle {
     private int VehicleID;
     private String VehicleName;
-    private float Price;
+    private Double Price;
 
 // Konstruktør 
     public Vehicle(int VehicleID, String VehicleName, float Price) {
