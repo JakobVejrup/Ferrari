@@ -1,4 +1,4 @@
-package com.logic.services.enums;
+package com.model.enums;
 
 public enum CRUDType {
     Create,

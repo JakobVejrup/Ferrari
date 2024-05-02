@@ -1,5 +1,6 @@
 package com.logic.handlers;
 
+import com.model.threads.Request;
 
 public abstract class HandlerObject implements Handler {
     private int order;

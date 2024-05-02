@@ -1,6 +1,7 @@
 package com.presentation.controllers.guiloading.modal;
 
-import com.logic.handlers.Request;
+import com.model.threads.Request;
+
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;

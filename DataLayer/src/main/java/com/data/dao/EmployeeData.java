@@ -5,21 +5,24 @@ import com.data.SQLData;
 import com.model.entities.Employee;
 
 import java.sql.CallableStatement;
+import java.sql.ResultSet;
 
 public class EmployeeData implements Data {
     private SQLData db;
     @Override
     public Object create(Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call spEmployeeCreate(?,?,?,?,?)}")) {
+        try (CallableStatement cs = db.makeCall("{call uspEmployeeInsert(?,?,?,?,?)}")) {
             Employee employee = (Employee) parameter;
-            cs.setInt("id", employee.getId());
             cs.setString("name", employee.getName());
             cs.setString("phonenumber", employee.getPhoneNumber());
             cs.setString("email", employee.getEmail());
-            cs.setString("rank", employee.getRank().toString());
-
-            cs.execute();
-            return cs.getUpdateCount() > 0 ? employee : null;
+            cs.setString("level", employee.getRank().toString());
+            cs.setString("password", employee.getPassword().toString());
+            ResultSet result = cs.executeQuery();
+            if (!result.next())
+                return null;
+            employee.setId(result.getInt("id"));
+            return employee;
         } catch (Exception e) {
             return null;
         }
@@ -42,6 +45,12 @@ public class EmployeeData implements Data {
 
     @Override
     public boolean delete(Object parameter) {
-        return false;
+        try (CallableStatement cs = db.makeCall("{call uspEmployeeDelete(?)}")) {
+            cs.setInt("id", ((Employee)parameter).getId());
+            cs.execute();
+            return cs.getUpdateCount() > 0;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

@@ -1,10 +1,8 @@
-package com.logic.handlers;
+package com.model.threads;
 
 
-import com.logic.services.enums.CRUDType;
-import com.logic.services.enums.ServiceType;
-import com.logic.validation.Validation;
-import com.model.threads.ActionParameter;
+import com.model.enums.CRUDType;
+import com.model.enums.ServiceType;
 
 public class Request {
     private Object object;

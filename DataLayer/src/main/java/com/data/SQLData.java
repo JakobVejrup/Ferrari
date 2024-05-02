@@ -11,7 +11,7 @@ import java.sql.DriverManager;
 public class SQLData {
     private ObjectWithTimer connectionTimer;
     private static final String CONNECTION_STRING = "jdbc:sqlserver://localhost:1433;" +
-            "databaseName=Ferrari;" +
+            "databaseName=ferrariDB;" +
             "integratedSecurity=true;" +
             "trustServerCertificate=true;";
     public SQLData() {

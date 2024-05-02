@@ -2,8 +2,8 @@ package com.logic.Simples;
 
 import com.data.Data;
 import com.logic.handlers.HandlerObject;
-import com.logic.handlers.Request;
-import com.logic.services.enums.CRUDType;
+import com.model.enums.CRUDType;
+import com.model.threads.Request;
 
 public class SimpleUpdateHandler extends HandlerObject {
     private Data data;
@@ -21,6 +21,6 @@ public class SimpleUpdateHandler extends HandlerObject {
 
     @Override
     protected void action(Request request) {
-        request.getSetter().action(data.update(request.getObject()));
+        request.getSetter().action(data.update(request));
     }
 }

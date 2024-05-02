@@ -1,6 +1,6 @@
 package com.model.enums;
 
-public enum EmployeeRank {
+public enum Occupation {
     Manager,
     Salesman,
     Admin

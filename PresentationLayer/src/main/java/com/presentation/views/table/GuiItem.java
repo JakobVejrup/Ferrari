@@ -1,12 +1,13 @@
 package com.presentation.views.table;
 
-import com.logic.services.enums.ServiceType;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.util.HashMap;
 import java.util.List;
+
+import com.model.enums.ServiceType;
 //Item holder class used to contain the item AND its boolean, so it will remember if the checkbox should be checked
 public class GuiItem {
     private ServiceType type;

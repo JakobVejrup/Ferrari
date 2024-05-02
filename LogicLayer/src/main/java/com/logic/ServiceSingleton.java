@@ -1,10 +1,10 @@
 package com.logic;
 
-import com.logic.handlers.Request;
 import com.logic.services.ServiceManager;
 import com.logic.handlers.Handler;
 import com.logic.handlers.HandlerHolder;
 import com.logic.validation.ValidationManager;
+import com.model.threads.Request;
 
 public class ServiceSingleton implements Handler {
     private static ServiceSingleton instance;

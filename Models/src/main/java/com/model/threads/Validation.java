@@ -1,4 +1,4 @@
-package com.logic.validation;
+package com.model.threads;
 
 import java.util.ArrayList;
 

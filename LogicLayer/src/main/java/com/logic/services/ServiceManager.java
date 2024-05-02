@@ -2,7 +2,7 @@ package com.logic.services;
 
 import com.logic.handlers.HandlerHolder;
 import com.logic.handlers.HandlerObject;
-import com.logic.handlers.Request;
+import com.model.threads.Request;
 
 public class ServiceManager extends HandlerHolder {
     public ServiceManager(HandlerObject... handlers) {

@@ -1,9 +1,9 @@
 package com.logic.validation.concretes;
 
 import com.logic.handlers.HandlerObject;
-import com.logic.handlers.Request;
-import com.logic.services.enums.ServiceType;
 import com.model.entities.Employee;
+import com.model.enums.ServiceType;
+import com.model.threads.Request;
 
 public class EmployeeValidation extends HandlerObject {
     public EmployeeValidation() {

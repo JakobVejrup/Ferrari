@@ -2,8 +2,8 @@ package com.presentation.controllers.table.commands;
 
 
 import com.logic.ServiceSingleton;
-import com.logic.services.enums.CRUDType;
-import com.logic.handlers.Request;
+import com.model.enums.CRUDType;
+import com.model.threads.Request;
 import com.presentation.controllers.guiloading.GuiFacade;
 import com.presentation.views.table.GuiItem;
 import com.presentation.views.table.ui.GuiCell;

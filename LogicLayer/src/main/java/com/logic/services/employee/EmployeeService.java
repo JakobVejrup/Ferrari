@@ -1,12 +1,12 @@
 package com.logic.services.employee;
 
 import com.logic.Simples.*;
-import com.logic.handlers.Request;
 import com.logic.handlers.HandlerHolder;
 import com.logic.handlers.HandlerObject;
 import com.logic.handlers.SimpleHolder;
+import com.model.enums.ServiceType;
+import com.model.threads.Request;
 import com.data.Data;
-import com.logic.services.enums.ServiceType;
 
 
 public class EmployeeService extends HandlerObject {
