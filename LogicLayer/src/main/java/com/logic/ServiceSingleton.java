@@ -1,19 +1,31 @@
 package com.logic;
 
 import com.logic.services.ServiceManager;
+import com.logic.services.agreements.AgreementService;
+import com.logic.services.employee.EmployeeService;
+import com.data.SQLData;
+import com.data.dao.AgreementData;
+import com.data.dao.EmployeeData;
 import com.logic.handlers.Handler;
 import com.logic.handlers.HandlerHolder;
+import com.logic.handlers.Request;
 import com.logic.validation.ValidationManager;
-import com.model.threads.Request;
+import com.logic.validation.concretes.EmployeeValidation;
 
 public class ServiceSingleton implements Handler {
     private static ServiceSingleton instance;
     private HandlerHolder validations;
     private HandlerHolder services;
     private ServiceSingleton() {
+        SQLData db = new SQLData();
+        EmployeeData employeeData = new EmployeeData(db);
+        AgreementData agreementData = new AgreementData(db);
         validations = new ValidationManager(
+            new EmployeeValidation()
         );
         services = new ServiceManager(
+            new EmployeeService(employeeData, employeeData),
+            new AgreementService(agreementData)
         );
     }
     public void setValidations(HandlerHolder validations) {

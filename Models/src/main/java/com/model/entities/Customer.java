@@ -2,14 +2,14 @@ package com.model.entities;
 
 public class Customer extends Information{
     private String address;
-    private String Cpr;
-    private String City_Zip;
-
-    public Customer(int id, String name, String phoneNumber, String email, String address, String cpr, String city_Zip) {
+    private String cpr;
+    private String cityZip;
+    //Magnus
+    public Customer(int id, String name, String phoneNumber, String email, String address, String cpr, String cityZip) {
         super(id, name, phoneNumber, email);
         this.address = address;
-        this.Cpr = cpr;
-        this.City_Zip = city_Zip;
+        this.cpr = cpr;
+        this.cityZip = cityZip;
     }
     public Customer() {}
     public String getAddress() {
@@ -21,19 +21,19 @@ public class Customer extends Information{
     }
 
     public String getCpr() {
-        return Cpr;
+        return cpr;
     }
 
     public void setCpr(String cpr) {
-        Cpr = cpr;
+        this.cpr = cpr;
     }
 
-    public String getCity_Zip() {
-        return City_Zip;
+    public String getCityZip() {
+        return cityZip;
     }
 
-    public void setCity_Zip(String city_Zip) {
-        City_Zip = city_Zip;
+    public void setCityZip(String cityZip) {
+        this.cityZip = cityZip;
     }
 
 

@@ -1,6 +1,6 @@
 package com.presentation.controllers.guiloading.modal;
 
-import com.model.threads.Request;
+import com.logic.handlers.Request;
 
 public interface ModalSetup {
     public Object openModal(Request request);

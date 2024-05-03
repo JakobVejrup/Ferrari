@@ -7,7 +7,8 @@ import javafx.collections.ObservableList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.model.enums.ServiceType;
+import com.logic.services.enums.ServiceType;
+
 //Item holder class used to contain the item AND its boolean, so it will remember if the checkbox should be checked
 public class GuiItem {
     private ServiceType type;

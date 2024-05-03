@@ -1,9 +1,11 @@
-package com.model.enums;
+package com.logic.services.enums;
 
 public enum CRUDType {
     Create,
     Read,
     ReadAll,
     Update,
-    Delete
+    Delete,
+    Login,
+    UpdateSelf
 }

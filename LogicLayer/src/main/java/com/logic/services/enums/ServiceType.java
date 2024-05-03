@@ -1,9 +1,9 @@
-package com.model.enums;
+package com.logic.services.enums;
 
 public enum ServiceType {
     Customer,
     Vehicle,
-    OpenAgreement,
-    ClosedAgreement,
+    Agreement,
+    DueDatePayment,
     Employee
 }

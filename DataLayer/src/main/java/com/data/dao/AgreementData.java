@@ -1,9 +1,13 @@
 package com.data.dao;
 
-import com.data.Data;
-
+import com.data.SQLData;
+import com.data.interfaces.Data;
+//Karl
 public class AgreementData implements Data{
-
+    private SQLData db;
+    public AgreementData(SQLData db) {
+        this.db = db;
+    }
     @Override
     public Object create(Object parameter) {
         // TODO Auto-generated method stub

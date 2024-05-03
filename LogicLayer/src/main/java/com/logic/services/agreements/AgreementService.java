@@ -1,6 +1,6 @@
 package com.logic.services.agreements;
 
-import com.data.Data;
+import com.data.interfaces.Data;
 import com.logic.Simples.SimpleCreateHandler;
 import com.logic.Simples.SimpleDeleteHandler;
 import com.logic.Simples.SimpleReadAllHandler;
@@ -11,7 +11,7 @@ import com.logic.handlers.HandlerObject;
 import com.logic.handlers.Request;
 import com.logic.handlers.SimpleHolder;
 import com.logic.services.enums.ServiceType;
-
+//Karl
 public class AgreementService extends HandlerObject {
     private HandlerHolder holder;
 

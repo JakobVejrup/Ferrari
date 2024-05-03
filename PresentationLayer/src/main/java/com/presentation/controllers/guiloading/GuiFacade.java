@@ -1,6 +1,6 @@
 package com.presentation.controllers.guiloading;
 
-import com.model.threads.Request;
+import com.logic.handlers.Request;
 import com.presentation.controllers.guiloading.modal.ModalSetup;
 import com.presentation.controllers.guiloading.view.ViewSetup;
 import javafx.scene.layout.BorderPane;

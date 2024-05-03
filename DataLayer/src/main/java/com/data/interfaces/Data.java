@@ -1,4 +1,4 @@
-package com.data;
+package com.data.interfaces;
 
 public interface Data {
     public Object create(Object parameter);

@@ -1,9 +1,9 @@
 package com.logic.validation.concretes;
 
 import com.logic.handlers.HandlerObject;
+import com.logic.handlers.Request;
+import com.logic.services.enums.ServiceType;
 import com.model.entities.Employee;
-import com.model.enums.ServiceType;
-import com.model.threads.Request;
 
 public class EmployeeValidation extends HandlerObject {
     public EmployeeValidation() {
@@ -21,7 +21,18 @@ public class EmployeeValidation extends HandlerObject {
         //validation example could be done in other classes which this will own
         Employee employee = (Employee) request.getObject();
         if(employee.getName().length() < 5)
-            request.getValidation().addMessage("navn er tomt, minimum 5 bogstaver");
+            request.getValidation().addMessage("navn er for kort, minimum 5 bogstaver");
         if(employee.getName().length() > 40)
             request.getValidation().addMessage("navn er for langt");
-    }}
+        if (!employee.getEmail().contains("@") || employee.getEmail().length() < 5) 
+            request.getValidation().addMessage("Ikke en email");
+        if(employee.getEmail().length() > 35)
+            request.getValidation().addMessage("email er for lang");
+        if(employee.getPhoneNumber().length() > 20)
+            request.getValidation().addMessage("tlfnummer er for lang");
+        if(employee.getPhoneNumber().length() < 8)
+            request.getValidation().addMessage("tlfnummer er for kort");
+
+
+    }
+}

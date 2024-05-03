@@ -1,9 +1,9 @@
 package com.logic.Simples;
 
-import com.data.Data;
-import com.model.enums.CRUDType;
-import com.model.threads.Request;
+import com.data.interfaces.Data;
 import com.logic.handlers.HandlerObject;
+import com.logic.handlers.Request;
+import com.logic.services.enums.CRUDType;
 
 public class SimpleCreateHandler extends HandlerObject {
     private Data data;
@@ -21,6 +21,6 @@ public class SimpleCreateHandler extends HandlerObject {
 
     @Override
     protected void action(Request request) {
-        request.getSetter().action(data.create(request));
+        request.getSetter().action(data.create(request.getObject()));
     }
 }
