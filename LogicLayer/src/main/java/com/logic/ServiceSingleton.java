@@ -3,7 +3,7 @@ package com.logic;
 import com.logic.services.ServiceManager;
 import com.logic.services.agreements.AgreementService;
 import com.logic.services.employee.EmployeeService;
-import com.data.SQLData;
+import com.data.ConnectionData;
 import com.data.dao.AgreementData;
 import com.data.dao.EmployeeData;
 import com.logic.handlers.Handler;
@@ -18,7 +18,7 @@ public class ServiceSingleton implements Handler {
     private HandlerHolder validations;
     private HandlerHolder services;
     private ServiceSingleton() {
-        SQLData db = new SQLData();
+        ConnectionData db = new ConnectionData();
         EmployeeData employeeData = new EmployeeData(db);
         AgreementData agreementData = new AgreementData(db);
         validations = new ValidationManager(

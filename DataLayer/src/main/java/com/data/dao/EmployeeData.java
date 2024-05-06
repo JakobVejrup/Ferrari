@@ -1,6 +1,6 @@
 package com.data.dao;
 
-import com.data.SQLData;
+import com.data.ConnectionData;
 import com.data.interfaces.Data;
 import com.data.interfaces.UserExtra;
 import com.model.entities.Employee;
@@ -11,13 +11,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 //Anders
 public class EmployeeData implements Data, UserExtra {
-    private SQLData db;
-    public EmployeeData(SQLData db) {
+    private ConnectionData db;
+    public EmployeeData(ConnectionData db) {
         this.db = db;
     }
     @Override
     public Object create(Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call uspEmployeeInsert(?,?,?,?,?)}")) {
+        try (CallableStatement cs = db.makeCall("{call Person.uspEmployeeInsert(?,?,?,?,?)}")) {
             Employee employee = (Employee) parameter;
             cs.setString("Name", employee.getName());
             cs.setString("PhoneNumber", employee.getPhoneNumber());
@@ -37,7 +37,7 @@ public class EmployeeData implements Data, UserExtra {
 // no password will be given since thats knowledge only the user should have, it will be given in a login
     @Override
     public Object read(Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call uspEmployeeGet(?)}")) {
+        try (CallableStatement cs = db.makeCall("{call Person.uspEmployeeGet(?)}")) {
             cs.setInt("Id", (int)parameter);
             ResultSet result = cs.executeQuery();
             if (!result.next())
@@ -59,7 +59,7 @@ public class EmployeeData implements Data, UserExtra {
     @Override
     public Object readAll(Object parameter) {
         ArrayList<Employee> employees = new ArrayList<Employee>();
-        try (CallableStatement cs = db.makeCall("{call uspEmployeeGetAll()}")) {
+        try (CallableStatement cs = db.makeCall("{call Person.uspEmployeeGetAll()}")) {
             ResultSet result = cs.executeQuery();
             while (result.next()) 
                 employees.add(new Employee(result.getInt("Id"), 
@@ -77,7 +77,7 @@ public class EmployeeData implements Data, UserExtra {
 
     @Override
     public Object update(Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call uspEmployeeUpdate(?,?,?,?,?)}")) {
+        try (CallableStatement cs = db.makeCall("{call Person.uspEmployeeUpdate(?,?,?,?,?)}")) {
             Employee employee = (Employee) parameter;
             cs.setString("Name", employee.getName());
             cs.setString("PhoneNumber", employee.getPhoneNumber());
@@ -93,7 +93,7 @@ public class EmployeeData implements Data, UserExtra {
 
     @Override
     public boolean delete(Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call uspEmployeeDelete(?)}")) {
+        try (CallableStatement cs = db.makeCall("{call Person.uspEmployeeDelete(?)}")) {
             cs.setInt("Id", ((Employee)parameter).getId());
             cs.execute();
             return cs.getUpdateCount() > 0;
@@ -104,7 +104,7 @@ public class EmployeeData implements Data, UserExtra {
 
     @Override
     public Employee login(Employee login) {
-        try (CallableStatement cs = db.makeCall("{call uspLogin(?, ?)}")) {
+        try (CallableStatement cs = db.makeCall("{call Person.uspLogin(?, ?)}")) {
             Employee employee = (Employee) login;
             cs.setString("Email", login.getEmail());
             cs.setString("Password", login.getPassword());
@@ -125,7 +125,7 @@ public class EmployeeData implements Data, UserExtra {
 
     @Override
     public Employee updateSelf(Employee update) {
-        try (CallableStatement cs = db.makeCall("{call uspUpdateSelfEmployee(?,?,?,?,?,?)}")) {
+        try (CallableStatement cs = db.makeCall("{call Person.uspUpdateSelfEmployee(?,?,?,?,?,?)}")) {
             cs.setString("Name", update.getName());
             cs.setString("PhoneNumber", update.getPhoneNumber());
             cs.setString("Email", update.getEmail());

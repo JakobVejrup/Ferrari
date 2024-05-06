@@ -40,10 +40,11 @@ public class App extends Application {
         stage.setTitle("Ferrari");
         stage.setScene(scene);
         stage.show();
+        Facade.getInstance().setMainPane(bp);
         Facade.getInstance().setModal(new ModalFactory(stage));
         Facade.getInstance().setLogin(new Login());
-        //Facade.getInstance().setCenter(new LoginController().getView());
-        Facade.getInstance().openModal(new Request(ServiceType.Employee, CRUDType.Create));
+        Facade.getInstance().setCenter(new LoginController().getView());
+        //Facade.getInstance().openModal(new Request(ServiceType.Employee, CRUDType.Create));
 
 
 

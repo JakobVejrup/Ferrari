@@ -6,21 +6,13 @@ import com.model.threads.ObjectWithTimer;
 
 import java.sql.*;
 
-public class SQLData {
+public class ConnectionData {
     private ObjectWithTimer connectionTimer;
     private static final String CONNECTION_STRING = "jdbc:sqlserver://localhost:1433;" +
             "databaseName=FerrariDB;" +
             "integratedSecurity=true;" +
             "trustServerCertificate=true;";
-    public SQLData() {
-        try {
-            Connection c = DriverManager.getConnection(CONNECTION_STRING);
-            CallableStatement ca = c.prepareCall("{call Person.uspCustomerGetAll()}");
-            System.out.println(ca);
-        }
-        catch (Exception e) {
-            System.out.println(e);
-        }
+    public ConnectionData() {
         //connectionTimer will check every 20 seconds if its been run in the meanwhile, if it hasn't it will disconnect the sql connection
         connectionTimer = new ObjectWithTimer(new Function() {
             @Override

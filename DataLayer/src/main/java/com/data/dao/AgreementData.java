@@ -1,11 +1,11 @@
 package com.data.dao;
 
-import com.data.SQLData;
+import com.data.ConnectionData;
 import com.data.interfaces.Data;
 //Karl
 public class AgreementData implements Data{
-    private SQLData db;
-    public AgreementData(SQLData db) {
+    private ConnectionData db;
+    public AgreementData(ConnectionData db) {
         this.db = db;
     }
     @Override

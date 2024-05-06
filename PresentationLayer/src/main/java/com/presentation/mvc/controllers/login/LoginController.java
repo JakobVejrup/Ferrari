@@ -5,14 +5,12 @@ import com.logic.handlers.Request;
 import com.logic.services.enums.CRUDType;
 import com.logic.services.enums.ServiceType;
 import com.model.entities.Employee;
-import com.presentation.mvc.controllers.modals.ModalController;
-import com.presentation.mvc.controllers.modals.employee.CreateEmployeeController;
 import com.presentation.mvc.models.login.LoginView;
 import com.presentation.mvc.views.login.LoginModel;
+import com.presentation.tools.alert.Alerter;
 import com.presentation.tools.facade.Facade;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
 public class LoginController {
     private LoginView view;
@@ -36,10 +34,16 @@ public class LoginController {
         return view;
     }
     public void loginAction(Object login) {
-        if(login == null)
-            return;
-        Employee employee = (Employee) login;
-        Facade.getInstance().login(employee);
+        Platform.runLater(
+            () -> {
+                if (login == null) {
+                        Alerter.warning("Forkert", "Bruger kan ikke findes");
+                    return;
+                }
+                Employee employee = (Employee) login; 
+                Facade.getInstance().login(employee);
+            }
+        );
         //set employee to the login in some sort of manager object
         //Go further in UI MVC style incoming
     }
