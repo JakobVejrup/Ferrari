@@ -1,7 +1,10 @@
 package com.data.dao;
 
+import java.sql.ResultSet;
+
 import com.data.SQLData;
 import com.data.interfaces.Data;
+import com.model.entities.Agreement;
 //Karl
 public class AgreementData implements Data{
     private SQLData db;
@@ -10,8 +13,18 @@ public class AgreementData implements Data{
     }
     @Override
     public Object create(Object parameter) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'create'");
+        try (CallebleStatement cs = db.makeCall("{call uspclosedAgreementInsert(?,?,?,?,?,?,?,?,?,?)}")) {
+            Agreement agreement = (Agreement) parameter;
+            cs.setInt("Start", agreement.getStart());
+            cs.setInt("End", agreement.getEnd());
+            cs.setdouble("endprice", agreement.getEnd());
+            ResultSet result = cs.executeQuery();
+            if (!result.next())
+                return null;
+           
+        } catch (Exception e) {
+            return null;
+        }
     }
 
     @Override

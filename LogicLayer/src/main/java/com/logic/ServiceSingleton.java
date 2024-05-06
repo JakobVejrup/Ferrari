@@ -12,6 +12,7 @@ import com.logic.handlers.Handler;
 import com.logic.handlers.HandlerHolder;
 import com.logic.handlers.Request;
 import com.logic.validation.ValidationManager;
+import com.logic.validation.concretes.AgreementValidation;
 import com.logic.validation.concretes.EmployeeValidation;
 
 public class ServiceSingleton implements Handler {
@@ -28,7 +29,7 @@ public class ServiceSingleton implements Handler {
         validations = new ValidationManager(
             new EmployeeValidation(), 
             new AgreementValidation()
-
+    
         );
         services = new ServiceManager(
             new EmployeeService(employeeData, employeeData),
