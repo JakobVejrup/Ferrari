@@ -4,9 +4,7 @@ import com.model.threads.Action;
 import com.model.threads.Function;
 import com.model.threads.ObjectWithTimer;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.*;
 
 public class SQLData {
     private ObjectWithTimer connectionTimer;
@@ -15,6 +13,14 @@ public class SQLData {
             "integratedSecurity=true;" +
             "trustServerCertificate=true;";
     public SQLData() {
+        try {
+            Connection c = DriverManager.getConnection(CONNECTION_STRING);
+            CallableStatement ca = c.prepareCall("{call Person.uspCustomerGetAll()}");
+            System.out.println(ca);
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
         //connectionTimer will check every 20 seconds if its been run in the meanwhile, if it hasn't it will disconnect the sql connection
         connectionTimer = new ObjectWithTimer(new Function() {
             @Override
@@ -33,7 +39,6 @@ public class SQLData {
                 } catch (Exception e) {
                 }}
         });
-        //loadDriver();
     }
     public CallableStatement makeCall(String spCall) {
         try {

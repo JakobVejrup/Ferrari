@@ -1,18 +1,25 @@
 package com.presentation;
 
+import com.logic.handlers.Request;
+import com.logic.services.enums.CRUDType;
+import com.logic.services.enums.ServiceType;
+import com.presentation.mvc.controllers.login.LoginController;
+import com.presentation.tools.facade.Facade;
+import com.presentation.tools.facade.Login;
+import com.presentation.tools.facade.ModalFactory;
+import com.presentation.tools.facade.ViewFactory;
 import com.presentation.tools.ScreenWatcher;
-
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class App extends Application {
     @Override
     public void start(Stage stage) {
         ScreenWatcher.getInstance().setStage(stage);
-        VBox box = new VBox();
-        Scene scene = new Scene(box, 900, 900);
+        BorderPane bp = new BorderPane();
+        Scene scene = new Scene(bp);
         //in a lambda/dynamic method, to use a variable in of polymorphic nature you must ensure that its "final" and wont change class, to do this you can ensure its set once or you can make another "final" reference
 
         //TableDecorator table = new ParentTableDecorator(items, new TableWidthListenerDecorator(0.5, new TableHeightDecorator(0.8, new ExampleGuiTable())));
@@ -30,13 +37,16 @@ public class App extends Application {
         //));
 
         scene.getStylesheets().add(App.class.getResource("stylesheet1.css").toExternalForm());
-        stage.setTitle("Hello!");
+        stage.setTitle("Ferrari");
         stage.setScene(scene);
         stage.show();
+        Facade.getInstance().setModal(new ModalFactory(stage));
+        Facade.getInstance().setLogin(new Login());
+        //Facade.getInstance().setCenter(new LoginController().getView());
+        Facade.getInstance().openModal(new Request(ServiceType.Employee, CRUDType.Create));
 
 
-        //ServiceSingleton.getInstance().query(new SQLRequest(ServiceType.Example, CRUDType.ReadAll));
-        //service.query(new SQLRequest(ServiceType.Example, CRUDType.Delete, new Example(1, "")));
+
     }
 
     public static void main(String[] args) {

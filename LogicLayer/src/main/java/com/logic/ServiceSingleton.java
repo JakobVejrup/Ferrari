@@ -9,6 +9,7 @@ import com.data.dao.EmployeeData;
 import com.logic.handlers.Handler;
 import com.logic.handlers.HandlerHolder;
 import com.logic.handlers.Request;
+import com.logic.services.enums.CRUDType;
 import com.logic.validation.ValidationManager;
 import com.logic.validation.concretes.EmployeeValidation;
 
@@ -40,7 +41,7 @@ public class ServiceSingleton implements Handler {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                if(request.getObject() != null)
+                if(request.getMustValidate())
                     validations.query(request);
                 if(!request.anyErrors())
                     services.query(request);
