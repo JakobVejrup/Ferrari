@@ -7,9 +7,9 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.stage.Screen;
 
-public class TableWidthListenerDecorator implements TableDecorator {
+public class TableWidthDecorator implements TableDecorator {
     private GuiTable table;
-    public TableWidthListenerDecorator(double decimal, TableDecorator other) {
+    public TableWidthDecorator(double decimal, TableDecorator other) {
         this.table = other.getTable();
         this.table.setMaxWidth(ScreenWatcher.getInstance().getScreenWidthWithDecimal(decimal));
         ScreenWatcher.getInstance().getScreenProperty().addListener(new ChangeListener<Screen>() {

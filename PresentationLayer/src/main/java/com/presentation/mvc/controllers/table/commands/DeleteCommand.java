@@ -9,6 +9,6 @@ import com.presentation.mvc.models.table.RowModel;
 public class DeleteCommand implements CellCommand{
     @Override
     public void invoke(RowModel caller) {
-        ServiceSingleton.getInstance().query(new Request(caller.getType(), CRUDType.Delete, false, caller));
+        ServiceSingleton.getInstance().query(new Request(caller.getType(), CRUDType.Delete, caller));
     }
 }

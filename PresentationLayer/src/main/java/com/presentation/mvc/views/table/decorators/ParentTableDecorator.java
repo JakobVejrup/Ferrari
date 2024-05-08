@@ -10,10 +10,6 @@ public class ParentTableDecorator implements TableDecorator {
         table.getStyleClass().add("bigTable");
         table.setItems(model.getRows());
     }
-    public ParentTableDecorator(TableDecorator other) {
-        table = other.getTable();
-        table.getStyleClass().add("bigTable");
-    }
     @Override
     public GuiTable getTable() {
         return table;

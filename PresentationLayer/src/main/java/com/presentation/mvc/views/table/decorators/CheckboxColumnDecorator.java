@@ -17,6 +17,14 @@ public class CheckboxColumnDecorator implements TableDecorator {
         ColumnController controller = new ColumnController(new CheckboxFactory(), rowText, columnText, command, button, tableSize);
         table.getColumns().add(controller.getView());
     }
+    public CheckboxColumnDecorator(ColumnController controller, String buttonText, TableDecorator other) {
+        table = other.getTable();
+        int tableSize = getTable().getColumns().size();
+        ButtonPlacement button = new ButtonPlacement(buttonText, tableSize);
+        controller.setButton(button);
+        table.addButton(button);
+        table.getColumns().add(controller.getView());
+    }
     @Override
     public GuiTable getTable() {
         return table;

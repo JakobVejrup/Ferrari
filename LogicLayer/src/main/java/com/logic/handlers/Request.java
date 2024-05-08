@@ -8,36 +8,43 @@ import com.model.threads.Validation;
 
 public class Request {
     private Object object;
+    private Object update;
+
     private final CRUDType crud;
     private final ServiceType type;
     private ActionParameter setter;
     private Validation validation;
-    private boolean mustValidate;
     public Request(ServiceType type, CRUDType crud) {
         this.crud = crud;
         this.type = type;
-        validation = new Validation();
     }
-    public Request(ServiceType type, CRUDType crud, boolean mustValidate) {
+    public Request(ServiceType type, CRUDType crud, Object object) {
         this(type, crud);
-        this.mustValidate = mustValidate;
-        validation = new Validation();
-    }
-    public Request(ServiceType type, CRUDType crud, boolean mustValidate, Object object) {
-        this(type, crud, mustValidate);
         this.object = object;
     }
-    public Request(ServiceType type, CRUDType crud, boolean mustValidate, Object object, ActionParameter setter) {
-        this(type, crud, mustValidate, object);
+    public Request(ServiceType type, CRUDType crud, ActionParameter setter) {
+        this(type, crud);
         this.setter = setter;
     }
-    public Request(ServiceType type, CRUDType crud, boolean mustValidate, ActionParameter setter) {
-        this(type, crud, mustValidate);
+    public Request(ServiceType type, CRUDType crud, Object object, ActionParameter setter) {
+        this(type, crud, object);
         this.setter = setter;
+    }
+    public Request(ServiceType type, CRUDType crud, Object object, Validation validation) {
+        this(type, crud, object);
+        this.validation = validation;
+    }
+    public Request(ServiceType type, CRUDType crud, Object object, ActionParameter setter, Validation validation) {
+        this(type, crud, object, setter);
+        this.validation = validation;
     }
 
-    public boolean getMustValidate() {
-        return mustValidate;
+    public Object getUpdate() {
+        return update;
+    }
+
+    public void setUpdate(Object update) {
+        this.update = update;
     }
 
     public CRUDType getCrud() {

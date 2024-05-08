@@ -5,12 +5,14 @@ import com.logic.handlers.Request;
 import com.logic.services.enums.CRUDType;
 import com.logic.services.enums.ServiceType;
 import com.model.entities.Employee;
-import com.presentation.mvc.models.login.LoginView;
-import com.presentation.mvc.views.login.LoginModel;
+import com.presentation.mvc.controllers.leftnavbar.LeftNavbarController;
+import com.presentation.mvc.views.login.LoginView;
+import com.presentation.mvc.models.login.LoginModel;
 import com.presentation.tools.alert.Alerter;
 import com.presentation.tools.facade.Facade;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.scene.layout.HBox;
 
 public class LoginController {
     private LoginView view;
@@ -25,7 +27,7 @@ public class LoginController {
         Employee employee = new Employee();
         employee.setEmail(model.getEmail());
         employee.setPassword(model.getPassword());
-        ServiceSingleton.getInstance().query(new Request(ServiceType.Employee, CRUDType.Login, false,
+        ServiceSingleton.getInstance().query(new Request(ServiceType.Employee, CRUDType.Login,
                 employee,
                 this::loginAction
         ));
@@ -42,10 +44,10 @@ public class LoginController {
                 }
                 Employee employee = (Employee) login; 
                 Facade.getInstance().login(employee);
+                Facade.getInstance().setCenter(new HBox());
+                Facade.getInstance().setLeft(new LeftNavbarController().getView());
             }
         );
-        //set employee to the login in some sort of manager object
-        //Go further in UI MVC style incoming
     }
 
 }

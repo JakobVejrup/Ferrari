@@ -41,10 +41,14 @@ public class ServiceSingleton implements Handler {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                if(request.getMustValidate())
+                if(request.getValidation() != null) {
                     validations.query(request);
-                if(!request.anyErrors())
-                    services.query(request);
+                    if(request.anyErrors()) {
+                        request.getValidation().getErrorAction().action(request);
+                        return;
+                    }
+                }
+                services.query(request);
             }
         });
         thread.setDaemon(true);

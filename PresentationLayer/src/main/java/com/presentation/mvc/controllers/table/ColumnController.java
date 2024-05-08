@@ -21,8 +21,9 @@ public class ColumnController implements Callback<TableColumn<RowModel, RowModel
     private final GuiColumn view;
     private String rowText;
     private int nr;
-    public ColumnController(String text, NodeFactory nodeFactory, String rowsText) {
+    private ColumnController(String text, NodeFactory nodeFactory, String rowsText) {
         this.nodeFactory = nodeFactory;
+        nodeFactory.setController(this);
         view = new GuiColumn(text);
         this.rowText = rowsText;
         view.setCellFactory(this);
@@ -58,6 +59,11 @@ public class ColumnController implements Callback<TableColumn<RowModel, RowModel
     public Button getButton() {
         return button;
     }
+
+    public void setButton(Button button) {
+        this.button = button;
+    }
+
     public GuiColumn getView () {
         return view;
     }

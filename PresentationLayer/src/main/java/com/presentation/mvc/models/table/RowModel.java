@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.util.HashMap;
+import java.util.List;
 
 import com.logic.services.enums.ServiceType;
 
@@ -22,6 +23,8 @@ public class RowModel {
         this.item = item;
         properties = new HashMap<>();
         items = new HashMap<>();
+        for(TableModel table : tables)
+            items.put(table.getType(), table);
     }
     public ServiceType getType() {
         return type;
@@ -37,7 +40,7 @@ public class RowModel {
     public HashMap<ServiceType, TableModel> getItems() {
         return items;
     }
-    public static ObservableList<RowModel> makeRowModels(ServiceType type, Object... objects) {
+    public static ObservableList<RowModel> makeRowModels(ServiceType type, List<Object> objects) {
         ObservableList<RowModel> list = FXCollections.observableArrayList();
         for(Object obj : objects)
             list.add(new RowModel(obj, type));

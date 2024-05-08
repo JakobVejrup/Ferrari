@@ -6,22 +6,22 @@ import com.logic.handlers.Request;
 import com.logic.services.enums.CRUDType;
 import com.model.entities.Employee;
 
-public class UpdateSelfHandler extends HandlerObject {
+public class CreateManagerHandler extends HandlerObject {
     private UserExtra data;
-    public UpdateSelfHandler(UserExtra data) {
+    public CreateManagerHandler(UserExtra data) {
         this.data = data;
     }
-    public UpdateSelfHandler(UserExtra data, HandlerObject handler) {
+    public CreateManagerHandler(UserExtra data, HandlerObject handler) {
         this(data);
         setNext(handler);
     }
     @Override
     protected boolean check(Request request) {
-        return request.getCrud() == CRUDType.UpdateSelf;
+        return request.getCrud() == CRUDType.CreateManager;
     }
 
     @Override
     protected void action(Request request) {
-        request.getSetter().action(data.updateSelf((Employee)request.getObject()));
+        request.getSetter().action(data.createManager((Employee)request.getObject()));
     }
 }

@@ -1,4 +1,41 @@
+.mainPane {
+    -fx-alignment: BASELINE;
+    -fx-background-color: black;
+    -fx-background-image: url("Ferrari.png");
+    -fx-background-repeat: stretch;
+    -fx-background-position: center;
+    -fx-background-size: 20%;
+}
+.mainPane .center {
+    -fx-alignment: CENTER;
 
+}
+.mainPane .top, .root .left, .root .right, .root .bottom {
+    -fx-alignment: CENTER;
+}
+.employees {
+    -fx-alignment: CENTER;
+
+}
+.topbar {
+    -fx-alignment: TOP_RIGHT;
+    -fx-max-height: 100;
+    -fx-effect: dropshadow(three-pass-box, rgba(230,230,230,230), 5, 0, 0, 0);
+    -fx-background-color: linear-gradient(to bottom, #141414, #d9dadb);
+}
+.login {
+    -fx-padding: 100;
+}
+.navButton {
+    -fx-padding: 20;
+    -fx-spacing: 20;
+}
+VBox {
+    -fx-alignment: CENTER;
+}
+HBox {
+    -fx-alignment: CENTER;
+}
 .bigTable {
     -fx-background-color: transparent;
 }
@@ -42,4 +79,76 @@
 
 .cellCheck:selected .box {
     -fx-background-color: brown;
+}
+.Modal{
+    -fx-background-radius: 45px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+    -fx-background-insets: 10px;
+    -fx-background-color: Cornsilk;
+    -fx-border-insets: 10px;
+    -fx-border-radius: 39px;
+    -fx-border-width: 5px;
+    -fx-border-color: black;
+    -fx-border-style: solid inside;
+}
+Label {
+    -fx-font-size: 16px;
+    -fx-text-fill: whitesmoke;
+    -fx-font-weight: bold;
+    -fx-padding: 5;
+}
+TextField {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-padding: 5;
+
+}
+PasswordField {
+    -fx-font-size: 12px;
+    -fx-text-fill: black;
+    -fx-padding: 5;
+}
+Button {
+    -fx-text-fill: Black; /* White text color */
+    -fx-font-size: 16px; /* Font size */
+    -fx-font-family: "Arial"; /* Font family */
+    -fx-background-radius: 5px; /* Rounded corners */
+    -fx-border-radius: 5px; /* Rounded corners */
+    -fx-padding: 5px 5px; /* Padding */
+    -fx-border-color: transparent; /* Transparent border color */
+}
+Glyph
+{
+    -fx-scale-x: 3;
+    -fx-scale-y: 3;
+    -fx-text-fill: whitesmoke;
+    /*-fx-effect: dropshadow(three-pass-box, rgba(230,230,230,230), 4, 0, 0, 0);*/
+}
+.table-view .column-header-background .filler {
+    -fx-background-color: white;
+}
+
+.table-view .column-header{
+    -fx-background-color: darkgray;
+    -fx-text-background-color: black;
+}
+
+
+.table-view .table-cell{
+    -fx-text-background-color: white;
+    -fx-border-color: transparent;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: darkgray;
+    -fx-text-background-color: white;
+}
+.table-row-cell:odd{
+    -fx-background-color: lightslategray;
+    -fx-text-background-color: black;
+
+}
+.table-row-cell:even{
+    -fx-background-color: white;
+    -fx-text-background-color: black;
 }

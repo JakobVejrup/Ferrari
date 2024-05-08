@@ -17,13 +17,14 @@ public class EmployeeData implements Data, UserExtra {
     }
     @Override
     public Object create(Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call Person.uspEmployeeInsert(?,?,?,?,?)}")) {
+        try (CallableStatement cs = db.makeCall("{call Person.uspEmployeeInsert(?,?,?,?,?,?)}")) {
             Employee employee = (Employee) parameter;
             cs.setString("Name", employee.getName());
             cs.setString("PhoneNumber", employee.getPhoneNumber());
             cs.setString("Email", employee.getEmail());
             cs.setString("Occupation", employee.getOccupation().toString());
             cs.setString("Password", employee.getPassword());
+            cs.setDouble("Limit", employee.getLoanLimit());
             ResultSet result = cs.executeQuery();
             if (!result.next())
                 return null;
@@ -84,6 +85,7 @@ public class EmployeeData implements Data, UserExtra {
             cs.setString("Email", employee.getEmail());
             cs.setInt("Id", employee.getId());
             cs.setString("Occupation", employee.getOccupation().toString());
+            cs.setDouble("Limit", employee.getLoanLimit());
             cs.execute();
             return cs.getUpdateCount() > 0 ? employee : null;
         } catch (Exception e) {
@@ -132,6 +134,21 @@ public class EmployeeData implements Data, UserExtra {
             cs.setInt("Id", update.getId());
             cs.setString("Password", update.getPassword());
             cs.setString("Occupation", update.getOccupation().toString());
+            cs.execute();
+            return cs.getUpdateCount() > 0 ? update : null;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Override
+    public Employee createManager(Employee update) {
+        try (CallableStatement cs = db.makeCall("{call Person.uspManagerInsert(?,?,?,?,?)}")) {
+            cs.setString("Name", update.getName());
+            cs.setString("PhoneNumber", update.getPhoneNumber());
+            cs.setString("Email", update.getEmail());
+            cs.setString("Occupation", update.getOccupation().toString());
+            cs.setString("Password", update.getPassword());
             cs.execute();
             return cs.getUpdateCount() > 0 ? update : null;
         } catch (Exception e) {

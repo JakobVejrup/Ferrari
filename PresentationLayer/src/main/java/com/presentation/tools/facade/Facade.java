@@ -3,8 +3,11 @@ package com.presentation.tools.facade;
 import com.logic.handlers.Request;
 
 import com.model.entities.Employee;
+import com.presentation.mvc.controllers.login.LoginController;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Facade implements ModalSetup, ViewSetup, LoginManager{
@@ -45,7 +48,7 @@ public class Facade implements ModalSetup, ViewSetup, LoginManager{
     @Override
     public void setTop(Node node) {
         if(mainPane != null)
-            mainPane.setTop(node);
+            mainPane.setTop(new VBox(node));
     }
 
     @Override
@@ -59,6 +62,11 @@ public class Facade implements ModalSetup, ViewSetup, LoginManager{
         if(mainPane != null)
             mainPane.setRight(node);
     }
+    @Override
+    public void setBottom(Node node) {
+        if(mainPane != null)
+            mainPane.setBottom(node);
+    }
 
     @Override
     public void login(Employee employee) {
@@ -71,5 +79,11 @@ public class Facade implements ModalSetup, ViewSetup, LoginManager{
         if (login != null)
             return login.getLoggedIn();
         return null;
+    }
+    public void logOff() {
+        setCenter(new LoginController().getView());
+        setLeft(null);
+        setRight(null);
+        login(null);
     }
 }

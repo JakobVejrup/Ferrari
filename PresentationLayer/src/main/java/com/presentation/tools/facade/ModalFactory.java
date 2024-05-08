@@ -24,7 +24,7 @@ public class ModalFactory implements ModalSetup {
             stage.setScene(scene);
             stage.initOwner(mainStage);
             stage.showAndWait();
-            return null;
+            return controller.getResult();
         } catch (Exception e) {
             return null;
         }

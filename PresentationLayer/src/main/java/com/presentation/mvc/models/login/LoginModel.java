@@ -1,4 +1,4 @@
-package com.presentation.mvc.views.login;
+package com.presentation.mvc.models.login;
 
 import com.model.entities.Employee;
 import javafx.beans.property.SimpleStringProperty;
