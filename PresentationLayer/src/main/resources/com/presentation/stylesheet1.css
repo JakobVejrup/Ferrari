@@ -133,22 +133,7 @@ Glyph
     -fx-text-background-color: black;
 }
 
-
-.table-view .table-cell{
-    -fx-text-background-color: white;
-    -fx-border-color: transparent;
-}
-
 .table-row-cell:selected {
     -fx-background-color: darkgray;
     -fx-text-background-color: white;
-}
-.table-row-cell:odd{
-    -fx-background-color: lightslategray;
-    -fx-text-background-color: black;
-
-}
-.table-row-cell:even{
-    -fx-background-color: white;
-    -fx-text-background-color: black;
 }

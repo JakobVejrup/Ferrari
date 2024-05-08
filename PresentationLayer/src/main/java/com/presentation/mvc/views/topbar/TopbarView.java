@@ -16,7 +16,6 @@ public class TopbarView extends HBox {
         image.setFitHeight(h * 0.5);
         image.setFitWidth(w * 0.5);
         getChildren().add(image);
-        System.out.println(png.getHeight());
         getStyleClass().add("topbar");
 
     }
