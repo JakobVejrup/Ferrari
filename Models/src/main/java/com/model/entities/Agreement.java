@@ -5,50 +5,56 @@ import java.sql.Date;
 import com.rki.rki.Rating;
 
 public class Agreement {
-private int id;
-private int fixedterms;
-private double startvalue;
-private Date startagreement;
-private Rating RKi;
-private Date start;
-private Date end;
-private Vehicle vehicle;
-private double endprice;
-private Customer customer;
-private Employee employee;
+    private int id;
+    private int fixedTerms;
+    private double startValue;
+    private Date startAgreement;
+    private Rating RKi;
+    private Customer customer;
+    private Employee employee;
+    private Date start;
+    private Date end;
+    private Vehicle vehicle;
+    private double endPrice;
 
-
-public Agreement(int id, int fixedterms, double startvalue, Date startagreement, Rating RKi) {
-    this.id = id;
-    this.fixedterms = fixedterms;
-    this.startvalue = startvalue;
-    this.startagreement = startagreement;
-    this.RKi = RKi;
-    }
-
-    public Agreement(int id, Date start , Date end, Vehicle vehicle, double endprice, Customer customer, Employee employee) {
-    this.start = start;
-    this.end = end;
-    this.vehicle = vehicle;
-    this.endprice = endprice;
-    this.customer = customer;
-    this.employee = employee;
-  
-    }
-
-    public Agreement(int id, Vehicle vehicle, Customer customer, Employee employee) {
+    public Agreement(int id, int fixedTerms, double startValue, Date startAgreement, Rating RKi, Customer customer,
+            Employee employee, Date start, Date end, Vehicle vehicle, double endPrice) {
+        this.id = id;
+        this.fixedTerms = fixedTerms;
+        this.startValue = startValue;
+        this.startAgreement = startAgreement;
+        this.RKi = RKi;
+        this.customer = customer;
+        this.employee = employee;
+        this.start = start;
+        this.end = end;
         this.vehicle = vehicle;
+        this.endPrice = endPrice;
+    }
+
+    public Agreement(int id, int fixedTerms, double startValue, Date startAgreement, Rating RKi, Customer customer,
+            Employee employee) {
+        this.id = id;
+        this.fixedTerms = fixedTerms;
+        this.startValue = startValue;
+        this.startAgreement = startAgreement;
+        this.RKi = RKi;
         this.customer = customer;
         this.employee = employee;
     }
 
-    public Agreement(){
+    public Agreement(int id, Date start, Date end, Vehicle vehicle, double endPrice) {
+        this.id = id;
+        this.start = start;
+        this.end = end;
+        this.vehicle = vehicle;
+        this.endPrice = endPrice;
+    }
+
+    public Agreement() {
 
     }
 
-    
-    
-    
     public int getId() {
         return id;
     }
@@ -58,27 +64,27 @@ public Agreement(int id, int fixedterms, double startvalue, Date startagreement,
     }
 
     public int getfixedterms() {
-        return fixedterms;
+        return fixedTerms;
     }
 
     public void setfixedterms(int fixedterms) {
-        this.fixedterms = fixedterms;
+        this.fixedTerms = fixedterms;
     }
 
     public double getStartvalue() {
-        return startvalue;
+        return startValue;
     }
 
     public void setStartvalue(double startvalue) {
-        this.startvalue = startvalue;
+        this.startValue = startvalue;
     }
 
     public Date getStartagreement() {
-        return startagreement;
+        return startAgreement;
     }
 
     public void setStartagreement(Date startagreement) {
-        this.startagreement = startagreement;
+        this.startAgreement = startagreement;
     }
 
     public Rating getRKi() {
@@ -88,38 +94,6 @@ public Agreement(int id, int fixedterms, double startvalue, Date startagreement,
     public void setRKi(Rating RKi) {
         RKi = RKi;
 
-    }
-    
-    public Date getStart() {
-        return start;
-    }
-
-    public void setStart(Date start) {
-        this.start = start;
-    }
-
-    public Date getEnd() {
-        return end;
-    }
-
-    public void setEnd(Date end) {
-        this.end = end;
-    }
-
-    public Vehicle getVehicle() {
-        return vehicle;
-    }
-
-    public void setVehicle(Vehicle vehicle) {
-        this.vehicle = vehicle;
-    }
-
-    public double getEndprice() {
-        return endprice;
-    }
-
-    public void setEndprice(double endprice) {
-        this.endprice = endprice;
     }
 
     public Customer getCustomer() {
@@ -136,5 +110,37 @@ public Agreement(int id, int fixedterms, double startvalue, Date startagreement,
 
     public void setEmployee(Employee employee) {
         this.employee = employee;
+    }
+
+    public Date getStart() {
+        return start;
+    }
+
+    public void setStart(Date start) {
+        this.start = start;
+    }
+
+    public Date getEnd() {
+        return end;
+    }
+
+    public void setEnd(Date end) {
+        this.end = end;
+    }
+    
+    public Vehicle getVehicle() {
+        return vehicle;
+    }
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
+    }   
+
+    public double getEndprice() {
+        return endPrice;
+    }
+
+    public void setEndprice(double endprice) {
+        this.endPrice = endprice;
     }
 }

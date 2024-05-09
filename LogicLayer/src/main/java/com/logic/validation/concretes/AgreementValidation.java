@@ -14,7 +14,7 @@ public class AgreementValidation extends HandlerObject {
     }
     @Override
     protected boolean check(Request request) {
-        return request.getType() == ServiceType.Agreement;
+        return request.getType() == ServiceType.AgreementOpen;
     }
 
     @Override

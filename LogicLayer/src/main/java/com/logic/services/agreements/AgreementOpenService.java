@@ -12,10 +12,10 @@ import com.logic.handlers.Request;
 import com.logic.handlers.SimpleHolder;
 import com.logic.services.enums.ServiceType;
 //Karl
-public class AgreementService extends HandlerObject {
+public class AgreementOpenService extends HandlerObject {
     private HandlerHolder holder;
 
-    public AgreementService(Data data) {
+    public AgreementOpenService(Data data) {
         //creates all handlers and adds them to each other
         holder = new SimpleHolder(
                 new SimpleCreateHandler(data),
@@ -28,7 +28,7 @@ public class AgreementService extends HandlerObject {
 
     @Override
     public boolean check(Request request) {
-        return request.getType() == ServiceType.Agreement;
+        return request.getType() == ServiceType.AgreementOpen;
     }
 
     @Override
