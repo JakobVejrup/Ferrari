@@ -51,7 +51,7 @@ public class Agreement {
         this.endPrice = endPrice;
     }
 
-    public Agreement() {
+    public Agreement(int i, Date date, Date date2, String string, double d, double e) {
 
     }
 

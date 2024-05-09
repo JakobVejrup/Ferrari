@@ -1,7 +1,11 @@
 package com.data.dao;
 
+import java.sql.CallableStatement;
+import java.sql.ResultSet;
+
 import com.data.SQLData;
 import com.data.interfaces.Data;
+import com.model.entities.Agreement;
 
 public class AgreementOpenData implements Data{
 
@@ -13,9 +17,19 @@ public class AgreementOpenData implements Data{
 
     @Override
     public Object create(Object parameter) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'create'");
+        try (CallableStatement cs = db.makeCall("{call uspOpenAgreementInsert(?,?,?,?,?,?,?)}")) {
+            Agreement agreement = (Agreement) parameter;
+           
+            ResultSet result = cs.executeQuery();
+            if (!result.next())
+                return null;
+            agreement.setId(result.getInt("Id"));
+            return agreement;
+        } catch (Exception e) {
+            return null;
+        }
     }
+    
 
     @Override
     public Object read(Object parameter) {
