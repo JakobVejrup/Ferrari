@@ -2,15 +2,17 @@ package com.logic;
 
 import com.logic.services.ServiceManager;
 import com.logic.services.agreements.AgreementService;
+import com.logic.services.duedatepayment.DueDatePaymentService;
 import com.logic.services.employee.EmployeeService;
 import com.data.ConnectionData;
 import com.data.dao.AgreementData;
 import com.data.dao.EmployeeData;
+import com.data.dao.PaymentData;
 import com.logic.handlers.Handler;
 import com.logic.handlers.HandlerHolder;
 import com.logic.handlers.Request;
-import com.logic.services.enums.CRUDType;
 import com.logic.validation.ValidationManager;
+import com.logic.validation.concretes.AgreementValidation;
 import com.logic.validation.concretes.EmployeeValidation;
 
 public class ServiceSingleton implements Handler {
@@ -21,12 +23,18 @@ public class ServiceSingleton implements Handler {
         ConnectionData db = new ConnectionData();
         EmployeeData employeeData = new EmployeeData(db);
         AgreementData agreementData = new AgreementData(db);
+        PaymentData paymentData = new PaymentData(db);
+
+
         validations = new ValidationManager(
-            new EmployeeValidation()
+            new EmployeeValidation(), 
+            new AgreementValidation()
+    
         );
         services = new ServiceManager(
             new EmployeeService(employeeData, employeeData),
-            new AgreementService(agreementData)
+            new AgreementService(agreementData),
+            new DueDatePaymentService(paymentData) 
         );
     }
     public void setValidations(HandlerHolder validations) {

@@ -1,32 +1,17 @@
 package com.data.dao;
 
-import java.sql.CallableStatement;
-import java.sql.ResultSet;
-
-import com.data.ConnectionData;
-
+import com.data.SQLData;
 import com.data.interfaces.Data;
-import com.model.entities.Agreement;
-//Karl
-public class AgreementData implements Data{
-    private ConnectionData db;
-    public AgreementData(ConnectionData db) {
+
+public class PaymentData implements Data{
+    private SQLData db;
+    public PaymentData(SQLData db) {
         this.db = db;
     }
     @Override
     public Object create(Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call uspclosedAgreementInsert(?,?,?,?,?,?,?,?,?,?)}")) {
-            Agreement agreement = (Agreement) parameter;
-            cs.setInt("Start", agreement.getStart());
-            cs.setInt("End", agreement.getEnd());
-            cs.setdouble("endprice", agreement.getEnd());
-            ResultSet result = cs.executeQuery();
-            if (!result.next())
-                return null;
-           
-        } catch (Exception e) {
-            return null;
-        }
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'create'");
     }
 
     @Override
