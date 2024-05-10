@@ -7,7 +7,7 @@ import com.data.interfaces.Data;
 import com.model.entities.Agreement;
 
 //Karl
-public class AgreementOpenData implements Data{
+public class AgreementOpenData implements Data {
     private ConnectionData db;
     public AgreementOpenData(ConnectionData db) {
         this.db = db;

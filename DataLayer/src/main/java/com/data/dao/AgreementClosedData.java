@@ -2,14 +2,13 @@ package com.data.dao;
 
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
-
-import com.data.SQLData;
+import com.data.ConnectionData;
 import com.data.interfaces.Data;
 import com.model.entities.Agreement;
 //Karl
 public class AgreementClosedData implements Data{
-    private SQLData db;
-    public AgreementClosedData(SQLData db) {
+    private ConnectionData db;
+    public AgreementClosedData(ConnectionData db) {
         this.db = db;
     }
     @Override

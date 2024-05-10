@@ -18,7 +18,6 @@ import com.presentation.mvc.views.table.decorators.*;
 import com.presentation.tools.facade.Facade;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-
 import java.util.List;
 
 public class EmployeesController {
