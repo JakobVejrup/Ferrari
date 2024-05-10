@@ -6,18 +6,15 @@ import com.logic.services.enums.CRUDType;
 import com.logic.services.enums.ServiceType;
 import com.model.entities.Employee;
 import com.model.enums.Occupation;
-import com.model.threads.Validation;
 import com.presentation.mvc.controllers.table.ColumnController;
 import com.presentation.mvc.controllers.table.commands.DeleteCommand;
 import com.presentation.mvc.controllers.table.commands.UpdateCommand;
 import com.presentation.mvc.controllers.table.factories.ButtonFactory;
-import com.presentation.mvc.models.employees.EmployeesModel;
 import com.presentation.mvc.models.table.RowModel;
 import com.presentation.mvc.models.table.TableModel;
-import com.presentation.mvc.views.employees.EmployeeView;
+import com.presentation.mvc.views.employee.EmployeesView;
 import com.presentation.mvc.views.table.concretes.EmployeeTable;
 import com.presentation.mvc.views.table.decorators.*;
-import com.presentation.tools.alert.Alerter;
 import com.presentation.tools.facade.Facade;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -25,17 +22,16 @@ import javafx.event.ActionEvent;
 import java.util.List;
 
 public class EmployeesController {
-    private EmployeesModel model;
-    private EmployeeView view;
+    private TableModel model;
+    private EmployeesView view;
     public EmployeesController() {
-        view = new EmployeeView(this::newUser);
+        view = new EmployeesView(this::newUser);
         Request request = new Request(ServiceType.Employee, CRUDType.ReadAll, (employees) -> {
             //to allow ui to be run
             Platform.runLater( () -> {
                 TableDecorator table = new EmployeeTable();
-                TableModel tableModel = new TableModel(ServiceType.Employee, (List<Object>) employees);
-                model = new EmployeesModel(tableModel);
-                table = new ParentTableDecorator(tableModel, table);
+                TableModel model = new TableModel(ServiceType.Employee, (List<Object>) employees);
+                table = new ParentTableDecorator(model, table);
                 table = new TableHeightDecorator(0.6, table);
                 table = new TableWidthDecorator(0.8, table);
                 if(Facade.getInstance().getLoggedIn().getOccupation() == Occupation.Manager) {
@@ -52,10 +48,10 @@ public class EmployeesController {
     
         Employee createEmployee = (Employee)Facade.getInstance().openModal(new Request(ServiceType.Employee, CRUDType.Create, 
         (employee) -> {
-            model.getEmployeeRows().add(new RowModel(employee, ServiceType.Employee));
+            model.getRows().add(new RowModel(employee, ServiceType.Employee));
         }));
     }
-    public EmployeeView getView() {
+    public EmployeesView getView() {
         return view;
     }
 }

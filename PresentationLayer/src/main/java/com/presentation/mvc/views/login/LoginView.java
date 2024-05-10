@@ -1,6 +1,6 @@
 package com.presentation.mvc.views.login;
 
-import com.presentation.mvc.models.login.LoginModel;
+import com.presentation.mvc.models.employees.EmployeeModel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -13,7 +13,7 @@ import javafx.scene.layout.VBox;
 
 public class LoginView extends VBox {
 
-    public LoginView(LoginModel model, EventHandler<ActionEvent> buttonAction) {
+    public LoginView(EmployeeModel model, EventHandler<ActionEvent> buttonAction) {
         setAlignment(Pos.TOP_CENTER);
         getStyleClass().add("login");
         TextField email = new TextField();

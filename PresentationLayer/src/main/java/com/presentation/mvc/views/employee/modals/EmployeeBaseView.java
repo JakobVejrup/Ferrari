@@ -1,32 +1,33 @@
-package com.presentation.mvc.views.modals.employee;
+package com.presentation.mvc.views.employee.modals;
 
 import com.model.enums.Occupation;
-import com.presentation.mvc.models.modals.employee.CreateEmployeeModel;
+import com.presentation.mvc.models.employees.EmployeeModel;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class CreateEmployeeView extends VBox {
-    public CreateEmployeeView(CreateEmployeeModel model, EventHandler<ActionEvent> buttonAction) {
+public class EmployeeBaseView extends VBox {
+    public EmployeeBaseView(EmployeeModel model, EventHandler<ActionEvent> accept, EventHandler<ActionEvent> decline, String buttonText) {
         TextField email = new TextField();
-        model.emailProperty().bindBidirectional(email.textProperty());
-
-        PasswordField password = new PasswordField();
-        model.passwordProperty().bindBidirectional(password.textProperty());
+        model.emailProperty().bind(email.textProperty());
 
         TextField phoneNumber = new TextField();
-        model.phoneNumberProperty().bindBidirectional(phoneNumber.textProperty());
+        model.phoneNumberProperty().bind(phoneNumber.textProperty());
 
         TextField name = new TextField();
-        model.nameProperty().bindBidirectional(name.textProperty());
+        model.nameProperty().bind(name.textProperty());
 
         TextField loanLimit = new TextField();
-        //loanLimit.textProperty().bindBidirectional(model.loanLimitProperty(), new NumberStringConverter());
         loanLimit.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue,
@@ -37,23 +38,21 @@ public class CreateEmployeeView extends VBox {
                     model.loanLimitProperty().set(Double.parseDouble(loanLimit.getText()));
             }
         });
-
-
         //test if logged in is a manager
         ComboBox<Occupation> occupation = new ComboBox<>(FXCollections.observableArrayList(Occupation.values()));
-        model.occupationProperty().bindBidirectional(occupation.valueProperty());
+        model.occupationProperty().bind(occupation.valueProperty());
 
-        Button login = new Button("Lav Bruger");
-        login.setOnAction(buttonAction);
+        Button login = new Button(buttonText);
+        login.setOnAction(accept);
+        Button exit = new Button("Annuller");
+        exit.setOnAction(decline);
         getChildren().addAll(
                 new HBox(new Label("Navn:"), name),
                 new HBox(new Label("Email:"), email),
                 new HBox(new Label("TelefonNummer:"), phoneNumber),
-                new HBox(new Label("Password:"), password),
                 new HBox(new Label("Maks låne beløb:"), loanLimit),
                 new HBox(new Label("Stilling:"), occupation),
-                login
+                new HBox(login, exit)
         );
-
     }
 }

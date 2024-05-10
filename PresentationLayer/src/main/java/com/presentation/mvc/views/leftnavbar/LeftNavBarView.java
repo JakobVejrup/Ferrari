@@ -8,6 +8,7 @@ import java.util.List;
 public class LeftNavBarView extends VBox {
     public LeftNavBarView(List<NavButtonView> buttons) {
         super(new Label("Sider"));
+        getStyleClass().add("navBar");
         getChildren().addAll(buttons);
     }
 }
