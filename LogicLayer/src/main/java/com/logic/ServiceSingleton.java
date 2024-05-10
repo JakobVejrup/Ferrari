@@ -5,7 +5,7 @@ import com.logic.services.agreements.AgreementClosedService;
 import com.logic.services.agreements.AgreementOpenService;
 import com.logic.services.duedatepayment.DueDatePaymentService;
 import com.logic.services.employee.EmployeeService;
-import com.data.SQLData;
+import com.data.ConnectionData;
 import com.data.dao.AgreementClosedData;
 import com.data.dao.AgreementOpenData;
 import com.data.dao.EmployeeData;
@@ -22,7 +22,7 @@ public class ServiceSingleton implements Handler {
     private HandlerHolder validations;
     private HandlerHolder services;
     private ServiceSingleton() {
-        SQLData db = new SQLData();
+        ConnectionData db = new ConnectionData();
         EmployeeData employeeData = new EmployeeData(db);
         AgreementClosedData agreementClosed = new AgreementClosedData(db);
         DuePaymentData paymentData = new DuePaymentData(db);
@@ -53,10 +53,14 @@ public class ServiceSingleton implements Handler {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                if(request.getObject() != null)
+                if(request.getValidation() != null) {
                     validations.query(request);
-                if(!request.anyErrors())
-                    services.query(request);
+                    if(request.anyErrors()) {
+                        request.getValidation().getErrorAction().action(request);
+                        return;
+                    }
+                }
+                services.query(request);
             }
         });
         thread.setDaemon(true);

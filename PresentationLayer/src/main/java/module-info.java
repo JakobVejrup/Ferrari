@@ -7,6 +7,7 @@ module com.presentation {
     requires com.model;
     requires com.logic;
     requires com.rki;
+    requires javafx.base;
 
     opens com.presentation to javafx.fxml;
     exports com.presentation;

@@ -5,4 +5,5 @@ import com.model.entities.Employee;
 public interface UserExtra {
     public Employee login(Employee login);
     public Employee updateSelf(Employee update);
+    public Employee createManager(Employee update);
 }

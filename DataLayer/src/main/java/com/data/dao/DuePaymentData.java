@@ -1,11 +1,11 @@
 package com.data.dao;
 
-import com.data.SQLData;
+import com.data.ConnectionData;
 import com.data.interfaces.Data;
 
 public class DuePaymentData implements Data{
-    private SQLData db;
-    public DuePaymentData(SQLData db) {
+    private ConnectionData db;
+    public DuePaymentData(ConnectionData db) {
         this.db = db;
     }
     @Override
