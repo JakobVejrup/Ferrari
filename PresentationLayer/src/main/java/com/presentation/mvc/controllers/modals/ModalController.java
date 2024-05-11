@@ -1,10 +1,9 @@
 package com.presentation.mvc.controllers.modals;
-
-import javafx.scene.layout.Pane;
+import com.presentation.mvc.controllers.Controller;
 import javafx.stage.Stage;
 
 //StageHandler
-public abstract class ModalController {
+public abstract class ModalController implements Controller{
     private Stage stage;
     private Object result;
 
@@ -17,8 +16,6 @@ public abstract class ModalController {
     protected void close() {
         stage.close();
     }
-
-    public abstract Pane getView();
 
     public Object getResult() {
         return result;

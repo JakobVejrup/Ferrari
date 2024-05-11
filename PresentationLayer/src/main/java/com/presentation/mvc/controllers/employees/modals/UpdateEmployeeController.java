@@ -12,6 +12,7 @@ import com.presentation.mvc.views.employee.modals.EmployeeBaseView;
 import com.presentation.tools.alert.Alerter;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -23,7 +24,14 @@ public class UpdateEmployeeController extends ModalController {
 
         model = new EmployeeModel(employee);
         // needs a actionevent which is a funtional interface type
-        view = new EmployeeBaseView(model, this::update, this::decline, "Opdater Bruger");
+        view = new EmployeeBaseView(model);
+        Button updateButton = new Button("Opdater Bruger");
+        updateButton.setOnAction(this::update);
+
+        Button cancelButton = new Button("Fortryd");
+        cancelButton.setOnAction(this::decline);
+
+        view.addButtons(updateButton, cancelButton);
     }
 
     @Override

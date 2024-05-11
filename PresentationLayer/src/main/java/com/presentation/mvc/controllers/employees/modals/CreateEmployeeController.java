@@ -11,6 +11,7 @@ import com.presentation.mvc.views.employee.modals.CreateEmployeeView;
 import com.presentation.tools.alert.Alerter;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -22,7 +23,13 @@ public class CreateEmployeeController extends ModalController {
 
         model = new EmployeeModel();
         // needs a actionevent which is a funtional interface type
-        view = new CreateEmployeeView(model, this::create, this::close, "Lav Bruger");
+        Button createButton = new Button("Lav Bruger");
+        createButton.setOnAction(this::create);
+
+        Button cancelButton = new Button("Fortryd");
+        cancelButton.setOnAction(this::decline);
+        view = new CreateEmployeeView(model);
+        view.addButtons(createButton, cancelButton);
     }
 
     @Override
@@ -49,7 +56,7 @@ public class CreateEmployeeController extends ModalController {
             )
         );
     }
-    public void close(ActionEvent event) {
+    public void decline(ActionEvent event) {
         close();
     }
 

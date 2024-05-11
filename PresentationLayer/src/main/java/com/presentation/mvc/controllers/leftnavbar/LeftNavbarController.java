@@ -2,15 +2,13 @@ package com.presentation.mvc.controllers.leftnavbar;
 
 import com.model.entities.Employee;
 import com.model.enums.Occupation;
+import com.presentation.mvc.controllers.employees.AccountController;
 import com.presentation.mvc.controllers.employees.EmployeesController;
-import com.presentation.mvc.controllers.login.LoginController;
 import com.presentation.mvc.models.leftnavbar.LeftNavBarModel;
 import com.presentation.mvc.models.leftnavbar.NavButtonModel;
 import com.presentation.mvc.views.leftnavbar.LeftNavBarView;
 import com.presentation.mvc.views.leftnavbar.NavButtonView;
 import com.presentation.tools.facade.Facade;
-import javafx.event.EventHandler;
-import javafx.scene.input.MouseEvent;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +26,7 @@ public class LeftNavbarController {
             controllers.add(new NavButtonController(new NavButtonModel("FontAwesome", "FOLDER_OPEN", "Åbne Aftaler"), (event) -> navigate("AgreementsOpen")));
             controllers.add(new NavButtonController(new NavButtonModel("FontAwesome", "FOLDER", "Lukkede Aftaler"), (event) -> navigate("AgreementsClosed")));
             controllers.add(new NavButtonController(new NavButtonModel("FontAwesome", "USERS", "Kunder"), (event) -> navigate("Customers")));
+            controllers.add(new NavButtonController(new NavButtonModel("FontAwesome", "USER", "Din konto"), (event) -> navigate("Account")));
             controllers.add(new NavButtonController(new NavButtonModel("FontAwesome", "SIGN_OUT", "Log Af"), (event) -> navigate("Login")));
         }
         if(employee.getOccupation() == Occupation.Admin) {
@@ -43,6 +42,8 @@ public class LeftNavbarController {
         switch (nav) {
             case "Login" -> Facade.getInstance().logOff();
             case "Employees" -> Facade.getInstance().setCenter(new EmployeesController().getView());
+            case "Account" -> Facade.getInstance().setCenter(new AccountController().getView());
+
             default -> {
                 return;
             }

@@ -2,22 +2,19 @@ package com.presentation.mvc.views.employee.modals;
 
 import com.model.enums.Occupation;
 import com.presentation.mvc.models.employees.EmployeeModel;
-
+import com.presentation.mvc.views.View;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class EmployeeBaseView extends VBox {
-    public EmployeeBaseView(EmployeeModel model, EventHandler<ActionEvent> accept, EventHandler<ActionEvent> decline, String buttonText) {
+public class EmployeeBaseView extends VBox implements View{
+    public EmployeeBaseView(EmployeeModel model) {
         TextField email = new TextField();
         model.emailProperty().bind(email.textProperty());
 
@@ -42,17 +39,17 @@ public class EmployeeBaseView extends VBox {
         ComboBox<Occupation> occupation = new ComboBox<>(FXCollections.observableArrayList(Occupation.values()));
         model.occupationProperty().bind(occupation.valueProperty());
 
-        Button login = new Button(buttonText);
-        login.setOnAction(accept);
-        Button exit = new Button("Annuller");
-        exit.setOnAction(decline);
         getChildren().addAll(
                 new HBox(new Label("Navn:"), name),
                 new HBox(new Label("Email:"), email),
                 new HBox(new Label("TelefonNummer:"), phoneNumber),
                 new HBox(new Label("Maks låne beløb:"), loanLimit),
-                new HBox(new Label("Stilling:"), occupation),
-                new HBox(login, exit)
+                new HBox(new Label("Stilling:"), occupation)
         );
+    }
+
+    @Override
+    public void addButtons(Button... buttons) {
+        getChildren().add(new HBox(buttons));
     }
 }

@@ -19,8 +19,9 @@ import com.presentation.tools.facade.Facade;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import java.util.List;
+import com.presentation.mvc.controllers.Controller;
 
-public class EmployeesController {
+public class EmployeesController implements Controller{
     private TableModel model;
     private EmployeesView view;
     public EmployeesController() {
