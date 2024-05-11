@@ -1,6 +1,8 @@
 package com.logic.math;
 
 import java.sql.Date;
+import java.util.Calendar;
+
 import com.model.entities.Agreement;
 import com.model.entities.DueDatePayment;
 import com.rki.bank.InterestRate;
@@ -14,12 +16,20 @@ public class LoanCalculator {
         double månedligBetaling = beregnmånedligBetaling(agreement.getVehicle().getPrice(), rente, agreement.getfixedterms());
         double totalBeløb = agreement.getfixedterms() * månedligBetaling;
         agreement.setEndprice (totalBeløb);
+        Date firstDate = agreement.getStart();
         for (int i = 0; i < agreement.getfixedterms(); i++) {
+            Calendar.getInstance().setTime(firstDate);
+            Calendar.getInstance().add(Calendar.MONTH, 1);
+            Date lastDate = new Date(Calendar.getInstance().getTime().getTime());
+
             double Restgæld = Restgæld(totalBeløb, månedligBetaling, (double) i, månedligBetaling);
             double Afdrag = Afdrag(agreement.getStartvalue(), rente, i, agreement.getfixedterms());
-            Betalinger [i] = new DueDatePayment(agreement, i);
+            double plus = månedligBetaling - Afdrag;
+            double primo = Restgæld - plus; 
 
+            Betalinger [i] = new DueDatePayment(agreement, i, firstDate, lastDate, plus, Afdrag, Restgæld, primo);
         }
+        return Betalinger;
     }
 
     private static double rente(Agreement agreement) {
