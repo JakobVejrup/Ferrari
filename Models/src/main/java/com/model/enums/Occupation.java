@@ -8,7 +8,9 @@ public enum Occupation {
     private Occupation(String title) {
         this.title = title;
     }
-
+    public String realString() {
+        return name();
+    }
     @Override
     public String toString() {
         return title;
