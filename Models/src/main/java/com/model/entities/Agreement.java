@@ -35,7 +35,7 @@ public class Agreement {
     }
 
     public Agreement(int id, int fixedTerms, double startValue, Date startAgreement, Rating RKi, Customer customer,
-            Employee employee) {
+            Employee employee, Vehicle vehicle) {
         this.id = id;
         this.fixedTerms = fixedTerms;
         this.startValue = startValue;
@@ -43,6 +43,7 @@ public class Agreement {
         this.RKi = RKi;
         this.customer = customer;
         this.employee = employee;
+        this.vehicle = vehicle;
     }
 
     public Agreement(int id, Date start, Date end, Vehicle vehicle, double endPrice) {

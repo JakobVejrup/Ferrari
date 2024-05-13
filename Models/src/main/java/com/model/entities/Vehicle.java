@@ -12,7 +12,10 @@ public class Vehicle {
         this.Price = Price;
 
     }
-// Get metode
+public Vehicle() {
+        //TODO Auto-generated constructor stub
+    }
+    // Get metode
     public int getVehicleID () {
         return VehicleID;
     }
@@ -36,4 +39,5 @@ public class Vehicle {
     public void setPrice (Double Price) {
         this.Price = Price;
     }
+  
 }

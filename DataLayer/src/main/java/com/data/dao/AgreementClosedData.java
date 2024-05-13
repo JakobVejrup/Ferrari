@@ -37,9 +37,9 @@ public class AgreementClosedData implements Data{
             ResultSet result = cs.executeQuery();
             if (!result.next())
                 return null;
-            return new Agreement(result.getInt("Id"), 
-            result.getDate("Start"), 
-            result.getDate("End"), 
+            return new Agreement(result.getInt("Id"),
+            result.getDate("Start"),
+            result.getDate("End"),
             result.getString("VehicleName"),
             result.getDouble("vechilePrice"),
             result.getDouble("endprice")
