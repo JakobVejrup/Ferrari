@@ -2,8 +2,6 @@ package com.model.entities;
 
 import java.sql.Date;
 
-import com.rki.rki.Rating;
-
 public class DueDatePayment {
     private Agreement agreement;
     private int number;
@@ -15,7 +13,7 @@ public class DueDatePayment {
     private double primoprice;
 
 
-    public DueDatePayment(Agreement agreement, int fixedterms, double startvalue, Date startagreement, Rating RKi,int number, Date datestart, Date dateend, double plus, double minus, double ultimovalue, double primoprice) {
+    public DueDatePayment(Agreement agreement,int number, Date datestart, Date dateend, double plus, double minus, double ultimovalue, double primoprice) {
         this.agreement = agreement;
         this.number = number;
         this.datestart = datestart;

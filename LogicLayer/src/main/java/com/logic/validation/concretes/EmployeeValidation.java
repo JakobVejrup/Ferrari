@@ -1,12 +1,16 @@
 package com.logic.validation.concretes;
 
+import com.data.interfaces.CheckData;
+import com.data.interfaces.Data;
 import com.logic.handlers.HandlerObject;
 import com.logic.handlers.Request;
 import com.logic.services.enums.ServiceType;
 import com.model.entities.Employee;
 
 public class EmployeeValidation extends HandlerObject {
-    public EmployeeValidation() {
+    private CheckData data;
+    public EmployeeValidation(CheckData data) {
+        this.data = data;
     }
     public EmployeeValidation(HandlerObject handler) {
         setNext(handler);
@@ -29,10 +33,10 @@ public class EmployeeValidation extends HandlerObject {
         if(employee.getEmail().length() > 35)
             request.getValidation().addMessage("email er for lang");
         if(employee.getPhoneNumber().length() > 20)
-            request.getValidation().addMessage("tlfnummer er for lang");
+            request.getValidation().addMessage("tlfnummer er for langt");
         if(employee.getPhoneNumber().length() < 8)
             request.getValidation().addMessage("tlfnummer er for kort");
-
-
+        if(!data.check(employee))
+            request.getValidation().addMessage("email er i brug");
     }
 }

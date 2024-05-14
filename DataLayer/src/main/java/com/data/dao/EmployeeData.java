@@ -1,6 +1,7 @@
 package com.data.dao;
 
-import com.data.SQLData;
+import com.data.ConnectionData;
+import com.data.interfaces.CheckData;
 import com.data.interfaces.Data;
 import com.data.interfaces.UserExtra;
 import com.model.entities.Employee;
@@ -10,20 +11,21 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 //Anders
-public class EmployeeData implements Data, UserExtra {
-    private SQLData db;
-    public EmployeeData(SQLData db) {
+public class EmployeeData implements Data, UserExtra, CheckData {
+    private ConnectionData db;
+    public EmployeeData(ConnectionData db) {
         this.db = db;
     }
     @Override
     public Object create(Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call uspEmployeeInsert(?,?,?,?,?)}")) {
+        try (CallableStatement cs = db.makeCall("{call Person.uspEmployeeInsert(?,?,?,?,?,?)}")) {
             Employee employee = (Employee) parameter;
             cs.setString("Name", employee.getName());
             cs.setString("PhoneNumber", employee.getPhoneNumber());
             cs.setString("Email", employee.getEmail());
-            cs.setString("Occupation", employee.getOccupation().toString());
+            cs.setString("Occupation", employee.getOccupation().realString());
             cs.setString("Password", employee.getPassword());
+            cs.setDouble("Limit", employee.getLoanLimit());
             ResultSet result = cs.executeQuery();
             if (!result.next())
                 return null;
@@ -37,7 +39,7 @@ public class EmployeeData implements Data, UserExtra {
 // no password will be given since thats knowledge only the user should have, it will be given in a login
     @Override
     public Object read(Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call uspEmployeeGet(?)}")) {
+        try (CallableStatement cs = db.makeCall("{call Person.uspEmployeeGet(?)}")) {
             cs.setInt("Id", (int)parameter);
             ResultSet result = cs.executeQuery();
             if (!result.next())
@@ -59,7 +61,7 @@ public class EmployeeData implements Data, UserExtra {
     @Override
     public Object readAll(Object parameter) {
         ArrayList<Employee> employees = new ArrayList<Employee>();
-        try (CallableStatement cs = db.makeCall("{call uspEmployeeGetAll()}")) {
+        try (CallableStatement cs = db.makeCall("{call Person.uspEmployeeGetAll()}")) {
             ResultSet result = cs.executeQuery();
             while (result.next()) 
                 employees.add(new Employee(result.getInt("Id"), 
@@ -77,23 +79,26 @@ public class EmployeeData implements Data, UserExtra {
 
     @Override
     public Object update(Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call uspEmployeeUpdate(?,?,?,?,?)}")) {
+        try (CallableStatement cs = db.makeCall("{call Person.uspEmployeeUpdate(?,?,?,?,?,?)}")) {
             Employee employee = (Employee) parameter;
             cs.setString("Name", employee.getName());
             cs.setString("PhoneNumber", employee.getPhoneNumber());
             cs.setString("Email", employee.getEmail());
             cs.setInt("Id", employee.getId());
-            cs.setString("Occupation", employee.getOccupation().toString());
+            cs.setString("Occupation", employee.getOccupation().realString());
+            cs.setDouble("Limit", employee.getLoanLimit());
             cs.execute();
+            System.out.println("null " + cs.getUpdateCount());
             return cs.getUpdateCount() > 0 ? employee : null;
         } catch (Exception e) {
+            System.out.println(e);
             return null;
         }
     }
 
     @Override
     public boolean delete(Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call uspEmployeeDelete(?)}")) {
+        try (CallableStatement cs = db.makeCall("{call Person.uspEmployeeDelete(?)}")) {
             cs.setInt("Id", ((Employee)parameter).getId());
             cs.execute();
             return cs.getUpdateCount() > 0;
@@ -104,7 +109,7 @@ public class EmployeeData implements Data, UserExtra {
 
     @Override
     public Employee login(Employee login) {
-        try (CallableStatement cs = db.makeCall("{call uspLogin(?, ?)}")) {
+        try (CallableStatement cs = db.makeCall("{call Person.uspLogin(?, ?)}")) {
             Employee employee = (Employee) login;
             cs.setString("Email", login.getEmail());
             cs.setString("Password", login.getPassword());
@@ -125,17 +130,46 @@ public class EmployeeData implements Data, UserExtra {
 
     @Override
     public Employee updateSelf(Employee update) {
-        try (CallableStatement cs = db.makeCall("{call uspUpdateSelfEmployee(?,?,?,?,?,?)}")) {
+        try (CallableStatement cs = db.makeCall("{call Person.uspUpdateSelfEmployee(?,?,?,?,?,?)}")) {
             cs.setString("Name", update.getName());
             cs.setString("PhoneNumber", update.getPhoneNumber());
             cs.setString("Email", update.getEmail());
             cs.setInt("Id", update.getId());
             cs.setString("Password", update.getPassword());
-            cs.setString("Occupation", update.getOccupation().toString());
+            cs.setString("Occupation", update.getOccupation().realString());
             cs.execute();
             return cs.getUpdateCount() > 0 ? update : null;
         } catch (Exception e) {
             return null;
+        }
+    }
+
+    @Override
+    public Employee createManager(Employee update) {
+        try (CallableStatement cs = db.makeCall("{call Person.uspManagerInsert(?,?,?,?,?)}")) {
+            cs.setString("Name", update.getName());
+            cs.setString("PhoneNumber", update.getPhoneNumber());
+            cs.setString("Email", update.getEmail());
+            cs.setString("Occupation", update.getOccupation().realString());
+            cs.setString("Password", update.getPassword());
+            cs.execute();
+            return cs.getUpdateCount() > 0 ? update : null;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+    @Override
+    public boolean check(Object check) {
+        try (CallableStatement cs = db.makeCall("{call Person.uspEmployeeCheckEmail(?)}")) {
+            Employee employee = (Employee) check;
+            cs.setString("Email", employee.getEmail());
+            ResultSet result = cs.executeQuery();
+            if (!result.next())
+                return false;
+            return result.getBoolean(1);
+            } 
+        catch (SQLException e) {
+            return false;
         }
     }
 }
