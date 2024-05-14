@@ -1,7 +1,6 @@
-package com.logic.services.employee;
+package com.logic.services.customer;
 
 import com.data.interfaces.Data;
-import com.data.interfaces.UserExtra;
 import com.logic.Simples.*;
 import com.logic.handlers.HandlerHolder;
 import com.logic.handlers.HandlerObject;
@@ -20,7 +19,7 @@ public class CustomerService extends HandlerObject {
                 new SimpleReadHandler(data),
                 new SimpleReadAllHandler(data),
                 new SimpleUpdateHandler(data),
-                new SimpleDeleteHandler(data),
+                new SimpleDeleteHandler(data)
                
         );
     }
