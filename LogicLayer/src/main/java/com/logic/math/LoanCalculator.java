@@ -4,14 +4,14 @@ import java.sql.Date;
 import java.util.Calendar;
 
 import com.model.entities.Agreement;
-import com.model.entities.DueDatePayment;
+import com.model.entities.Invoice;
 import com.rki.bank.InterestRate;
 import com.rki.rki.Rating;
 
 public class LoanCalculator {
 
-    public static DueDatePayment[] LåneBeregner(Agreement agreement) {
-        DueDatePayment [] Betalinger = new DueDatePayment[agreement.getfixedterms()];
+    public static Invoice[] LåneBeregner(Agreement agreement) {
+        Invoice [] Betalinger = new Invoice[agreement.getfixedterms()];
         double rente = rente(agreement);
         double månedligBetaling = beregnmånedligBetaling(agreement.getVehicle().getPrice(), rente, agreement.getfixedterms());
         double totalBeløb = agreement.getfixedterms() * månedligBetaling;
@@ -27,7 +27,7 @@ public class LoanCalculator {
             double plus = månedligBetaling - Afdrag;
             double primo = Restgæld - plus; 
 
-            Betalinger [i] = new DueDatePayment(agreement, i, firstDate, lastDate, plus, Afdrag, Restgæld, primo);
+            Betalinger [i] = new Invoice(agreement, i, firstDate, lastDate, plus, Afdrag, Restgæld, primo, "");
         }
         return Betalinger;
     }

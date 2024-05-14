@@ -1,4 +1,4 @@
-package com.logic.services.duedatepayment;
+package com.logic.services.invoice;
 
 import com.data.interfaces.Data;
 import com.logic.Simples.*;
@@ -8,11 +8,11 @@ import com.logic.handlers.Request;
 import com.logic.handlers.SimpleHolder;
 import com.logic.services.enums.ServiceType;
 
-public class DueDatePaymentService extends HandlerObject {
+public class InvoiceService extends HandlerObject {
     private HandlerHolder holder;
 
 
-    public DueDatePaymentService(Data data) {
+    public InvoiceService(Data data) {
         // creates all handlers and adds them to each other
         holder = new SimpleHolder(
                 new SimpleCreateHandler(data),

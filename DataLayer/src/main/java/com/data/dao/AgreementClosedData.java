@@ -42,7 +42,7 @@ public class AgreementClosedData implements Data{
             (int)parameter,
             result.getDate("Start"),
             result.getDate("End"),
-            new Vehicle(result.getString("VehicleName"), result.getDouble("vechilePrice")),
+            new Vehicle(0, result.getString("VehicleName"), result.getDouble("vechilePrice")),
             result.getDouble("endprice")
             );
             } 
@@ -62,7 +62,7 @@ public class AgreementClosedData implements Data{
             result.getInt("Id"), 
             result.getDate("Start"), 
             result.getDate("End"), 
-            new Vehicle(result.getString("VehicleName"), result.getDouble("vechilePrice")),
+            new Vehicle(0, result.getString("VehicleName"), result.getDouble("vechilePrice")),
             result.getDouble("endprice")
             );
             } 

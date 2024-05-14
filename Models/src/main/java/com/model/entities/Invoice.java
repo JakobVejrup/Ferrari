@@ -2,7 +2,7 @@ package com.model.entities;
 
 import java.sql.Date;
 
-public class DueDatePayment {
+public class Invoice {
     private Agreement agreement;
     private int number;
     private Date datestart;
@@ -14,7 +14,7 @@ public class DueDatePayment {
     private String details;
 
 
-    public DueDatePayment(Agreement agreement, int number, Date datestart, Date dateend, double plus, double minus,
+    public Invoice(Agreement agreement, int number, Date datestart, Date dateend, double plus, double minus,
             double ultimovalue, double primoprice, String details) {
         this.agreement = agreement;
         this.number = number;

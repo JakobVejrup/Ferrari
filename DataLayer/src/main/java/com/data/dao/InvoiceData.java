@@ -6,18 +6,18 @@ import java.sql.ResultSet;
 import com.data.ConnectionData;
 import com.data.interfaces.Data;
 import com.model.entities.Agreement;
-import com.model.entities.DueDatePayment;
+import com.model.entities.Invoice;
 import java.sql.Date;
 
-public class DuePaymentData implements Data{
+public class InvoiceData implements Data{
     private ConnectionData db;
-    public DuePaymentData(ConnectionData db) {
+    public InvoiceData(ConnectionData db) {
         this.db = db;
     }
     @Override
     public Object create(Object parameter) {
         try (CallableStatement cs = db.makeCall("{call uspDuePaymentInsert(?,?,?,?,?,?,?,?)}")) {
-            DueDatePayment duePayment = (DueDatePayment) parameter;
+            Invoice duePayment = (Invoice) parameter;
             cs.setInt("AgreementID", duePayment.getAgreement().getId());
             cs.setInt("Number", duePayment.getNumber());
             cs.setDate("DateStart", duePayment.getDatestart());
@@ -43,7 +43,7 @@ public class DuePaymentData implements Data{
             ResultSet result = cs.executeQuery();
             if (!result.next())
                 return null;
-            return new DueDatePayment(
+            return new Invoice(
                 (Agreement)parameter,
                 result.getInt("Number"),
                 result.getDate("DateStart"),
@@ -65,7 +65,7 @@ public class DuePaymentData implements Data{
             ResultSet result = cs.executeQuery();
             if (!result.next())
                 return null;
-            return new DueDatePayment(
+            return new Invoice(
                 (Agreement)parameter,
                 result.getInt("Number"),
                 result.getDate("DateStart"),
@@ -84,7 +84,7 @@ public class DuePaymentData implements Data{
     @Override
     public Object update(Object parameter) {
         try (CallableStatement cs = db.makeCall("{call uspDuePaymentUpdate(?,?,?,?,?,?,?,?)}")) {
-            DueDatePayment duePayment = (DueDatePayment) parameter;
+            Invoice duePayment = (Invoice) parameter;
             cs.setInt("AgreementID", duePayment.getAgreement().getId());
             cs.setInt("Number", duePayment.getNumber());
             cs.setDate("DateStart", duePayment.getDatestart());

@@ -3,13 +3,13 @@ package com.logic;
 import com.logic.services.ServiceManager;
 import com.logic.services.agreements.AgreementClosedService;
 import com.logic.services.agreements.AgreementOpenService;
-import com.logic.services.duedatepayment.DueDatePaymentService;
 import com.logic.services.employee.EmployeeService;
+import com.logic.services.invoice.InvoiceService;
 import com.data.ConnectionData;
 import com.data.dao.AgreementClosedData;
 import com.data.dao.AgreementOpenData;
 import com.data.dao.EmployeeData;
-import com.data.dao.DuePaymentData;
+import com.data.dao.InvoiceData;
 import com.logic.handlers.Handler;
 import com.logic.handlers.HandlerHolder;
 import com.logic.handlers.Request;
@@ -25,7 +25,7 @@ public class ServiceSingleton implements Handler {
         ConnectionData db = new ConnectionData();
         EmployeeData employeeData = new EmployeeData(db);
         AgreementClosedData agreementClosed = new AgreementClosedData(db);
-        DuePaymentData paymentData = new DuePaymentData(db);
+        InvoiceData paymentData = new InvoiceData(db);
         AgreementOpenData agreementOpen = new AgreementOpenData(db);
 
 
@@ -37,7 +37,7 @@ public class ServiceSingleton implements Handler {
         services = new ServiceManager(
             new EmployeeService(employeeData, employeeData),
             new AgreementOpenService(agreementOpen),
-            new DueDatePaymentService(paymentData),
+            new InvoiceService(paymentData),
             new AgreementClosedService(agreementClosed)
         );
     }

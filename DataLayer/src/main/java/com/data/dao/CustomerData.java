@@ -1,6 +1,6 @@
 package com.data.dao;
 
-import com.data.SQLData;
+import com.data.ConnectionData;
 import com.data.interfaces.Data;
 import com.model.entities.Customer;
 import java.sql.CallableStatement;
@@ -9,8 +9,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class CustomerData implements Data {
-    private SQLData db;
-    public CustomerData(SQLData db) {
+    private ConnectionData db;
+    public CustomerData(ConnectionData db) {
         this.db = db;
     }
     @Override
