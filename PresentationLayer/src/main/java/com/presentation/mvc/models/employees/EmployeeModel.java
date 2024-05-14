@@ -6,8 +6,6 @@ import java.util.List;
 import com.model.entities.Employee;
 import com.model.enums.Occupation;
 import javafx.beans.property.*;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 
 public class EmployeeModel extends Employee{
     private StringProperty emailProp;
@@ -18,13 +16,12 @@ public class EmployeeModel extends Employee{
     private StringProperty passwordProp;
 
     public EmployeeModel() {
-        super();
         setup();
     }
 
     public EmployeeModel(Employee employee) {
-        super();
         setup();
+        setId(employee.getId());
         emailProp.set(employee.getEmail());
         nameProp.set(employee.getName());
         occupationProp.set(employee.getOccupation());
@@ -34,80 +31,60 @@ public class EmployeeModel extends Employee{
     }
 
     @Override
+    public String getName() {
+        return nameProp.get();
+    }
+    @Override
+    public String getEmail() {
+        return emailProp.get();
+    }
+    @Override
+    public String getPhoneNumber() {
+        return phoneNumberProp.get();
+    }
+    @Override
+    public String getPassword() {
+        return passwordProp.get();
+    }
+    @Override
+    public Occupation getOccupation() {
+        return occupationProp.get();
+    }
+    @Override
+    public double getLoanLimit() {
+        return loanLimitProp.get();
+    }
+    @Override
     public void setName(String name) {
-        super.setName(name);
         nameProp.set(name);
     }
     @Override
     public void setEmail(String email) {
-        super.setEmail(email);
         emailProp.set(email);
     }
     @Override
     public void setPhoneNumber(String number) {
-        super.setPhoneNumber(number);
         phoneNumberProp.set(number);
     }
     @Override
     public void setPassword(String password) {
-        super.setPassword(password);
         passwordProp.set(password);
     }
     @Override
     public void setOccupation(Occupation occupation) {
-        super.setOccupation(occupation);
         occupationProp.set(occupation);
     }
     @Override
     public void setLoanLimit(Double limit) {
-        super.setLoanLimit(limit);
         loanLimitProp.set(limit);
     }
     public void setup() {
         nameProp = new SimpleStringProperty();
-        nameProp.addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                setName(newValue);                
-            }
-        });
         emailProp = new SimpleStringProperty();
-        emailProp.addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                setEmail(newValue);     
-            }
-        });
-
         phoneNumberProp = new SimpleStringProperty();
-        phoneNumberProp.addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                setPhoneNumber(newValue);  
-            }
-        });
         passwordProp = new SimpleStringProperty();
-        passwordProp.addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                setPassword(newValue);
-            }
-        });
         occupationProp = new SimpleObjectProperty<Occupation>();
-        occupationProp.addListener(new ChangeListener<Occupation>() {
-            @Override
-            public void changed(ObservableValue<? extends Occupation> observable, Occupation oldValue, Occupation newValue) {
-                setOccupation(newValue);
-            }
-        });
         loanLimitProp = new SimpleDoubleProperty();
-        loanLimitProp.addListener(new ChangeListener<Number>() {
-
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                setLoanLimit((Double)newValue);
-            }
-        });
     }
 
     public StringProperty emailProperty() {

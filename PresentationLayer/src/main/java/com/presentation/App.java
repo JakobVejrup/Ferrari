@@ -4,6 +4,7 @@ import com.model.entities.Employee;
 import com.model.enums.Occupation;
 import com.presentation.mvc.controllers.employees.EmployeesController;
 import com.presentation.mvc.controllers.login.LoginController;
+import com.presentation.mvc.models.employees.EmployeeModel;
 import com.presentation.mvc.views.topbar.TopbarView;
 import com.presentation.tools.facade.Facade;
 import com.presentation.tools.facade.Login;

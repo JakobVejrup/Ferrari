@@ -88,6 +88,7 @@ public class EmployeeData implements Data, UserExtra, CheckData {
             cs.setString("Occupation", employee.getOccupation().realString());
             cs.setDouble("Limit", employee.getLoanLimit());
             cs.execute();
+            System.out.println("null " + cs.getUpdateCount());
             return cs.getUpdateCount() > 0 ? employee : null;
         } catch (Exception e) {
             System.out.println(e);
