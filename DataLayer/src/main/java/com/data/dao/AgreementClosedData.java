@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import com.data.ConnectionData;
 import com.data.interfaces.Data;
 import com.model.entities.Agreement;
+import com.model.entities.Vehicle;
 //Karl
 public class AgreementClosedData implements Data{
     private ConnectionData db;
@@ -33,15 +34,15 @@ public class AgreementClosedData implements Data{
     @Override
     public Object read(Object parameter) {
         try (CallableStatement cs = db.makeCall("{call uspClosedAgreementGet(?)}")) {
-            cs.setInt("Id", (int)parameter);
+            cs.setInt("Id", ((Agreement)parameter).getId());
             ResultSet result = cs.executeQuery();
             if (!result.next())
                 return null;
-            return new Agreement(result.getInt("Id"), 
-            result.getDate("Start"), 
-            result.getDate("End"), 
-            result.getString("VehicleName"),
-            result.getDouble("vechilePrice"),
+            return new Agreement(
+            (int)parameter,
+            result.getDate("Start"),
+            result.getDate("End"),
+            new Vehicle(result.getString("VehicleName"), result.getDouble("vechilePrice")),
             result.getDouble("endprice")
             );
             } 
@@ -57,11 +58,11 @@ public class AgreementClosedData implements Data{
             ResultSet result = cs.executeQuery();
             if (!result.next())
                 return null;
-            return new Agreement(result.getInt("Id"), 
+            return new Agreement(
+            result.getInt("Id"), 
             result.getDate("Start"), 
             result.getDate("End"), 
-            result.getString("VehicleName"),
-            result.getDouble("vechilePrice"),
+            new Vehicle(result.getString("VehicleName"), result.getDouble("vechilePrice")),
             result.getDouble("endprice")
             );
             } 
@@ -80,10 +81,8 @@ public class AgreementClosedData implements Data{
             cs.setString("VehicleName", agreement.getVehicle().getVehicleName());
             cs.setDouble("vechilePrice", agreement.getVehicle().getPrice());
             cs.setDouble("endprice", agreement.getEndprice());
-            ResultSet result = cs.executeQuery();
-            if (!result.next())
-                return null;
-                return agreement;
+            cs.executeQuery();
+            return cs.getUpdateCount() > 0 ? agreement : null;
         } catch (Exception e) {
             return null;
         }
@@ -93,7 +92,7 @@ public class AgreementClosedData implements Data{
     public boolean delete(Object parameter) {
         try (CallableStatement cs = db.makeCall("{call uspClosedAgreementDelete(?)}")) {
             cs.setInt("Id", (int)parameter);
-            return cs.executeUpdate() == 1;
+            return cs.executeUpdate() == 0;
         } catch (Exception e) {
             return false;
         }
