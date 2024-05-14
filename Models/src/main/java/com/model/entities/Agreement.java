@@ -1,6 +1,7 @@
 package com.model.entities;
 
 import java.sql.Date;
+import java.util.List;
 
 import com.rki.rki.Rating;
 
@@ -16,6 +17,7 @@ public class Agreement {
     private Date end;
     private Vehicle vehicle;
     private double endPrice;
+    private List<DueDatePayment> payments;
 
     public Agreement(int id, int fixedTerms, double startValue, Date startAgreement, Rating RKi, Customer customer,
             Employee employee, Date start, Date end, Vehicle vehicle, double endPrice) {
@@ -51,7 +53,7 @@ public class Agreement {
         this.endPrice = endPrice;
     }
 
-    public Agreement(int i, Date date, Date date2, String string, double d, double e) {
+    public Agreement() {
 
     }
 
@@ -142,5 +144,11 @@ public class Agreement {
 
     public void setEndprice(double endprice) {
         this.endPrice = endprice;
+    }
+    public void setPayments(List<DueDatePayment> payments) {
+        this.payments = payments;
+    }
+    public List<DueDatePayment> getPayments() {
+        return payments;
     }
 }
