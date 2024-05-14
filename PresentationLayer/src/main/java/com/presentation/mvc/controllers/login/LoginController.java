@@ -25,7 +25,7 @@ public class LoginController {
 
     public void login(ActionEvent event) {
         ServiceSingleton.getInstance().query(new Request(ServiceType.Employee, CRUDType.Login,
-                model.getEmployee(),
+                model,
                 this::loginAction
         ));
     }

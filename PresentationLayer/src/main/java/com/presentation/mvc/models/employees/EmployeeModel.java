@@ -1,122 +1,151 @@
 package com.presentation.mvc.models.employees;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.model.entities.Employee;
 import com.model.enums.Occupation;
 import javafx.beans.property.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 
-public class EmployeeModel {
-    private Employee employee;
-    private StringProperty email;
-    private StringProperty name;
-    private ObjectProperty<Occupation> occupation;
-    private StringProperty phoneNumber;
-    private DoubleProperty loanLimit;
-    private StringProperty password;
+public class EmployeeModel extends Employee{
+    private StringProperty emailProp;
+    private StringProperty nameProp;
+    private ObjectProperty<Occupation> occupationProp;
+    private StringProperty phoneNumberProp;
+    private DoubleProperty loanLimitProp;
+    private StringProperty passwordProp;
+
     public EmployeeModel() {
-        employee = new Employee();
+        super();
         setup();
     }
+
     public EmployeeModel(Employee employee) {
-        this.employee = employee;
+        super();
         setup();
+        emailProp.set(employee.getEmail());
+        nameProp.set(employee.getName());
+        occupationProp.set(employee.getOccupation());
+        phoneNumberProp.set(employee.getPhoneNumber());
+        loanLimitProp.set(employee.getLoanLimit());
+        passwordProp.set(employee.getPassword());
+    }
+
+    @Override
+    public void setName(String name) {
+        super.setName(name);
+        nameProp.set(name);
+    }
+    @Override
+    public void setEmail(String email) {
+        super.setEmail(email);
+        emailProp.set(email);
+    }
+    @Override
+    public void setPhoneNumber(String number) {
+        super.setPhoneNumber(number);
+        phoneNumberProp.set(number);
+    }
+    @Override
+    public void setPassword(String password) {
+        super.setPassword(password);
+        passwordProp.set(password);
+    }
+    @Override
+    public void setOccupation(Occupation occupation) {
+        super.setOccupation(occupation);
+        occupationProp.set(occupation);
+    }
+    @Override
+    public void setLoanLimit(Double limit) {
+        super.setLoanLimit(limit);
+        loanLimitProp.set(limit);
     }
     public void setup() {
-        name = new SimpleStringProperty();
-        name.addListener(new ChangeListener<String>() {
+        nameProp = new SimpleStringProperty();
+        nameProp.addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                employee.setName(newValue);                
+                setName(newValue);                
             }
         });
-        email = new SimpleStringProperty();
-        email.addListener(new ChangeListener<String>() {
+        emailProp = new SimpleStringProperty();
+        emailProp.addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                employee.setEmail(newValue);     
+                setEmail(newValue);     
             }
         });
 
-        phoneNumber = new SimpleStringProperty();
-        phoneNumber.addListener(new ChangeListener<String>() {
+        phoneNumberProp = new SimpleStringProperty();
+        phoneNumberProp.addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                employee.setPhoneNumber(newValue);  
+                setPhoneNumber(newValue);  
             }
         });
-        password = new SimpleStringProperty();
-        password.addListener(new ChangeListener<String>() {
+        passwordProp = new SimpleStringProperty();
+        passwordProp.addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                employee.setPassword(newValue);
+                setPassword(newValue);
             }
         });
-        occupation = new SimpleObjectProperty<Occupation>();
-        occupation.addListener(new ChangeListener<Occupation>() {
+        occupationProp = new SimpleObjectProperty<Occupation>();
+        occupationProp.addListener(new ChangeListener<Occupation>() {
             @Override
             public void changed(ObservableValue<? extends Occupation> observable, Occupation oldValue, Occupation newValue) {
-                employee.setOccupation(newValue);
+                setOccupation(newValue);
             }
         });
-        loanLimit = new SimpleDoubleProperty();
-        loanLimit.addListener(new ChangeListener<Number>() {
+        loanLimitProp = new SimpleDoubleProperty();
+        loanLimitProp.addListener(new ChangeListener<Number>() {
 
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                employee.setLoanLimit((Double)newValue);
+                setLoanLimit((Double)newValue);
             }
         });
     }
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public String getEmail() {
-        return email.get();
-    }
 
     public StringProperty emailProperty() {
-        return email;
-    }
-
-    public Occupation getOccupation() {
-        return occupation.get();
+        return emailProp;
     }
 
     public ObjectProperty<Occupation> occupationProperty() {
-        return occupation;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber.get();
+        return occupationProp;
     }
 
     public StringProperty phoneNumberProperty() {
-        return phoneNumber;
-    }
-
-    public double getLoanLimit() {
-        return loanLimit.get();
+        return phoneNumberProp;
     }
 
     public DoubleProperty loanLimitProperty() {
-        return loanLimit;
-    }
-
-    public String getPassword() {
-        return password.get();
+        return loanLimitProp;
     }
 
     public StringProperty passwordProperty() {
-        return password;
-    }
-    public String getName() {
-        return name.get();
+        return passwordProp;
     }
 
     public StringProperty nameProperty() {
-        return name;
+        return nameProp;
     }
+
+    public static List<EmployeeModel> makeModels(List<Employee> employees) {
+        List<EmployeeModel> models = new ArrayList<>();
+        for (Employee employee : employees)
+            models.add(new EmployeeModel(employee));
+        return models;
+    }
+    
+    public static List<Object> makeModelsAsObjects(List<Employee> employees) {
+        List<Object> models = new ArrayList<>();
+        for(Employee employee : employees)
+            models.add(new EmployeeModel(employee));
+        return models;
+    } 
 }
 

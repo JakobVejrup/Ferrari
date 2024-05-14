@@ -35,7 +35,7 @@ public class AccountController implements Controller{
 
     public void updateSelf(ActionEvent event) {
         ServiceSingleton.getInstance().query(new Request(ServiceType.Employee, CRUDType.UpdateSelf,
-                model.getEmployee(),
+                model,
                 (update) -> {
                     if(update != null) 
                         Facade.getInstance().getLoggedIn().copy((Employee)update);

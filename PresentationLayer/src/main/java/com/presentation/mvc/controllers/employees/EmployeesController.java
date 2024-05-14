@@ -10,6 +10,7 @@ import com.presentation.mvc.controllers.table.ColumnController;
 import com.presentation.mvc.controllers.table.commands.DeleteCommand;
 import com.presentation.mvc.controllers.table.commands.UpdateCommand;
 import com.presentation.mvc.controllers.table.factories.ButtonFactory;
+import com.presentation.mvc.models.employees.EmployeeModel;
 import com.presentation.mvc.models.table.RowModel;
 import com.presentation.mvc.models.table.TableModel;
 import com.presentation.mvc.views.employee.EmployeesView;
@@ -30,7 +31,7 @@ public class EmployeesController implements Controller{
             //to allow ui to be run
             Platform.runLater( () -> {
                 TableDecorator table = new EmployeeTable();
-                model = new TableModel(ServiceType.Employee, (List<Object>) employees);
+                model = new TableModel(ServiceType.Employee, EmployeeModel.makeModelsAsObjects((List<Employee>)employees));
                 table = new ParentTableDecorator(model, table);
                 table = new TableHeightDecorator(0.6, table);
                 table = new TableWidthDecorator(0.8, table);

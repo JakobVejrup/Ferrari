@@ -38,7 +38,7 @@ public class CreateEmployeeController extends ModalController {
     }
     public void create(ActionEvent event) {
         ServiceSingleton.getInstance().query(new Request(ServiceType.Employee, CRUDType.Create,
-                model.getEmployee(),
+                model,
                 (newEmployee) -> {
                     if(newEmployee != null) {
                         setResult(newEmployee);

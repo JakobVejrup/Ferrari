@@ -79,7 +79,7 @@ public class EmployeeData implements Data, UserExtra, CheckData {
 
     @Override
     public Object update(Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call Person.uspEmployeeUpdate(?,?,?,?,?)}")) {
+        try (CallableStatement cs = db.makeCall("{call Person.uspEmployeeUpdate(?,?,?,?,?,?)}")) {
             Employee employee = (Employee) parameter;
             cs.setString("Name", employee.getName());
             cs.setString("PhoneNumber", employee.getPhoneNumber());
@@ -90,6 +90,7 @@ public class EmployeeData implements Data, UserExtra, CheckData {
             cs.execute();
             return cs.getUpdateCount() > 0 ? employee : null;
         } catch (Exception e) {
+            System.out.println(e);
             return null;
         }
     }

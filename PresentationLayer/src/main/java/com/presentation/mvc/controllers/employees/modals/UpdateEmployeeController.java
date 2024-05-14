@@ -41,7 +41,7 @@ public class UpdateEmployeeController extends ModalController {
     }
     public void update(ActionEvent event) {
         ServiceSingleton.getInstance().query(new Request(ServiceType.Employee, CRUDType.Update,
-                model.getEmployee(),
+                model,
                 (newEmployee) -> {
                     if(newEmployee != null) {
                         employee.copy((Employee)newEmployee);

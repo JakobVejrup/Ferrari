@@ -15,16 +15,16 @@ import javafx.scene.layout.VBox;
 
 public class EmployeeBaseView extends VBox implements View{
     public EmployeeBaseView(EmployeeModel model) {
-        TextField email = new TextField();
+        TextField email = new TextField(model.getEmail());
         model.emailProperty().bind(email.textProperty());
 
-        TextField phoneNumber = new TextField();
+        TextField phoneNumber = new TextField(model.getPhoneNumber());
         model.phoneNumberProperty().bind(phoneNumber.textProperty());
 
-        TextField name = new TextField();
+        TextField name = new TextField(model.getName());
         model.nameProperty().bind(name.textProperty());
 
-        TextField loanLimit = new TextField();
+        TextField loanLimit = new TextField(String.valueOf(model.getLoanLimit()));
         loanLimit.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue,
@@ -37,6 +37,7 @@ public class EmployeeBaseView extends VBox implements View{
         });
         //test if logged in is a manager
         ComboBox<Occupation> occupation = new ComboBox<>(FXCollections.observableArrayList(Occupation.values()));
+        occupation.setValue(model.getOccupation());
         model.occupationProperty().bind(occupation.valueProperty());
 
         getChildren().addAll(
