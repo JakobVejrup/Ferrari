@@ -23,10 +23,6 @@ public class UpdateCommand implements CellCommand {
                         }
                 )
         );
-        Object obj = Facade.getInstance().openModal(request);
-        if(obj == null)
-            return;
-        request.setUpdate(obj);
-        ServiceSingleton.getInstance().query(request);
+        Facade.getInstance().openModal(request);
     }
 }

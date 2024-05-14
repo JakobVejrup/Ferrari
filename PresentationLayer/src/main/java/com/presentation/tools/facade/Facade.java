@@ -35,8 +35,9 @@ public class Facade implements ModalSetup, ViewSetup, LoginManager{
         this.modal = modal;
     }
     @Override
-    public Object openModal(Request request) {
-        return modal == null ? null : modal.openModal(request);
+    public void openModal(Request request) {
+        if(modal != null)
+            modal.openModal(request);
     }
 
     @Override

@@ -21,7 +21,7 @@ public class ModalFactory implements ModalSetup {
         this.mainStage = mainStage;
     }
 
-    public Object openModal(Request request) {
+    public void openModal(Request request) {
         try {
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -33,9 +33,10 @@ public class ModalFactory implements ModalSetup {
             stage.setScene(scene);
             stage.initOwner(mainStage);
             stage.showAndWait();
-            return controller.getResult();
-        } catch (Exception e) {
-            return null;
+            if(request.getSetter() != null)
+                request.getSetter().action(controller.getResult());
+        } 
+        catch (Exception e) {
         }
     }
     private ModalController getController(Request request, Stage stage) {

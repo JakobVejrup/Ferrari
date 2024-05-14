@@ -1,6 +1,7 @@
 package com.data.dao;
 
 import com.data.ConnectionData;
+import com.data.interfaces.CheckData;
 import com.data.interfaces.Data;
 import com.data.interfaces.UserExtra;
 import com.model.entities.Employee;
@@ -10,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 //Anders
-public class EmployeeData implements Data, UserExtra {
+public class EmployeeData implements Data, UserExtra, CheckData {
     private ConnectionData db;
     public EmployeeData(ConnectionData db) {
         this.db = db;
@@ -153,6 +154,20 @@ public class EmployeeData implements Data, UserExtra {
             return cs.getUpdateCount() > 0 ? update : null;
         } catch (Exception e) {
             return null;
+        }
+    }
+    @Override
+    public boolean check(Object check) {
+        try (CallableStatement cs = db.makeCall("{call Person.uspEmployeeCheckEmail(?)}")) {
+            Employee employee = (Employee) check;
+            cs.setString("Email", employee.getEmail());
+            ResultSet result = cs.executeQuery();
+            if (!result.next())
+                return false;
+            return result.getBoolean(1);
+            } 
+        catch (SQLException e) {
+            return false;
         }
     }
 }

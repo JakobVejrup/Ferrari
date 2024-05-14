@@ -30,7 +30,7 @@ public class ServiceSingleton implements Handler {
 
 
         validations = new ValidationManager(
-            new EmployeeValidation(), 
+            new EmployeeValidation(employeeData), 
             new AgreementValidation()
     
         );

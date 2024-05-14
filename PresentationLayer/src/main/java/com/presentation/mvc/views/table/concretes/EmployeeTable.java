@@ -41,7 +41,7 @@ public class EmployeeTable extends GuiTable implements TableDecorator {
         emailCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<RowModel, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<RowModel, String> column) {
-                return new SimpleObjectProperty<String>(((Employee)column.getValue().getItem()).getPhoneNumber());
+                return new SimpleObjectProperty<String>(((Employee)column.getValue().getItem()).getEmail());
             }
         });
         emailCol.setCellFactory(TextFieldTableCell.forTableColumn());

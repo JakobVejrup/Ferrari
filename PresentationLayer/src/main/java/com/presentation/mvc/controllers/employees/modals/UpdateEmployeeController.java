@@ -18,10 +18,11 @@ import javafx.stage.Stage;
 
 public class UpdateEmployeeController extends ModalController {
     private EmployeeModel model;
+    private Employee employee;
     private EmployeeBaseView view;
     public UpdateEmployeeController(Stage stage, Employee employee) {
         super(stage);
-
+        this.employee = employee;
         model = new EmployeeModel(employee);
         // needs a actionevent which is a funtional interface type
         view = new EmployeeBaseView(model);
@@ -43,7 +44,7 @@ public class UpdateEmployeeController extends ModalController {
                 model.getEmployee(),
                 (newEmployee) -> {
                     if(newEmployee != null) {
-                        setResult(newEmployee);
+                        employee.copy((Employee)newEmployee);
                         Platform.runLater(this::close);
                     }
                 },

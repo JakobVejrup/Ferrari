@@ -32,11 +32,11 @@ public class App extends Application {
         Facade.getInstance().setLogin(new Login());
         Facade.getInstance().setTop(new TopbarView());
         //Facade.getInstance().openModal(new Request(ServiceType.Employee, CRUDType.Create));
-        Facade.getInstance().setCenter(new LoginController().getView());
-        //Employee employee = new Employee();
-        //employee.setOccupation(Occupation.Manager);
-        //Facade.getInstance().login(employee);
-        //Facade.getInstance().setCenter(new EmployeesController().getView());
+        //Facade.getInstance().setCenter(new LoginController().getView());
+        Employee employee = new Employee();
+        employee.setOccupation(Occupation.Manager);
+        Facade.getInstance().login(employee);
+        Facade.getInstance().setCenter(new EmployeesController().getView());
     }
 
     public static void main(String[] args) {

@@ -8,6 +8,7 @@ public enum CRUDType {
     Delete,
     Login,
     UpdateSelf,
-    CreateManager
+    CreateManager,
+    Check
 
 }

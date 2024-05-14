@@ -37,9 +37,8 @@ public class AccountController implements Controller{
         ServiceSingleton.getInstance().query(new Request(ServiceType.Employee, CRUDType.UpdateSelf,
                 model.getEmployee(),
                 (update) -> {
-                    if(update != null) {
-                        Facade.getInstance().login((Employee)update);
-                    }
+                    if(update != null) 
+                        Facade.getInstance().getLoggedIn().copy((Employee)update);
                 },
                 new Validation(
                     (request) -> {

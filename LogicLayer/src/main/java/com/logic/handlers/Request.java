@@ -8,8 +8,6 @@ import com.model.threads.Validation;
 
 public class Request {
     private Object object;
-    private Object update;
-
     private final CRUDType crud;
     private final ServiceType type;
     private ActionParameter setter;
@@ -37,14 +35,6 @@ public class Request {
     public Request(ServiceType type, CRUDType crud, Object object, ActionParameter setter, Validation validation) {
         this(type, crud, object, setter);
         this.validation = validation;
-    }
-
-    public Object getUpdate() {
-        return update;
-    }
-
-    public void setUpdate(Object update) {
-        this.update = update;
     }
 
     public CRUDType getCrud() {

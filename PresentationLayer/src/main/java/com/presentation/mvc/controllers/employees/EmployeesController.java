@@ -30,7 +30,7 @@ public class EmployeesController implements Controller{
             //to allow ui to be run
             Platform.runLater( () -> {
                 TableDecorator table = new EmployeeTable();
-                TableModel model = new TableModel(ServiceType.Employee, (List<Object>) employees);
+                model = new TableModel(ServiceType.Employee, (List<Object>) employees);
                 table = new ParentTableDecorator(model, table);
                 table = new TableHeightDecorator(0.6, table);
                 table = new TableWidthDecorator(0.8, table);
@@ -46,9 +46,10 @@ public class EmployeesController implements Controller{
 
     public void newUser(ActionEvent event) {
     
-        Employee createEmployee = (Employee)Facade.getInstance().openModal(new Request(ServiceType.Employee, CRUDType.Create, 
+        Facade.getInstance().openModal(new Request(ServiceType.Employee, CRUDType.Create, 
         (employee) -> {
-            model.getRows().add(new RowModel(employee, ServiceType.Employee));
+            if(employee != null)
+                model.addRow(new RowModel(employee, ServiceType.Employee));
         }));
     }
     public EmployeesView getView() {
