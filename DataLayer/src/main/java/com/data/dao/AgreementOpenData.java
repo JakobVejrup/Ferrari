@@ -103,7 +103,7 @@ public class AgreementOpenData implements Data {
             cs.setInt("CustomerId", agreement.getCustomer().getId());
             cs.setInt("EmployeeId", agreement.getEmployee().getId());
             cs.setInt("VehicleId", agreement.getVehicle().getVehicleID());
-            ResultSet result = cs.executeQuery();
+            cs.executeQuery();
          return cs.getUpdateCount() > 0 ? agreement : null;
         } catch (Exception e) {
             return null;

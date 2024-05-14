@@ -13,9 +13,10 @@ public class DueDatePayment {
     private double minus;
     private double ultimovalue;
     private double primoprice;
+    private String details;
 
-
-    public DueDatePayment(Agreement agreement, int fixedterms, double startvalue, Date startagreement, Rating RKi,int number, Date datestart, Date dateend, double plus, double minus, double ultimovalue, double primoprice) {
+    public DueDatePayment(Agreement agreement, int number, Date datestart, Date dateend, double plus, double minus,
+            double ultimovalue, double primoprice, String details) {
         this.agreement = agreement;
         this.number = number;
         this.datestart = datestart;
@@ -24,6 +25,7 @@ public class DueDatePayment {
         this.minus = minus;
         this.ultimovalue = ultimovalue;
         this.primoprice = primoprice;
+        this.details = details;
     }
 
     public Agreement getAgreement() {
@@ -88,5 +90,13 @@ public class DueDatePayment {
 
     public void setPrimoprice(double primoprice) {
         this.primoprice = primoprice;
+    }
+
+    public String getDetails() {
+        return details;
+    }
+
+    public void setDetails(String details) {
+        this.details = details;
     }
 }
