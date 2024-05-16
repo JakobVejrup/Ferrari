@@ -11,9 +11,12 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableDoubleValue;
+import javafx.beans.value.ObservableValue;
+import javafx.beans.value.WritableDoubleValue;
 
 public class VehicleModel extends Vehicle {
-    private IntegerProperty vehicleIdProp;
+    private ObservableValue<Number> vehicleIdProp;
     private StringProperty nameProp;
     private DoubleProperty priceProp;
 
@@ -24,14 +27,14 @@ public class VehicleModel extends Vehicle {
     public VehicleModel(Vehicle vehicle) {
         setup();
         setVehicleID(getVehicleID());
-        vehicleIdProp.set(vehicle.getVehicleID());
+        ((WritableDoubleValue) vehicleIdProp).set(vehicle.getVehicleID());
         nameProp.set(vehicle.getVehicleName());
         priceProp.set(vehicle.getPrice());
     }
 
     @Override
     public int getVehicleID() {
-        return vehicleIdProp.get();
+        return (int) ((ObservableDoubleValue) vehicleIdProp).get();
     }
     @Override
     public String getVehicleName() {
@@ -43,7 +46,7 @@ public class VehicleModel extends Vehicle {
     }
     @Override
     public void setVehicleID(int id) {
-        vehicleIdProp.set(id);
+        ((WritableDoubleValue) vehicleIdProp).set(id);
     }
     @Override
     public void setVehicleName(String name) {
@@ -58,20 +61,25 @@ public class VehicleModel extends Vehicle {
         nameProp = new SimpleStringProperty();
         priceProp = new SimpleDoubleProperty();
     }
-    public IntegerProperty vehicleIntegerProperty() {
-        return vehicleIdProp;
+    public ObservableValue<Integer> vehicleIntegerProperty() {
+        return vehicleIntegerProperty();
     }
     public StringProperty vehicleStringProperty() {
         return vehicleStringProperty();
     }
-    public DoubleProperty priceDoubleProperty() {
+    public ObservableValue<Double> priceDoubleProperty() {
         return priceDoubleProperty();
     }
 
     public static List<VehicleModel> makeModels(List<Vehicle> vehicle) {
         List<VehicleModel> models = new ArrayList<>();
-        for (Vehicle vehicle : vehicle)
-            models.add(new VehicleModel(vehicle));
+        for (Vehicle vehicle2 : vehicle)
+            models.add(new VehicleModel(vehicle2));
         return models;
+    }
+
+    public ObservableValue<String> nameProperty() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'nameProperty'");
     }
 }
