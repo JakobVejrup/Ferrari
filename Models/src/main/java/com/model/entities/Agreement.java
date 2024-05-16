@@ -20,7 +20,7 @@ public class Agreement {
     private List<Invoice> payments;
 
     public Agreement(int id, int fixedTerms, double startValue, Date startAgreement, Rating RKi, Customer customer,
-            Employee employee, Date start, Date end, Vehicle vehicle, double endPrice) {
+            Employee employee, Date start, Date end, Vehicle vehicle, double endPrice , List<Invoice> payments) {
         this.id = id;
         this.fixedTerms = fixedTerms;
         this.startValue = startValue;
@@ -32,6 +32,7 @@ public class Agreement {
         this.end = end;
         this.vehicle = vehicle;
         this.endPrice = endPrice;
+        this.payments = payments;
     }
 
     public Agreement(int id, int fixedTerms, double startValue, Date startAgreement, Rating RKi, Customer customer,
