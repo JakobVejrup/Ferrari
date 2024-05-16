@@ -24,7 +24,7 @@ public class AgreementOpenData implements Data {
             cs.setInt("FixedTerms", agreement.getfixedterms());
             cs.setDouble("StartValue", agreement.getStartvalue());
             cs.setDate("StartAgreement", agreement.getStartagreement());
-            cs.setString("Rki", agreement.getRKi().toString());
+            cs.setString("Rki", agreement.getRki().toString());
             cs.setInt("CustomerId", agreement.getCustomer().getId());
             cs.setInt("EmployeeId", agreement.getEmployee().getId());
             cs.setInt("VehicleId", agreement.getVehicle().getVehicleID());
@@ -99,7 +99,7 @@ public class AgreementOpenData implements Data {
             cs.setInt("FixedTerms", agreement.getfixedterms());
             cs.setDouble("StartValue", agreement.getStartvalue());
             cs.setDate("StartAgreement", agreement.getStartagreement());
-            cs.setString("Rki", agreement.getRKi().toString());
+            cs.setString("Rki", agreement.getRki().toString());
             cs.setInt("CustomerId", agreement.getCustomer().getId());
             cs.setInt("EmployeeId", agreement.getEmployee().getId());
             cs.setInt("VehicleId", agreement.getVehicle().getVehicleID());
