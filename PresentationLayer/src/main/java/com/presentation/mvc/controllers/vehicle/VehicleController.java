@@ -14,8 +14,8 @@ public class VehicleController {
     private ObservableList<VehicleModel> vehicleModels;
     private ObjectProperty<VehicleModel> selectedVehicle;
 
-    public VehicleController(List<Vehicle> vehicels) {
-        this.vehicleModels = FXCollections.observableArrayList(VehicleModel.makeModels(vehicels));
+    public VehicleController(List<Vehicle> vehicles) {
+        this.vehicleModels = FXCollections.observableArrayList(VehicleModel.makeModels(vehicles));
         this.selectedVehicle = new SimpleObjectProperty<>();
     }
     public ObservableList<VehicleModel> getVehicleModels() {
@@ -28,7 +28,7 @@ public class VehicleController {
         return selectedVehicle.get();
     }
     public void addVehicle(Vehicle vehicle) {
-        VehicleModel vehicleModel = new VehicleModel(vehicle);
+        VehicleModel vehicleModel = new VehicleModel(vehicle.getVehicleID(), vehicle.getVehicleName(), vehicle.getPrice());
         vehicleModels.add(vehicleModel);
     }
     public void updateVehicle(VehicleModel vehicleModel, Vehicle updatedVehicle) {

@@ -7,37 +7,42 @@ import com.model.entities.Vehicle;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableDoubleValue;
 import javafx.beans.value.WritableDoubleValue;
+import javafx.util.Callback;
 
 
 
 public class VehicleModel<NumberProperty> extends Vehicle {
-    private NumberProperty vehicleIdProp;
+    private IntegerProperty vehicleIdProp;
     private StringProperty nameProp;
-    private NumberProperty priceProp;
+    private DoubleProperty priceProp;
 
-    public VehicleModel(int vehicleIdProp, String nameProp, Double priceProp) {
-        this.vehicleIdProp = new NumberProperty(vehicleIdProp); 
-        this.nameProp = new StringProperty(nameProp);
-        this.priceProp = new NumberProperty(priceProp);
+    public VehicleModel(int vehicleID, String VehicleName, double Price) {
+        super(vehicleID, VehicleName, Price);
+        this.vehicleIdProp = new SimpleIntegerProperty(vehicleID); 
+        this.nameProp = new SimpleStringProperty(VehicleName);
+        this.priceProp = new SimpleDoubleProperty(Price);
     }
 
-    public NumberProperty vehicleIdProperty() {
+    public IntegerProperty vehicleIdProperty() {
         return vehicleIdProp;
     }
     public StringProperty nameProperty() {
         return nameProp;
     }
-    public NumberProperty pricProperty() {
+    public DoubleProperty pricProperty() {
         return priceProp;
     }
-    public NumberProperty getVehicleID() {
-        return vehicleIdProp;
+    public int getVehicleID() {
+        return vehicleIdProp.get();
     }
     public void setVehicleID(int vehicleIdProp) {
-        ((WritableDoubleValue) this.vehicleIdProp).set(vehicleIdProp);
+        this.vehicleIdProp.set(getVehicleID());
     }
     public String getName() {
         return nameProp.get();
@@ -46,9 +51,17 @@ public class VehicleModel<NumberProperty> extends Vehicle {
         this.nameProp.set(name);
     }
     public Double getPrice() {
-        return ((ObservableDoubleValue) priceProp).get();
+        return priceProp.get();
     }
     public void setPrice(Double price) {
-        ((WritableDoubleValue) this.priceProp).set((double) priceProp);
+        this.priceProp.set(price);
+    }
+
+    public static List<VehicleModel> makeModels(List<Vehicle> vehicles) {
+        List<VehicleModel> vehicleModels = new ArrayList<>();
+        for (Vehicle vehicle : vehicles) {
+            vehicleModels.add(new VehicleModel(vehicle.getVehicleID(), vehicle.getVehicleName(), vehicle.getPrice()));
+        }
+        return vehicleModels;
     }
 }

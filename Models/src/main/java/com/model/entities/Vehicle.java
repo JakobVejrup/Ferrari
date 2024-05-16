@@ -1,7 +1,5 @@
 package com.model.entities;
 
-import javafx.beans.property.IntegerProperty;
-
 public class Vehicle {
     private int VehicleID;
     private String VehicleName;
@@ -12,13 +10,9 @@ public class Vehicle {
         this.VehicleID = VehicleID;
         this.VehicleName = VehicleName;
         this.Price = Price;
-
-    }
-public Vehicle() {
-        //TODO Auto-generated constructor stub
     }
     // Get metode
-    public IntegerProperty getVehicleID () {
+    public int getVehicleID () {
         return VehicleID;
     }
 // Set metode

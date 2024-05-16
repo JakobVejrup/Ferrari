@@ -8,6 +8,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.StringConverter;
+import javafx.util.converter.DoubleStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
 
@@ -20,22 +21,18 @@ public class VehicleView {
         this.viewModel = viewModel;
         tableView = new TableView<>();
 
-        // ID column
         TableColumn<VehicleModel, Number> idCol = new TableColumn<>("ID");
         idCol.setCellValueFactory(cellData -> cellData.getValue().vehicleIdProperty());
-        idCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter())); 
-            
-        // Name column
-        TableColumn<VehicleModel, String> nameCol = new TableColumn<>("Navn");
+        idCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+    
+        TableColumn<VehicleModel, String> nameCol = new TableColumn<>("BilNavn");
         nameCol.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         nameCol.setCellFactory(TextFieldTableCell.forTableColumn());
 
-        // Price column
         TableColumn<VehicleModel, Number> priceCol = new TableColumn<>("Pris");
-        priceCol.setCellValueFactory(cellData -> cellData.getValue().priceProperty());
-        priceCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        priceCol.setCellValueFactory(cellData -> cellData.getValue().pricProperty());
+        priceCol.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
 
-        // Add columns to the table view
         tableView.getColumns().addAll(idCol, nameCol, priceCol);
         tableView.setItems(viewModel.getVehicleModels());
     }
