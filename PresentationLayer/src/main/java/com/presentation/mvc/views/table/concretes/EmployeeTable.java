@@ -51,7 +51,6 @@ public class EmployeeTable extends GuiTable implements TableDecorator {
                 return ((EmployeeModel)column.getValue().getItem()).occupationProperty();
             }
         });
-
         loanLimitCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<RowModel, Number>, ObservableValue<Number>>() {
             @Override
             public ObservableValue<Number> call(TableColumn.CellDataFeatures<RowModel, Number> column) {

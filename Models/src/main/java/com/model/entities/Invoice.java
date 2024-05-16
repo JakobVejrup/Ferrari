@@ -5,25 +5,27 @@ import java.sql.Date;
 public class Invoice {
     private Agreement agreement;
     private int number;
-    private Date datestart;
-    private Date dateend;
+    private Date dateStart;
+    private Date dateEnd;
     private double plus;
     private double minus;
-    private double ultimovalue;
-    private double primoprice;
+    private double ultimoValue;
+    private double primoPrice;
     private String details;
 
+    public Invoice () {
 
+    }
     public Invoice(Agreement agreement, int number, Date datestart, Date dateend, double plus, double minus,
             double ultimovalue, double primoprice, String details) {
         this.agreement = agreement;
         this.number = number;
-        this.datestart = datestart;
-        this.dateend = dateend;
+        this.dateStart = datestart;
+        this.dateEnd = dateend;
         this.plus = plus;
         this.minus = minus;
-        this.ultimovalue = ultimovalue;
-        this.primoprice = primoprice;
+        this.ultimoValue = ultimovalue;
+        this.primoPrice = primoprice;
         this.details = details;
     }
 
@@ -44,19 +46,19 @@ public class Invoice {
     }
 
     public Date getDatestart() {
-        return datestart;
+        return dateStart;
     }
 
     public void setDatestart(Date datestart) {
-        this.datestart = datestart;
+        this.dateStart = datestart;
     }
 
     public Date getDateend() {
-        return dateend;
+        return dateEnd;
     }
 
     public void setDateend(Date dateend) {
-        this.dateend = dateend;
+        this.dateEnd = dateend;
     }
 
     public double getPlus() {
@@ -76,19 +78,19 @@ public class Invoice {
     }
 
     public double getUltimovalue() {
-        return ultimovalue;
+        return ultimoValue;
     }
 
     public void setUltimovalue(double ultimovalue) {
-        this.ultimovalue = ultimovalue;
+        this.ultimoValue = ultimovalue;
     }
 
     public double getPrimoprice() {
-        return primoprice;
+        return primoPrice;
     }
 
     public void setPrimoprice(double primoprice) {
-        this.primoprice = primoprice;
+        this.primoPrice = primoprice;
     }
 
     public String getDetails() {

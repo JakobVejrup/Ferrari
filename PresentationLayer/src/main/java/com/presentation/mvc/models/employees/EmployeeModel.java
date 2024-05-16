@@ -16,11 +16,16 @@ public class EmployeeModel extends Employee{
     private StringProperty passwordProp;
 
     public EmployeeModel() {
-        setup();
+        nameProp = new SimpleStringProperty();
+        emailProp = new SimpleStringProperty();
+        phoneNumberProp = new SimpleStringProperty();
+        passwordProp = new SimpleStringProperty();
+        occupationProp = new SimpleObjectProperty<Occupation>();
+        loanLimitProp = new SimpleDoubleProperty();
     }
 
     public EmployeeModel(Employee employee) {
-        setup();
+        this();
         setId(employee.getId());
         emailProp.set(employee.getEmail());
         nameProp.set(employee.getName());
@@ -77,14 +82,6 @@ public class EmployeeModel extends Employee{
     @Override
     public void setLoanLimit(Double limit) {
         loanLimitProp.set(limit);
-    }
-    public void setup() {
-        nameProp = new SimpleStringProperty();
-        emailProp = new SimpleStringProperty();
-        phoneNumberProp = new SimpleStringProperty();
-        passwordProp = new SimpleStringProperty();
-        occupationProp = new SimpleObjectProperty<Occupation>();
-        loanLimitProp = new SimpleDoubleProperty();
     }
 
     public StringProperty emailProperty() {
