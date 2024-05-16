@@ -3,11 +3,13 @@ package com.logic;
 import com.logic.services.ServiceManager;
 import com.logic.services.agreements.AgreementClosedService;
 import com.logic.services.agreements.AgreementOpenService;
+import com.logic.services.customer.CustomerService;
 import com.logic.services.employee.EmployeeService;
 import com.logic.services.invoice.InvoiceService;
 import com.data.ConnectionData;
 import com.data.dao.AgreementClosedData;
 import com.data.dao.AgreementOpenData;
+import com.data.dao.CustomerData;
 import com.data.dao.EmployeeData;
 import com.data.dao.InvoiceData;
 import com.logic.handlers.Handler;
@@ -24,9 +26,10 @@ public class ServiceSingleton implements Handler {
     private ServiceSingleton() {
         ConnectionData db = new ConnectionData();
         EmployeeData employeeData = new EmployeeData(db);
-        AgreementClosedData agreementClosed = new AgreementClosedData(db);
-        InvoiceData paymentData = new InvoiceData(db);
-        AgreementOpenData agreementOpen = new AgreementOpenData(db);
+        CustomerData customerData = new CustomerData(db);
+        InvoiceData invoiceData = new InvoiceData(db);
+        AgreementClosedData agreementClosed = new AgreementClosedData(db, invoiceData, customerData, employeeData);
+        AgreementOpenData agreementOpen = new AgreementOpenData(db, invoiceData, customerData, employeeData);
 
 
         validations = new ValidationManager(
@@ -37,8 +40,9 @@ public class ServiceSingleton implements Handler {
         services = new ServiceManager(
             new EmployeeService(employeeData, employeeData),
             new AgreementOpenService(agreementOpen),
-            new InvoiceService(paymentData),
-            new AgreementClosedService(agreementClosed)
+            new InvoiceService(invoiceData),
+            new AgreementClosedService(agreementClosed),
+            new CustomerService(customerData)
         );
     }
     public void setValidations(HandlerHolder validations) {

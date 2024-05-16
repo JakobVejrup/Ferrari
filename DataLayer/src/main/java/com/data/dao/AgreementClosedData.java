@@ -2,26 +2,40 @@ package com.data.dao;
 
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.data.ConnectionData;
 import com.data.interfaces.Data;
 import com.model.entities.Agreement;
+import com.model.entities.Customer;
+import com.model.entities.Employee;
 import com.model.entities.Vehicle;
+import com.rki.rki.Rating;
 //Karl
 public class AgreementClosedData implements Data{
     private ConnectionData db;
-    public AgreementClosedData(ConnectionData db) {
+    private InvoiceData invoiceData;
+    private CustomerData customerData;
+    private EmployeeData employeeData;
+    public AgreementClosedData(ConnectionData db, InvoiceData invoiceData, CustomerData customerData, EmployeeData employeeData) {
         this.db = db;
+        this.invoiceData = invoiceData;
+        this.customerData = customerData;
+        this.employeeData = employeeData;
     }
     @Override
     public Object create(Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call uspClosedAgreementInsert(?,?,?,?,?,?)}")) {
+        try (CallableStatement cs = db.makeCall("{call uspClosedAgreementInsert(?,?,?,?,?,?,?)}")) {
             Agreement agreement = (Agreement) parameter;
-            cs.setInt("AgreementID", agreement.getId());
+            cs.setInt("Id", agreement.getId());
             cs.setDate("Start", agreement.getStart());
             cs.setDate("End", agreement.getEnd());
             cs.setString("VehicleName", agreement.getVehicle().getVehicleName());
-            cs.setDouble("vechilePrice", agreement.getVehicle().getPrice());
-            cs.setDouble("endprice", agreement.getEndprice());
+            cs.setDouble("VehiclePrice", agreement.getVehicle().getPrice());
+            cs.setDouble("EndPrice", agreement.getEndprice());
+            cs.setBytes("VehicleImage", new byte[0]);
+
             ResultSet result = cs.executeQuery();
             if (!result.next())
                 return null;
@@ -39,11 +53,17 @@ public class AgreementClosedData implements Data{
             if (!result.next())
                 return null;
             return new Agreement(
-            (int)parameter,
-            result.getDate("Start"),
-            result.getDate("End"),
-            new Vehicle(0, result.getString("VehicleName"), result.getDouble("vechilePrice")),
-            result.getDouble("endprice")
+                (int)parameter,
+                result.getInt("FixedTerms"),
+                result.getDouble("StartValue"),
+                result.getDate("StartAgreement"),
+                Rating.valueOf(result.getString("Rki")),
+                (Customer)customerData.read(result.getInt("CustomerId")),
+                (Employee)employeeData.read(result.getInt("EmployeeId")),
+                result.getDate("Start"),
+                result.getDate("End"),
+                new Vehicle(result.getInt("SaleId"), result.getString("SaleName"), result.getDouble("SalePrice")),
+                result.getDouble("EndPrice")
             );
             } 
         catch (Exception e) {
@@ -56,16 +76,24 @@ public class AgreementClosedData implements Data{
     public Object readAll(Object parameter) {
         try (CallableStatement cs = db.makeCall("{call uspClosedAgreementGetAll()}")) {
             ResultSet result = cs.executeQuery();
-            if (!result.next())
-                return null;
-            return new Agreement(
-            result.getInt("Id"), 
-            result.getDate("Start"), 
-            result.getDate("End"), 
-            new Vehicle(0, result.getString("VehicleName"), result.getDouble("vechilePrice")),
-            result.getDouble("endprice")
-            );
-            } 
+            List<Agreement> agreements = new ArrayList<>();
+            while (result.next()) {
+                agreements.add(new Agreement(
+                    result.getInt("AgreementId"), 
+                    result.getInt("FixedTerms"),
+                    result.getDouble("StartValue"),
+                    result.getDate("StartAgreement"),
+                    Rating.valueOf(result.getString("Rki")),
+                    (Customer)customerData.read(result.getInt("CustomerId")),
+                    (Employee)employeeData.read(result.getInt("EmployeeId")),
+                    result.getDate("Start"),
+                    result.getDate("End"),
+                    new Vehicle(result.getInt("SaleId"), result.getString("SaleName"), result.getDouble("SalePrice")),
+                    result.getDouble("EndPrice")
+                ));
+            }
+            return agreements;
+        } 
         catch (Exception e) {
             return null;
         }
@@ -73,19 +101,7 @@ public class AgreementClosedData implements Data{
 
     @Override
     public Object update(Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call uspClosedAgreementUpdate(?,?,?,?,?,?)}")) {
-            Agreement agreement = (Agreement) parameter;
-            cs.setInt("AgreementID", agreement.getId());
-            cs.setDate("Start", agreement.getStart());
-            cs.setDate("End", agreement.getEnd());
-            cs.setString("VehicleName", agreement.getVehicle().getVehicleName());
-            cs.setDouble("vechilePrice", agreement.getVehicle().getPrice());
-            cs.setDouble("endprice", agreement.getEndprice());
-            cs.executeQuery();
-            return cs.getUpdateCount() > 0 ? agreement : null;
-        } catch (Exception e) {
-            return null;
-        }
+        return null;
     }
 
     @Override

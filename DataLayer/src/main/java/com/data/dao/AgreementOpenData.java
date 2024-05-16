@@ -7,14 +7,21 @@ import com.data.interfaces.Data;
 import com.model.entities.Agreement;
 import com.model.entities.Customer;
 import com.model.entities.Employee;
+import com.model.entities.Invoice;
 import com.model.entities.Vehicle;
 import com.rki.rki.Rating;
 
 //Karl
 public class AgreementOpenData implements Data {
     private ConnectionData db;
-    public AgreementOpenData(ConnectionData db) {
+    private InvoiceData invoiceData;
+    private CustomerData customerData;
+    private EmployeeData employeeData;
+    public AgreementOpenData(ConnectionData db, InvoiceData invoiceData, CustomerData customerData, EmployeeData employeeData) {
         this.db = db;
+        this.invoiceData = invoiceData;
+        this.customerData = customerData;
+        this.employeeData = employeeData;
     }
 
     @Override
@@ -31,6 +38,9 @@ public class AgreementOpenData implements Data {
             ResultSet result = cs.executeQuery();
             if (!result.next())
                 return null;
+            agreement.setId(result.getInt("Id"));
+            for(Invoice invoice : agreement.getPayments())
+                invoiceData.create(invoice);
             return agreement;
         } catch (Exception e) {
             return null;
@@ -45,22 +55,17 @@ public class AgreementOpenData implements Data {
             ResultSet result = cs.executeQuery();
             if (!result.next())
                 return null;
-            return new Agreement(result.getInt("Id"),
-            result.getInt("FixedTerms"),
-            result.getDouble("StartValue"),
-            result.getDate("StartAgreement"),
-            Rating.valueOf(result.getString("Rki")),
-            new Customer(),
-            new Employee(),
-            new Vehicle()
-            /* 
-            result.getInt("CustomerId"),
-            result.getInt("EmployeeId"),
-            result.getInt("VehicleId")
-            */
+            return new Agreement(
+                result.getInt("AgreementId"),
+                result.getInt("FixedTerms"),
+                result.getDouble("StartValue"),
+                result.getDate("StartAgreement"),
+                Rating.valueOf(result.getString("Rki")),
+                (Customer)customerData.read(result.getInt("CustomerId")),
+                (Employee)employeeData.read(result.getInt("EmployeeId")),
+                new Vehicle(result.getInt("VehicleId"), result.getString("VehicleName"), result.getDouble("Price"))
             );  
-        
-            } 
+        } 
         catch (Exception e) {
             return null;
         }
@@ -72,19 +77,15 @@ public class AgreementOpenData implements Data {
             ResultSet result = cs.executeQuery();
             if (!result.next())
                 return null;
-            return new Agreement(result.getInt("Id"),
-            result.getInt("FixedTerms"),
-            result.getDouble("StartValue"),
-            result.getDate("StartAgreement"),
-            Rating.valueOf(result.getString("Rki")),
-            new Customer(),
-            new Employee(),
-            new Vehicle()
-            /* 
-            result.getInt("CustomerId"),
-            result.getInt("EmployeeId"),
-            result.getInt("VehicleId")
-            */
+            return new Agreement(
+                result.getInt("AgreementId"),
+                result.getInt("FixedTerms"),
+                result.getDouble("StartValue"),
+                result.getDate("StartAgreement"),
+                Rating.valueOf(result.getString("Rki")),
+                (Customer)customerData.read(result.getInt("CustomerId")),
+                (Employee)employeeData.read(result.getInt("EmployeeId")),
+                new Vehicle(result.getInt("VehicleId"), result.getString("VehicleName"), result.getDouble("Price"))
             );
             } 
         catch (Exception e) {
@@ -94,8 +95,9 @@ public class AgreementOpenData implements Data {
 
     @Override
     public Object update(Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call uspOpenAgreementUpdate(?,?,?,?,?,?,?)}")) {
+        try (CallableStatement cs = db.makeCall("{call uspOpenAgreementUpdate(?,?,?,?,?,?,?,?)}")) {
             Agreement agreement = (Agreement) parameter;
+            cs.setInt("Id", agreement.getfixedterms());
             cs.setInt("FixedTerms", agreement.getfixedterms());
             cs.setDouble("StartValue", agreement.getStartvalue());
             cs.setDate("StartAgreement", agreement.getStartagreement());
