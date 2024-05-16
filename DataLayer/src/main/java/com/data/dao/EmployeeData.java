@@ -29,7 +29,7 @@ public class EmployeeData implements Data, UserExtra, CheckData {
             ResultSet result = cs.executeQuery();
             if (!result.next())
                 return null;
-            employee.setId(result.getInt("Id"));
+            employee.setId(result.getInt("InformationId"));
             return employee;
         } catch (Exception e) {
             return null;
@@ -44,8 +44,8 @@ public class EmployeeData implements Data, UserExtra, CheckData {
             ResultSet result = cs.executeQuery();
             if (!result.next())
                 return null;
-            return new Employee(result.getInt("Id"), 
-            result.getString("Name"), 
+            return new Employee(result.getInt("InformationId"), 
+            result.getString("InformationName"), 
             result.getString("PhoneNumber"), 
             result.getString("Email"),
             Occupation.valueOf(result.getString("Occupation")),
@@ -64,8 +64,8 @@ public class EmployeeData implements Data, UserExtra, CheckData {
         try (CallableStatement cs = db.makeCall("{call Person.uspEmployeeGetAll()}")) {
             ResultSet result = cs.executeQuery();
             while (result.next()) 
-                employees.add(new Employee(result.getInt("Id"), 
-                result.getString("Name"), 
+                employees.add(new Employee(result.getInt("InformationId"), 
+                result.getString("InformationName"), 
                 result.getString("PhoneNumber"), 
                 result.getString("Email"),
                 Occupation.valueOf(result.getString("Occupation")),
@@ -116,8 +116,8 @@ public class EmployeeData implements Data, UserExtra, CheckData {
             ResultSet result = cs.executeQuery();
             if (!result.next())
                 return null;
-            employee.setName(result.getString("Name"));
-            employee.setId(result.getInt("Id"));
+            employee.setName(result.getString("InformationName"));
+            employee.setId(result.getInt("InformationId"));
             employee.setPhoneNumber(result.getString("PhoneNumber"));
             employee.setOccupation(Occupation.valueOf(result.getString("Occupation")));
             employee.setLoanLimit(result.getDouble("Limit"));

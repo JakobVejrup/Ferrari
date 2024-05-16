@@ -32,28 +32,30 @@ public class InvoiceTable extends GuiTable implements TableDecorator {
         getColumns().add(ultimoCol = new TableColumn<>("Efter betaling"));
         getColumns().add(detailsCol = new TableColumn<>("Oplysninger"));
 
+        // can be done with lambdas as well since callback is a single method interface, a functional interface, CallBack<P,R> with method signature R call(P p).
         numberCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<RowModel, Number>, ObservableValue<Number>>() {
             @Override
-            public ObservableValue<Number> call(TableColumn.CellDataFeatures<RowModel, Number> column) {
-                return ((InvoiceModel)column.getValue().getItem()).numberProperty();
+            public ObservableValue<Number> call(TableColumn.CellDataFeatures<RowModel, Number> row) {
+                return ((InvoiceModel)row.getValue().getItem()).numberProperty();
             }
         });
         dateStartCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<RowModel, Date>, ObservableValue<Date>>() {
             @Override
-            public ObservableValue<Date> call(TableColumn.CellDataFeatures<RowModel, Date> column) {
-                return ((InvoiceModel)column.getValue().getItem()).dateStartProperty();
+            public ObservableValue<Date> call(TableColumn.CellDataFeatures<RowModel, Date> row) {
+                return ((InvoiceModel)row.getValue().getItem()).dateStartProperty();
             }
         });
-        // can be done with lambdas as well since callback is a single method interface, a functional interface.
-        dateEndCol.setCellValueFactory( (column) -> ((InvoiceModel)column.getValue().getItem()).dateEndProperty());
-        plusCol.setCellValueFactory( (column) -> ((InvoiceModel)column.getValue().getItem()).plusProperty());
         detailsCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<RowModel, String>, ObservableValue<String>>() {
             @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<RowModel, String> column) {
-                return ((InvoiceModel)column.getValue().getItem()).detailsProperty();
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<RowModel, String> row) {
+                return ((InvoiceModel)row.getValue().getItem()).detailsProperty();
             }
         });
-
+        dateEndCol.setCellValueFactory( (row) -> ((InvoiceModel)row.getValue().getItem()).dateEndProperty());
+        plusCol.setCellValueFactory( (row) -> ((InvoiceModel)row.getValue().getItem()).plusProperty());
+        minusCol.setCellValueFactory((row) -> ((InvoiceModel)row.getValue().getItem()).minusProperty());
+        ultimoCol.setCellValueFactory((row) -> ((InvoiceModel)row.getValue().getItem()).ultimoProperty());
+        primoCol.setCellValueFactory((row) -> ((InvoiceModel)row.getValue().getItem()).primoProperty());
 
     }
     @Override

@@ -1,9 +1,13 @@
 package com.presentation.mvc.models.Invoice;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.model.entities.Agreement;
+import com.model.entities.Employee;
 import com.model.entities.Invoice;
+import com.presentation.mvc.models.employees.EmployeeModel;
 
 import javafx.beans.property.*;
 
@@ -13,7 +17,7 @@ public class InvoiceModel extends Invoice{
     private ObjectProperty<Date> dateEndProperty;
     private DoubleProperty plusProperty;
     private DoubleProperty minusProperty;
-    private DoubleProperty ultimProperty;
+    private DoubleProperty ultimoProperty;
     private DoubleProperty primoProperty;
     private StringProperty detailsProperty;
     public InvoiceModel() {
@@ -22,7 +26,7 @@ public class InvoiceModel extends Invoice{
         dateEndProperty = new SimpleObjectProperty<>();
         plusProperty = new SimpleDoubleProperty();
         minusProperty = new SimpleDoubleProperty();
-        ultimProperty = new SimpleDoubleProperty();
+        ultimoProperty = new SimpleDoubleProperty();
         primoProperty = new SimpleDoubleProperty();
         detailsProperty = new SimpleStringProperty();
     }
@@ -33,7 +37,7 @@ public class InvoiceModel extends Invoice{
         dateEndProperty.set(other.getDateend());
         plusProperty.set(other.getPlus());
         minusProperty.set(other.getMinus());
-        ultimProperty.set(other.getUltimovalue());
+        ultimoProperty.set(other.getUltimovalue());
         primoProperty.set(other.getPrimoprice());
         detailsProperty.set(other.getDetails());
     }
@@ -56,8 +60,8 @@ public class InvoiceModel extends Invoice{
         return minusProperty;
     }
 
-    public DoubleProperty ultimProperty() {
-        return ultimProperty;
+    public DoubleProperty ultimoProperty() {
+        return ultimoProperty;
     }
 
     public DoubleProperty primoProperty() {
@@ -109,11 +113,11 @@ public class InvoiceModel extends Invoice{
     }
     @Override
     public double getUltimovalue() {
-        return ultimProperty.get();
+        return ultimoProperty.get();
     }
     @Override
     public void setUltimovalue(double ultimoValue) {
-        ultimProperty.set(ultimoValue);
+        ultimoProperty.set(ultimoValue);
     }
     @Override
     public double getPrimoprice() {
@@ -131,4 +135,17 @@ public class InvoiceModel extends Invoice{
     public void setDetails(String details) {
         detailsProperty.set(details);
     }
+     public static List<InvoiceModel> makeModels(List<Invoice> invoices) {
+        List<InvoiceModel> models = new ArrayList<>();
+        for (Invoice invoice : invoices)
+            models.add(new InvoiceModel(invoice));
+        return models;
+    }
+    
+    public static List<Object> makeModelsAsObjects(List<Invoice> invoices) {
+        List<Object> models = new ArrayList<>();
+        for(Invoice invoice : invoices)
+            models.add(new InvoiceModel(invoice));
+        return models;
+    } 
 }

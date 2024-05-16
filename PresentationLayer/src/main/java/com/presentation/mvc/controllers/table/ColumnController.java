@@ -3,7 +3,6 @@ package com.presentation.mvc.controllers.table;
 import com.presentation.mvc.controllers.table.commands.CellCommand;
 import com.presentation.mvc.controllers.table.factories.NodeFactory;
 import com.presentation.mvc.models.table.RowModel;
-
 import com.presentation.mvc.views.table.ui.GuiColumn;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
