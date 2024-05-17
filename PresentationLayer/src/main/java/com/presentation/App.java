@@ -1,5 +1,7 @@
 package com.presentation;
 
+import java.io.File;
+
 import com.logic.handlers.Request;
 import com.logic.services.enums.CRUDType;
 import com.logic.services.enums.ServiceType;
@@ -16,6 +18,7 @@ import com.presentation.tools.ScreenWatcher;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class App extends Application {
@@ -24,6 +27,18 @@ public class App extends Application {
         ScreenWatcher.getInstance().setStage(stage);
         BorderPane bp = new BorderPane();
         bp.getStyleClass().add("mainPane");
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select a File");
+
+        // Set extension filter
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Billeder png jpeg", "*.png ", "*.jpg", "*.jpeg");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        // Show open file dialog
+        File file = fileChooser.showOpenDialog(stage);
+        String a = file.getName();
+
 
         Scene scene = new Scene(bp);
 

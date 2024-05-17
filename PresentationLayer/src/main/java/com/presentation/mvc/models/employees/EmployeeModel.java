@@ -2,18 +2,18 @@ package com.presentation.mvc.models.employees;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.model.entities.Employee;
 import com.model.enums.Occupation;
 import javafx.beans.property.*;
 
-public class EmployeeModel extends Employee{
+public class EmployeeModel extends Employee {
     private StringProperty emailProp;
     private StringProperty nameProp;
     private ObjectProperty<Occupation> occupationProp;
     private StringProperty phoneNumberProp;
     private DoubleProperty loanLimitProp;
     private StringProperty passwordProp;
+    private ObjectProperty<byte[]> imageProp;
 
     public EmployeeModel() {
         nameProp = new SimpleStringProperty();
@@ -22,6 +22,7 @@ public class EmployeeModel extends Employee{
         passwordProp = new SimpleStringProperty();
         occupationProp = new SimpleObjectProperty<Occupation>();
         loanLimitProp = new SimpleDoubleProperty();
+        imageProp = new SimpleObjectProperty<>();
     }
 
     public EmployeeModel(Employee employee) {
@@ -33,6 +34,15 @@ public class EmployeeModel extends Employee{
         phoneNumberProp.set(employee.getPhoneNumber());
         loanLimitProp.set(employee.getLoanLimit());
         passwordProp.set(employee.getPassword());
+        imageProp.set(employee.getImage());
+    }
+    @Override
+    public byte[] getImage() {
+        return imageProp.get();
+    }
+    @Override
+    public void setImage(byte[] image) {
+        imageProp.set(image);
     }
 
     @Override
@@ -82,6 +92,10 @@ public class EmployeeModel extends Employee{
     @Override
     public void setLoanLimit(Double limit) {
         loanLimitProp.set(limit);
+    }
+
+    public ObjectProperty<byte[]> imageProperty() {
+        return imageProp;
     }
 
     public StringProperty emailProperty() {

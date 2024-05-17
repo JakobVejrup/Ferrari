@@ -1,7 +1,6 @@
 package com.presentation.mvc.controllers.invoice;
 
 import java.util.List;
-
 import com.logic.services.enums.ServiceType;
 import com.model.entities.Invoice;
 import com.presentation.mvc.controllers.Controller;

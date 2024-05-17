@@ -26,6 +26,7 @@ public class EmployeeData implements Data, UserExtra, CheckData {
             cs.setString("Occupation", employee.getOccupation().realString());
             cs.setString("Password", employee.getPassword());
             cs.setDouble("Limit", employee.getLoanLimit());
+            cs.setBytes("Image", employee.getImage());
             ResultSet result = cs.executeQuery();
             if (!result.next())
                 return null;
@@ -49,7 +50,8 @@ public class EmployeeData implements Data, UserExtra, CheckData {
             result.getString("PhoneNumber"), 
             result.getString("Email"),
             Occupation.valueOf(result.getString("Occupation")),
-            result.getDouble("Limit")
+            result.getDouble("Limit"),
+            result.getBytes("EmployeeImage")
             );
             } 
         catch (SQLException e) {
@@ -69,10 +71,12 @@ public class EmployeeData implements Data, UserExtra, CheckData {
                 result.getString("PhoneNumber"), 
                 result.getString("Email"),
                 Occupation.valueOf(result.getString("Occupation")),
-                result.getDouble("Limit")
-                ));
+                result.getDouble("Limit"),
+                result.getBytes("EmployeeImage")
+            ));
             return employees;
-        } catch (Exception e) {
+        } 
+        catch (Exception e) {
             return employees;
         } 
     }
@@ -87,6 +91,7 @@ public class EmployeeData implements Data, UserExtra, CheckData {
             cs.setInt("Id", employee.getId());
             cs.setString("Occupation", employee.getOccupation().realString());
             cs.setDouble("Limit", employee.getLoanLimit());
+            cs.setBytes("Image", employee.getImage());
             cs.execute();
             System.out.println("null " + cs.getUpdateCount());
             return cs.getUpdateCount() > 0 ? employee : null;
@@ -137,6 +142,7 @@ public class EmployeeData implements Data, UserExtra, CheckData {
             cs.setInt("Id", update.getId());
             cs.setString("Password", update.getPassword());
             cs.setString("Occupation", update.getOccupation().realString());
+            cs.setBytes("Image", update.getImage());
             cs.execute();
             return cs.getUpdateCount() > 0 ? update : null;
         } catch (Exception e) {
@@ -144,20 +150,6 @@ public class EmployeeData implements Data, UserExtra, CheckData {
         }
     }
 
-    @Override
-    public Employee createManager(Employee update) {
-        try (CallableStatement cs = db.makeCall("{call Person.uspManagerInsert(?,?,?,?,?)}")) {
-            cs.setString("Name", update.getName());
-            cs.setString("PhoneNumber", update.getPhoneNumber());
-            cs.setString("Email", update.getEmail());
-            cs.setString("Occupation", update.getOccupation().realString());
-            cs.setString("Password", update.getPassword());
-            cs.execute();
-            return cs.getUpdateCount() > 0 ? update : null;
-        } catch (Exception e) {
-            return null;
-        }
-    }
     @Override
     public boolean check(Object check) {
         try (CallableStatement cs = db.makeCall("{call Person.uspEmployeeCheckEmail(?)}")) {
