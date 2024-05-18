@@ -34,7 +34,7 @@ public class LoanCalculator {
 
     private static double rente(Agreement agreement) {
         double dagsRente = InterestRate.i().todaysRate();
-        double RKIværdi = switch(agreement.getRKi()) {
+        double RKIværdi = switch(agreement.getRki()) {
             case Rating.A -> 1;
             case Rating.B -> 2;
             case Rating.C -> 3;

@@ -25,6 +25,5 @@ public class AgreementValidation extends HandlerObject {
         if(agreement.getStartvalue() > agreement.getVehicle().getPrice())
             request.getValidation().addMessage("du kan ikke betale mere end bilens værdi");
 
-
     }
 }
