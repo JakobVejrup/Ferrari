@@ -16,12 +16,12 @@ public class EmployeeService extends HandlerObject {
     public EmployeeService(Data data, UserExtra extra) {
         //creates all handlers and adds them to each other
         holder = new SimpleHolder(
+                new LoginHandler(extra),
                 new SimpleCreateHandler(data),
                 new SimpleReadHandler(data),
                 new SimpleReadAllHandler(data),
                 new SimpleUpdateHandler(data),
                 new SimpleDeleteHandler(data),
-                new LoginHandler(extra),
                 new UpdateSelfHandler(extra)
         );
     }

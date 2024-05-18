@@ -28,17 +28,6 @@ public class App extends Application {
         BorderPane bp = new BorderPane();
         bp.getStyleClass().add("mainPane");
 
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Select a File");
-
-        // Set extension filter
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Billeder png jpeg", "*.png ", "*.jpg", "*.jpeg");
-        fileChooser.getExtensionFilters().add(extFilter);
-
-        // Show open file dialog
-        File file = fileChooser.showOpenDialog(stage);
-        String a = file.getName();
-
 
         Scene scene = new Scene(bp);
 
@@ -50,8 +39,8 @@ public class App extends Application {
         Facade.getInstance().setModal(new ModalFactory(stage));
         Facade.getInstance().setLogin(new Login());
         Facade.getInstance().setTop(new TopbarView());
-        //Facade.getInstance().openModal(new Request(ServiceType.Employee, CRUDType.Create));
         Facade.getInstance().setCenter(new LoginController().getView());
+        Facade.getInstance().openModal(new Request(ServiceType.Employee, CRUDType.Create));
         //Employee employee = new Employee();
         //employee.setOccupation(Occupation.Manager);
         //Facade.getInstance().login(employee);

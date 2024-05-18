@@ -3,7 +3,6 @@ package com.presentation.mvc.controllers.table.factories;
 import com.presentation.mvc.controllers.table.CellController;
 import com.presentation.mvc.models.table.RowModel;
 import com.presentation.mvc.views.table.ui.CellCheckBox;
-
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ChangeListener;

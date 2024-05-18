@@ -1,5 +1,7 @@
 package com.presentation.mvc.views.table.concretes;
 
+import java.io.ByteArrayInputStream;
+
 import com.model.enums.Occupation;
 import com.presentation.mvc.models.employees.EmployeeModel;
 import com.presentation.mvc.models.table.RowModel;
@@ -10,6 +12,8 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.util.Callback;
 
 public class EmployeeTable extends GuiTable implements TableDecorator {
@@ -30,8 +34,21 @@ public class EmployeeTable extends GuiTable implements TableDecorator {
         imageCol.setCellValueFactory((row) -> ((EmployeeModel)row.getValue().getItem()).imageProperty());
         imageCol.setCellFactory(new Callback<TableColumn<RowModel,byte[]>,TableCell<RowModel,byte[]>>() {
             @Override
-            public TableCell<RowModel, byte[]> call(TableColumn<RowModel, byte[]> param) {
-                return new TableCell<>();
+            public TableCell<RowModel, byte[]> call(TableColumn<RowModel, byte[]> col) {
+                return new TableCell<>() {
+                    private ImageView node = new ImageView();
+                    @Override
+                    public void updateItem(byte[] item, boolean empty) {
+                        if (empty || item == null)
+                            setGraphic(null);
+                        else {
+                            node.setFitHeight(100);
+                            node.setPreserveRatio(true);
+                            node.setImage(new Image(new ByteArrayInputStream(item)));
+                            setGraphic(node);
+                        }
+                    };
+                };
             }
         });
         nameCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<RowModel, String>, ObservableValue<String>>() {

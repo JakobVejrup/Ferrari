@@ -18,7 +18,7 @@ public class EmployeeData implements Data, UserExtra, CheckData {
     }
     @Override
     public Object create(Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call Person.uspEmployeeInsert(?,?,?,?,?,?)}")) {
+        try (CallableStatement cs = db.makeCall("{call Person.uspEmployeeInsert(?,?,?,?,?,?,?)}")) {
             Employee employee = (Employee) parameter;
             cs.setString("Name", employee.getName());
             cs.setString("PhoneNumber", employee.getPhoneNumber());
@@ -126,6 +126,7 @@ public class EmployeeData implements Data, UserExtra, CheckData {
             employee.setPhoneNumber(result.getString("PhoneNumber"));
             employee.setOccupation(Occupation.valueOf(result.getString("Occupation")));
             employee.setLoanLimit(result.getDouble("Limit"));
+            employee.setImage(result.getBytes("EmployeeImage"));
             return employee;
             } 
         catch (SQLException e) {
@@ -135,7 +136,7 @@ public class EmployeeData implements Data, UserExtra, CheckData {
 
     @Override
     public Employee updateSelf(Employee update) {
-        try (CallableStatement cs = db.makeCall("{call Person.uspUpdateSelfEmployee(?,?,?,?,?,?)}")) {
+        try (CallableStatement cs = db.makeCall("{call Person.uspUpdateSelfEmployee(?,?,?,?,?,?,?)}")) {
             cs.setString("Name", update.getName());
             cs.setString("PhoneNumber", update.getPhoneNumber());
             cs.setString("Email", update.getEmail());

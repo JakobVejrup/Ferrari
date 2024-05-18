@@ -34,6 +34,11 @@ public class ColumnController implements Callback<TableColumn<RowModel, RowModel
             }
         });
     }
+    //Image version constructor
+    public ColumnController(NodeFactory nodeFactory, String text, int nr) {
+        this(text, nodeFactory, "");
+        this.nr = nr;
+    }
     //Button version constructor
     public ColumnController(NodeFactory nodeFactory, String text, CellCommand command, String rowsText) {
         this(text, nodeFactory, rowsText);
