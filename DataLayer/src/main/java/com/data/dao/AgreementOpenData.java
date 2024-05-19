@@ -23,7 +23,7 @@ public class AgreementOpenData implements Data {
             Agreement agreement = (Agreement) parameter;
             cs.setInt("FixedTerms", agreement.getfixedterms());
             cs.setDouble("StartValue", agreement.getStartvalue());
-            cs.setDate("StartAgreement", agreement.getStartagreement());
+            cs.setDate("StartAgreement", agreement.getstartAgreement());
             cs.setString("Rki", agreement.getRki().toString());
             cs.setInt("CustomerId", agreement.getCustomer().getId());
             cs.setInt("EmployeeId", agreement.getEmployee().getId());

@@ -21,7 +21,7 @@ public class AgreementClosedData implements Data{
             cs.setDate("End", agreement.getEnd());
             cs.setString("VehicleName", agreement.getVehicle().getVehicleName());
             cs.setDouble("vechilePrice", agreement.getVehicle().getPrice());
-            cs.setDouble("endprice", agreement.getEndprice());
+            cs.setDouble("endprice", agreement.getEndPrice());
             ResultSet result = cs.executeQuery();
             if (!result.next())
                 return null;
