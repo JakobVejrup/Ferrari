@@ -140,6 +140,6 @@ public class OpenAgreementsModel extends Agreement{
             models.add(new OpenAgreementsModel(agreement));
         return models;
     }
-
+//tjek
         
 }
