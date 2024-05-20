@@ -7,6 +7,7 @@ import com.rki.rki.Rating;
 
 public class Agreement {
     private int id;
+    private double daysRate;
     private int fixedTerms;
     private double startValue;
     private Date startAgreement;
@@ -80,6 +81,13 @@ public class Agreement {
     public void setId(int id) {
         this.id = id;
     }
+    public double getDaysRate() {
+        return daysRate;
+    }
+
+    public void setDaysRate(double daysRate) {
+        this.daysRate = daysRate;
+    }
 
     public int getFixedTerms() {
         return fixedTerms;
@@ -110,8 +118,7 @@ public class Agreement {
     }
 
     public void setRki(Rating Rki) {
-        Rki = Rki;
-
+        this.Rki = Rki;
     }
 
     public Customer getCustomer() {

@@ -13,6 +13,11 @@ public class Vehicle {
         this.Price = Price;
         this.image = image;
     }
+    public Vehicle(int VehicleID, String VehicleName, Double Price) {
+        this.VehicleID = VehicleID;
+        this.VehicleName = VehicleName;
+        this.Price = Price;
+    }
     // Get metode
     public int getVehicleID () {
         return VehicleID;

@@ -100,4 +100,16 @@ public class Invoice {
     public void setDetails(String details) {
         this.details = details;
     }
+    @Override
+    public boolean equals(Object other) {
+        Invoice o = (Invoice) other;
+        double min = 0.1;
+        boolean plusBool = o.plus >= plus - min || o.plus <= plus + min;
+        boolean minusBool = o.minus >= minus - min || o.minus <= minus + min;
+        boolean ultimoBool = o.ultimoValue >= ultimoValue - min || o.ultimoValue <= ultimoValue + min;
+        boolean primoBool = o.primoPrice >= primoPrice - min || o.primoPrice <= primoPrice + min;
+        return o.number == number && o.dateStart.equals(dateStart) && o.dateEnd.equals(dateEnd)
+                && plusBool && minusBool && ultimoBool && primoBool &&
+                o.details.equals(details);
+    }
 }
