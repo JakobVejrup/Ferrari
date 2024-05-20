@@ -17,18 +17,50 @@ import javafx.util.Callback;
 
 
 
-public class VehicleModel<NumberProperty> extends Vehicle {
+public class VehicleModel extends Vehicle {
     private IntegerProperty vehicleIdProp;
     private StringProperty nameProp;
     private DoubleProperty priceProp;
 
-    public VehicleModel(int vehicleID, String VehicleName, double Price) {
-        super(vehicleID, VehicleName, Price);
-        this.vehicleIdProp = new SimpleIntegerProperty(vehicleID); 
-        this.nameProp = new SimpleStringProperty(VehicleName);
-        this.priceProp = new SimpleDoubleProperty(Price);
+    public VehicleModel() {
+        setup();
     }
-
+    
+    public VehicleModel(Vehicle vehicle) {
+        setup();
+        setVehicleID(vehicle.getVehicleID());
+        nameProp.set(vehicle.getVehicleName());
+        priceProp.set(vehicle.getPrice());
+    }
+    @Override
+    public String getVehicleID() {
+        return vehicleIdProp.get();
+    } 
+    @Override
+    public void setVehicleID(int vehicleIdProp) {
+        this.vehicleIdProp.set(getVehicleID());
+    }
+    @Override
+    public String getName() {
+        return nameProp.get();
+    }
+    @Override
+    public void setName(String name) {
+        this.nameProp.set(name);
+    }
+    @Override
+    public Double getPrice() {
+        return priceProp.get();
+    }
+    @Override
+    public void setPrice(Double price) {
+        this.priceProp.set(price);
+    }
+    public void setup() {
+        vehicleIdProp = new SimpleIntegerProperty();
+        nameProp = new SimpleStringProperty();
+        priceProp = new SimpleDoubleProperty();    
+    }
     public IntegerProperty vehicleIdProperty() {
         return vehicleIdProp;
     }
@@ -38,30 +70,11 @@ public class VehicleModel<NumberProperty> extends Vehicle {
     public DoubleProperty pricProperty() {
         return priceProp;
     }
-    public int getVehicleID() {
-        return vehicleIdProp.get();
-    }
-    public void setVehicleID(int vehicleIdProp) {
-        this.vehicleIdProp.set(getVehicleID());
-    }
-    public String getName() {
-        return nameProp.get();
-    }
-    public void setName(String name) {
-        this.nameProp.set(name);
-    }
-    public Double getPrice() {
-        return priceProp.get();
-    }
-    public void setPrice(Double price) {
-        this.priceProp.set(price);
-    }
 
     public static List<VehicleModel> makeModels(List<Vehicle> vehicles) {
         List<VehicleModel> vehicleModels = new ArrayList<>();
-        for (Vehicle vehicle : vehicles) {
-            vehicleModels.add(new VehicleModel(vehicle.getVehicleID(), vehicle.getVehicleName(), vehicle.getPrice()));
-        }
+        for (Vehicle vehicle : vehicles) 
+            models.add(new VehicleModel(vehicle));
         return vehicleModels;
     }
 }
