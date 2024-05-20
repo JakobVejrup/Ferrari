@@ -24,13 +24,13 @@ import javafx.util.Callback;
 
 public class VehicleModel extends Vehicle {
     private IntegerProperty vehicleIdProp;
-    private StringProperty nameProp;
+    private StringProperty vehicleNameProp;
     private DoubleProperty priceProp;
     private ObjectProperty<byte[]> imageProp;
 
     public VehicleModel() {
         vehicleIdProp = new SimpleIntegerProperty();
-        nameProp = new SimpleStringProperty();
+        vehicleNameProp = new SimpleStringProperty();
         priceProp = new SimpleDoubleProperty();  
         imageProp = new SimpleObjectProperty<>();
     }
@@ -38,7 +38,7 @@ public class VehicleModel extends Vehicle {
     public VehicleModel(Vehicle vehicle) {
         this();
         setVehicleID(vehicle.getVehicleID());
-        nameProp.set(vehicle.getVehicleName());
+        vehicleNameProp.set(vehicle.getVehicleName());
         priceProp.set(vehicle.getPrice());
         imageProp.set(vehicle.getImage());
     }
@@ -59,11 +59,11 @@ public class VehicleModel extends Vehicle {
     }
     
     public String getName() {
-        return nameProp.get();
+        return vehicleNameProp.get();
     }
     
     public void setName(String name) {
-        this.nameProp.set(name);
+        this.vehicleNameProp.set(name);
     }
     
     public Double getPrice() {
@@ -77,7 +77,7 @@ public class VehicleModel extends Vehicle {
         return vehicleIdProp;
     }
     public StringProperty nameProperty() {
-        return nameProp;
+        return vehicleNameProp;
     }
     public DoubleProperty pricProperty() {
         return priceProp;
@@ -95,9 +95,4 @@ public class VehicleModel extends Vehicle {
             models.add(new VehicleModel(vehicle));
         return models;
     }
-
-    public ObservableList<VehicleModel> getVehicleModels() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getVehicleModels'");
-    } 
 }

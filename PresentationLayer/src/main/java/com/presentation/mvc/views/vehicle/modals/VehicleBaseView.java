@@ -19,15 +19,15 @@ public class VehicleBaseView extends VBox implements View {
         model.nameProperty().bind(name.textProperty());
 
         TextField vehicleID = new TextField();
-        model.vehicleIdProperty().bind(vehicleID.textProperty());
+        model.vehicleIdProperty().bindBidirectional(model.vehicleIdProperty());
 
         TextField price = new TextField(String.valueOf(model.getPrice()));
         price.textProperty().addListener((ChangeListener<? super String>) new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue,
                                 String newValue) {
-                    if (!newValue.matches("//d*"));
-                        price.setText(newValue.replaceFirst("[¨//d]", ""));
+                    if (!newValue.matches("\\d*"));
+                        price.setText(newValue.replaceFirst("[¨\\d]", ""));
                     if (!price.getText().isEmpty())
                         model.pricProperty().set(Integer.parseInt(price.getText()));
                                 }
