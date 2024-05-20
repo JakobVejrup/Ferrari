@@ -6,10 +6,11 @@ public class Vehicle {
     private Double Price;
 
 // Konstruktør 
-    public Vehicle(int VehicleID, String VehicleName, Double Price) {
+    public Vehicle(int VehicleID, String VehicleName, Double Price, byte[] image) {
         this.VehicleID = VehicleID;
         this.VehicleName = VehicleName;
         this.Price = Price;
+        this.image = image;
     }
     // Get metode
     public int getVehicleID () {
@@ -35,5 +36,11 @@ public class Vehicle {
     public void setPrice (Double Price) {
         this.Price = Price;
     }
-  
+    
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+    public byte[] getImage() {
+        return image;
+    }
 }

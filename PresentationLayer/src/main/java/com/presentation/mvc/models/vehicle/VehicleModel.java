@@ -3,12 +3,16 @@ package com.presentation.mvc.models.vehicle;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.model.entities.Employee;
 import com.model.entities.Vehicle;
+import com.presentation.mvc.models.employees.EmployeeModel;
 
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableDoubleValue;
@@ -21,45 +25,52 @@ public class VehicleModel extends Vehicle {
     private IntegerProperty vehicleIdProp;
     private StringProperty nameProp;
     private DoubleProperty priceProp;
+    private ObjectProperty<byte[]> imageProp;
 
     public VehicleModel() {
-        setup();
+        vehicleIdProp = new SimpleIntegerProperty();
+        nameProp = new SimpleStringProperty();
+        priceProp = new SimpleDoubleProperty();  
+        imageProp = new SimpleObjectProperty<>();
     }
     
     public VehicleModel(Vehicle vehicle) {
-        setup();
+        this();
         setVehicleID(vehicle.getVehicleID());
         nameProp.set(vehicle.getVehicleName());
         priceProp.set(vehicle.getPrice());
+        imageProp.set(vehicle.getImage());
     }
     @Override
-    public String getVehicleID() {
+    public byte[] getImage() {
+        return imageProp.get();
+    }
+    @Override
+    public void setImage(byte[] image) {
+        imageProp.set(image);
+    }
+    public int getVehicleID() {
         return vehicleIdProp.get();
     } 
-    @Override
+    
     public void setVehicleID(int vehicleIdProp) {
         this.vehicleIdProp.set(getVehicleID());
     }
-    @Override
+    
     public String getName() {
         return nameProp.get();
     }
-    @Override
+    
     public void setName(String name) {
         this.nameProp.set(name);
     }
-    @Override
+    
     public Double getPrice() {
         return priceProp.get();
     }
-    @Override
+    
     public void setPrice(Double price) {
         this.priceProp.set(price);
-    }
-    public void setup() {
-        vehicleIdProp = new SimpleIntegerProperty();
-        nameProp = new SimpleStringProperty();
-        priceProp = new SimpleDoubleProperty();    
     }
     public IntegerProperty vehicleIdProperty() {
         return vehicleIdProp;
@@ -72,9 +83,15 @@ public class VehicleModel extends Vehicle {
     }
 
     public static List<VehicleModel> makeModels(List<Vehicle> vehicles) {
-        List<VehicleModel> vehicleModels = new ArrayList<>();
-        for (Vehicle vehicle : vehicles) 
+        List<VehicleModel> models = new ArrayList<>();
+        for (Vehicle vehicle : vehicles)
             models.add(new VehicleModel(vehicle));
-        return vehicleModels;
+        return models;
     }
+    public static List<Object> makeModelsAsObjects(List<Vehicle> vehicles) {
+        List<Object> models = new ArrayList<>();
+        for(Vehicle vehicle : vehicles)
+            models.add(new VehicleModel(vehicle));
+        return models;
+    } 
 }

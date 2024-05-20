@@ -6,8 +6,8 @@ import javafx.event.EventHandler;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 
-public class CreateVehicleView extends VehicleBaseView {
-    public CreateVehicleView(VehicleModel model) {
+public class PriceVehicleView extends VehicleBaseView {
+    public PriceVehicleView(VehicleModel model) {
         super(model);
         PriceField price = new PriceField();
         model.pricProperty().bind(price.textProperty());

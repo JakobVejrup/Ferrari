@@ -28,7 +28,7 @@ public class VehicleController {
         return selectedVehicle.get();
     }
     public void addVehicle(Vehicle vehicle) {
-        VehicleModel vehicleModel = new VehicleModel(vehicle.getVehicleID(), vehicle.getVehicleName(), vehicle.getPrice());
+        VehicleModel vehicleModel = new VehicleModel();
         vehicleModels.add(vehicleModel);
     }
     public void updateVehicle(VehicleModel vehicleModel, Vehicle updatedVehicle) {
