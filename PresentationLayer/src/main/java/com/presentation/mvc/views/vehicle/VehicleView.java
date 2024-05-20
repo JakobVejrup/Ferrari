@@ -31,7 +31,7 @@ public class VehicleView {
 
         TableColumn<VehicleModel, Number> priceCol = new TableColumn<>("Pris");
         priceCol.setCellValueFactory(cellData -> cellData.getValue().pricProperty());
-        priceCol.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+        
 
         tableView.getColumns().addAll(idCol, nameCol, priceCol);
         tableView.setItems(viewModel.getVehicleModels());

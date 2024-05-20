@@ -30,6 +30,8 @@ public class ModalFactory implements ModalSetup {
             Scene scene = new Scene(controller.getView(), Color.TRANSPARENT);
             scene.getStylesheets().add(App.class.getResource("stylesheet1.css").toExternalForm());
             controller.getView().getStyleClass().add("Modal");
+            controller.getView().setPrefHeight(600);
+            controller.getView().setPrefWidth(1000);
             stage.setScene(scene);
             stage.initOwner(mainStage);
             stage.showAndWait();

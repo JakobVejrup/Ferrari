@@ -45,6 +45,9 @@ public class Request {
         return setter;
     }
 
+    public void setSetter(ActionParameter action) {
+        setter = action;
+    }
     public ServiceType getType() {
         return type;
     }

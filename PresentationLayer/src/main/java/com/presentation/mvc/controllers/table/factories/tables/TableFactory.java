@@ -11,16 +11,14 @@ public class TableFactory {
 
     public static GuiTable readyTable(CellController controller, ServiceType type, GuiTable table) {
         table.getStyleClass().add("tableInCell");
-        controller.getCell().itemProperty().addListener(new ChangeListener<RowModel>() {
+        controller.itemProperty().addListener(new ChangeListener<RowModel>() {
             @Override
             public void changed(ObservableValue<? extends RowModel> observable, RowModel oldValue, RowModel newValue) {
+                if(newValue != null)
+                    table.setItems(newValue.getItems().get(type).getRows());
+                else
+                    table.setItems(null);
 
-                if(newValue == null) {
-                    if(oldValue != null)
-                        oldValue.getItems().remove(type);
-                    return;
-                }
-                table.setItems(newValue.getItems().get(type).getRows());
             }
         });
         return table;

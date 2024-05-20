@@ -3,7 +3,6 @@ package com.presentation.mvc.controllers.table;
 import com.presentation.mvc.controllers.table.commands.CellCommand;
 import com.presentation.mvc.controllers.table.factories.NodeFactory;
 import com.presentation.mvc.models.table.RowModel;
-
 import com.presentation.mvc.views.table.ui.GuiColumn;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
@@ -35,6 +34,15 @@ public class ColumnController implements Callback<TableColumn<RowModel, RowModel
             }
         });
     }
+    //tableincell version constructor
+    public ColumnController(NodeFactory nodeFactory, String text) {
+        this(text, nodeFactory, "");
+    }
+    //Image version constructor
+    public ColumnController(NodeFactory nodeFactory, String text, int nr) {
+        this(text, nodeFactory, "");
+        this.nr = nr;
+    }
     //Button version constructor
     public ColumnController(NodeFactory nodeFactory, String text, CellCommand command, String rowsText) {
         this(text, nodeFactory, rowsText);
@@ -49,7 +57,7 @@ public class ColumnController implements Callback<TableColumn<RowModel, RowModel
     }
     @Override
     public TableCell<RowModel, RowModel> call(TableColumn<RowModel, RowModel> param) {
-        return new CellController(nodeFactory, command).getCell();
+        return new CellController(nodeFactory, command);
     }
     @Override
     public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean newValue) {

@@ -11,19 +11,19 @@ import com.rki.rki.Rating;
 public class LoanCalculator {
 
     public static Invoice[] LåneBeregner(Agreement agreement) {
-        Invoice [] Betalinger = new Invoice[agreement.getfixedterms()];
+        Invoice [] Betalinger = new Invoice[agreement.getFixedTerms()];
         double rente = rente(agreement);
-        double månedligBetaling = beregnmånedligBetaling(agreement.getVehicle().getPrice(), rente, agreement.getfixedterms());
-        double totalBeløb = agreement.getfixedterms() * månedligBetaling;
-        agreement.setEndprice (totalBeløb);
+        double månedligBetaling = beregnmånedligBetaling(agreement.getVehicle().getPrice(), rente, agreement.getFixedTerms());
+        double totalBeløb = agreement.getFixedTerms() * månedligBetaling;
+        agreement.setEndPrice (totalBeløb);
         Date firstDate = agreement.getStart();
-        for (int i = 0; i < agreement.getfixedterms(); i++) {
+        for (int i = 0; i < agreement.getFixedTerms(); i++) {
             Calendar.getInstance().setTime(firstDate);
             Calendar.getInstance().add(Calendar.MONTH, 1);
             Date lastDate = new Date(Calendar.getInstance().getTime().getTime());
 
             double Restgæld = Restgæld(totalBeløb, månedligBetaling, (double) i, månedligBetaling);
-            double Afdrag = Afdrag(agreement.getStartvalue(), rente, i, agreement.getfixedterms());
+            double Afdrag = Afdrag(agreement.getStartValue(), rente, i, agreement.getFixedTerms());
             double plus = månedligBetaling - Afdrag;
             double primo = Restgæld - plus; 
 
@@ -34,7 +34,7 @@ public class LoanCalculator {
 
     private static double rente(Agreement agreement) {
         double dagsRente = InterestRate.i().todaysRate();
-        double RKIværdi = switch(agreement.getRKi()) {
+        double RKIværdi = switch(agreement.getRki()) {
             case Rating.A -> 1;
             case Rating.B -> 2;
             case Rating.C -> 3;

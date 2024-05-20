@@ -2,20 +2,25 @@ package com.presentation.mvc.controllers.table;
 
 import com.presentation.mvc.controllers.table.commands.CellCommand;
 import com.presentation.mvc.controllers.table.factories.NodeFactory;
+import com.presentation.mvc.models.table.RowModel;
 import com.presentation.mvc.views.table.ui.GuiCell;
 import javafx.beans.property.BooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Node;
+import javafx.scene.control.TableCell;
 
-public class CellController implements EventHandler<ActionEvent> {
+public class CellController extends TableCell<RowModel, RowModel> implements EventHandler<ActionEvent> {
     //graphic object in the cell
     private GuiCell cell;
+    private final Node node;
     private CellCommand command;
     //booleanproperty to link the column with the checkbox
     private BooleanProperty booleanProperty;
     public CellController(NodeFactory factory, CellCommand command) {
         this.command = command;
-        cell = new GuiCell(factory.createNode(this));
+        node = factory.createNode(this);
+        cell = new GuiCell(factory, this);
     }
 
     //mouse click event, checks booleans for if they were checked
@@ -33,9 +38,15 @@ public class CellController implements EventHandler<ActionEvent> {
         booleanProperty.set(false);
         return bool;
     }
-    public GuiCell getCell() {
-        return cell;
-    }
+    @Override
+    public void updateItem(RowModel item, boolean empty) {
+        super.updateItem(item, empty);
+        if (empty)
+            setGraphic(null);
+        else
+            setGraphic(node);
+    };
+
     public void setBooleanProperty(BooleanProperty property) {
         booleanProperty = property;
     }
