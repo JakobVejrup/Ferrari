@@ -8,6 +8,7 @@ import com.model.entities.Vehicle;
 import com.model.threads.Validation;
 import com.presentation.mvc.controllers.modals.ModalController;
 import com.presentation.mvc.models.vehicle.VehicleModel;
+import com.presentation.mvc.views.vehicle.modals.VehicleBaseView;
 import com.presentation.tools.alert.Alerter;
 
 import javafx.application.Platform;
