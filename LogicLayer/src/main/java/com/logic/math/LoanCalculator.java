@@ -50,13 +50,14 @@ public class LoanCalculator {
         return månedligBetaling;
     }
     private static double Restgæld(double startbeløb, double månedligRente, double terminerIalt, double n) {
-        return startbeløb * (Math.pow((1+månedligRente),terminerIalt) - Math.pow((1 + månedligRente),n) / Math.pow((1+månedligRente),terminerIalt - 1));
+        return startbeløb * ((Math.pow(1+månedligRente,terminerIalt) - Math.pow(1 + månedligRente,n)) / (Math.pow(1+månedligRente,terminerIalt) - 1));
     }
     private static double månedligAfdrag(double startbeløb, double månedligeRente, double n) {
-        return startbeløb * (Math.pow(månedligeRente * (1 + månedligeRente),n) / Math.pow((1+månedligeRente),n-1));
+        return startbeløb * ((Math.pow(månedligeRente * 1 + månedligeRente, n)) / (Math.pow(1+månedligeRente,n)-1));
     }
     private static double Afdrag(double startbeløb, double månedligRente, double n, double terminerIalt) {
-        return startbeløb * (månedligRente - (månedligAfdrag(startbeløb, månedligRente, n) * (Math.pow(1+månedligRente,terminerIalt-1) / Math.pow(1+månedligRente,n-1))));
+        double månedligAfdrag = månedligAfdrag(startbeløb, månedligRente, n);
+        return startbeløb * (månedligRente - månedligAfdrag) * (Math.pow(1 + månedligRente, terminerIalt - 1) / Math.pow(1 + månedligRente, n - 1));
     }
 }
     
