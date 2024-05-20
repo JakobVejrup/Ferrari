@@ -19,13 +19,13 @@ public class Agreement {
     private double endPrice;
     private List<Invoice> payments;
 
-    public Agreement(int Id, int FixedTerms, double startValue, Date startAgreement, Rating RKi, Customer customer,
+    public Agreement(int Id, int FixedTerms, double startValue, Date startAgreement, Rating Rki, Customer customer,
             Employee employee, Date start, Date end, Vehicle vehicle, double endPrice , List<Invoice> payments) {
         this.id = Id;
         this.fixedTerms = FixedTerms;
         this.startValue = startValue;
         this.startAgreement = startAgreement;
-        this.Rki = RKi;
+        this.Rki = Rki;
         this.customer = customer;
         this.employee = employee;
         this.start = start;
@@ -35,18 +35,32 @@ public class Agreement {
         this.payments = payments;
     }
 
-    public Agreement(int id, int fixedTerms, double startValue, Date startAgreement, Rating RKi, Customer customer,
-            Employee employee, Vehicle vehicle) {
-        this.id = id;
-        this.fixedTerms = fixedTerms;
+    public Agreement(int Id, int FixedTerms, double startValue, Date startAgreement, Rating Rki, Customer customer,
+            Employee employee, Date start, Date end, Vehicle vehicle, double endPrice ) {
+        this.id = Id;
+        this.fixedTerms = FixedTerms;
         this.startValue = startValue;
         this.startAgreement = startAgreement;
-        this.Rki = RKi;
+        this.Rki = Rki;
+        this.customer = customer;
+        this.employee = employee;
+        this.start = start;
+        this.end = end;
+        this.vehicle = vehicle;
+        this.endPrice = endPrice;
+    }
+    public Agreement(int Id, int FixedTerms, double startValue, Date startAgreement, Rating Rki, Customer customer,
+            Employee employee, Vehicle vehicle ) {
+        this.id = Id;
+        this.fixedTerms = FixedTerms;
+        this.startValue = startValue;
+        this.startAgreement = startAgreement;
+        this.Rki = Rki;
         this.customer = customer;
         this.employee = employee;
         this.vehicle = vehicle;
-    }
 
+    }
     public Agreement(int id, Date start, Date end, Vehicle vehicle, double endPrice) {
         this.id = id;
         this.start = start;
@@ -59,8 +73,6 @@ public class Agreement {
 
     }
 
-
-
     public int getId() {
         return id;
     }
@@ -69,15 +81,15 @@ public class Agreement {
         this.id = id;
     }
 
-    public int getfixedTerms() {
+    public int getFixedTerms() {
         return fixedTerms;
     }
 
-    public void setfixedTerms(int fixedterms) {
+    public void setFixedTerms(int fixedterms) {
         this.fixedTerms = fixedterms;
     }
 
-    public double getstartvalue() {
+    public double getStartValue() {
         return startValue;
     }
 
@@ -85,11 +97,11 @@ public class Agreement {
         this.startValue = startvalue;
     }
 
-    public Date getstartAgreement() {
+    public Date getStartAgreement() {
         return startAgreement;
     }
 
-    public void setstartAgreement(Date startagreement) {
+    public void setStartAgreement(Date startagreement) {
         this.startAgreement = startagreement;
     }
 

@@ -31,7 +31,6 @@ public class ServiceSingleton implements Handler {
         AgreementClosedData agreementClosed = new AgreementClosedData(db, invoiceData, customerData, employeeData);
         AgreementOpenData agreementOpen = new AgreementOpenData(db, invoiceData, customerData, employeeData);
 
-
         validations = new ValidationManager(
             new EmployeeValidation(employeeData), 
             new AgreementValidation()
@@ -69,6 +68,12 @@ public class ServiceSingleton implements Handler {
         });
         thread.setDaemon(true);
         thread.start();
+    }
+    public Object queryNoThread(Request request) {
+        final Object[] returnValue = new Object[1];
+        request.setSetter((value) -> returnValue[0] = value);
+        services.query(request);
+        return returnValue[0];
     }
     public static ServiceSingleton getInstance() {
         return instance == null ? instance = new ServiceSingleton() : instance;

@@ -18,7 +18,7 @@ public class RowModel {
     //keeps account of the different columns and their possible checkbox bools
     private HashMap<Integer, BooleanProperty> properties;
     private HashMap<ServiceType, TableModel> items;
-    private HashMap<Integer, ObjectProperty<byte[]>> images;
+    private HashMap<String, ObjectProperty<byte[]>> images;
 
 
     public RowModel(Object item, ServiceType type, TableModel... tables) {
@@ -41,13 +41,16 @@ public class RowModel {
             properties.put(i, new SimpleBooleanProperty());
         return properties.get(i);
     }
-    public ObjectProperty<byte[]> getImageProperty(int i) {
+    public ObjectProperty<byte[]> getImageProperty(String i) {
         if(images.get(i) == null)
             images.put(i, new SimpleObjectProperty<byte[]>());
         return images.get(i);
     }
     public HashMap<ServiceType, TableModel> getItems() {
         return items;
+    }
+    public HashMap<String, ObjectProperty<byte[]>> getImages() {
+        return images;
     }
     public static ObservableList<RowModel> makeRowModels(ServiceType type, List<Object> objects) {
         ObservableList<RowModel> list = FXCollections.observableArrayList();

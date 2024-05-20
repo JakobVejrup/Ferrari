@@ -3,13 +3,11 @@ package com.presentation.mvc.models.agreements;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
-
 import com.model.entities.Agreement;
 import com.model.entities.Customer;
 import com.model.entities.Employee;
 import com.model.entities.Vehicle;
 import com.rki.rki.Rating;
-
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
@@ -33,9 +31,9 @@ public class OpenAgreementsModel extends Agreement{
     public OpenAgreementsModel(Agreement agreement) {
         setup();
         setId(agreement.getId());
-        fixedTermsProp.set(agreement.getfixedTerms());
-        startValueProp.set(agreement.getstartvalue());
-        startAgreementProp.set(agreement.getstartAgreement());
+        fixedTermsProp.set(agreement.getFixedTerms());
+        startValueProp.set(agreement.getStartValue());
+        startAgreementProp.set(agreement.getStartAgreement());
         RKiProp.set(agreement.getRki());
         customerProp.set(agreement.getCustomer());
         employeeProp.set(agreement.getEmployee());
@@ -43,15 +41,15 @@ public class OpenAgreementsModel extends Agreement{
     }
 
     @Override
-    public int getfixedTerms() {
+    public int getFixedTerms() {
         return fixedTermsProp.get();
     }
     @Override
-    public double getstartvalue() {
+    public double getStartValue() {
         return startValueProp.get();
     }
     @Override
-    public Date getstartAgreement() {
+    public Date getStartAgreement() {
         return startAgreementProp.get();
     }
     @Override
@@ -70,7 +68,7 @@ public class OpenAgreementsModel extends Agreement{
         return vehicleProp.get();
     }
     @Override
-    public void setfixedTerms(int fixedterms) {
+    public void setFixedTerms(int fixedterms) {
         fixedTermsProp.set(fixedterms);
     }
     @Override
@@ -78,7 +76,7 @@ public class OpenAgreementsModel extends Agreement{
         startValueProp.set(startvalue);
     }
     @Override
-    public void setstartAgreement(Date startagreement) {
+    public void setStartAgreement(Date startagreement) {
         startAgreementProp.set(startagreement);
     }
     @Override

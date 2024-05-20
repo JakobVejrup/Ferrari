@@ -6,10 +6,10 @@ import com.presentation.mvc.views.table.ui.GuiTable;
 
 public class ImageTableDecorator implements TableDecorator {
     private GuiTable table;
-    public ImageTableDecorator(TableDecorator other) {
+    public ImageTableDecorator(TableDecorator other, ImageFactory factory) {
         table = other.getTable();
-        int tableSize = getTable().getColumns().size();
-        ColumnController controller = new ColumnController(new ImageFactory(), "Billeder", tableSize);
+        ColumnController controller = new ColumnController(factory, "Billede");
+
         table.getColumns().add(controller.getView());
     }
 

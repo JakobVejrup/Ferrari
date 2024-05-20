@@ -33,7 +33,7 @@ public class AgreementClosedData implements Data{
             cs.setDate("End", agreement.getEnd());
             cs.setString("VehicleName", agreement.getVehicle().getVehicleName());
             cs.setDouble("VehiclePrice", agreement.getVehicle().getPrice());
-            cs.setDouble("EndPrice", agreement.getEndprice());
+            cs.setDouble("EndPrice", agreement.getEndPrice());
             cs.setBytes("VehicleImage", new byte[0]);
 
             ResultSet result = cs.executeQuery();
@@ -63,7 +63,7 @@ public class AgreementClosedData implements Data{
                 result.getDate("Start"),
                 result.getDate("End"),
                 new Vehicle(result.getInt("SaleId"), result.getString("SaleName"), result.getDouble("SalePrice")),
-                result.getDouble("EndPrice")
+                result.getDouble("EndPrice"), null
             );
             } 
         catch (Exception e) {

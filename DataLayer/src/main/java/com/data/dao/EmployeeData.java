@@ -16,6 +16,7 @@ public class EmployeeData implements Data, UserExtra, CheckData {
     public EmployeeData(ConnectionData db) {
         this.db = db;
     }
+
     @Override
     public Object create(Object parameter) {
         try (CallableStatement cs = db.makeCall("{call Person.uspEmployeeInsert(?,?,?,?,?,?,?)}")) {
@@ -59,7 +60,7 @@ public class EmployeeData implements Data, UserExtra, CheckData {
         }
     }
 
-// no password will be given since thats knowledge only the user should have, it will be given in a login
+    // no password will be given since thats knowledge only the user should have, it will be given in a login
     @Override
     public Object readAll(Object parameter) {
         ArrayList<Employee> employees = new ArrayList<Employee>();

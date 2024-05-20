@@ -1,6 +1,9 @@
 package com.model.entities;
 
 import com.model.enums.Occupation;
+
+import java.util.List;
+
 //Anders
 public class Employee extends Information {
     private Occupation occupation;
@@ -17,6 +20,7 @@ public class Employee extends Information {
         super(id, name, phoneNumber, email);
         this.occupation = occupation;
     }
+
     public Employee(int id, String name, String phoneNumber, String email, Occupation occupation, double loanLimit, byte[] image) {
         super(id, name, phoneNumber, email);
         this.occupation = occupation;

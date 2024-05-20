@@ -18,7 +18,7 @@ public class CheckboxFactory extends NodeFactory{
         BooleanProperty booleanProperty = new SimpleBooleanProperty();
         booleanProperty.addListener(getController());
         //adds a listener to when the items in the row change, because if several checkboxes exist they have to be reset upon one call
-        cell.getCell().itemProperty().addListener(new ChangeListener<RowModel>() {
+        cell.itemProperty().addListener(new ChangeListener<RowModel>() {
             @Override
             public void changed(ObservableValue<? extends RowModel> observable, RowModel oldValue, RowModel newValue) {
                 if(oldValue != null)

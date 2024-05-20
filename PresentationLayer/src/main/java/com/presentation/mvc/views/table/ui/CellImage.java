@@ -11,6 +11,8 @@ import javafx.scene.image.ImageView;
 public class CellImage extends ImageView{
         public CellImage(ObjectProperty<byte[]> property) {
         getStyleClass().add("cellImage");
+            setFitHeight(150);
+            setPreserveRatio(true);
         property.addListener(new ChangeListener<byte[]>() {
 
             @Override

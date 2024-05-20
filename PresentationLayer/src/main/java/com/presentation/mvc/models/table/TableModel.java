@@ -11,6 +11,7 @@ public class TableModel {
     public TableModel(ServiceType type, List<Object> objects) {
         this.type = type;
         this.rows = RowModel.makeRowModels(type, objects);
+
     }
 
     public ServiceType getType() {

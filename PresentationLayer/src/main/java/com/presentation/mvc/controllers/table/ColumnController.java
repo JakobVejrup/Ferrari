@@ -34,6 +34,10 @@ public class ColumnController implements Callback<TableColumn<RowModel, RowModel
             }
         });
     }
+    //tableincell version constructor
+    public ColumnController(NodeFactory nodeFactory, String text) {
+        this(text, nodeFactory, "");
+    }
     //Image version constructor
     public ColumnController(NodeFactory nodeFactory, String text, int nr) {
         this(text, nodeFactory, "");
@@ -53,7 +57,7 @@ public class ColumnController implements Callback<TableColumn<RowModel, RowModel
     }
     @Override
     public TableCell<RowModel, RowModel> call(TableColumn<RowModel, RowModel> param) {
-        return new CellController(nodeFactory, command).getCell();
+        return new CellController(nodeFactory, command);
     }
     @Override
     public void changed(ObservableValue<? extends Boolean> observableValue, Boolean aBoolean, Boolean newValue) {

@@ -20,9 +20,9 @@ public class AgreementValidation extends HandlerObject {
     protected void action(Request request) {
         //validation example could be done in other classes which this will own
         Agreement agreement = (Agreement) request.getObject();
-        if(agreement.getStartvalue() < 0)
+        if(agreement.getStartValue() < 0)
             request.getValidation().addMessage("et lån skal starte over 0kr");
-        if(agreement.getStartvalue() > agreement.getVehicle().getPrice())
+        if(agreement.getStartValue() > agreement.getVehicle().getPrice())
             request.getValidation().addMessage("du kan ikke betale mere end bilens værdi");
 
     }

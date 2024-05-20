@@ -2,6 +2,7 @@ package com.data.dao;
 
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 import com.data.ConnectionData;
 import com.data.interfaces.Data;
@@ -41,19 +42,20 @@ public class InvoiceData implements Data{
         try (CallableStatement cs = db.makeCall("{call uspDuePaymentGet(?)}")) {
             cs.setInt("Id",((Agreement)parameter).getId());
             ResultSet result = cs.executeQuery();
-            if (!result.next())
-                return null;
-            return new Invoice(
-                (Agreement)parameter,
-                result.getInt("Number"),
-                result.getDate("DateStart"),
-                result.getDate("DateEnd"),
-                result.getDouble("Plus"),
-                result.getDouble("Minus"),
-                result.getDouble("UltimoValue"),
-                result.getDouble("PrimoPrice"),
-                result.getString("Details")
-            );
+            ArrayList<Invoice> invoices = new ArrayList<>();
+            while(result.next())
+                invoices.add(new Invoice(
+                    (Agreement)parameter,
+                    result.getInt("Number"),
+                    result.getDate("DateStart"),
+                    result.getDate("DateEnd"),
+                    result.getDouble("Plus"),
+                    result.getDouble("Minus"),
+                    result.getDouble("UltimoValue"),
+                    result.getDouble("PrimoPrice"),
+                    result.getString("Details")
+                ));
+            return invoices;
         } catch (Exception e) {
             return null;
         }
