@@ -1,8 +1,5 @@
 package com.presentation.mvc.controllers.employees;
 
-import java.io.File;
-import java.nio.file.Files;
-
 import com.logic.ServiceSingleton;
 import com.logic.handlers.Request;
 import com.logic.services.enums.CRUDType;
@@ -16,14 +13,11 @@ import com.presentation.mvc.views.employee.modals.PasswordEmployeeView;
 import com.presentation.tools.ImageFinder;
 import com.presentation.tools.alert.Alerter;
 import com.presentation.tools.facade.Facade;
-
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class AccountController implements Controller{

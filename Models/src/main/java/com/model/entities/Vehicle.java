@@ -18,6 +18,9 @@ public class Vehicle {
         this.VehicleName = VehicleName;
         this.Price = Price;
     }
+    public Vehicle() {
+
+    }
     // Get metode
     public int getVehicleID () {
         return VehicleID;
@@ -48,5 +51,9 @@ public class Vehicle {
     }
     public byte[] getImage() {
         return image;
+    }
+    public void copy(Vehicle newVehicle) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'copy'");
     }
 }

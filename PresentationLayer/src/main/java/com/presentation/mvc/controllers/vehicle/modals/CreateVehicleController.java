@@ -6,16 +6,20 @@ import com.model.threads.Validation;
 import com.presentation.mvc.controllers.modals.ModalController;
 import com.presentation.mvc.controllers.vehicle.VehicleController;
 import com.presentation.mvc.models.vehicle.VehicleModel;
-
+import com.presentation.mvc.views.vehicle.modals.VehicleBaseView;
+import com.presentation.tools.alert.Alerter;
+import com.logic.ServiceSingleton;
+import com.logic.handlers.Request;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 public class CreateVehicleController extends ModalController{
 
-    private VehicleController model;
-    private CreateVehicleBaseView view;
+    private VehicleModel model;
+    private VehicleBaseView view;
     public CreateVehicleController(Stage stage) {
         super (stage);
         model = new VehicleModel();
@@ -47,7 +51,7 @@ public class CreateVehicleController extends ModalController{
                 );
             }
         )
-    );
+    ));
     }
     public void decline(ActionEvent event) {
         close();

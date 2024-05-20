@@ -2,11 +2,7 @@ package com.presentation.mvc.models.vehicle;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.model.entities.Employee;
 import com.model.entities.Vehicle;
-import com.presentation.mvc.models.employees.EmployeeModel;
-
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
@@ -15,9 +11,6 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.beans.value.ObservableDoubleValue;
-import javafx.beans.value.WritableDoubleValue;
-import javafx.util.Callback;
 
 
 
@@ -78,7 +71,7 @@ public class VehicleModel extends Vehicle {
     public StringProperty nameProperty() {
         return nameProp;
     }
-    public DoubleProperty pricProperty() {
+    public DoubleProperty priceProperty() {
         return priceProp;
     }
 
