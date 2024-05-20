@@ -10,6 +10,7 @@ import com.presentation.mvc.controllers.Controller;
 import com.presentation.mvc.models.table.RowModel;
 import com.presentation.mvc.models.table.TableModel;
 import com.presentation.mvc.models.vehicle.VehicleModel;
+import com.presentation.mvc.views.table.concretes.VehicleTable;
 import com.presentation.tools.facade.Facade;
 
 import javafx.beans.property.ObjectProperty;
@@ -24,14 +25,15 @@ import javafx.scene.layout.VBox;
 public class AllVehiclesController implements Controller {
     private TableModel model;
     private VBox view;
-
+    private VehicleTable vehicleTable;
     public AllVehiclesController() {
 
         Button insertButton = new Button("lav bil");
         insertButton.setOnAction(this::addVehicle);
 
         view = new VBox(insertButton);
-        VehicleTable
+
+        vehicleTable = new VehicleTable();
     }
 
     public void addVehicle(ActionEvent event) {
