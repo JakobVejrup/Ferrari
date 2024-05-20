@@ -8,6 +8,8 @@ public class PasswordEmployeeView extends EmployeeBaseView {
     public PasswordEmployeeView(EmployeeModel model) {
         super(model);
         PasswordField password = new PasswordField();
+        if(model.getPassword() != "")
+            password.setText(model.getPassword());
         model.passwordProperty().bind(password.textProperty());
         getChildren().addFirst(new HBox(new Label("Password:"), password));
     }

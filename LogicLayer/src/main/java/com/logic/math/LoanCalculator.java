@@ -32,7 +32,7 @@ public class LoanCalculator {
         return Betalinger;
     }
 
-    private static double rente(Agreement agreement) {
+    public static double rente(Agreement agreement) {
         double dagsRente = InterestRate.i().todaysRate();
         double RKIværdi = switch(agreement.getRki()) {
             case Rating.A -> 1;
@@ -44,18 +44,18 @@ public class LoanCalculator {
         double tidsRente = timeValue > 94608000000L ? 1: 0;
         return RKIværdi + dagsRente + tidsRente;
     }
-    private static double beregnmånedligBetaling(double låneBeløb, double rente, int antalTerminer) {
+    public static double beregnmånedligBetaling(double låneBeløb, double rente, int antalTerminer) {
         double månedligRente = rente / 100 / 12;
         double månedligBetaling = (låneBeløb * månedligRente) / (1 - Math.pow (1 + månedligRente, - antalTerminer));
         return månedligBetaling;
     }
-    private static double Restgæld(double startbeløb, double månedligRente, double terminerIalt, double n) {
+    public static double Restgæld(double startbeløb, double månedligRente, double terminerIalt, double n) {
         return startbeløb * (Math.pow((1+månedligRente),terminerIalt) - Math.pow((1 + månedligRente),n) / Math.pow((1+månedligRente),terminerIalt - 1));
     }
-    private static double månedligAfdrag(double startbeløb, double månedligeRente, double n) {
+    public static double månedligAfdrag(double startbeløb, double månedligeRente, double n) {
         return startbeløb * (Math.pow(månedligeRente * (1 + månedligeRente),n) / Math.pow((1+månedligeRente),n-1));
     }
-    private static double Afdrag(double startbeløb, double månedligRente, double n, double terminerIalt) {
+    public static double Afdrag(double startbeløb, double månedligRente, double n, double terminerIalt) {
         return startbeløb * (månedligRente - (månedligAfdrag(startbeløb, månedligRente, n) * (Math.pow(1+månedligRente,terminerIalt-1) / Math.pow(1+månedligRente,n-1))));
     }
 }

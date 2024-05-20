@@ -30,15 +30,17 @@ import java.util.ArrayList;
 import java.util.List;
 import com.presentation.mvc.controllers.Controller;
 
-public class EmployeesController implements Controller{
+public class EmployeesController implements Controller {
     private TableModel model;
     private EmployeesView view;
+    private TableDecorator table;
+
     public EmployeesController() {
         view = new EmployeesView(this::newUser);
+        table = new EmployeeTable();
         Request request = new Request(ServiceType.Employee, CRUDType.ReadAll, (employees) -> {
             //to allow ui to be run
             Platform.runLater( () -> {
-                TableDecorator table = new EmployeeTable();
                 Request getAgreements = new Request(ServiceType.AgreementOpen, CRUDType.ReadAll);
                 List<Agreement> agreements = (List<Agreement>)ServiceSingleton.getInstance().queryNoThread(getAgreements);
                 model = new TableModel(ServiceType.Employee, EmployeeModel.makeModelsAsObjects((List<Employee>)employees));
@@ -64,7 +66,7 @@ public class EmployeesController implements Controller{
                     table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory(), "Slet andre", new DeleteCommand(), "slet"), table);
                     table = new CheckboxColumnDecorator(new UpdateCommand(), "Slet", "Slet", "Slet Alle", table);
                 }
-                view.setTable(table.getTable());
+                table.getTable().setup(view);
             });
         });
         ServiceSingleton.getInstance().query(request);
@@ -78,6 +80,7 @@ public class EmployeesController implements Controller{
                 model.addRow(new RowModel(employee, ServiceType.Employee));
         }));
     }
+    @Override
     public EmployeesView getView() {
         return view;
     }
