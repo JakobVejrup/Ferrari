@@ -17,6 +17,7 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ObservableDoubleValue;
 import javafx.beans.value.WritableDoubleValue;
+import javafx.collections.ObservableList;
 import javafx.util.Callback;
 
 
@@ -93,5 +94,10 @@ public class VehicleModel extends Vehicle {
         for(Vehicle vehicle : vehicles)
             models.add(new VehicleModel(vehicle));
         return models;
+    }
+
+    public ObservableList<VehicleModel> getVehicleModels() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getVehicleModels'");
     } 
 }

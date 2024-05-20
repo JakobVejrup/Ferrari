@@ -18,7 +18,7 @@ public class VehicleBaseView extends VBox implements View {
         TextField name = new TextField(model.getName());
         model.nameProperty().bind(name.textProperty());
 
-        TextField vehicleID = new TextField(model.getVehicleID());
+        TextField vehicleID = new TextField();
         model.vehicleIdProperty().bind(vehicleID.textProperty());
 
         TextField price = new TextField(String.valueOf(model.getPrice()));
