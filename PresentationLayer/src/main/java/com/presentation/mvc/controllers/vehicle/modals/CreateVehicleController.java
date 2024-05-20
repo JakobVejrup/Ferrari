@@ -4,21 +4,23 @@ import com.logic.services.enums.CRUDType;
 import com.logic.services.enums.ServiceType;
 import com.model.threads.Validation;
 import com.presentation.mvc.controllers.modals.ModalController;
-import com.presentation.mvc.controllers.vehicle.VehicleController;
+import com.presentation.mvc.controllers.vehicle.AllVehiclesController;
 import com.presentation.mvc.models.vehicle.VehicleModel;
+import com.presentation.mvc.views.vehicle.modals.VehicleBaseView;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 public class CreateVehicleController extends ModalController{
 
-    private VehicleController model;
-    private CreateVehicleBaseView view;
+    private AllVehiclesController model;
+    private VehicleBaseView view;
     public CreateVehicleController(Stage stage) {
         super (stage);
-        model = new VehicleModel();
+        model = new AllVehiclesController();
         Button createButton = new Button("Opret bil");
         createButton.setOnAction(this::create);
         Button cancelButton = new Button("Fortryd");

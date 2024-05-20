@@ -1,22 +1,14 @@
 package com.presentation.mvc.controllers.vehicle;
 
-import java.util.List;
-
 import com.logic.handlers.Request;
 import com.logic.services.enums.CRUDType;
 import com.logic.services.enums.ServiceType;
-import com.model.entities.Vehicle;
 import com.presentation.mvc.controllers.Controller;
 import com.presentation.mvc.models.table.RowModel;
 import com.presentation.mvc.models.table.TableModel;
-import com.presentation.mvc.models.vehicle.VehicleModel;
 import com.presentation.mvc.views.table.concretes.VehicleTable;
 import com.presentation.tools.facade.Facade;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;

@@ -33,10 +33,6 @@ public class VehicleBaseView extends VBox implements View {
                                 }
         });
 
-    ComboBox vehicle = new ComboBox<>(FXCollections.observableArrayList(vehicle.valueProperty()));
-    vehicle.setValue(model.getVehicleID());
-    model.vehicleIdProperty().bind(vehicle.valueProperty());
-
     getChildren().addAll(
         new HBox(new Label("Id:"), vehicleID),
         new HBox(new Label("Name:"), name),
