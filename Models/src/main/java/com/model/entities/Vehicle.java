@@ -4,16 +4,14 @@ public class Vehicle {
     private int VehicleID;
     private String VehicleName;
     private Double Price;
+    private byte[] image;
 
 // Konstruktør 
-    public Vehicle(int VehicleID, String VehicleName, Double Price) {
+    public Vehicle(int VehicleID, String VehicleName, Double Price, byte[] image) {
         this.VehicleID = VehicleID;
         this.VehicleName = VehicleName;
         this.Price = Price;
-
-    }
-public Vehicle() {
-        //TODO Auto-generated constructor stub
+        this.image = image;
     }
     // Get metode
     public int getVehicleID () {
@@ -39,5 +37,11 @@ public Vehicle() {
     public void setPrice (Double Price) {
         this.Price = Price;
     }
-  
+    
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+    public byte[] getImage() {
+        return image;
+    }
 }

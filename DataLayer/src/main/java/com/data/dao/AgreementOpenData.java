@@ -65,7 +65,7 @@ public class AgreementOpenData implements Data {
                 Rating.valueOf(result.getString("Rki")),
                 (Customer)customerData.read(result.getInt("CustomerId")),
                 (Employee)employeeData.read(result.getInt("EmployeeId")),
-                new Vehicle(result.getInt("VehicleId"), result.getString("VehicleName"), result.getDouble("Price"))
+                new Vehicle(result.getInt("VehicleId"), result.getString("VehicleName"), result.getDouble("Price"), result.getBytes("VehicleImage"))
             );  
         } 
         catch (Exception e) {
@@ -88,7 +88,7 @@ public class AgreementOpenData implements Data {
                     Rating.valueOf(result.getString("Rki")),
                     (Customer)customerData.read(result.getInt("CustomerId")),
                     (Employee)employeeData.read(result.getInt("EmployeeId")),
-                    new Vehicle(result.getInt("VehicleId"), result.getString("VehicleName"), result.getDouble("Price"))
+                    new Vehicle(result.getInt("VehicleId"), result.getString("VehicleName"), result.getDouble("Price"), result.getBytes("VehicleImage"))
                 ));
             return agreements;
             } 
