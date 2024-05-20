@@ -62,7 +62,7 @@ public class AgreementClosedData implements Data{
                 (Employee)employeeData.read(result.getInt("EmployeeId")),
                 result.getDate("Start"),
                 result.getDate("End"),
-                new Vehicle(result.getInt("SaleId"), result.getString("SaleName"), result.getDouble("SalePrice")),
+                new Vehicle(result.getInt("SaleId"), result.getString("SaleName"), result.getDouble("SalePrice"), result.getBytes("VehicleImage")),
                 result.getDouble("EndPrice"), null
             );
             } 
@@ -88,7 +88,7 @@ public class AgreementClosedData implements Data{
                     (Employee)employeeData.read(result.getInt("EmployeeId")),
                     result.getDate("Start"),
                     result.getDate("End"),
-                    new Vehicle(result.getInt("SaleId"), result.getString("SaleName"), result.getDouble("SalePrice")),
+                    new Vehicle(result.getInt("SaleId"), result.getString("SaleName"), result.getDouble("SalePrice"), result.getBytes("VehicleImage")),
                     result.getDouble("EndPrice")
                 ));
             }

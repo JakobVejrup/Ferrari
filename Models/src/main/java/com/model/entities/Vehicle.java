@@ -4,6 +4,7 @@ public class Vehicle {
     private int VehicleID;
     private String VehicleName;
     private Double Price;
+    private byte[] image;
 
 // Konstruktør 
     public Vehicle(int VehicleID, String VehicleName, Double Price, byte[] image) {

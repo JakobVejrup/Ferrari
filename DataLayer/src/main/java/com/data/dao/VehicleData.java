@@ -23,6 +23,7 @@ public class VehicleData implements Data {
             cs.setInt("VehicleID", vehicle.getVehicleID());
             cs.setString("VehicleName", vehicle.getVehicleName());
             cs.setDouble("Price", vehicle.getPrice());
+            cs.setBytes("Image", vehicle.getImage());
             ResultSet result = cs.executeQuery();
             if (!result.next())
                 return null;
@@ -43,7 +44,8 @@ public class VehicleData implements Data {
                 return null;
             return new Vehicle(result.getInt("Id"),
             result.getString("VehicleName"),
-            result.getDouble("Price"));
+            result.getDouble("Price"),
+            result.getBytes("VehicleImage"));
         }
         catch (SQLException e) {
             return null;
@@ -58,7 +60,8 @@ public class VehicleData implements Data {
                 while (result.next())
                     vehicle.add (new Vehicle(result.getInt("Id"),
                     result.getString("VehicleName"),
-                    result.getDouble("Price")
+                    result.getDouble("Price"),
+                    result.getBytes("VehicleImage")
                     ));
                 return Vehicle;
             }   catch (Exception e) {
@@ -74,6 +77,7 @@ public class VehicleData implements Data {
                 cs.setInt("Id", vehicle.getVehicleID());
                 cs.setString("VehicleName", vehicle.getVehicleName());
                 cs.setDouble("Price", vehicle.getPrice());
+                cs.setBytes("Image", vehicle.getImage());
                 cs.execute();
                 return cs.getUpdateCount() > 0 ? Vehicle : null;
             }   catch (Exception e) {
