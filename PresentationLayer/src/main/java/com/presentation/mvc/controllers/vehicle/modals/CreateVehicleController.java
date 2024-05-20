@@ -1,10 +1,12 @@
 package com.presentation.mvc.controllers.vehicle.modals;
 
+import com.logic.ServiceSingleton;
+import com.logic.handlers.Request;
 import com.logic.services.enums.CRUDType;
 import com.logic.services.enums.ServiceType;
 import com.model.threads.Validation;
 import com.presentation.mvc.controllers.modals.ModalController;
-import com.presentation.mvc.controllers.vehicle.VehicleController;
+import com.presentation.mvc.controllers.vehicle.AllVehiclesController;
 import com.presentation.mvc.models.vehicle.VehicleModel;
 import com.presentation.mvc.views.vehicle.modals.VehicleBaseView;
 import com.presentation.tools.alert.Alerter;
@@ -22,7 +24,7 @@ public class CreateVehicleController extends ModalController{
     private VehicleBaseView view;
     public CreateVehicleController(Stage stage) {
         super (stage);
-        model = new VehicleModel();
+        model = new AllVehiclesController();
         Button createButton = new Button("Opret bil");
         createButton.setOnAction(this::create);
         Button cancelButton = new Button("Fortryd");
