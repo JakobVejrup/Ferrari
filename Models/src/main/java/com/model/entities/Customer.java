@@ -35,6 +35,15 @@ public class Customer extends Information{
     public void setCityZip(String cityZip) {
         this.cityZip = cityZip;
     }
+     
+    public void copy(Customer other) {
+        setEmail(other.getEmail());
+        setName(other.getName());
+        setPhoneNumber(other.getPhoneNumber());
+        this.address = other.address;
+        this.cpr = other.cpr;
+        this.cityZip = other.cityZip;
+    }
 
 
 
