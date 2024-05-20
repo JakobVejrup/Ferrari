@@ -114,6 +114,11 @@ public static List<CustomerModel> MakeModel(List<Customer> customers) {
     return models;
 }
 
-
+public static List<Object> makeModelsAsObjects(List<Customer> customers) {
+    List<Object> models = new ArrayList<>();
+    for(Customer customer : customers) 
+        models.add(new CustomerModel(customer));
+    return models;
+}
 
 }
