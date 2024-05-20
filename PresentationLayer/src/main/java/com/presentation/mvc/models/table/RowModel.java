@@ -1,7 +1,9 @@
 package com.presentation.mvc.models.table;
 
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.util.HashMap;
@@ -16,6 +18,7 @@ public class RowModel {
     //keeps account of the different columns and their possible checkbox bools
     private HashMap<Integer, BooleanProperty> properties;
     private HashMap<ServiceType, TableModel> items;
+    private HashMap<String, ObjectProperty<byte[]>> images;
 
 
     public RowModel(Object item, ServiceType type, TableModel... tables) {
@@ -23,6 +26,7 @@ public class RowModel {
         this.item = item;
         properties = new HashMap<>();
         items = new HashMap<>();
+        images = new HashMap<>();
         for(TableModel table : tables)
             items.put(table.getType(), table);
     }
@@ -37,8 +41,16 @@ public class RowModel {
             properties.put(i, new SimpleBooleanProperty());
         return properties.get(i);
     }
+    public ObjectProperty<byte[]> getImageProperty(String i) {
+        if(images.get(i) == null)
+            images.put(i, new SimpleObjectProperty<byte[]>());
+        return images.get(i);
+    }
     public HashMap<ServiceType, TableModel> getItems() {
         return items;
+    }
+    public HashMap<String, ObjectProperty<byte[]>> getImages() {
+        return images;
     }
     public static ObservableList<RowModel> makeRowModels(ServiceType type, List<Object> objects) {
         ObservableList<RowModel> list = FXCollections.observableArrayList();

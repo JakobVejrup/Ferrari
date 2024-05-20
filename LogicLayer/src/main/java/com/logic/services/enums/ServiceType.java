@@ -5,6 +5,6 @@ public enum ServiceType {
     Vehicle,
     AgreementOpen,
     AgreementClosed,
-    DueDatePayment,
+    Invoice,
     Employee
 }

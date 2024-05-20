@@ -42,6 +42,10 @@ HBox {
 .bigTable {
     -fx-background-color: transparent;
 }
+
+.tableInCell {
+    -fx-pref-height: 150;
+}
 .tablecell {
     -fx-pref-height: 150;
 }
@@ -143,4 +147,7 @@ Glyph
 .table-row-cell:selected {
     -fx-background-color: darkgray;
     -fx-text-background-color: white;
+}
+.table-cell {
+    -fx-alignment: Center;
 }

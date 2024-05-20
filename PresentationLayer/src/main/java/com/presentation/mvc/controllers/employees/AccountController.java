@@ -1,5 +1,8 @@
 package com.presentation.mvc.controllers.employees;
 
+import java.io.File;
+import java.nio.file.Files;
+
 import com.logic.ServiceSingleton;
 import com.logic.handlers.Request;
 import com.logic.services.enums.CRUDType;
@@ -8,31 +11,46 @@ import com.model.entities.Employee;
 import com.model.threads.Validation;
 import com.presentation.mvc.controllers.Controller;
 import com.presentation.mvc.models.employees.EmployeeModel;
-import com.presentation.mvc.views.employee.modals.CreateEmployeeView;
+import com.presentation.mvc.views.employee.EmployeeImageView;
+import com.presentation.mvc.views.employee.modals.PasswordEmployeeView;
+import com.presentation.tools.ImageFinder;
 import com.presentation.tools.alert.Alerter;
 import com.presentation.tools.facade.Facade;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 public class AccountController implements Controller{
-    private CreateEmployeeView view;
+    private HBox view;
     private EmployeeModel model;
 
     public AccountController() {
         model = new EmployeeModel(Facade.getInstance().getLoggedIn());
-
         Button updateButton = new Button("Opdater dig");
         updateButton.setOnAction(this::updateSelf);
-
-        view = new CreateEmployeeView(model);
-        view.addButtons(updateButton);
+        Button imageButton = new Button("Vælg Billede");
+        imageButton.setOnAction(this::findImage);
+        
+        PasswordEmployeeView viewRight = new PasswordEmployeeView(model);
+        viewRight.addButtons(updateButton);
+        
+        EmployeeImageView viewLeft = new EmployeeImageView(model);
+        viewLeft.addButtons(imageButton);
+        view = new HBox(viewLeft, viewRight);
     }
 
 
-
+    public void findImage(ActionEvent event) {
+        byte[] image = ImageFinder.findImage((Stage)view.getScene().getWindow());
+        if (image != null) 
+            model.setImage(image);
+    }
     public void updateSelf(ActionEvent event) {
         ServiceSingleton.getInstance().query(new Request(ServiceType.Employee, CRUDType.UpdateSelf,
                 model,

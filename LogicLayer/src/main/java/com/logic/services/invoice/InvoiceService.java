@@ -25,7 +25,7 @@ public class InvoiceService extends HandlerObject {
 
     @Override
     public boolean check(Request request) {
-        return request.getType() == ServiceType.DueDatePayment;
+        return request.getType() == ServiceType.Invoice;
     }
 
     @Override

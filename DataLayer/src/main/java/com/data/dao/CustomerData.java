@@ -35,18 +35,18 @@ public class CustomerData implements Data {
 
     @Override
     public Object read(Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call spCustomerSelect(?)}")) {
+        try (CallableStatement cs = db.makeCall("{call Person.uspCustomerGet(?)}")) {
             cs.setInt("Id", (int)parameter);
             ResultSet result = cs.executeQuery();
             if (!result.next())
                 return null;
-            return new Customer(result.getInt("Id"),
-            result.getString("Name"),
+            return new Customer((int)parameter,
+            result.getString("InformationName"),
             result.getString("PhoneNumber"),
             result.getString("Email"),
             result.getString("Address"),
-            result.getString("City_Zip"),
-            result.getString("CPR")
+            result.getString("CityZip"),
+            result.getString("Cpr")
             );
         } catch (SQLException e) {
             return null;

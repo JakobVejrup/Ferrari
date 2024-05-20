@@ -39,7 +39,8 @@ public abstract class HandlerObject implements Handler {
     }
     private void switchSpot(HandlerObject spot) {
         // connects last spots nodes with each other
-        next.before = before;
+        if(next != null)
+            next.before = before;
         before.next = next;
         // sets this to its spot
         before = spot.before;

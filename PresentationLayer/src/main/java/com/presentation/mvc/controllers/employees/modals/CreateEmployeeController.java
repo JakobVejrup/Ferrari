@@ -7,17 +7,21 @@ import com.logic.services.enums.ServiceType;
 import com.model.threads.Validation;
 import com.presentation.mvc.controllers.modals.ModalController;
 import com.presentation.mvc.models.employees.EmployeeModel;
-import com.presentation.mvc.views.employee.modals.CreateEmployeeView;
+import com.presentation.mvc.views.employee.EmployeeImageView;
+import com.presentation.mvc.views.employee.modals.PasswordEmployeeView;
+import com.presentation.tools.ImageFinder;
 import com.presentation.tools.alert.Alerter;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
 public class CreateEmployeeController extends ModalController {
     private EmployeeModel model;
-    private CreateEmployeeView view;
+    private HBox view;
     public CreateEmployeeController(Stage stage) {
         super(stage);
 
@@ -28,10 +32,21 @@ public class CreateEmployeeController extends ModalController {
 
         Button cancelButton = new Button("Fortryd");
         cancelButton.setOnAction(this::decline);
-        view = new CreateEmployeeView(model);
-        view.addButtons(createButton, cancelButton);
-    }
+        Button imageButton = new Button("Vælg Billede");
+        imageButton.setOnAction(this::findImage);
 
+        PasswordEmployeeView viewRight = new PasswordEmployeeView(model);
+        viewRight.addButtons(createButton, cancelButton);
+        
+        EmployeeImageView viewLeft = new EmployeeImageView(model);
+        viewLeft.addButtons(imageButton);
+        view = new HBox(viewLeft, viewRight);
+    }
+    public void findImage(ActionEvent event) {
+        byte[] image = ImageFinder.findImage((Stage)view.getScene().getWindow());
+        if (image != null) 
+            model.setImage(image);
+    }
     @Override
     public Pane getView() {
         return view;
