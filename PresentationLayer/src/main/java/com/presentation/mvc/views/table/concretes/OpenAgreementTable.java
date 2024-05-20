@@ -4,17 +4,12 @@ import com.presentation.mvc.models.agreements.OpenAgreementsModel;
 import com.model.entities.Customer;
 import com.model.entities.Employee;
 import com.model.entities.Vehicle;
-import com.model.enums.Occupation;
 import com.presentation.mvc.models.table.RowModel;
 import com.presentation.mvc.views.table.decorators.TableDecorator;
 import com.presentation.mvc.views.table.ui.GuiTable;
 import com.rki.rki.Rating;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.util.Callback;
 
 public class OpenAgreementTable extends GuiTable implements TableDecorator {
 private TableColumn<RowModel, Number> fixedTermsCol;
