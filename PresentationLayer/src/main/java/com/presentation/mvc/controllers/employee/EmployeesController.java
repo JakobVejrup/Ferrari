@@ -51,6 +51,13 @@ public class EmployeesController implements Controller {
                 model.getRows().iterator().forEachRemaining((row) -> {
                     row.getImages().put("Ansat", ((EmployeeModel)row.getItem()).imageProperty());
                 });
+                table = new TableHeightDecorator(0.6, table);
+                table = new TableWidthDecorator(0.8, table);
+                if(Facade.getInstance().getLoggedIn().getOccupation() == Occupation.Manager) {
+                    table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory(), "Opdater andre", new UpdateCommand(), "opdater"), table);
+                    table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory(), "Slet andre", new DeleteCommand(), "slet"), table);
+                    table = new CheckboxColumnDecorator(new UpdateCommand(), "Slet", "Slet", "Slet Alle", table);
+                }
                 table = new ParentTableDecorator(model, table);
                 if(agreements != null) {
                     for(RowModel row : model.getRows()) {
@@ -62,13 +69,6 @@ public class EmployeesController implements Controller {
                         agreements.removeAll(toAdd);
                     }
                     table = new ChildTableDecorator(new ColumnController(new OpenAgreementFactory(), "Tilbud"), table);
-                }
-                table = new TableHeightDecorator(0.6, table);
-                table = new TableWidthDecorator(0.8, table);
-                if(Facade.getInstance().getLoggedIn().getOccupation() == Occupation.Manager) {
-                    table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory(), "Opdater andre", new UpdateCommand(), "opdater"), table);
-                    table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory(), "Slet andre", new DeleteCommand(), "slet"), table);
-                    table = new CheckboxColumnDecorator(new UpdateCommand(), "Slet", "Slet", "Slet Alle", table);
                 }
                 table.getTable().setup(view);
             });

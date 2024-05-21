@@ -12,20 +12,23 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class LoginView extends VBox {
+    private TextField email;
+    private PasswordField password;
+    private EmployeeModel model;
 
     public LoginView(EmployeeModel model, EventHandler<ActionEvent> buttonAction) {
+        this.model = model;
         setAlignment(Pos.TOP_CENTER);
         getStyleClass().add("login");
-        TextField email = new TextField();
+        email = new TextField();
         model.emailProperty().bind(email.textProperty());
-        PasswordField password = new PasswordField();
+        password = new PasswordField();
         model.passwordProperty().bind(password.textProperty());
         HBox texts = new HBox(new Label("Email:"), email, new Label("Password:"), password);
         Button login = new Button("Log ind");
         login.setOnAction(buttonAction);
         getChildren().addAll(
                 texts,
-                login
-        );
+                login);
     }
 }

@@ -39,10 +39,14 @@ public class LoginController {
                         Alerter.warning("Forkert", "Bruger kan ikke findes");
                     return;
                 }
-                Employee employee = (Employee) login; 
+                    Employee employee = (Employee) login;
+
+                    model.emailProperty().unbind();
+                    model.passwordProperty().unbind();
                 Facade.getInstance().login(employee);
                 Facade.getInstance().setCenter(new HBox());
                 Facade.getInstance().setLeft(new LeftNavbarController().getView());
+                
             }
         );
     }

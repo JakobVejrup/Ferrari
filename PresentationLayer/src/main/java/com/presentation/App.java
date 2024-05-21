@@ -43,9 +43,9 @@ public class App extends Application {
         model.setCustomer(new Customer());
         model.setEmployee(new Employee());
         model.setVehicle(new Vehicle());
-        //Facade.getInstance().setCenter(new OpenAgreementController(model).getView());
+        Facade.getInstance().setCenter(new OpenAgreementController(model).getView());
 
-        Facade.getInstance().setCenter(new LoginController().getView());
+        //Facade.getInstance().setCenter(new LoginController().getView());
         //Facade.getInstance().openModal(new Request(ServiceType.Employee, CRUDType.Create));
         //Employee employee = new Employee();
         //employee.setOccupation(Occupation.Manager);
