@@ -1,15 +1,20 @@
 package com.presentation.mvc.controllers.table.factories.tables;
 
 import com.logic.services.enums.ServiceType;
+import com.presentation.mvc.controllers.agreement.OpenAgreementController;
 import com.presentation.mvc.controllers.table.CellController;
 import com.presentation.mvc.controllers.table.ColumnController;
 import com.presentation.mvc.controllers.table.commands.SelectCommand;
 import com.presentation.mvc.controllers.table.factories.ButtonFactory;
 import com.presentation.mvc.controllers.table.factories.NodeFactory;
+import com.presentation.mvc.models.agreements.OpenAgreementsModel;
+import com.presentation.mvc.models.table.RowModel;
 import com.presentation.mvc.views.table.concretes.OpenAgreementTable;
 import com.presentation.mvc.views.table.decorators.ButtonColumnDecorator;
 import com.presentation.mvc.views.table.decorators.TableDecorator;
 import com.presentation.mvc.views.table.ui.GuiTable;
+import com.presentation.tools.facade.Facade;
+
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 
@@ -20,7 +25,12 @@ public class OpenAgreementFactory extends NodeFactory {
         GuiTable table = new OpenAgreementTable();
         table = TableFactory.readyTable(controller, ServiceType.AgreementOpen, table);
         table.setup(box);
-        table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory(), "Se aftale", new SelectCommand(), "se "), (TableDecorator) table).getTable();
+        table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory(), "Se aftale", new SelectCommand(
+            (rowModel) -> {
+                OpenAgreementsModel model = (OpenAgreementsModel)(((RowModel)rowModel).getItem());
+                Facade.getInstance().setCenter(new OpenAgreementController(model).getView());
+            }
+            ), "se "), (TableDecorator) table).getTable();
         return table;
     }
 }

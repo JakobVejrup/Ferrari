@@ -34,7 +34,7 @@ public class VehicleTable extends GuiTable implements TableDecorator {
         ImageTableDecorator image = new ImageTableDecorator(this, new ImageFactory("Bil"));
 
         tableView.getColumns().addAll(nameCol, priceCol);
-        tableView.setItems(viewModel.getVehicleModels());
+        //tableView.setItems(viewModel.getVehicleModels());
     }
 
     @Override

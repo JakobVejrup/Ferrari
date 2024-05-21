@@ -7,6 +7,7 @@ import com.model.entities.Agreement;
 import com.model.entities.Customer;
 import com.model.entities.Employee;
 import com.model.entities.Vehicle;
+import com.presentation.mvc.models.vehicle.VehicleModel;
 import com.rki.rki.Rating;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.IntegerProperty;
@@ -23,13 +24,18 @@ public class OpenAgreementsModel extends Agreement{
     private ObjectProperty<Customer> customerProp;
     private ObjectProperty<Employee> employeeProp;
     private ObjectProperty<Vehicle> vehicleProp;
-
     public OpenAgreementsModel() {
-        setup();
+        fixedTermsProp = new SimpleIntegerProperty();
+        startValueProp = new SimpleDoubleProperty();
+        startAgreementProp = new SimpleObjectProperty<Date>();
+        RKiProp = new SimpleObjectProperty<Rating>();
+        customerProp = new SimpleObjectProperty<Customer>();
+        employeeProp = new SimpleObjectProperty<Employee>();
+        vehicleProp = new SimpleObjectProperty<Vehicle>();
     }
 
     public OpenAgreementsModel(Agreement agreement) {
-        setup();
+        this();
         setId(agreement.getId());
         fixedTermsProp.set(agreement.getFixedTerms());
         startValueProp.set(agreement.getStartValue());
@@ -38,6 +44,7 @@ public class OpenAgreementsModel extends Agreement{
         customerProp.set(agreement.getCustomer());
         employeeProp.set(agreement.getEmployee());
         vehicleProp.set(agreement.getVehicle());
+        
     }
 
     @Override
@@ -93,16 +100,6 @@ public class OpenAgreementsModel extends Agreement{
     }
     public void setVehicle(Vehicle vehicle) {
         vehicleProp.set(vehicle);
-    }
-
-    public void setup(){
-        fixedTermsProp = new SimpleIntegerProperty();
-        startValueProp = new SimpleDoubleProperty();
-        startAgreementProp = new SimpleObjectProperty<Date>();
-        RKiProp = new SimpleObjectProperty<Rating>();
-        customerProp = new SimpleObjectProperty<Customer>();
-        employeeProp = new SimpleObjectProperty<Employee>();
-        vehicleProp = new SimpleObjectProperty<Vehicle>();
     }
 
     public IntegerProperty fixedTermsProperty() {

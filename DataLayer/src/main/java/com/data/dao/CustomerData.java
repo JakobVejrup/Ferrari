@@ -15,14 +15,14 @@ public class CustomerData implements Data {
     }
     @Override
     public Object create(Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call spCustomerInsert(?,?,?,?,?,?)}")) {
+        try (CallableStatement cs = db.makeCall("{call Person.uspCustomerInsert(?,?,?,?,?,?)}")) {
             Customer customer = (Customer) parameter;
             cs.setString("Name", customer.getName());
-            cs.setString("PhoneNumber", customer.getPhoneNumber());
+            cs.setString("Phonenumber", customer.getPhoneNumber());
             cs.setString("Email", customer.getEmail());
             cs.setString("Address", customer.getAddress());
-            cs.setString("City_Zip", customer.getCityZip());
-            cs.setString("CPR", customer.getCpr());
+            cs.setString("CityZip", customer.getCityZip());
+            cs.setString("Cpr", customer.getCpr());
             ResultSet result = cs.executeQuery();
             if (!result.next())
                 return null;   
@@ -42,7 +42,7 @@ public class CustomerData implements Data {
                 return null;
             return new Customer((int)parameter,
             result.getString("InformationName"),
-            result.getString("PhoneNumber"),
+            result.getString("Phonenumber"),
             result.getString("Email"),
             result.getString("Address"),
             result.getString("CityZip"),
@@ -55,35 +55,35 @@ public class CustomerData implements Data {
 
     @Override
     public Object readAll(Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call spCustomerSelectAll()}")) {
+        ArrayList<Customer> customers = new ArrayList<>();
+        try (CallableStatement cs = db.makeCall("{call Person.uspCustomerGetAll()}")) {
             ResultSet result = cs.executeQuery();
-            ArrayList<Customer> customers = new ArrayList<>();
             while (result.next()) {
-                customers.add(new Customer(result.getInt("Id"),
-                result.getString("Name"),
-                result.getString("PhoneNumber"),
+                customers.add(new Customer(result.getInt("InformationId"),
+                result.getString("InformationName"),
+                result.getString("Phonenumber"),
                 result.getString("Email"),
                 result.getString("Address"),
-                result.getString("City_Zip"),
-                result.getString("CPR")
+                result.getString("CityZip"),
+                result.getString("Cpr")
                 ));
             }
             return customers;
         } catch (SQLException e) {
-            return null;
+            return customers;
         }
     }
 
     @Override
     public Object update(Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call spCustomerUpdate(?,?,?,?,?,?,?,?)}")) {
+        try (CallableStatement cs = db.makeCall("{call Person.uspCustomerUpdate(?,?,?,?,?,?,?,?)}")) {
             Customer customer = (Customer) parameter;
             cs.setString("Name", customer.getName());
-            cs.setString("PhoneNumber", customer.getPhoneNumber());
+            cs.setString("Phonenumber", customer.getPhoneNumber());
             cs.setString("Email", customer.getEmail());
             cs.setString("Address", customer.getAddress());
-            cs.setString("City_Zip", customer.getCityZip());
-            cs.setString("CPR", customer.getCpr());
+            cs.setString("CityZip", customer.getCityZip());
+            cs.setString("Cpr", customer.getCpr());
             cs.setInt("Id", customer.getId());
             return cs.executeUpdate() > 0 ? customer : null;
         } catch (SQLException e) {
@@ -93,7 +93,7 @@ public class CustomerData implements Data {
 
     @Override
     public boolean delete(Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call spCustomerDelete(?)}")) {
+        try (CallableStatement cs = db.makeCall("{call Person.uspCustomerDelete(?)}")) {
             cs.setInt("Id", ((Customer)parameter).getId());
             cs.execute();
             return cs.getUpdateCount() > 0;

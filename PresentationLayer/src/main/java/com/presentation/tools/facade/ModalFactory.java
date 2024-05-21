@@ -4,8 +4,8 @@ import com.logic.handlers.Request;
 import com.logic.services.enums.CRUDType;
 import com.model.entities.Employee;
 import com.presentation.App;
-import com.presentation.mvc.controllers.employees.modals.CreateEmployeeController;
-import com.presentation.mvc.controllers.employees.modals.UpdateEmployeeController;
+import com.presentation.mvc.controllers.employee.modals.CreateEmployeeController;
+import com.presentation.mvc.controllers.employee.modals.UpdateEmployeeController;
 import com.presentation.mvc.controllers.modals.ModalController;
 
 import javafx.scene.Scene;
@@ -46,7 +46,7 @@ public class ModalFactory implements ModalSetup {
             case Employee -> {
                 if (request.getCrud() == CRUDType.Create)
                     yield new CreateEmployeeController(stage);
-                else
+                else 
                     //updateEmployee should be made
                     yield new UpdateEmployeeController(stage, (Employee)request.getObject());
             }

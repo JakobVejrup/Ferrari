@@ -36,9 +36,9 @@ public class ClosedAgreementsModel extends Agreement{
     public ClosedAgreementsModel(Agreement agreement) {
         setup();
         setId(agreement.getId());
-        fixedTermsProp.set(agreement.getfixedTerms());
-        startValueProp.set(agreement.getstartvalue());
-        startAgreementProp.set(agreement.getstartAgreement());
+        fixedTermsProp.set(agreement.getFixedTerms());
+        startValueProp.set(agreement.getStartValue());
+        startAgreementProp.set(agreement.getStartAgreement());
         RKiProp.set(agreement.getRki());
         customerProp.set(agreement.getCustomer());
         employeeProp.set(agreement.getEmployee());
@@ -49,15 +49,15 @@ public class ClosedAgreementsModel extends Agreement{
     }
 
     @Override
-    public int getfixedTerms() {
+    public int getFixedTerms() {
         return fixedTermsProp.get();
     }
     @Override
-    public double getstartvalue() {
+    public double getStartValue() {
         return startValueProp.get();
     }
     @Override
-    public Date getstartAgreement() {
+    public Date getStartAgreement() {
         return startAgreementProp.get();
     }
     @Override
@@ -88,7 +88,7 @@ public class ClosedAgreementsModel extends Agreement{
         return endpriceProp.get();
     }
     @Override
-    public void setfixedTerms(int fixedterms) {
+    public void setFixedTerms(int fixedterms) {
         fixedTermsProp.set(fixedterms);
     }
     @Override
@@ -96,7 +96,7 @@ public class ClosedAgreementsModel extends Agreement{
         startValueProp.set(startvalue);
     }
     @Override
-    public void setstartAgreement(Date startagreement) {
+    public void setStartAgreement(Date startagreement) {
         startAgreementProp.set(startagreement);
     }
     @Override

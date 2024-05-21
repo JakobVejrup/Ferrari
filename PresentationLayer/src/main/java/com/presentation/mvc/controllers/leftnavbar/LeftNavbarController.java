@@ -2,8 +2,10 @@ package com.presentation.mvc.controllers.leftnavbar;
 
 import com.model.entities.Employee;
 import com.model.enums.Occupation;
-import com.presentation.mvc.controllers.employees.AccountController;
-import com.presentation.mvc.controllers.employees.EmployeesController;
+import com.presentation.mvc.controllers.customers.CustomersController;
+import com.presentation.mvc.controllers.employee.AccountController;
+import com.presentation.mvc.controllers.employee.EmployeesController;
+import com.presentation.mvc.controllers.vehicle.AllVehiclesController;
 import com.presentation.mvc.models.leftnavbar.LeftNavBarModel;
 import com.presentation.mvc.models.leftnavbar.NavButtonModel;
 import com.presentation.mvc.views.leftnavbar.LeftNavBarView;
@@ -43,6 +45,10 @@ public class LeftNavbarController {
             case "Login" -> Facade.getInstance().logOff();
             case "Employees" -> Facade.getInstance().setCenter(new EmployeesController().getView());
             case "Account" -> Facade.getInstance().setCenter(new AccountController().getView());
+            case "Vehicles" -> Facade.getInstance().setCenter(new AllVehiclesController().getView());
+            case "Customers" -> Facade.getInstance().setCenter(new CustomersController().getView());
+
+
 
             default -> {
                 return;

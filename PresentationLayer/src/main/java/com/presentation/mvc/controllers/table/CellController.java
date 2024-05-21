@@ -3,7 +3,6 @@ package com.presentation.mvc.controllers.table;
 import com.presentation.mvc.controllers.table.commands.CellCommand;
 import com.presentation.mvc.controllers.table.factories.NodeFactory;
 import com.presentation.mvc.models.table.RowModel;
-import com.presentation.mvc.views.table.ui.GuiCell;
 import javafx.beans.property.BooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -12,7 +11,7 @@ import javafx.scene.control.TableCell;
 
 public class CellController extends TableCell<RowModel, RowModel> implements EventHandler<ActionEvent> {
     //graphic object in the cell
-    private GuiCell cell;
+
     private final Node node;
     private CellCommand command;
     //booleanproperty to link the column with the checkbox
@@ -20,15 +19,17 @@ public class CellController extends TableCell<RowModel, RowModel> implements Eve
     public CellController(NodeFactory factory, CellCommand command) {
         this.command = command;
         node = factory.createNode(this);
-        cell = new GuiCell(factory, this);
     }
 
     //mouse click event, checks booleans for if they were checked
     @Override
     public void handle(ActionEvent event) {
-        if(cell.getItem() == null || !getBoolean())
+        System.out.println(!getBoolean());
+        System.out.println(getItem() == null);
+
+        if(getItem() == null || !getBoolean())
             return;
-        command.invoke(cell.getItem());
+        command.invoke(getItem());
     }
 
     public Boolean getBoolean() {

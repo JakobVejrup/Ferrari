@@ -36,7 +36,8 @@ public class EmployeeValidation extends HandlerObject {
             request.getValidation().addMessage("tlfnummer er for langt");
         if(employee.getPhoneNumber().length() < 8)
             request.getValidation().addMessage("tlfnummer er for kort");
-        if(!data.check(employee))
+
+        if(!data.check(employee) && !data.checkUpdate(employee))
             request.getValidation().addMessage("email er i brug");
     }
 }

@@ -1,6 +1,5 @@
 package com.presentation.mvc.views.vehicle;
 
-import com.presentation.mvc.controllers.vehicle.VehicleController;
 import com.presentation.mvc.models.vehicle.VehicleModel;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -9,11 +8,11 @@ import javafx.scene.control.cell.TextFieldTableCell;
 
 
 public class VehicleView {
-    private VehicleController viewModel;
+    private VehicleModel model;
     private TableView<VehicleModel> tableView;
 
-    public VehicleView(VehicleController viewModel) {
-        this.viewModel = viewModel;
+    public VehicleView(VehicleModel model) {
+        this.model = model;
         tableView = new TableView<>();
 
         TableColumn<VehicleModel, Number> idCol = new TableColumn<>("ID");
@@ -28,7 +27,7 @@ public class VehicleView {
         
 
         tableView.getColumns().addAll(idCol, nameCol, priceCol);
-        tableView.setItems(viewModel.getVehicleModels());
+        //tableView.setItems(model.getVehicleModels());
     }
 
     public TableView<VehicleModel> getTableView() {

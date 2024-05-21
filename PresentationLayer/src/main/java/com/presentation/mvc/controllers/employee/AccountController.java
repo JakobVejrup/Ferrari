@@ -1,4 +1,4 @@
-package com.presentation.mvc.controllers.employees;
+package com.presentation.mvc.controllers.employee;
 
 import com.logic.ServiceSingleton;
 import com.logic.handlers.Request;

@@ -24,7 +24,7 @@ public class CreateVehicleController extends ModalController{
     private VehicleBaseView view;
     public CreateVehicleController(Stage stage) {
         super (stage);
-        model = new AllVehiclesController();
+        model = new VehicleModel();
         Button createButton = new Button("Opret bil");
         createButton.setOnAction(this::create);
         Button cancelButton = new Button("Fortryd");

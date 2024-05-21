@@ -1,4 +1,4 @@
-package com.presentation.mvc.controllers.employees;
+package com.presentation.mvc.controllers.employee;
 
 import com.logic.ServiceSingleton;
 import com.logic.handlers.Request;
@@ -22,9 +22,11 @@ import com.presentation.mvc.models.table.TableModel;
 import com.presentation.mvc.views.employee.EmployeesView;
 import com.presentation.mvc.views.table.concretes.EmployeeTable;
 import com.presentation.mvc.views.table.decorators.*;
+import com.presentation.mvc.views.table.ui.GuiTable;
 import com.presentation.tools.facade.Facade;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,8 +38,10 @@ public class EmployeesController implements Controller {
     private TableDecorator table;
 
     public EmployeesController() {
-        view = new EmployeesView(this::newUser);
+        Button newUserButton = new Button("Ny bruger");
+        newUserButton.setOnAction(this::newUser);
         table = new EmployeeTable();
+        view = new EmployeesView(newUserButton);
         Request request = new Request(ServiceType.Employee, CRUDType.ReadAll, (employees) -> {
             //to allow ui to be run
             Platform.runLater( () -> {

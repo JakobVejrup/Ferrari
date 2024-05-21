@@ -1,6 +1,9 @@
 package com.presentation.mvc.models.table;
 
 import com.logic.services.enums.ServiceType;
+import com.model.threads.ActionParameter;
+
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 
 import java.util.List;
@@ -11,7 +14,6 @@ public class TableModel {
     public TableModel(ServiceType type, List<Object> objects) {
         this.type = type;
         this.rows = RowModel.makeRowModels(type, objects);
-
     }
 
     public ServiceType getType() {

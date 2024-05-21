@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.logic.services.enums.ServiceType;
+import com.model.threads.ActionParameter;
 
 //Item holder class used to contain the item AND its boolean, so it will remember if the checkbox should be checked
 public class RowModel {
@@ -20,7 +21,6 @@ public class RowModel {
     private HashMap<ServiceType, TableModel> items;
     private HashMap<String, ObjectProperty<byte[]>> images;
 
-
     public RowModel(Object item, ServiceType type, TableModel... tables) {
         this.type = type;
         this.item = item;
@@ -30,6 +30,7 @@ public class RowModel {
         for(TableModel table : tables)
             items.put(table.getType(), table);
     }
+
     public ServiceType getType() {
         return type;
     }

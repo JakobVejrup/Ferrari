@@ -166,4 +166,20 @@ public class EmployeeData implements Data, UserExtra, CheckData {
             return false;
         }
     }
+
+    @Override
+    public boolean checkUpdate(Object check) {
+        try (CallableStatement cs = db.makeCall("{call Person.uspEmployeeCheckEmailUpdate(?,?)}")) {
+            Employee employee = (Employee) check;
+            cs.setInt("Id", employee.getId());
+            cs.setString("Email", employee.getEmail());
+            ResultSet result = cs.executeQuery();
+            if (!result.next())
+                return false;
+            return result.getBoolean(1);
+            } 
+        catch (SQLException e) {
+            return false;
+        }
+    }
 }
