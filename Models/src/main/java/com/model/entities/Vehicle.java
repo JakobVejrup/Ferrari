@@ -19,7 +19,9 @@ public class Vehicle {
         this.Price = Price;
     }
     public Vehicle() {
-
+        Price = 0d;
+        VehicleName = "";
+        image = new byte[0];
     }
     // Get metode
     public int getVehicleID () {

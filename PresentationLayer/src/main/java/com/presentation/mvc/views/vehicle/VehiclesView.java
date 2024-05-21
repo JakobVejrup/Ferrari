@@ -7,11 +7,11 @@ import javafx.scene.control.cell.TextFieldTableCell;
 
 
 
-public class VehicleView {
+public class VehiclesView {
     private VehicleModel model;
     private TableView<VehicleModel> tableView;
 
-    public VehicleView(VehicleModel model) {
+    public VehiclesView(VehicleModel model) {
         this.model = model;
         tableView = new TableView<>();
 
