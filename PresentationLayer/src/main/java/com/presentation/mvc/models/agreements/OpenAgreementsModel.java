@@ -32,6 +32,9 @@ public class OpenAgreementsModel extends Agreement{
         customerProp = new SimpleObjectProperty<Customer>();
         employeeProp = new SimpleObjectProperty<Employee>();
         vehicleProp = new SimpleObjectProperty<Vehicle>();
+        setCustomer(new Customer());
+        setEmployee(new Employee());
+        setVehicle(new Vehicle());
     }
 
     public OpenAgreementsModel(Agreement agreement) {

@@ -25,7 +25,7 @@ public class VehicleData implements Data {
             ResultSet result = cs.executeQuery();
             if (!result.next())
                 return null;
-            vehicle.setVehicleID(vehicle.getVehicleID());
+            vehicle.setId(vehicle.getId());
             return vehicle;
         }   
         catch (Exception e) {
@@ -70,10 +70,10 @@ public class VehicleData implements Data {
 
         @Override
         public Object update(Object parameter) {
-            try (CallableStatement cs = db.makeCall("{call Trade.uspVehicleGetAll(?, ?, ?)}")) {
+            try (CallableStatement cs = db.makeCall("{call Trade.uspVehicleUpdate(?, ?, ?, ?)}")) {
                 Vehicle vehicle = (Vehicle) parameter;
-                cs.setInt("Id", vehicle.getVehicleID());
-                cs.setString("VehicleName", vehicle.getName());
+                cs.setInt("Id", vehicle.getId());
+                cs.setString("Name", vehicle.getName());
                 cs.setDouble("Price", vehicle.getPrice());
                 cs.setBytes("Image", vehicle.getImage());
                 cs.execute();
@@ -86,7 +86,7 @@ public class VehicleData implements Data {
     @Override
     public boolean delete(Object parameter) {
         try (CallableStatement cs = db.makeCall("{call Trade.uspVehicleGetAll(?)}")) {
-            cs.setInt("Id", ((Vehicle)parameter).getVehicleID());
+            cs.setInt("Id", ((Vehicle)parameter).getId());
             cs.execute();
             return cs.getUpdateCount() > 0;
         }   

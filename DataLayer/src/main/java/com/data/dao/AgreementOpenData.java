@@ -36,7 +36,7 @@ public class AgreementOpenData implements Data {
             cs.setString("Rki", agreement.getRki().toString());
             cs.setInt("CustomerId", agreement.getCustomer().getId());
             cs.setInt("EmployeeId", agreement.getEmployee().getId());
-            cs.setInt("VehicleId", agreement.getVehicle().getVehicleID());
+            cs.setInt("VehicleId", agreement.getVehicle().getId());
             ResultSet result = cs.executeQuery();
             if (!result.next())
                 return null;
@@ -108,7 +108,7 @@ public class AgreementOpenData implements Data {
             cs.setString("Rki", agreement.getRki().toString());
             cs.setInt("CustomerId", agreement.getCustomer().getId());
             cs.setInt("EmployeeId", agreement.getEmployee().getId());
-            cs.setInt("VehicleId", agreement.getVehicle().getVehicleID());
+            cs.setInt("VehicleId", agreement.getVehicle().getId());
             cs.executeQuery();
          return cs.getUpdateCount() > 0 ? agreement : null;
         } catch (Exception e) {

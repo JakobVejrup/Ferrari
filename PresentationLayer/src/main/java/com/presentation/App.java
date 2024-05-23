@@ -9,6 +9,7 @@ import com.model.entities.Vehicle;
 import com.model.enums.Occupation;
 import com.presentation.mvc.controllers.agreement.OpenAgreementController;
 import com.presentation.mvc.controllers.employee.EmployeesController;
+import com.presentation.mvc.controllers.employee.modals.CreateEmployeeController;
 import com.presentation.mvc.controllers.login.LoginController;
 import com.presentation.mvc.models.agreements.OpenAgreementsModel;
 import com.presentation.mvc.models.employees.EmployeeModel;
@@ -40,13 +41,10 @@ public class App extends Application {
         Facade.getInstance().setLogin(new Login());
         Facade.getInstance().setTop(new TopbarView());
         OpenAgreementsModel model = new OpenAgreementsModel();
-        model.setCustomer(new Customer());
-        model.setEmployee(new Employee());
-        model.setVehicle(new Vehicle());
         //Facade.getInstance().setCenter(new OpenAgreementController(model).getView());
 
         Facade.getInstance().setCenter(new LoginController().getView());
-        //Facade.getInstance().openModal(new Request(ServiceType.Employee, CRUDType.Create));
+        //Facade.getInstance().openModal(new CreateEmployeeController());
         //Employee employee = new Employee();
         //employee.setOccupation(Occupation.Manager);
         //Facade.getInstance().login(employee);

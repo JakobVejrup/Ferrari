@@ -9,6 +9,7 @@ import com.model.threads.Validation;
 import com.presentation.mvc.controllers.modals.ModalController;
 import com.presentation.mvc.models.vehicle.VehicleModel;
 import com.presentation.mvc.views.vehicle.modals.VehicleView;
+import com.presentation.tools.ImageFinder;
 import com.presentation.tools.alert.Alerter;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -30,10 +31,15 @@ public class UpdateVehicleController extends ModalController{
 
         Button cancelButton = new Button("Fortryd");
         cancelButton.setOnAction(this::decline);
-
-        view.addButtons(updateButton, cancelButton);
+        Button imageButton = new Button("Vælg Billede");
+        imageButton.setOnAction(this::findImage);
+        view.addButtons(updateButton, imageButton, cancelButton);
     }
-
+    public void findImage(ActionEvent event) {
+        byte[] image = ImageFinder.findImage((Stage)view.getScene().getWindow());
+        if (image != null) 
+            model.setImage(image);
+    }
     @Override
     public Pane getView() {
         return view;

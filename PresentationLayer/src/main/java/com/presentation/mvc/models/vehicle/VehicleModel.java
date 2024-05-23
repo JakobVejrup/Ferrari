@@ -29,7 +29,7 @@ public class VehicleModel extends Vehicle {
     
     public VehicleModel(Vehicle vehicle) {
         this();
-        setVehicleID(vehicle.getVehicleID());
+        setId(vehicle.getId());
         vehicleNameProp.set(vehicle.getName());
         priceProp.set(vehicle.getPrice());
         setImage(vehicle.getImage());
@@ -46,12 +46,12 @@ public class VehicleModel extends Vehicle {
             imageProp.set(new byte[0]);
     }
     @Override
-    public int getVehicleID() {
+    public int getId() {
         return vehicleIdProp.get();
     } 
     @Override
-    public void setVehicleID(int vehicleIdProp) {
-        this.vehicleIdProp.set(getVehicleID());
+    public void setId(int vehicleIdProp) {
+        this.vehicleIdProp.set(getId());
     }
     @Override
     public String getName() {

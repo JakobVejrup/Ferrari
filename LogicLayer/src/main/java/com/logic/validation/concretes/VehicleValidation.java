@@ -20,9 +20,9 @@ public class VehicleValidation extends HandlerObject {
     @Override
     protected void action(Request request) {
         Vehicle vehicle = (Vehicle) request.getObject();
-        if (vehicle.getVehicleID() < 0 )
+        if (vehicle.getId() < 0 )
             request.getValidation().addMessage("ID kan ikke være negativt, eller 0");
-        if (vehicle.getVehicleID() < 10000)
+        if (vehicle.getId() < 10000)
             request.getValidation().addMessage("ID må ikke overskride 10000");
         if (vehicle.getName().length() < 5)
             request.getValidation().addMessage("Navn er for kort, minimum 5 bogstaver");

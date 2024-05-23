@@ -1,51 +1,50 @@
 package com.model.entities;
 
 public class Vehicle {
-    private int VehicleID;
-    private String VehicleName;
-    private Double Price;
+    private int id;
+    private String name;
+    private Double price;
     private byte[] image;
 
 // Konstruktør 
-    public Vehicle(int VehicleID, String name, Double Price, byte[] image) {
-        this.VehicleID = VehicleID;
-        this.VehicleName = name;
-        this.Price = Price;
+    public Vehicle(int id, String name, Double price, byte[] image) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
         this.image = image;
     }
-    public Vehicle(int VehicleID, String name, Double Price) {
-        this.VehicleID = VehicleID;
-        this.VehicleName = name;
-        this.Price = Price;
+    public Vehicle(int id, String name, Double price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
     }
     public Vehicle() {
-        Price = 0d;
-        VehicleName = "";
         image = new byte[0];
+        price = 0d;
     }
     // Get metode
-    public int getVehicleID () {
-        return VehicleID;
+    public int getId () {
+        return id;
     }
 // Set metode
-    public void setVehicleID (int VehicleID) {
-        this.VehicleID = VehicleID;
+    public void setId (int id) {
+        this.id = id;
     }
 
     public String getName () {
-        return VehicleName;
+        return name;
     }
 
-    public void setName (String VehicleName) {
-        this.VehicleName = VehicleName;
+    public void setName (String name) {
+        this.name = name;
     }
 
     public Double getPrice () {
-        return Price;
+        return price;
     }
 
-    public void setPrice (Double Price) {
-        this.Price = Price;
+    public void setPrice (Double price) {
+        this.price = price;
     }
     
     public void setImage(byte[] image) {
@@ -54,8 +53,11 @@ public class Vehicle {
     public byte[] getImage() {
         return image;
     }
-    public void copy(Vehicle newVehicle) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'copy'");
+    public void copy(Vehicle other) {
+        this.id = other.id;
+        this.price = other.price;
+        this.name = other.name;
+        this.image = other.image;
+
     }
 }
