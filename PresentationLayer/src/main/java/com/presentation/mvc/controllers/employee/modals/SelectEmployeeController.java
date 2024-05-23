@@ -2,7 +2,6 @@ package com.presentation.mvc.controllers.employee.modals;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.logic.ServiceSingleton;
 import com.logic.handlers.Request;
 import com.logic.services.enums.CRUDType;
@@ -31,20 +30,23 @@ import com.presentation.mvc.views.table.decorators.TableDecorator;
 import com.presentation.mvc.views.table.decorators.TableHeightDecorator;
 import com.presentation.mvc.views.table.decorators.TableWidthDecorator;
 import com.presentation.mvc.views.table.ui.GuiTable;
+import com.presentation.tools.ScreenWatcher;
 import com.presentation.tools.facade.Facade;
 
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class SelectEmployeeController extends ModalController {
     private TableModel model;
     private EmployeesView view;
     private TableDecorator table;
-    public SelectEmployeeController(Stage stage) {
-        super(stage);
+    public SelectEmployeeController() {
         Button cancelButton = new Button("Fortryd");
         cancelButton.setOnAction(this::decline);
         table = new EmployeeTable();
@@ -68,6 +70,8 @@ public class SelectEmployeeController extends ModalController {
                 table.getTable().setup(view);
             });
         });
+        view.setPrefHeight(ScreenWatcher.getInstance().getScreenHeightWithDecimal(0.6));
+        view.setPrefWidth(ScreenWatcher.getInstance().getScreenWidthWithDecimal(0.8));
         ServiceSingleton.getInstance().query(request);
 
     }

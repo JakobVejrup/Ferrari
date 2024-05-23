@@ -41,10 +41,9 @@ public class OpenAgreementsModel extends Agreement{
         startValueProp.set(agreement.getStartValue());
         startAgreementProp.set(agreement.getStartAgreement());
         RKiProp.set(agreement.getRki());
-        customerProp.set(agreement.getCustomer());
-        employeeProp.set(agreement.getEmployee());
-        vehicleProp.set(agreement.getVehicle());
-        
+        setCustomer(agreement.getCustomer());
+        setEmployee(agreement.getEmployee());
+        setVehicle(agreement.getVehicle());
     }
 
     @Override
@@ -92,14 +91,25 @@ public class OpenAgreementsModel extends Agreement{
     }
     @Override
     public void setCustomer(Customer customer) {
-        customerProp.set(customer);
+        if(customer != null)
+            customerProp.set(customer);
+        else
+            customerProp.set(new Customer());
+
     }
     @Override
     public void setEmployee(Employee employee) {
-        employeeProp.set(employee);
+        if(employee != null)
+            employeeProp.set(employee);
+        else
+            employeeProp.set(new Employee());
     }
+    @Override
     public void setVehicle(Vehicle vehicle) {
+        if(vehicle != null)
         vehicleProp.set(vehicle);
+    else
+        vehicleProp.set(new Vehicle());
     }
 
     public IntegerProperty fixedTermsProperty() {

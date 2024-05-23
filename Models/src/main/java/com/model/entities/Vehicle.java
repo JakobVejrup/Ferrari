@@ -7,15 +7,15 @@ public class Vehicle {
     private byte[] image;
 
 // Konstruktør 
-    public Vehicle(int VehicleID, String VehicleName, Double Price, byte[] image) {
+    public Vehicle(int VehicleID, String name, Double Price, byte[] image) {
         this.VehicleID = VehicleID;
-        this.VehicleName = VehicleName;
+        this.VehicleName = name;
         this.Price = Price;
         this.image = image;
     }
-    public Vehicle(int VehicleID, String VehicleName, Double Price) {
+    public Vehicle(int VehicleID, String name, Double Price) {
         this.VehicleID = VehicleID;
-        this.VehicleName = VehicleName;
+        this.VehicleName = name;
         this.Price = Price;
     }
     public Vehicle() {
@@ -32,11 +32,11 @@ public class Vehicle {
         this.VehicleID = VehicleID;
     }
 
-    public String getVehicleName () {
+    public String getName () {
         return VehicleName;
     }
 
-    public void setVehicleName (String VehicleName) {
+    public void setName (String VehicleName) {
         this.VehicleName = VehicleName;
     }
 

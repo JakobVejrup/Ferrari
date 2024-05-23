@@ -21,8 +21,7 @@ public class UpdateCustomerController extends ModalController {
     private CustomerModel model;
     private Customer customer;
     private CustomerBaseView view;
-    public UpdateCustomerController (Stage stage, Customer customer) {
-        super(stage);
+    public UpdateCustomerController (Customer customer) {
         this.customer = customer;
         model = new CustomerModel(customer);
         view = new CustomerBaseView(model);
@@ -31,9 +30,7 @@ public class UpdateCustomerController extends ModalController {
 
         Button cancelButton = new Button("Fortryd");
         cancelButton.setOnAction(this::decline);
-
         view.addButtons(updateButton, cancelButton);
-    
 }
 
 @Override

@@ -19,9 +19,7 @@ import javafx.stage.Stage;
 public class CreateCustomerController extends ModalController{
     private CustomerModel model;
     private CreateCustomerView view;
-    public CreateCustomerController(Stage stage){
-        super(stage);
-
+    public CreateCustomerController(){
         model = new CustomerModel();
 
         Button createButton = new Button("Lav kunde");

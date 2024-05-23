@@ -18,7 +18,7 @@ public class CellImage extends ImageView{
             @Override
             public void changed(ObservableValue<? extends byte[]> observable, byte[] oldValue, byte[] newValue) {
                 if(newValue != null)
-                    imageProperty().set(new Image(new ByteArrayInputStream(newValue)));
+                    imageProperty().set(new Image(new ByteArrayInputStream(newValue), 0, 150, true, true));
                 else
                     imageProperty().set(null);
             }

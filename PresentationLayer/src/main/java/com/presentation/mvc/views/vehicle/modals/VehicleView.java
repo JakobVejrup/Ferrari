@@ -1,21 +1,33 @@
-package com.presentation.mvc.views.employee;
+package com.presentation.mvc.views.vehicle.modals;
 
 import java.io.ByteArrayInputStream;
 
-import com.presentation.mvc.models.employees.EmployeeModel;
+import com.presentation.mvc.models.vehicle.VehicleModel;
 import com.presentation.mvc.views.View;
 
+import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.util.converter.NumberStringConverter;
 
-public class EmployeeImageView extends VBox implements View{
-    public EmployeeImageView(EmployeeModel model) {
-        ImageView imageView = new ImageView();
+public class VehicleView extends VBox implements View {
+    public VehicleView(VehicleModel model) {
+        TextField name = new TextField(model.getName());
+        model.nameProperty().bind(name.textProperty());
+
+        TextField price = new TextField(model.getPrice().toString());
+
+        Bindings.bindBidirectional(price.textProperty(), model.priceProperty(), new NumberStringConverter());
+                ImageView imageView = new ImageView();
         imageView.setFitHeight(300);
         imageView.setPreserveRatio(true);
         if(model.getImage() != null)
@@ -28,7 +40,14 @@ public class EmployeeImageView extends VBox implements View{
             }
         });
         getChildren().add(imageView);
+        getChildren().addAll(
+        new HBox(new Label("Name:"), name),
+        new HBox(new Label("Price:"), price),
+        new HBox(new Label("Billede:"), imageView)
+    );
     }
+
+    @Override
     public void addButtons(Button... buttons) {
         getChildren().add(new HBox(buttons));
     }

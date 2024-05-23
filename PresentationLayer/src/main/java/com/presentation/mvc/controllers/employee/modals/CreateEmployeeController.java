@@ -22,9 +22,7 @@ import javafx.stage.Stage;
 public class CreateEmployeeController extends ModalController {
     private EmployeeModel model;
     private HBox view;
-    public CreateEmployeeController(Stage stage) {
-        super(stage);
-
+    public CreateEmployeeController() {
         model = new EmployeeModel();
         // needs a actionevent which is a funtional interface type
         Button createButton = new Button("Lav Bruger");

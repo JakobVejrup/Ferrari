@@ -8,9 +8,8 @@ import com.model.entities.Vehicle;
 import com.model.threads.Validation;
 import com.presentation.mvc.controllers.modals.ModalController;
 import com.presentation.mvc.models.vehicle.VehicleModel;
-import com.presentation.mvc.views.vehicle.modals.VehicleBaseView;
+import com.presentation.mvc.views.vehicle.modals.VehicleView;
 import com.presentation.tools.alert.Alerter;
-
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
@@ -21,12 +20,11 @@ public class UpdateVehicleController extends ModalController{
 
     private VehicleModel model;
     private Vehicle vehicle;
-    private VehicleBaseView view;
-    public UpdateVehicleController(Stage stage, Vehicle vehicle) {
-        super(stage);
+    private VehicleView view;
+    public UpdateVehicleController(Vehicle vehicle) {
         this.vehicle = vehicle;
         model = new VehicleModel(vehicle);
-        view = new VehicleBaseView(model);
+        view = new VehicleView(model);
         Button updateButton = new Button("Opdater Bil");
         updateButton.setOnAction(this::update);
 

@@ -15,7 +15,7 @@ import com.presentation.mvc.views.table.decorators.TableWidthDecorator;
 
 import javafx.scene.layout.Pane;
 
-public class InvoicesInAgreementController implements Controller{
+public class InvoicesInAgreementController extends Controller{
     private TableModel model;
     private InvoicesInAgreementView view;
     public InvoicesInAgreementController(List<Invoice> invoices) {
@@ -25,11 +25,8 @@ public class InvoicesInAgreementController implements Controller{
         table = new TableHeightDecorator(0.8, table);
         table = new TableWidthDecorator(0.8, table);
         view = new InvoicesInAgreementView(table);
+        setView(view);
     }
 
-    @Override
-    public Pane getView() {
-        return view;
-    }
     
 }

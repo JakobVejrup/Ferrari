@@ -1,22 +1,19 @@
 package com.presentation.mvc.controllers.modals;
 import com.presentation.mvc.controllers.Controller;
+
+import javafx.event.ActionEvent;
 import javafx.stage.Stage;
 
-//StageHandler
-public abstract class ModalController implements Controller{
+public abstract class ModalController extends Controller{
     private Stage stage;
     private Object result;
 
-    public ModalController(Stage stage) {
-        this.stage = stage;
-    }
-    public ModalController(Stage stage, Object update) {
-        this.stage = stage;
-    }
-    protected void close() {
+    public void close() {
         stage.close();
     }
-
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
     public Object getResult() {
         return result;
     }

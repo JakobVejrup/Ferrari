@@ -24,9 +24,9 @@ public class VehicleValidation extends HandlerObject {
             request.getValidation().addMessage("ID kan ikke være negativt, eller 0");
         if (vehicle.getVehicleID() < 10000)
             request.getValidation().addMessage("ID må ikke overskride 10000");
-        if (vehicle.getVehicleName().length() < 5)
+        if (vehicle.getName().length() < 5)
             request.getValidation().addMessage("Navn er for kort, minimum 5 bogstaver");
-        if (vehicle.getVehicleName().length() > 40)
+        if (vehicle.getName().length() > 40)
             request.getValidation().addMessage("Navn er for langt, ikke mere end 40 bogstaver");
         if (vehicle.getPrice() < 10000)
             request.getValidation().addMessage("Prisen skal være mere end 5 cifre.");

@@ -31,7 +31,7 @@ public class AgreementClosedData implements Data{
             cs.setInt("Id", agreement.getId());
             cs.setDate("Start", agreement.getStart());
             cs.setDate("End", agreement.getEnd());
-            cs.setString("VehicleName", agreement.getVehicle().getVehicleName());
+            cs.setString("VehicleName", agreement.getVehicle().getName());
             cs.setDouble("VehiclePrice", agreement.getVehicle().getPrice());
             cs.setDouble("EndPrice", agreement.getEndPrice());
             cs.setBytes("VehicleImage", new byte[0]);

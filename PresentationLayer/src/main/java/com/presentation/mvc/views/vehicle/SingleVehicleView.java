@@ -27,11 +27,12 @@ public class SingleVehicleView extends VBox implements View{
         price = new TextField(model.getPrice().toString());
         price.setEditable(false);
 
-        name = new TextField(model.getVehicleName());
+        name = new TextField(model.getName());
         name.setEditable(false);
 
-        image = new ImageView(new Image(new ByteArrayInputStream(model.getImage())));
-
+        image = new ImageView();
+        if(model.getImage() != null)
+           image.setImage(new Image(new ByteArrayInputStream(model.getImage()), 0, 300, true, true));
         getChildren().addAll(
             new HBox(new Label("Bil navn: "), name ),
             new HBox(new Label("Bil pris: "), price ),
@@ -42,9 +43,10 @@ public class SingleVehicleView extends VBox implements View{
 
     public void setModel(Vehicle model) {
         this.model = model;
-        name.setText(model.getVehicleName());
+        name.setText(model.getName());
         price.setText(model.getPrice().toString());
-        image.setImage(new Image(new ByteArrayInputStream(model.getImage())));
+        if(model.getImage() != null)
+            image.setImage(new Image(new ByteArrayInputStream(model.getImage()), 0, 300, true, true));
     }
 
     @Override

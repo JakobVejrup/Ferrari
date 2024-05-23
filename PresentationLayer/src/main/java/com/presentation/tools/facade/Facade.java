@@ -4,6 +4,8 @@ import com.logic.handlers.Request;
 
 import com.model.entities.Employee;
 import com.presentation.mvc.controllers.login.LoginController;
+import com.presentation.mvc.controllers.modals.ModalController;
+
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
@@ -35,9 +37,15 @@ public class Facade implements ModalSetup, ViewSetup, LoginManager{
         this.modal = modal;
     }
     @Override
-    public void openModal(Request request) {
+    public void openModal(ModalController controller) {
         if(modal != null)
-            modal.openModal(request);
+            modal.openModal(controller);
+    }
+    @Override
+    public Object openModalResult(ModalController controller) {
+        if(modal != null)
+            return modal.openModalResult(controller);
+        return null;
     }
 
     @Override
