@@ -5,6 +5,7 @@ import com.logic.handlers.Request;
 import com.logic.services.enums.CRUDType;
 import com.logic.services.enums.ServiceType;
 import com.model.entities.Customer;
+import com.model.entities.Employee;
 import com.model.enums.Occupation;
 import com.presentation.mvc.controllers.table.ColumnController;
 import com.presentation.mvc.controllers.table.commands.DeleteCommand;
@@ -21,13 +22,17 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import java.util.List;
 import com.presentation.mvc.controllers.Controller;
+import com.presentation.mvc.controllers.customers.modals.CreateCustomerController;
+import com.presentation.mvc.controllers.customers.modals.UpdateCustomerController;
+import com.presentation.mvc.controllers.employee.modals.CreateEmployeeController;
+import com.presentation.mvc.controllers.employee.modals.UpdateEmployeeController;
 
 
-public class CustomersController implements Controller{
+public class CustomersController extends Controller{
     private TableModel model;
     private CustomersView view;
     public CustomersController() {
-        view = new CustomersView(this::newUser);
+        view = new CustomersView(this::newCustomer);
         Request request = new Request(ServiceType.Customer, CRUDType.ReadAll, (customers) -> {
         
             Platform.runLater( () -> {
@@ -36,21 +41,19 @@ public class CustomersController implements Controller{
                 table = new ParentTableDecorator(model, table);
                 table = new TableHeightDecorator(0.6, table);
                 table = new TableWidthDecorator(0.8, table);
-                table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory(), "Opdater andre", new UpdateCommand(), "opdater"), table);
-                table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory(), "Slet andre", new DeleteCommand(), "slet"), table);
+                table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory(), "Opdater andre", new UpdateCommand((row) -> new UpdateCustomerController((Customer)row.getItem())), "opdater"), table);
+                table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory(), "Slet andre", new DeleteCommand(model), "slet"), table);
                 view.setTable(table.getTable());
             });
         });
         ServiceSingleton.getInstance().query(request);
+        setView(view);
     }
 
-    public void newUser(ActionEvent event) {
-    
-        Facade.getInstance().openModal(new Request(ServiceType.Customer, CRUDType.Create, 
-        (customer) -> {
-            if(customer != null)
-                model.addRow(new RowModel(customer, ServiceType.Customer));
-        }));
+    public void newCustomer(ActionEvent event) {
+        Object customer = Facade.getInstance().openModalResult(new CreateCustomerController());
+        if(customer != null)
+            model.addRow(new RowModel(customer, ServiceType.Customer));
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.presentation.mvc.controllers.employee.modals;
+package com.presentation.mvc.controllers.vehicle.modals;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,7 @@ import com.logic.services.enums.CRUDType;
 import com.logic.services.enums.ServiceType;
 import com.model.entities.Agreement;
 import com.model.entities.Employee;
+import com.model.entities.Vehicle;
 import com.model.enums.Occupation;
 import com.presentation.mvc.controllers.modals.ModalController;
 import com.presentation.mvc.controllers.table.ColumnController;
@@ -20,8 +21,10 @@ import com.presentation.mvc.models.agreements.OpenAgreementsModel;
 import com.presentation.mvc.models.employees.EmployeeModel;
 import com.presentation.mvc.models.table.RowModel;
 import com.presentation.mvc.models.table.TableModel;
+import com.presentation.mvc.models.vehicle.VehicleModel;
 import com.presentation.mvc.views.employee.EmployeesView;
 import com.presentation.mvc.views.table.concretes.EmployeeTable;
+import com.presentation.mvc.views.table.concretes.VehicleTable;
 import com.presentation.mvc.views.table.decorators.ButtonColumnDecorator;
 import com.presentation.mvc.views.table.decorators.CheckboxColumnDecorator;
 import com.presentation.mvc.views.table.decorators.ChildTableDecorator;
@@ -30,9 +33,9 @@ import com.presentation.mvc.views.table.decorators.TableDecorator;
 import com.presentation.mvc.views.table.decorators.TableHeightDecorator;
 import com.presentation.mvc.views.table.decorators.TableWidthDecorator;
 import com.presentation.mvc.views.table.ui.GuiTable;
+import com.presentation.mvc.views.vehicle.VehiclesView;
 import com.presentation.tools.ScreenWatcher;
 import com.presentation.tools.facade.Facade;
-
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -42,26 +45,26 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-public class SelectEmployeeController extends ModalController {
+public class SelectVehicleController extends ModalController {
     private TableModel model;
-    private EmployeesView view;
+    private VehiclesView view;
     private TableDecorator table;
-    public SelectEmployeeController() {
+    public SelectVehicleController() {
         Button cancelButton = new Button("Fortryd");
         cancelButton.setOnAction(this::decline);
-        table = new EmployeeTable();
-        view = new EmployeesView(cancelButton);
-        Request request = new Request(ServiceType.Employee, CRUDType.ReadAll, (employees) -> {
+        table = new VehicleTable();
+        view = new VehiclesView(cancelButton);
+        Request request = new Request(ServiceType.Vehicle, CRUDType.ReadAll, (vehicles) -> {
             //to allow ui to be run
             Platform.runLater( () -> {
-                model = new TableModel(ServiceType.Employee, EmployeeModel.makeModelsAsObjects((List<Employee>)employees));
+                model = new TableModel(ServiceType.Employee, VehicleModel.makeModelsAsObjects((List<Vehicle>)vehicles));
                 model.getRows().iterator().forEachRemaining((row) -> {
-                    row.getImages().put("Ansat", ((EmployeeModel)row.getItem()).imageProperty());
+                    row.getImages().put("vehicle", ((VehicleModel)row.getItem()).imageProperty());
                 });
                 table = new ParentTableDecorator(model, table);
                 table = new TableHeightDecorator(0.6, table);
                 table = new TableWidthDecorator(0.8, table);
-                table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory(), "Opdater andre", new SelectCommand( 
+                table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory(), "Vælg bil", new SelectCommand( 
                     (rowModel) -> {
                         setResult(((RowModel)rowModel).getItem()); 
                         close();    
@@ -73,7 +76,6 @@ public class SelectEmployeeController extends ModalController {
         view.setPrefHeight(ScreenWatcher.getInstance().getScreenHeightWithDecimal(0.6));
         view.setPrefWidth(ScreenWatcher.getInstance().getScreenWidthWithDecimal(0.8));
         ServiceSingleton.getInstance().query(request);
-
     }
 
     @Override

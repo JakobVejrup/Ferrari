@@ -20,8 +20,7 @@ public class UpdateEmployeeController extends ModalController {
     private EmployeeModel model;
     private Employee employee;
     private EmployeeBaseView view;
-    public UpdateEmployeeController(Stage stage, Employee employee) {
-        super(stage);
+    public UpdateEmployeeController(Employee employee) {
         this.employee = employee;
         model = new EmployeeModel(employee);
         // needs a actionevent which is a funtional interface type

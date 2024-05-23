@@ -8,7 +8,8 @@ import com.model.threads.Validation;
 import com.presentation.mvc.controllers.modals.ModalController;
 import com.presentation.mvc.controllers.vehicle.AllVehiclesController;
 import com.presentation.mvc.models.vehicle.VehicleModel;
-import com.presentation.mvc.views.vehicle.modals.VehicleBaseView;
+import com.presentation.mvc.views.vehicle.modals.VehicleView;
+import com.presentation.tools.ImageFinder;
 import com.presentation.tools.alert.Alerter;
 import com.logic.ServiceSingleton;
 import com.logic.handlers.Request;
@@ -21,21 +22,28 @@ import javafx.stage.Stage;
 public class CreateVehicleController extends ModalController{
 
     private VehicleModel model;
-    private VehicleBaseView view;
-    public CreateVehicleController(Stage stage) {
-        super (stage);
+    private VehicleView view;
+    public CreateVehicleController() {
         model = new VehicleModel();
+        view = new VehicleView(model);
         Button createButton = new Button("Opret bil");
         createButton.setOnAction(this::create);
         Button cancelButton = new Button("Fortryd");
-        view.addButtons(createButton, cancelButton);
+        cancelButton.setOnAction(this::decline);
+        Button imageButton = new Button("Vælg Billede");
+        imageButton.setOnAction(this::findImage);
+        view.addButtons(createButton, imageButton, cancelButton);
     }
 
     @Override
     public Pane getView() {
         return view;
     }
-    
+    public void findImage(ActionEvent event) {
+        byte[] image = ImageFinder.findImage((Stage)view.getScene().getWindow());
+        if (image != null) 
+            model.setImage(image);
+    }
     public void create(ActionEvent event) {
         ServiceSingleton.getInstance().query(new Request(ServiceType.Vehicle, CRUDType.Create,
         model,

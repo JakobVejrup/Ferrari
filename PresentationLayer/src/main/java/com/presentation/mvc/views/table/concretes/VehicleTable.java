@@ -14,26 +14,23 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.IntegerStringConverter;
 
 public class VehicleTable extends GuiTable implements TableDecorator {
-    private TableColumn<RowModel, String> name;
-    private TableColumn<RowModel, Double> price;
-    private TableColumn<RowModel, Number> id;
-    private TableView<VehicleModel> tableView;
+    private TableColumn<RowModel, String> nameCol;
+    private TableColumn<RowModel, Double> priceCol;
     private VehicleModel viewModel;
 
     public VehicleTable() {
-        tableView = new TableView<>();
     
+        ImageTableDecorator image = new ImageTableDecorator(this, new ImageFactory("vehicle"));
     
-        TableColumn<VehicleModel, String> nameCol = new TableColumn<>("BilNavn");
-        nameCol.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        TableColumn<RowModel, String> nameCol = new TableColumn<>("BilNavn");
+        nameCol.setCellValueFactory(cellData -> ((VehicleModel)cellData.getValue().getItem()).nameProperty());
         nameCol.setCellFactory(TextFieldTableCell.forTableColumn());
 
-        TableColumn<VehicleModel, Number> priceCol = new TableColumn<>("Pris");
-        priceCol.setCellValueFactory(cellData -> cellData.getValue().priceProperty());
+        TableColumn<RowModel, Number> priceCol = new TableColumn<>("Pris");
+        priceCol.setCellValueFactory(cellData -> ((VehicleModel)cellData.getValue().getItem()).priceProperty());
         
-        ImageTableDecorator image = new ImageTableDecorator(this, new ImageFactory("Bil"));
 
-        tableView.getColumns().addAll(nameCol, priceCol);
+        getColumns().addAll(nameCol, priceCol);
         //tableView.setItems(viewModel.getVehicleModels());
     }
 
@@ -42,7 +39,4 @@ public class VehicleTable extends GuiTable implements TableDecorator {
         return this;
     }
     
-    public TableView<VehicleModel> getTableview() {
-        return tableView;
-    }
 }

@@ -11,10 +11,6 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import javafx.beans.value.ObservableDoubleValue;
-import javafx.beans.value.WritableDoubleValue;
-import javafx.collections.ObservableList;
-import javafx.util.Callback;
 
 
 
@@ -34,9 +30,9 @@ public class VehicleModel extends Vehicle {
     public VehicleModel(Vehicle vehicle) {
         this();
         setVehicleID(vehicle.getVehicleID());
-        vehicleNameProp.set(vehicle.getVehicleName());
+        vehicleNameProp.set(vehicle.getName());
         priceProp.set(vehicle.getPrice());
-        imageProp.set(vehicle.getImage());
+        setImage(vehicle.getImage());
     }
     @Override
     public byte[] getImage() {
@@ -44,28 +40,32 @@ public class VehicleModel extends Vehicle {
     }
     @Override
     public void setImage(byte[] image) {
-        imageProp.set(image);
+        if(image != null)
+            imageProp.set(image);
+        else
+            imageProp.set(new byte[0]);
     }
+    @Override
     public int getVehicleID() {
         return vehicleIdProp.get();
     } 
-    
+    @Override
     public void setVehicleID(int vehicleIdProp) {
         this.vehicleIdProp.set(getVehicleID());
     }
-    
+    @Override
     public String getName() {
         return vehicleNameProp.get();
     }
-    
+    @Override
     public void setName(String name) {
         this.vehicleNameProp.set(name);
     }
-    
+    @Override
     public Double getPrice() {
         return priceProp.get();
     }
-    
+    @Override
     public void setPrice(Double price) {
         this.priceProp.set(price);
     }
@@ -77,6 +77,9 @@ public class VehicleModel extends Vehicle {
     }
     public DoubleProperty priceProperty() {
         return priceProp;
+    }
+    public ObjectProperty<byte[]> imageProperty() {
+        return imageProp;
     }
 
     public static List<VehicleModel> makeModels(List<Vehicle> vehicles) {

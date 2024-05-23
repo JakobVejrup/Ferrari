@@ -20,7 +20,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class AccountController implements Controller{
+public class AccountController extends Controller{
     private HBox view;
     private EmployeeModel model;
 
@@ -37,6 +37,7 @@ public class AccountController implements Controller{
         EmployeeImageView viewLeft = new EmployeeImageView(model);
         viewLeft.addButtons(imageButton);
         view = new HBox(viewLeft, viewRight);
+        setView(view);
     }
 
 
@@ -64,8 +65,4 @@ public class AccountController implements Controller{
         );
     }
 
-    @Override
-    public Pane getView() {
-        return view;
-    }
 }

@@ -75,8 +75,8 @@ public class AgreementOpenData implements Data {
 
     @Override
     public Object readAll(Object parameter) {
+        ArrayList<Agreement> agreements = new ArrayList<>();
         try (CallableStatement cs = db.makeCall("{call Trade.uspOpenAgreementGetAll()}")) {
-            ArrayList<Agreement> agreements = new ArrayList<>();
             ResultSet result = cs.executeQuery();
             while (result.next()) 
                 agreements.add(
@@ -93,7 +93,7 @@ public class AgreementOpenData implements Data {
             return agreements;
             } 
         catch (Exception e) {
-            return null;
+            return agreements;
         }
        }
 

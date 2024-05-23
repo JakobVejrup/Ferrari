@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 public class ScreenWatcher {
     private static ScreenWatcher instance;
     private Stage stage;
+    //a little useless since most fx ui cant be forced to a size especially once loaded, setpref multiple time will sometimes not work, it will just lock on the first set
     private ObjectProperty<Screen> screenProperty;
     private ScreenWatcher() { screenProperty = new SimpleObjectProperty<>();
     }
@@ -36,9 +37,6 @@ public class ScreenWatcher {
         return screenProperty;
     }
 
-    public ObjectProperty<Screen> screenPropertyProperty() {
-        return screenProperty;
-    }
     public double getScreenHeightWithDecimal(double decimal) {
         // Get the height of the screen
         return getScreen().getBounds().getHeight() * decimal;

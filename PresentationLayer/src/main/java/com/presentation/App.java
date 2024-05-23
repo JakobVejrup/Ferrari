@@ -15,7 +15,7 @@ import com.presentation.mvc.models.employees.EmployeeModel;
 import com.presentation.mvc.views.topbar.TopbarView;
 import com.presentation.tools.facade.Facade;
 import com.presentation.tools.facade.Login;
-import com.presentation.tools.facade.ModalFactory;
+import com.presentation.tools.facade.ModalSetter;
 import com.presentation.tools.ScreenWatcher;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -36,16 +36,16 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
         Facade.getInstance().setMainPane(bp);
-        Facade.getInstance().setModal(new ModalFactory(stage));
+        Facade.getInstance().setModal(new ModalSetter(stage));
         Facade.getInstance().setLogin(new Login());
         Facade.getInstance().setTop(new TopbarView());
         OpenAgreementsModel model = new OpenAgreementsModel();
         model.setCustomer(new Customer());
         model.setEmployee(new Employee());
         model.setVehicle(new Vehicle());
-        Facade.getInstance().setCenter(new OpenAgreementController(model).getView());
+        //Facade.getInstance().setCenter(new OpenAgreementController(model).getView());
 
-        //Facade.getInstance().setCenter(new LoginController().getView());
+        Facade.getInstance().setCenter(new LoginController().getView());
         //Facade.getInstance().openModal(new Request(ServiceType.Employee, CRUDType.Create));
         //Employee employee = new Employee();
         //employee.setOccupation(Occupation.Manager);

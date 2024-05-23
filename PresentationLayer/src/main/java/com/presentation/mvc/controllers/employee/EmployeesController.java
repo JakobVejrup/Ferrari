@@ -31,8 +31,10 @@ import javafx.scene.control.Button;
 import java.util.ArrayList;
 import java.util.List;
 import com.presentation.mvc.controllers.Controller;
+import com.presentation.mvc.controllers.employee.modals.CreateEmployeeController;
+import com.presentation.mvc.controllers.employee.modals.UpdateEmployeeController;
 
-public class EmployeesController implements Controller {
+public class EmployeesController extends Controller {
     private TableModel model;
     private EmployeesView view;
     private TableDecorator table;
@@ -54,9 +56,9 @@ public class EmployeesController implements Controller {
                 table = new TableHeightDecorator(0.6, table);
                 table = new TableWidthDecorator(0.8, table);
                 if(Facade.getInstance().getLoggedIn().getOccupation() == Occupation.Manager) {
-                    table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory(), "Opdater andre", new UpdateCommand(), "opdater"), table);
-                    table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory(), "Slet andre", new DeleteCommand(), "slet"), table);
-                    table = new CheckboxColumnDecorator(new UpdateCommand(), "Slet", "Slet", "Slet Alle", table);
+                    table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory(), "Opdater andre", new UpdateCommand((row) -> new UpdateEmployeeController((Employee)row.getItem())), "opdater"), table);
+                    table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory(), "Slet andre", new DeleteCommand(model), "slet"), table);
+                    table = new CheckboxColumnDecorator(new DeleteCommand(model), "Slet", "Slet", "Slet Alle", table);
                 }
                 table = new ParentTableDecorator(model, table);
                 if(agreements != null) {
@@ -72,17 +74,15 @@ public class EmployeesController implements Controller {
                 }
                 table.getTable().setup(view);
             });
+
         });
         ServiceSingleton.getInstance().query(request);
     }
 
     public void newUser(ActionEvent event) {
-    
-        Facade.getInstance().openModal(new Request(ServiceType.Employee, CRUDType.Create, 
-        (employee) -> {
-            if(employee != null)
-                model.addRow(new RowModel(employee, ServiceType.Employee));
-        }));
+        Object employee = Facade.getInstance().openModalResult(new CreateEmployeeController());
+        if(employee != null)
+            model.addRow(new RowModel(employee, ServiceType.Employee));
     }
     @Override
     public EmployeesView getView() {

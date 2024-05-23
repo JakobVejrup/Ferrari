@@ -11,24 +11,22 @@ import com.model.entities.Vehicle;
 
 // Jakob
 public class VehicleData implements Data {
-    private static final Object Vehicle = null;
     private ConnectionData db;
     public VehicleData(ConnectionData db) {
         this.db = db;
     }
     @Override
     public Object create (Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call uspVehicleInsert(?,?,?)}")) {
+        try (CallableStatement cs = db.makeCall("{call Trade.uspVehicleInsert(?,?,?)}")) {
             Vehicle vehicle = (Vehicle) parameter;
-            cs.setInt("VehicleID", vehicle.getVehicleID());
-            cs.setString("VehicleName", vehicle.getVehicleName());
+            cs.setString("Name", vehicle.getName());
             cs.setDouble("Price", vehicle.getPrice());
             cs.setBytes("Image", vehicle.getImage());
             ResultSet result = cs.executeQuery();
             if (!result.next())
                 return null;
             vehicle.setVehicleID(vehicle.getVehicleID());
-            return Vehicle;
+            return vehicle;
         }   
         catch (Exception e) {
             return null;
@@ -37,7 +35,7 @@ public class VehicleData implements Data {
 
     @Override
     public Object read(Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call uspVehicleGet(?, ?, ?)}")) {
+        try (CallableStatement cs = db.makeCall("{call Trade.uspVehicleGet(?, ?, ?)}")) {
             cs.setInt("ID",(int)(parameter));
             ResultSet result = cs.executeQuery();
             if (!result.next())
@@ -54,32 +52,32 @@ public class VehicleData implements Data {
 
         @Override
         public Object readAll(Object parameter) {
-            ArrayList<Vehicle> vehicle = new ArrayList<Vehicle>();
-            try (CallableStatement cs = db.makeCall("{call uspVehicleGetAll()}")) {
+            ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
+            try (CallableStatement cs = db.makeCall("{call Trade.uspVehicleGetAll()}")) {
                 ResultSet result = cs.executeQuery();
                 while (result.next())
-                    vehicle.add (new Vehicle(result.getInt("Id"),
+                    vehicles.add (new Vehicle(result.getInt("VehicleId"),
                     result.getString("VehicleName"),
                     result.getDouble("Price"),
                     result.getBytes("VehicleImage")
                     ));
-                return Vehicle;
+                return vehicles;
             }   catch (Exception e) {
-                return Vehicle;
+                return vehicles;
             }
 
         }
 
         @Override
         public Object update(Object parameter) {
-            try (CallableStatement cs = db.makeCall("{call uspVehicleGetAll(?, ?, ?)}")) {
+            try (CallableStatement cs = db.makeCall("{call Trade.uspVehicleGetAll(?, ?, ?)}")) {
                 Vehicle vehicle = (Vehicle) parameter;
                 cs.setInt("Id", vehicle.getVehicleID());
-                cs.setString("VehicleName", vehicle.getVehicleName());
+                cs.setString("VehicleName", vehicle.getName());
                 cs.setDouble("Price", vehicle.getPrice());
                 cs.setBytes("Image", vehicle.getImage());
                 cs.execute();
-                return cs.getUpdateCount() > 0 ? Vehicle : null;
+                return cs.getUpdateCount() > 0 ? vehicle : null;
             }   catch (Exception e) {
                 return null;
             }
@@ -87,7 +85,7 @@ public class VehicleData implements Data {
 
     @Override
     public boolean delete(Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call uspVehicleGetAll(?)}")) {
+        try (CallableStatement cs = db.makeCall("{call Trade.uspVehicleGetAll(?)}")) {
             cs.setInt("Id", ((Vehicle)parameter).getVehicleID());
             cs.execute();
             return cs.getUpdateCount() > 0;
