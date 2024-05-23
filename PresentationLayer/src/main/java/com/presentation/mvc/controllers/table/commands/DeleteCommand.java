@@ -14,7 +14,7 @@ public class DeleteCommand implements CellCommand{
     }
     @Override
     public void invoke(RowModel caller) {
-        ServiceSingleton.getInstance().query(new Request(caller.getType(), CRUDType.Delete, caller, (wasRemoved) -> {
+        ServiceSingleton.getInstance().query(new Request(caller.getType(), CRUDType.Delete, caller.getItem(), (wasRemoved) -> {
             if ((boolean)wasRemoved) {
                 table.removeRow(caller);
             }

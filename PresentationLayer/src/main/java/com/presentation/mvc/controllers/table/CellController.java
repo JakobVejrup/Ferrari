@@ -24,9 +24,6 @@ public class CellController extends TableCell<RowModel, RowModel> implements Eve
     //mouse click event, checks booleans for if they were checked
     @Override
     public void handle(ActionEvent event) {
-        System.out.println(!getBoolean());
-        System.out.println(getItem() == null);
-
         if(getItem() == null || !getBoolean())
             return;
         command.invoke(getItem());
