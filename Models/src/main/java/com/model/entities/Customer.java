@@ -3,13 +3,13 @@ package com.model.entities;
 public class Customer extends Information{
     private String address;
     private String cpr;
-    private String cityZip;
+    private City city;
     //Magnus
-    public Customer(int id, String name, String phoneNumber, String email, String address, String cpr, String cityZip) {
+    public Customer(int id, String name, String phoneNumber, String email, String address, String cpr, City city) {
         super(id, name, phoneNumber, email);
         this.address = address;
         this.cpr = cpr;
-        this.cityZip = cityZip;
+        this.city = city;
     }
     public Customer() {}
     public String getAddress() {
@@ -28,12 +28,12 @@ public class Customer extends Information{
         this.cpr = cpr;
     }
 
-    public String getCityZip() {
-        return cityZip;
+    public City getCity() {
+        return city;
     }
 
-    public void setCityZip(String cityZip) {
-        this.cityZip = cityZip;
+    public void setCity(City city) {
+        this.city = city;
     }
      
     public void copy(Customer other) {
@@ -42,7 +42,7 @@ public class Customer extends Information{
         setPhoneNumber(other.getPhoneNumber());
         this.address = other.address;
         this.cpr = other.cpr;
-        this.cityZip = other.cityZip;
+        this.city = other.city;
     }
 
 

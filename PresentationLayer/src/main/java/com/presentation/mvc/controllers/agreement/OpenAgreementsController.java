@@ -1,5 +1,6 @@
 package com.presentation.mvc.controllers.agreement;
 
+import java.sql.Date;
 import java.util.List;
 
 import com.logic.ServiceSingleton;
@@ -53,7 +54,10 @@ public class OpenAgreementsController extends Controller{
         view.addButtons(makeAgreement);
         
     }
+
     public void newAgreement(ActionEvent event) {
+        OpenAgreementsModel agreement = new OpenAgreementsModel();
+        agreement.setStartAgreement(new Date(System.currentTimeMillis()));
         Facade.getInstance().setCenter(new OpenAgreementController(new OpenAgreementsModel()).getView());
     }
     @Override

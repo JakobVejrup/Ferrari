@@ -6,5 +6,6 @@ public enum ServiceType {
     AgreementOpen,
     AgreementClosed,
     Invoice,
-    Employee
+    Employee,
+    City
 }

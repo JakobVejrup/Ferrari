@@ -3,6 +3,7 @@ package com.logic;
 import com.logic.services.ServiceManager;
 import com.logic.services.agreements.AgreementClosedService;
 import com.logic.services.agreements.AgreementOpenService;
+import com.logic.services.city.CityService;
 import com.logic.services.customer.CustomerService;
 import com.logic.services.employee.EmployeeService;
 import com.logic.services.invoice.InvoiceService;
@@ -10,6 +11,7 @@ import com.logic.services.vehicle.VehicleService;
 import com.data.ConnectionData;
 import com.data.dao.AgreementClosedData;
 import com.data.dao.AgreementOpenData;
+import com.data.dao.CityData;
 import com.data.dao.CustomerData;
 import com.data.dao.EmployeeData;
 import com.data.dao.InvoiceData;
@@ -31,6 +33,7 @@ public class ServiceSingleton implements Handler {
         CustomerData customerData = new CustomerData(db);
         InvoiceData invoiceData = new InvoiceData(db);
         VehicleData vehicleData = new VehicleData(db);
+        CityData cityData = new CityData(db);
         AgreementClosedData agreementClosed = new AgreementClosedData(db, invoiceData, customerData, employeeData);
         AgreementOpenData agreementOpen = new AgreementOpenData(db, invoiceData, customerData, employeeData);
 
@@ -45,7 +48,8 @@ public class ServiceSingleton implements Handler {
             new AgreementOpenService(agreementOpen),
             new InvoiceService(invoiceData),
             new AgreementClosedService(agreementClosed),
-            new CustomerService(customerData)
+            new CustomerService(customerData),
+            new CityService(cityData)
         );
     }
     public void setValidations(HandlerHolder validations) {

@@ -19,7 +19,10 @@ import com.presentation.tools.facade.Login;
 import com.presentation.tools.facade.ModalSetter;
 import com.presentation.tools.ScreenWatcher;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -40,7 +43,7 @@ public class App extends Application {
         Facade.getInstance().setModal(new ModalSetter(stage));
         Facade.getInstance().setLogin(new Login());
         Facade.getInstance().setTop(new TopbarView());
-        OpenAgreementsModel model = new OpenAgreementsModel();
+        //OpenAgreementsModel model = new OpenAgreementsModel();
         //Facade.getInstance().setCenter(new OpenAgreementController(model).getView());
 
         Facade.getInstance().setCenter(new LoginController().getView());

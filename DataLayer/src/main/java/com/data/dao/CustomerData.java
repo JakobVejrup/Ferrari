@@ -26,7 +26,7 @@ public class CustomerData implements Data {
             ResultSet result = cs.executeQuery();
             if (!result.next())
                 return null;   
-            customer.setId(result.getInt("Id"));
+            customer.setId(result.getInt("InformationId"));
             return customer;   
         } catch (Exception e) {
             return null;     
@@ -76,7 +76,7 @@ public class CustomerData implements Data {
 
     @Override
     public Object update(Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call Person.uspCustomerUpdate(?,?,?,?,?,?,?,?)}")) {
+        try (CallableStatement cs = db.makeCall("{call Person.uspCustomerUpdate(?,?,?,?,?,?,?)}")) {
             Customer customer = (Customer) parameter;
             cs.setString("Name", customer.getName());
             cs.setString("Phonenumber", customer.getPhoneNumber());

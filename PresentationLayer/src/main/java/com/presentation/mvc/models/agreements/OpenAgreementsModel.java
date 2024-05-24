@@ -23,7 +23,8 @@ public class OpenAgreementsModel extends Agreement{
     private IntegerProperty fixedTermsProp;
     private DoubleProperty startValueProp;
     private ObjectProperty<Date> startAgreementProp;
-    private ObjectProperty<Date> endAgreementProp;
+    private ObjectProperty<Date> endProp;
+    private ObjectProperty<Date> startProp;
     private ObjectProperty<Rating> RKiProp;
     private ObjectProperty<Customer> customerProp;
     private ObjectProperty<Employee> employeeProp;
@@ -34,6 +35,8 @@ public class OpenAgreementsModel extends Agreement{
         fixedTermsProp = new SimpleIntegerProperty();
         startValueProp = new SimpleDoubleProperty();
         startAgreementProp = new SimpleObjectProperty<Date>();
+        endProp = new SimpleObjectProperty<Date>();
+        startProp = new SimpleObjectProperty<Date>();
         RKiProp = new SimpleObjectProperty<Rating>();
         customerProp = new SimpleObjectProperty<Customer>();
         employeeProp = new SimpleObjectProperty<Employee>();
@@ -105,19 +108,19 @@ public class OpenAgreementsModel extends Agreement{
         return daysRateProp.get();
     }
     public Date getStart() {
-        return startAgreementProp.get();
+        return startProp.get();
     }
 
     public void setStart(Date start) {
-        startAgreementProp.set(start);
+        startProp.set(start);
     }
 
     public Date getEnd() {
-        return endAgreementProp.get();
+        return endProp.get();
     }
 
     public void setEnd(Date end) {
-        endAgreementProp.set(end);
+        endProp.set(end);
     }
     @Override
     public void setDaysRate(double daysRate) {
@@ -167,8 +170,12 @@ public class OpenAgreementsModel extends Agreement{
     public ObjectProperty<Date> startAgreementProperty() {
         return startAgreementProp;
     }
-    public ObjectProperty<Date> endAgreementProperty() {
-        return endAgreementProp;
+
+    public ObjectProperty<Date> endProperty() {
+        return endProp;
+    }
+    public ObjectProperty<Date> startProperty() {
+        return startProp;
     }
     public ObjectProperty<Rating> RKiProperty() {
         return RKiProp;

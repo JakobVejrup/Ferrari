@@ -3,6 +3,7 @@ package com.presentation.mvc.models.customer;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.model.entities.City;
 import com.model.entities.Customer;
 
 import javafx.beans.property.*;
@@ -14,7 +15,7 @@ private StringProperty nameProp;
 private StringProperty emailProp;
 private StringProperty phoneNumberProp;
 private StringProperty addressProp;
-private StringProperty CityZipProp;
+private ObjectProperty<City> cityProp;
 private StringProperty CprProp;
 
 public CustomerModel() {
@@ -28,7 +29,7 @@ public CustomerModel(Customer customer) {
     emailProp.set(customer.getEmail());
     phoneNumberProp.set(customer.getPhoneNumber());
     addressProp.set(customer.getAddress());
-    CityZipProp.set(customer.getCityZip());
+    cityProp.set(customer.getCity());
     CprProp.set(customer.getCpr());
 }
 
@@ -49,8 +50,8 @@ public String getAddress() {
     return addressProp.get();
 }
 @Override
-public String getCityZip() {
-    return CityZipProp.get();
+public City getCity() {
+    return cityProp.get();
 }
 @Override
 public String getCpr() {
@@ -73,8 +74,8 @@ public void setAddress(String address) {
     addressProp.set(address);
 }
 @Override
-public void setCityZip(String cityZip) {
-    CityZipProp.set(cityZip);
+public void setCity(City city) {
+    cityProp.set(city);
 }
 @Override
 public void setCpr(String cpr) {
@@ -85,7 +86,7 @@ public void setup() {
     emailProp = new SimpleStringProperty();
     phoneNumberProp = new SimpleStringProperty();
     addressProp = new SimpleStringProperty();
-    CityZipProp = new SimpleStringProperty();
+    cityProp = new SimpleObjectProperty<City>();
     CprProp = new SimpleStringProperty();
 }
 public StringProperty nameProperty() {
@@ -100,8 +101,8 @@ public StringProperty phoneNumberProperty() {
 public StringProperty addressProperty() {
     return addressProp;
 }
-public StringProperty CityZipProperty() {
-    return CityZipProp;
+public ObjectProperty<City> cityProperty() {
+    return cityProp;
 }
 public StringProperty CprProperty() {
     return CprProp;
