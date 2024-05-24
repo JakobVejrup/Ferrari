@@ -28,6 +28,18 @@ public class Invoice {
         this.primoPrice = primoprice;
         this.details = details;
     }
+    
+    public Invoice( int number, Date datestart, Date dateend, double plus, double minus,
+            double ultimovalue, double primoprice, String details) {
+        this.number = number;
+        this.dateStart = datestart;
+        this.dateEnd = dateend;
+        this.plus = plus;
+        this.minus = minus;
+        this.ultimoValue = ultimovalue;
+        this.primoPrice = primoprice;
+        this.details = details;
+    }
 
     public Agreement getAgreement() {
         return agreement;
