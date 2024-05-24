@@ -46,12 +46,12 @@ public class ClosedAgreementsTable extends GuiTable implements TableDecorator{
         RKiCol.setCellValueFactory((column)                 -> new SimpleObjectProperty<Rating>(((Agreement) column.getValue().getItem()).getRki()));
         customerCol.setCellValueFactory((column)            -> new SimpleObjectProperty<Customer>(((Agreement) column.getValue().getItem()).getCustomer()));
         employeeCol.setCellValueFactory((column)            -> new SimpleObjectProperty<Employee>(((Agreement) column.getValue().getItem()).getEmployee()));
-        //vehicleCol.setCellValueFactory((column)             -> ((ClosedAgreementsModel) column.getValue().getItem()).vehicleProperty());
-        //startCol.setCellValueFactory((column)               -> ((ClosedAgreementsModel) column.getValue().getItem()).startProperty());
-        //endCol.setCellValueFactory((column)                 -> ((ClosedAgreementsModel) column.getValue().getItem()).endProperty());
-        //endpriceCol.setCellValueFactory((column)            -> ((ClosedAgreementsModel) column.getValue().getItem()).endPriceProperty());
+        vehicleCol.setCellValueFactory((column)             -> new SimpleObjectProperty<Vehicle>(((Agreement) column.getValue().getItem()).getVehicle()));
+        startCol.setCellValueFactory((column)               -> new SimpleObjectProperty<Date>(((Agreement) column.getValue().getItem()).getStart()));
+        endCol.setCellValueFactory((column)                 -> new SimpleObjectProperty<Date>(((Agreement) column.getValue().getItem()).getEnd()));
+        endpriceCol.setCellValueFactory((column)            -> new SimpleDoubleProperty(((Agreement) column.getValue().getItem()).getEndPrice()));
     }
-
+    
     @Override
     public GuiTable getTable() {
         return this;
