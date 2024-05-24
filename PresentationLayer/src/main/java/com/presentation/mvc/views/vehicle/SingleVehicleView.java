@@ -24,7 +24,7 @@ public class SingleVehicleView extends VBox implements View{
     public SingleVehicleView(Vehicle model) {
         this.model = model;
 
-        price = new TextField(model.getPrice().toString());
+        price = new TextField(String.valueOf(model.getPrice()));
         price.setEditable(false);
 
         name = new TextField(model.getName());
@@ -44,7 +44,7 @@ public class SingleVehicleView extends VBox implements View{
     public void setModel(Vehicle model) {
         this.model = model;
         name.setText(model.getName());
-        price.setText(model.getPrice().toString());
+        price.setText(String.valueOf(model.getPrice()));
         if(model.getImage() != null)
             image.setImage(new Image(new ByteArrayInputStream(model.getImage()), 0, 300, true, true));
     }

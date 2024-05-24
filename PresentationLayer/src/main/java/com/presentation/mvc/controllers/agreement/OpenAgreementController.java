@@ -40,6 +40,8 @@ public class OpenAgreementController extends Controller {
         Button selectVehicle = new Button("Vælg bil");
         selectVehicle.setOnAction(this::chooseVehicle);
         vehicleController.addButtons(selectVehicle);
+
+        
     }
     public void chooseEmployee(ActionEvent event) {
         Object result = Facade.getInstance().openModalResult(new SelectEmployeeController());

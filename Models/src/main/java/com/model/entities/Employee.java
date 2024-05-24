@@ -11,19 +11,14 @@ public class Employee extends Information {
     private Double loanLimit;
     private byte[] image;
 
-    public Employee(int id, String name, String phoneNumber, String email, Occupation occupation, String password) {
-        super(id, name, phoneNumber, email);
-        this.occupation = occupation;
-        this.password = password;
-    }
     public Employee(int id, String name, String phoneNumber, String email, Occupation occupation) {
         super(id, name, phoneNumber, email);
         this.occupation = occupation;
+        image = new byte[0];
     }
 
     public Employee(int id, String name, String phoneNumber, String email, Occupation occupation, double loanLimit, byte[] image) {
-        super(id, name, phoneNumber, email);
-        this.occupation = occupation;
+        this(id, name, phoneNumber, email, occupation);
         this.loanLimit = loanLimit;
         this.image = image;
     }

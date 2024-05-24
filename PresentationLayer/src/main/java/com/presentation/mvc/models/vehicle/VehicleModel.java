@@ -12,8 +12,6 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-
-
 public class VehicleModel extends Vehicle {
     private IntegerProperty vehicleIdProp;
     private StringProperty vehicleNameProp;
@@ -30,8 +28,10 @@ public class VehicleModel extends Vehicle {
     public VehicleModel(Vehicle vehicle) {
         this();
         setId(vehicle.getId());
-        vehicleNameProp.set(vehicle.getName());
-        priceProp.set(vehicle.getPrice());
+        setName(vehicle.getName());
+        //vehicleNameProp.set(vehicle.getName());
+        setPrice(vehicle.getPrice());
+        //priceProp.set(vehicle.getPrice());
         setImage(vehicle.getImage());
     }
     @Override
@@ -51,7 +51,7 @@ public class VehicleModel extends Vehicle {
     } 
     @Override
     public void setId(int vehicleIdProp) {
-        this.vehicleIdProp.set(getId());
+        this.vehicleIdProp.set(vehicleIdProp);
     }
     @Override
     public String getName() {
@@ -62,11 +62,11 @@ public class VehicleModel extends Vehicle {
         this.vehicleNameProp.set(name);
     }
     @Override
-    public Double getPrice() {
+    public double getPrice() {
         return priceProp.get();
     }
     @Override
-    public void setPrice(Double price) {
+    public void setPrice(double price) {
         this.priceProp.set(price);
     }
     public IntegerProperty vehicleIdProperty() {

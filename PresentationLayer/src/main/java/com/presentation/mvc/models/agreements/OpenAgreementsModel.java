@@ -6,7 +6,9 @@ import java.util.List;
 import com.model.entities.Agreement;
 import com.model.entities.Customer;
 import com.model.entities.Employee;
+import com.model.entities.Invoice;
 import com.model.entities.Vehicle;
+import com.presentation.mvc.models.table.TableModel;
 import com.presentation.mvc.models.vehicle.VehicleModel;
 import com.rki.rki.Rating;
 import javafx.beans.property.DoubleProperty;
@@ -15,15 +17,19 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.ObservableList;
 
 public class OpenAgreementsModel extends Agreement{
     private IntegerProperty fixedTermsProp;
     private DoubleProperty startValueProp;
     private ObjectProperty<Date> startAgreementProp;
+    private ObjectProperty<Date> endAgreementProp;
     private ObjectProperty<Rating> RKiProp;
     private ObjectProperty<Customer> customerProp;
     private ObjectProperty<Employee> employeeProp;
     private ObjectProperty<Vehicle> vehicleProp;
+    private ObjectProperty<List<Invoice>> invoicesProp;
+    private DoubleProperty daysRateProp;
     public OpenAgreementsModel() {
         fixedTermsProp = new SimpleIntegerProperty();
         startValueProp = new SimpleDoubleProperty();
@@ -32,6 +38,8 @@ public class OpenAgreementsModel extends Agreement{
         customerProp = new SimpleObjectProperty<Customer>();
         employeeProp = new SimpleObjectProperty<Employee>();
         vehicleProp = new SimpleObjectProperty<Vehicle>();
+        invoicesProp = new SimpleObjectProperty<List<Invoice>>();
+        daysRateProp = new SimpleDoubleProperty();
         setCustomer(new Customer());
         setEmployee(new Employee());
         setVehicle(new Vehicle());
@@ -93,6 +101,29 @@ public class OpenAgreementsModel extends Agreement{
         RKiProp.set(Rki);
     }
     @Override
+    public double getDaysRate() {
+        return daysRateProp.get();
+    }
+    public Date getStart() {
+        return startAgreementProp.get();
+    }
+
+    public void setStart(Date start) {
+        startAgreementProp.set(start);
+    }
+
+    public Date getEnd() {
+        return endAgreementProp.get();
+    }
+
+    public void setEnd(Date end) {
+        endAgreementProp.set(end);
+    }
+    @Override
+    public void setDaysRate(double daysRate) {
+        daysRateProp.set(daysRate);
+    }
+    @Override
     public void setCustomer(Customer customer) {
         if(customer != null)
             customerProp.set(customer);
@@ -114,15 +145,30 @@ public class OpenAgreementsModel extends Agreement{
     else
         vehicleProp.set(new Vehicle());
     }
-
+    public void setPayments(List<Invoice> payments) {
+        if(payments != null)
+        invoicesProp.set(payments);
+    }
+    public List<Invoice> getPayments() {
+        return invoicesProp.get();
+    }
+    public ObjectProperty<List<Invoice>> invoiceProperty() {
+        return invoicesProp;
+    }
     public IntegerProperty fixedTermsProperty() {
         return fixedTermsProp;
     }
     public DoubleProperty startValueProperty() {
         return startValueProp;
     }
+    public DoubleProperty daysRateProperty() {
+        return daysRateProp;
+    }
     public ObjectProperty<Date> startAgreementProperty() {
         return startAgreementProp;
+    }
+    public ObjectProperty<Date> endAgreementProperty() {
+        return endAgreementProp;
     }
     public ObjectProperty<Rating> RKiProperty() {
         return RKiProp;

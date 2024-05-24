@@ -24,7 +24,7 @@ public class VehicleView extends VBox implements View {
         TextField name = new TextField(model.getName());
         model.nameProperty().bind(name.textProperty());
 
-        TextField price = new TextField(model.getPrice().toString());
+        TextField price = new TextField(String.valueOf(model.getPrice()));
 
         Bindings.bindBidirectional(price.textProperty(), model.priceProperty(), new NumberStringConverter());
         ImageView imageView = new ImageView();

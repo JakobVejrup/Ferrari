@@ -3,24 +3,23 @@ package com.model.entities;
 public class Vehicle {
     private int id;
     private String name;
-    private Double price;
+    private double price;
     private byte[] image;
 
 // Konstruktør 
-    public Vehicle(int id, String name, Double price, byte[] image) {
+    public Vehicle(int id, String name, double price, byte[] image) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.image = image;
     }
-    public Vehicle(int id, String name, Double price) {
+    public Vehicle(int id, String name, double price) {
         this.id = id;
         this.name = name;
         this.price = price;
     }
     public Vehicle() {
         image = new byte[0];
-        price = 0d;
     }
     // Get metode
     public int getId () {
@@ -39,11 +38,11 @@ public class Vehicle {
         this.name = name;
     }
 
-    public Double getPrice () {
+    public double getPrice () {
         return price;
     }
 
-    public void setPrice (Double price) {
+    public void setPrice (double price) {
         this.price = price;
     }
     

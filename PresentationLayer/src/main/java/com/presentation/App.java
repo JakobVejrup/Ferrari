@@ -44,11 +44,7 @@ public class App extends Application {
         //Facade.getInstance().setCenter(new OpenAgreementController(model).getView());
 
         Facade.getInstance().setCenter(new LoginController().getView());
-<<<<<<< HEAD
         //Facade.getInstance().openModal(new CreateEmployeeController());
-=======
-        Facade.getInstance().openModal(new CreateEmployeeController());
->>>>>>> origin/View/Agreement
         //Employee employee = new Employee();
         //employee.setOccupation(Occupation.Manager);
         //Facade.getInstance().login(employee);
