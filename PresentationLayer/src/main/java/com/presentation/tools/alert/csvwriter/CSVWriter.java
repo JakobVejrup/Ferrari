@@ -17,7 +17,7 @@ public class CSVWriter {
     }
 
     private void writeRow(FileWriter writer, String[] row) throws IOException {
-        String rowString = String.join(",", row);
+        String rowString = String.join(";", row);
         writer.write(rowString);
         writer.write("\n");
     }
