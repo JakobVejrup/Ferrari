@@ -10,6 +10,8 @@ module com.presentation {
     requires javafx.base;
     requires java.sql;
     requires javafx.graphics;
+    requires junit;
     opens com.presentation to javafx.fxml;
     exports com.presentation;
+    exports com.presentation.tools.alert.csvwriter to junit;
 }
