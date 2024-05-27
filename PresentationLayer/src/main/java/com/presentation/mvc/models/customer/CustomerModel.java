@@ -121,4 +121,7 @@ public static List<Object> makeModelsAsObjects(List<Customer> customers) {
     return models;
 }
 
+public String toString() {
+    return nameProp.get() + " " + emailProp.get() + " " + CprProp.get();
+}
 }

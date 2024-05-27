@@ -94,4 +94,7 @@ public class VehicleModel extends Vehicle {
             models.add(new VehicleModel(vehicle));
         return models;
     }
+    public String toString() {
+        return getName() + " " + getPrice();
+    }
 }

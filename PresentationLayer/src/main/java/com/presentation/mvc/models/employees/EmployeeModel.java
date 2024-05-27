@@ -135,5 +135,9 @@ public class EmployeeModel extends Employee {
             models.add(new EmployeeModel(employee));
         return models;
     } 
+    public String toString() {
+        return nameProp.get() + " " + emailProp.get(); 
+    }
+  
 }
 
