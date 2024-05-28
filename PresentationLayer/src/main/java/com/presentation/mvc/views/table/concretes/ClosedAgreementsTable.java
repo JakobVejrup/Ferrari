@@ -52,7 +52,7 @@ public class ClosedAgreementsTable extends GuiTable implements TableDecorator{
         endCol.setCellValueFactory((column)                 -> ((AgreementModel) column.getValue().getItem()).endProperty());
         endpriceCol.setCellValueFactory((column)            -> ((AgreementModel) column.getValue().getItem()).endPriceProperty());
     }
-
+    
     @Override
     public GuiTable getTable() {
         return this;

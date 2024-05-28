@@ -122,6 +122,7 @@ public class CustomerModel extends Customer{
         return models;
     }
 
+
     public static List<Object> makeModelsAsObjects(List<Customer> customers) {
         List<Object> models = new ArrayList<>();
         for(Customer customer : customers) 
@@ -135,5 +136,9 @@ public class CustomerModel extends Customer{
         addressProp.unbind();
         cityProp.unbind();
         CprProp.unbind();
+    }
+
+    public String toString() {
+        return nameProp.get() + " " + emailProp.get() + " " + CprProp.get();
     }
 }

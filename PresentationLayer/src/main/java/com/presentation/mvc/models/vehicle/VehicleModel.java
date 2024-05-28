@@ -101,10 +101,16 @@ public class VehicleModel extends Vehicle {
             models.add(new VehicleModel(vehicle));
         return models;
     }
+
     public void unbindAll() {
         vehicleIdProp.unbind();
         vehicleNameProp.unbind();
         priceProp.unbind();
         imageProp.unbind();
+    }
+
+    public String toString() {
+        return getName() + " " + getPrice();
+
     }
 }

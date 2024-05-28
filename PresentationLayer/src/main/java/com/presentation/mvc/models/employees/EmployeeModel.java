@@ -153,5 +153,10 @@ public class EmployeeModel extends Employee {
         passwordProp.unbind();
         imageProp.unbind();
     }
+
+    public String toString() {
+        return nameProp.get() + " " + emailProp.get(); 
+    }
+  
 }
 
