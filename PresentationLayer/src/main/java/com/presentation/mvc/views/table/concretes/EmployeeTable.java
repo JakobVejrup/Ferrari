@@ -26,7 +26,6 @@ public class EmployeeTable extends GuiTable implements TableDecorator {
     private TableColumn<RowModel, String> emailCol;
     private TableColumn<RowModel, Occupation> occupationCol;
     private TableColumn<RowModel, Number> loanLimitCol;
-    //private TableColumn<RowModel, byte[]> imageCol;
 
     public EmployeeTable() {
         ImageTableDecorator image = new ImageTableDecorator(this, new ImageFactory("Ansat"));

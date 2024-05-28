@@ -13,6 +13,7 @@ import com.presentation.mvc.views.View;
 import com.presentation.tools.alert.Alerter;
 
 import javafx.application.Platform;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,7 +26,7 @@ import javafx.scene.layout.VBox;
 
 
 public class CustomerBaseView extends VBox implements View{
-    public CustomerBaseView(CustomerModel model) {
+    public CustomerBaseView(CustomerModel model, ObjectProperty<ObservableList<City>> cityList) {
         TextField email = new TextField(model.getEmail());
         model.emailProperty().bind(email.textProperty());
 
@@ -37,30 +38,17 @@ public class CustomerBaseView extends VBox implements View{
 
         TextField address = new TextField(model.getAddress());
         model.addressProperty().bind(address.textProperty());
-        
-        ServiceSingleton.getInstance().query(new Request(ServiceType.City, CRUDType.ReadAll,
-                null,
-                (cities) -> {
-                    ObservableList<City> obs = FXCollections.observableArrayList();
-                    for(City c : (List<City>)cities)
-                        obs.add(c);
-                    Platform.runLater(
-                            () -> {
-                                ComboBox<City> cityBox = new ComboBox<>(obs);
-                                model.cityProperty().bind(cityBox.valueProperty());
-                                getChildren().add(new HBox(cityBox));
 
-                        }
-                    );
-                }
-            )
-        );        
-
+        ComboBox<City> cityBox = new ComboBox<>();
+        cityBox.setValue(model.getCity() != null ? model.getCity() : new City());   
+        cityBox.itemsProperty().bind(cityList);
+        model.cityProperty().bind(cityBox.valueProperty());
 
         TextField cpr = new TextField(model.getCpr());
         model.CprProperty().bind(cpr.textProperty());
         getChildren().add(
             new VBox(
+                new HBox(new Label("PostNr"),cityBox),
                 new HBox(new Label("Email: "), email),
                 new HBox(new Label("TLF: "), phoneNumber),
                 new HBox(new Label("Navn: "), name),

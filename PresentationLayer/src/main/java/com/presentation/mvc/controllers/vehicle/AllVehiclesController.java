@@ -20,7 +20,7 @@ import com.presentation.mvc.controllers.table.factories.ButtonFactory;
 import com.presentation.mvc.controllers.table.factories.tables.OpenAgreementFactory;
 import com.presentation.mvc.controllers.vehicle.modals.CreateVehicleController;
 import com.presentation.mvc.controllers.vehicle.modals.UpdateVehicleController;
-import com.presentation.mvc.models.agreements.OpenAgreementsModel;
+import com.presentation.mvc.models.agreements.AgreementModel;
 import com.presentation.mvc.models.employees.EmployeeModel;
 import com.presentation.mvc.models.table.RowModel;
 import com.presentation.mvc.models.table.TableModel;

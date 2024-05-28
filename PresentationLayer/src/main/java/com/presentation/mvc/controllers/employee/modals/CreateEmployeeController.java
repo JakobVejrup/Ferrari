@@ -6,6 +6,7 @@ import com.logic.services.enums.CRUDType;
 import com.logic.services.enums.ServiceType;
 import com.model.threads.Validation;
 import com.presentation.mvc.controllers.modals.ModalController;
+import com.presentation.mvc.models.customer.CustomerModel;
 import com.presentation.mvc.models.employees.EmployeeModel;
 import com.presentation.mvc.views.employee.EmployeeImageView;
 import com.presentation.mvc.views.employee.modals.PasswordEmployeeView;
@@ -55,6 +56,7 @@ public class CreateEmployeeController extends ModalController {
                 (newEmployee) -> {
                     if(newEmployee != null) {
                         setResult(newEmployee);
+                        ((EmployeeModel)newEmployee).unbindAll();
                         Platform.runLater(this::close);
                     }
                 },

@@ -8,19 +8,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class AgreementView extends VBox implements View {
-    private Button newAgreement;
-    public AgreementView(EventHandler<ActionEvent>newAgreementAction){
+    public AgreementView(){
         getStyleClass().add("Aftaler");
-        newAgreement = new Button("Lav ny aftale");
-        newAgreement.setOnAction(newAgreementAction);
-        getChildren().add(newAgreement);
-    }
-    public void setTable(GuiTable table){
-        table.setup(this);
     }
     @Override
     public void addButtons(Button... buttons) {
-        getChildren().addAll(new HBox(buttons));
+        getChildren().addFirst(new HBox(buttons));
     }
     
 }

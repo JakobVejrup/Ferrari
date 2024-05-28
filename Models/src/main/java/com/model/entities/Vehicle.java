@@ -53,10 +53,9 @@ public class Vehicle {
         return image;
     }
     public void copy(Vehicle other) {
-        this.id = other.id;
-        this.price = other.price;
-        this.name = other.name;
-        this.image = other.image;
-
+        setId(other.getId());
+        setPrice(other.getPrice());
+        setName(other.getName());
+        setImage(other.getImage());
     }
 }

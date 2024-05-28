@@ -17,14 +17,18 @@ public class VehicleModel extends Vehicle {
     private StringProperty vehicleNameProp;
     private DoubleProperty priceProp;
     private ObjectProperty<byte[]> imageProp;
-
+    private boolean empty;
     public VehicleModel() {
         vehicleIdProp = new SimpleIntegerProperty();
         vehicleNameProp = new SimpleStringProperty();
         priceProp = new SimpleDoubleProperty();  
         imageProp = new SimpleObjectProperty<>();
+        empty = false;
     }
-    
+    public VehicleModel(boolean empty) {
+        this();
+        this.empty = empty;
+    }
     public VehicleModel(Vehicle vehicle) {
         this();
         setId(vehicle.getId());
@@ -33,6 +37,9 @@ public class VehicleModel extends Vehicle {
         setPrice(vehicle.getPrice());
         //priceProp.set(vehicle.getPrice());
         setImage(vehicle.getImage());
+    }
+    public boolean getEmpty() {
+        return empty;
     }
     @Override
     public byte[] getImage() {
@@ -93,5 +100,11 @@ public class VehicleModel extends Vehicle {
         for(Vehicle vehicle : vehicles)
             models.add(new VehicleModel(vehicle));
         return models;
+    }
+    public void unbindAll() {
+        vehicleIdProp.unbind();
+        vehicleNameProp.unbind();
+        priceProp.unbind();
+        imageProp.unbind();
     }
 }

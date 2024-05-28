@@ -17,6 +17,7 @@ public class InvoiceTable extends GuiTable implements TableDecorator {
     private TableColumn<RowModel, Date> dateStartCol;
     private TableColumn<RowModel, Date> dateEndCol;
     private TableColumn<RowModel, Number> plusCol;
+    private TableColumn<RowModel, Number> payedCol;
     private TableColumn<RowModel, Number> minusCol;
     private TableColumn<RowModel, Number> ultimoCol;
     private TableColumn<RowModel, Number> primoCol;
@@ -26,7 +27,8 @@ public class InvoiceTable extends GuiTable implements TableDecorator {
         getColumns().add(numberCol = new TableColumn<>("Nr"));
         getColumns().add(dateEndCol = new TableColumn<>("Fra"));
         getColumns().add(dateStartCol = new TableColumn<>("Til"));
-        getColumns().add(plusCol = new TableColumn<>("Beløb fjernet fra lånet"));
+        getColumns().add(payedCol = new TableColumn<>("Ydelse"));
+        getColumns().add(plusCol = new TableColumn<>("Afdrag"));
         getColumns().add(minusCol = new TableColumn<>("Renter"));
         getColumns().add(primoCol = new TableColumn<>("Før betaling"));
         getColumns().add(ultimoCol = new TableColumn<>("Efter betaling"));
@@ -51,6 +53,7 @@ public class InvoiceTable extends GuiTable implements TableDecorator {
                 return ((InvoiceModel)row.getValue().getItem()).detailsProperty();
             }
         });
+        payedCol.setCellValueFactory( (row) -> ((InvoiceModel)row.getValue().getItem()).payedProperty());
         dateEndCol.setCellValueFactory( (row) -> ((InvoiceModel)row.getValue().getItem()).dateEndProperty());
         plusCol.setCellValueFactory( (row) -> ((InvoiceModel)row.getValue().getItem()).plusProperty());
         minusCol.setCellValueFactory((row) -> ((InvoiceModel)row.getValue().getItem()).minusProperty());

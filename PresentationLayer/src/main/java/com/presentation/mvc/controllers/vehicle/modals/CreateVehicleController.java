@@ -7,6 +7,7 @@ import com.logic.services.enums.ServiceType;
 import com.model.threads.Validation;
 import com.presentation.mvc.controllers.modals.ModalController;
 import com.presentation.mvc.controllers.vehicle.AllVehiclesController;
+import com.presentation.mvc.models.customer.CustomerModel;
 import com.presentation.mvc.models.vehicle.VehicleModel;
 import com.presentation.mvc.views.vehicle.modals.VehicleView;
 import com.presentation.tools.ImageFinder;
@@ -50,6 +51,7 @@ public class CreateVehicleController extends ModalController{
         (newVehicle) -> {
             if(newVehicle != null) {
                 setResult(newVehicle);
+                ((VehicleModel)newVehicle).unbindAll();
                 Platform.runLater(this::close);
             }
         },

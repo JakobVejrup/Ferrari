@@ -21,6 +21,9 @@ public class SimpleUpdateHandler extends HandlerObject {
 
     @Override
     protected void action(Request request) {
-        request.getSetter().action(data.update(request.getObject()));
+        if(request.getSetter() != null)
+            request.getSetter().action(data.update(request.getObject()));
+        else 
+            data.update(request.getObject());
     }
 }

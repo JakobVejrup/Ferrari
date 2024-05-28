@@ -12,6 +12,7 @@ public class Agreement {
     private double startValue;
     private Date startAgreement;
     private Rating Rki;
+    private double totalRate;
     private Customer customer;
     private Employee employee;
     private Date start;
@@ -21,7 +22,7 @@ public class Agreement {
     private List<Invoice> payments;
 
     public Agreement(int Id, int FixedTerms, double startValue, Date startAgreement, Rating Rki, Customer customer,
-            Employee employee, Date start, Date end, Vehicle vehicle, double endPrice , List<Invoice> payments) {
+            Employee employee, Date start, Date end, Vehicle vehicle, double endPrice, double totalRate, List<Invoice> payments) {
         this.id = Id;
         this.fixedTerms = FixedTerms;
         this.startValue = startValue;
@@ -34,10 +35,11 @@ public class Agreement {
         this.vehicle = vehicle;
         this.endPrice = endPrice;
         this.payments = payments;
+        this.totalRate = totalRate;
     }
 
     public Agreement(int Id, int FixedTerms, double startValue, Date startAgreement, Rating Rki, Customer customer,
-            Employee employee, Date start, Date end, Vehicle vehicle, double endPrice ) {
+            Employee employee, Date start, Date end, Vehicle vehicle, double endPrice, double totalRate ) {
         this.id = Id;
         this.fixedTerms = FixedTerms;
         this.startValue = startValue;
@@ -49,9 +51,10 @@ public class Agreement {
         this.end = end;
         this.vehicle = vehicle;
         this.endPrice = endPrice;
+        this.totalRate = totalRate;
     }
     public Agreement(int Id, int FixedTerms, double startValue, Date startAgreement, Rating Rki, Customer customer,
-            Employee employee, Vehicle vehicle ) {
+            Employee employee, Vehicle vehicle, double totalRate) {
         this.id = Id;
         this.fixedTerms = FixedTerms;
         this.startValue = startValue;
@@ -60,18 +63,27 @@ public class Agreement {
         this.customer = customer;
         this.employee = employee;
         this.vehicle = vehicle;
-
+        this.totalRate = totalRate;
     }
-    public Agreement(int id, Date start, Date end, Vehicle vehicle, double endPrice) {
+    public Agreement(int id, Date start, Date end, Vehicle vehicle, double endPrice, double totalRate) {
         this.id = id;
         this.start = start;
         this.end = end;
         this.vehicle = vehicle;
         this.endPrice = endPrice;
+        this.totalRate = totalRate;
     }
 
     public Agreement() {
 
+    }
+
+    public double getTotalRate() {
+        return totalRate;
+    }
+
+    public void setTotalRate(double totalRate) {
+        this.totalRate = totalRate;
     }
 
     public int getId() {

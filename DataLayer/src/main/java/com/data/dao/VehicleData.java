@@ -25,7 +25,7 @@ public class VehicleData implements Data {
             ResultSet result = cs.executeQuery();
             if (!result.next())
                 return null;
-            vehicle.setId(vehicle.getId());
+            vehicle.setId(result.getInt("VehicleId"));
             return vehicle;
         }   
         catch (Exception e) {
@@ -35,8 +35,8 @@ public class VehicleData implements Data {
 
     @Override
     public Object read(Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call Trade.uspVehicleGet(?, ?, ?)}")) {
-            cs.setInt("ID",(int)(parameter));
+        try (CallableStatement cs = db.makeCall("{call Trade.uspVehicleGet(?)}")) {
+            cs.setInt("Id",(int)(parameter));
             ResultSet result = cs.executeQuery();
             if (!result.next())
                 return null;

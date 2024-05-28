@@ -20,6 +20,8 @@ import com.presentation.mvc.views.table.decorators.*;
 import com.presentation.tools.facade.Facade;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
+
 import java.util.List;
 import com.presentation.mvc.controllers.Controller;
 import com.presentation.mvc.controllers.customers.modals.CreateCustomerController;
@@ -32,7 +34,9 @@ public class CustomersController extends Controller{
     private TableModel model;
     private CustomersView view;
     public CustomersController() {
-        view = new CustomersView(this::newCustomer);
+        Button newCustomer = new Button("Ny Bruger");
+        newCustomer.setOnAction(this::newCustomer);
+        view = new CustomersView(newCustomer);
         Request request = new Request(ServiceType.Customer, CRUDType.ReadAll, (customers) -> {
         
             Platform.runLater( () -> {
@@ -41,8 +45,8 @@ public class CustomersController extends Controller{
                 table = new ParentTableDecorator(model, table);
                 table = new TableHeightDecorator(0.6, table);
                 table = new TableWidthDecorator(0.8, table);
-                table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory(), "Opdater andre", new UpdateCommand((row) -> new UpdateCustomerController((Customer)row.getItem())), "opdater"), table);
-                table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory(), "Slet andre", new DeleteCommand(model), "slet"), table);
+                table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory(), "Opdater kunde", new UpdateCommand((row) -> new UpdateCustomerController((Customer)row.getItem())), "opdater"), table);
+                table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory(), "Slet kunde", new DeleteCommand(model), "slet"), table);
                 view.setTable(table.getTable());
             });
         });

@@ -17,21 +17,20 @@ public class InvoiceData implements Data{
     }
     @Override
     public Object create(Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call uspDuePaymentInsert(?,?,?,?,?,?,?,?)}")) {
+        try (CallableStatement cs = db.makeCall("{call Trade.uspInvoiceInsert(?,?,?,?,?,?,?,?,?,?)}")) {
             Invoice duePayment = (Invoice) parameter;
-            cs.setInt("AgreementID", duePayment.getAgreement().getId());
+            cs.setInt("Id", duePayment.getAgreement().getId());
             cs.setInt("Number", duePayment.getNumber());
             cs.setDate("DateStart", duePayment.getDatestart());
             cs.setDate("DateEnd", duePayment.getDateend());
             cs.setDouble("Plus", duePayment.getPlus());
             cs.setDouble("Minus", duePayment.getMinus());
             cs.setDouble("UltimoValue", duePayment.getUltimovalue());
-            cs.setDouble("PrimoPrice", duePayment.getPrimoprice());
+            cs.setDouble("PrimoValue", duePayment.getPrimoprice());
+            cs.setDouble("Payed", duePayment.getPayed());
             cs.setString("Details", duePayment.getDetails());
-            ResultSet result = cs.executeQuery();
-            if (!result.next())
-                return null;
-            return duePayment;
+            cs.execute();
+            return cs.getUpdateCount() > 0 ? duePayment : null;
         } catch (Exception e) {
             return null;
         }
@@ -39,20 +38,20 @@ public class InvoiceData implements Data{
 
     @Override
     public Object read(Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call uspDuePaymentGet(?)}")) {
-            cs.setInt("Id",((Agreement)parameter).getId());
+        try (CallableStatement cs = db.makeCall("{call Trade.uspInvoiceGetOne(?)}")) {
+            cs.setInt("Id",(int)parameter);
             ResultSet result = cs.executeQuery();
             ArrayList<Invoice> invoices = new ArrayList<>();
             while(result.next())
                 invoices.add(new Invoice(
-                    (Agreement)parameter,
                     result.getInt("Number"),
                     result.getDate("DateStart"),
                     result.getDate("DateEnd"),
                     result.getDouble("Plus"),
                     result.getDouble("Minus"),
                     result.getDouble("UltimoValue"),
-                    result.getDouble("PrimoPrice"),
+                    result.getDouble("PrimoValue"),
+                    result.getDouble("Payed"),
                     result.getString("Details")
                 ));
             return invoices;
@@ -63,7 +62,7 @@ public class InvoiceData implements Data{
 
     @Override
     public Object readAll(Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call uspDuePaymentGetAll()}")) {
+        try (CallableStatement cs = db.makeCall("{call Trade.uspInvoiceGetAll()}")) {
             ResultSet result = cs.executeQuery();
             if (!result.next())
                 return null;
@@ -75,7 +74,8 @@ public class InvoiceData implements Data{
                 result.getDouble("Plus"),
                 result.getDouble("Minus"),
                 result.getDouble("UltimoValue"),
-                result.getDouble("PrimoPrice"),
+                result.getDouble("PrimoValue"),
+                result.getDouble("Payed"),
                 result.getString("Details")
             );
         } catch (Exception e) {
@@ -85,7 +85,7 @@ public class InvoiceData implements Data{
 
     @Override
     public Object update(Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call uspDuePaymentUpdate(?,?,?,?,?,?,?,?)}")) {
+        try (CallableStatement cs = db.makeCall("{call Trade.uspInvoiceUpdate(?,?,?,?,?,?,?,?)}")) {
             Invoice duePayment = (Invoice) parameter;
             cs.setInt("AgreementID", duePayment.getAgreement().getId());
             cs.setInt("Number", duePayment.getNumber());
@@ -94,7 +94,8 @@ public class InvoiceData implements Data{
             cs.setDouble("Plus", duePayment.getPlus());
             cs.setDouble("Minus", duePayment.getMinus());
             cs.setDouble("UltimoValue", duePayment.getUltimovalue());
-            cs.setDouble("PrimoPrice", duePayment.getPrimoprice());
+            cs.setDouble("PrimoValue", duePayment.getPrimoprice());
+            cs.setDouble("Payed", duePayment.getPayed());
             cs.setString("Details", duePayment.getDetails());
             cs.execute();
             return cs.getUpdateCount() > 0 ? duePayment : null;
@@ -105,7 +106,7 @@ public class InvoiceData implements Data{
 
     @Override
     public boolean delete(Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call uspDuePaymentDelete(?)}")) {
+        try (CallableStatement cs = db.makeCall("{call Trade.uspInvoiceDelete(?)}")) {
             cs.setInt("Id", ((Agreement)parameter).getId());
             cs.execute();
             return cs.getUpdateCount() > 0;

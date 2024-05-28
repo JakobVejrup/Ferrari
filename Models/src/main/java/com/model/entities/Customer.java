@@ -40,9 +40,9 @@ public class Customer extends Information{
         setEmail(other.getEmail());
         setName(other.getName());
         setPhoneNumber(other.getPhoneNumber());
-        this.address = other.address;
-        this.cpr = other.cpr;
-        this.city = other.city;
+        setAddress(other.getAddress());
+        setCpr(other.getCpr());
+        setCity(other.getCity());
     }
 
 

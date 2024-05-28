@@ -27,8 +27,6 @@ public class CustomerValidation extends HandlerObject{
             request.getValidation().addMessage("Ikke en gyldig adresse");
         if(customer.getCpr().length() != 10)
             request.getValidation().addMessage("Ikke et gyldigt cpr, skal være 10 cifre");
-        if(customer.getCityZip().length() != 4)
-            request.getValidation().addMessage("Ikke et gyldigt postnummer, skal være 4 cifre");
         //Ved ikke om jeg skal tilføje dem her:
         if(customer.getPhoneNumber().length() < 8)
             request.getValidation().addMessage("Ikke et gyldigt nr., skal være 8 cifre");

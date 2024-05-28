@@ -21,6 +21,9 @@ public class SimpleReadAllHandler extends HandlerObject {
 
     @Override
     protected void action(Request request) {
-        request.getSetter().action(data.readAll(request.getObject()));
+        if(request.getSetter() != null)
+            request.getSetter().action(data.readAll(request.getObject()));
+        else 
+            data.readAll(request.getObject());
     }
 }

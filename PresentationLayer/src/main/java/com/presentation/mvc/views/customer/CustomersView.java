@@ -9,11 +9,9 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 
 public class CustomersView extends VBox {
-    private Button newUser;
-    public CustomersView(EventHandler<ActionEvent> newUserAction) {
+
+    public CustomersView(Button newUser) {
         getStyleClass().add("Kunder");
-        newUser = new Button("Lav ny kunde");
-        newUser.setOnAction(newUserAction);
         getChildren().add(newUser);
     }
     public void setTable(GuiTable table) {

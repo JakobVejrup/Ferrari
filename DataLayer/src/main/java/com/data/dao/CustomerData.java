@@ -2,6 +2,7 @@ package com.data.dao;
 
 import com.data.ConnectionData;
 import com.data.interfaces.Data;
+import com.model.entities.City;
 import com.model.entities.Customer;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
@@ -21,7 +22,7 @@ public class CustomerData implements Data {
             cs.setString("Phonenumber", customer.getPhoneNumber());
             cs.setString("Email", customer.getEmail());
             cs.setString("Address", customer.getAddress());
-            cs.setString("CityZip", customer.getCityZip());
+            cs.setInt("CityZip", customer.getCity().getZip());
             cs.setString("Cpr", customer.getCpr());
             ResultSet result = cs.executeQuery();
             if (!result.next())
@@ -29,6 +30,7 @@ public class CustomerData implements Data {
             customer.setId(result.getInt("InformationId"));
             return customer;   
         } catch (Exception e) {
+            System.out.println(e);
             return null;     
         }
     } 
@@ -45,10 +47,11 @@ public class CustomerData implements Data {
             result.getString("Phonenumber"),
             result.getString("Email"),
             result.getString("Address"),
-            result.getString("CityZip"),
-            result.getString("Cpr")
+            result.getString("Cpr"),
+            new City(result.getInt("Zip"), result.getString("CityName"))
             );
-        } catch (SQLException e) {
+        } 
+        catch (SQLException e) {
             return null;
         }
     }
@@ -64,8 +67,8 @@ public class CustomerData implements Data {
                 result.getString("Phonenumber"),
                 result.getString("Email"),
                 result.getString("Address"),
-                result.getString("CityZip"),
-                result.getString("Cpr")
+                result.getString("Cpr"),
+                new City(result.getInt("Zip"), result.getString("CityName"))
                 ));
             }
             return customers;
@@ -82,7 +85,7 @@ public class CustomerData implements Data {
             cs.setString("Phonenumber", customer.getPhoneNumber());
             cs.setString("Email", customer.getEmail());
             cs.setString("Address", customer.getAddress());
-            cs.setString("CityZip", customer.getCityZip());
+            cs.setInt("CityZip", customer.getCity().getZip());
             cs.setString("Cpr", customer.getCpr());
             cs.setInt("Id", customer.getId());
             return cs.executeUpdate() > 0 ? customer : null;

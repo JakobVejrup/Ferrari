@@ -3,7 +3,6 @@ package com.data.dao;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-
 import com.data.ConnectionData;
 import com.data.interfaces.Data;
 import com.model.entities.Agreement;
@@ -28,7 +27,7 @@ public class AgreementOpenData implements Data {
 
     @Override
     public Object create(Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call uspOpenAgreementInsert(?,?,?,?,?,?,?)}")) {
+        try (CallableStatement cs = db.makeCall("{call Trade.uspOpenAgreementInsert(?,?,?,?,?,?,?,?)}")) {
             Agreement agreement = (Agreement) parameter;
             cs.setInt("FixedTerms", agreement.getFixedTerms());
             cs.setDouble("StartValue", agreement.getStartValue());
@@ -37,22 +36,21 @@ public class AgreementOpenData implements Data {
             cs.setInt("CustomerId", agreement.getCustomer().getId());
             cs.setInt("EmployeeId", agreement.getEmployee().getId());
             cs.setInt("VehicleId", agreement.getVehicle().getId());
+            cs.setDouble("TotalRate", agreement.getTotalRate());
             ResultSet result = cs.executeQuery();
             if (!result.next())
                 return null;
             agreement.setId(result.getInt("Id"));
-            for(Invoice invoice : agreement.getPayments())
-                invoiceData.create(invoice);
             return agreement;
-        } catch (Exception e) {
+        } 
+        catch (Exception e) {
             return null;
         }
     }
     
-
     @Override
     public Object read(Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call uspOpenAgreementGet(?)}")) {
+        try (CallableStatement cs = db.makeCall("{call Trade.uspOpenAgreementGet(?)}")) {
             cs.setInt("Id", (int)parameter);
             ResultSet result = cs.executeQuery();
             if (!result.next())
@@ -65,7 +63,8 @@ public class AgreementOpenData implements Data {
                 Rating.valueOf(result.getString("Rki")),
                 (Customer)customerData.read(result.getInt("CustomerId")),
                 (Employee)employeeData.read(result.getInt("EmployeeId")),
-                new Vehicle(result.getInt("VehicleId"), result.getString("VehicleName"), result.getDouble("Price"), result.getBytes("VehicleImage"))
+                new Vehicle(result.getInt("VehicleId"), result.getString("VehicleName"), result.getDouble("Price"), result.getBytes("VehicleImage")),
+                result.getDouble("TotalRate")
             );  
         } 
         catch (Exception e) {
@@ -88,20 +87,21 @@ public class AgreementOpenData implements Data {
                     Rating.valueOf(result.getString("Rki")),
                     (Customer)customerData.read(result.getInt("CustomerId")),
                     (Employee)employeeData.read(result.getInt("EmployeeId")),
-                    new Vehicle(result.getInt("VehicleId"), result.getString("VehicleName"), result.getDouble("Price"), result.getBytes("VehicleImage"))
+                    new Vehicle(result.getInt("VehicleId"), result.getString("VehicleName"), result.getDouble("Price"), result.getBytes("VehicleImage")),
+                    result.getDouble("TotalRate")
                 ));
             return agreements;
             } 
         catch (Exception e) {
             return agreements;
         }
-       }
+    }
 
     @Override
     public Object update(Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call uspOpenAgreementUpdate(?,?,?,?,?,?,?,?)}")) {
+        try (CallableStatement cs = db.makeCall("{call Trade.uspOpenAgreementUpdate(?,?,?,?,?,?,?,?,?)}")) {
             Agreement agreement = (Agreement) parameter;
-            cs.setInt("Id", agreement.getFixedTerms());
+            cs.setInt("Id", agreement.getId());
             cs.setInt("FixedTerms", agreement.getFixedTerms());
             cs.setDouble("StartValue", agreement.getStartValue());
             cs.setDate("StartAgreement", agreement.getStartAgreement());
@@ -109,7 +109,8 @@ public class AgreementOpenData implements Data {
             cs.setInt("CustomerId", agreement.getCustomer().getId());
             cs.setInt("EmployeeId", agreement.getEmployee().getId());
             cs.setInt("VehicleId", agreement.getVehicle().getId());
-            cs.executeQuery();
+            cs.setDouble("TotalRate", agreement.getTotalRate());
+            cs.execute();
          return cs.getUpdateCount() > 0 ? agreement : null;
         } catch (Exception e) {
             return null;
@@ -118,13 +119,14 @@ public class AgreementOpenData implements Data {
 
     @Override
     public boolean delete(Object parameter) {
-        try (CallableStatement cs = db.makeCall("{call uspOpenAgreementDelete(?)}")) {
-            cs.setInt("Id", (int)parameter);
+        try (CallableStatement cs = db.makeCall("{call Trade.uspOpenAgreementDelete(?)}")) {
+            cs.setInt("Id", ((Agreement)parameter).getId());
             cs.execute();
             return cs.getUpdateCount() > 0;
         } catch (Exception e) {
             return false;
         }
     }
+    
     
 }

@@ -51,10 +51,10 @@ public class Employee extends Information {
         this.loanLimit = loanLimit;
     }
     public void copy(Employee other) {
-        this.loanLimit = other.loanLimit;
-        this.occupation = other.occupation;
-        this.password = other.password;
-        this.image = other.image;
+        setLoanLimit(other.getLoanLimit());
+        setOccupation(other.getOccupation());
+        setPassword(other.getPassword());
+        setImage(other.getImage());
         setEmail(other.getEmail());
         setName(other.getName());
         setPhoneNumber(other.getPhoneNumber());

@@ -20,6 +20,7 @@ public class InvoiceModel extends Invoice{
     private DoubleProperty ultimoProperty;
     private DoubleProperty primoProperty;
     private StringProperty detailsProperty;
+    private DoubleProperty payedProperty;
     public InvoiceModel() {
         numberProperty = new SimpleIntegerProperty();
         dateStartProperty = new SimpleObjectProperty<>();
@@ -27,11 +28,13 @@ public class InvoiceModel extends Invoice{
         plusProperty = new SimpleDoubleProperty();
         minusProperty = new SimpleDoubleProperty();
         ultimoProperty = new SimpleDoubleProperty();
+        payedProperty = new SimpleDoubleProperty();
         primoProperty = new SimpleDoubleProperty();
         detailsProperty = new SimpleStringProperty();
     }
     public InvoiceModel(Invoice other) {
         this();
+        payedProperty.set(other.getPayed());
         numberProperty.set(other.getNumber());
         dateStartProperty.set(other.getDatestart());
         dateEndProperty.set(other.getDateend());
@@ -70,6 +73,17 @@ public class InvoiceModel extends Invoice{
 
     public StringProperty detailsProperty() {
         return detailsProperty;
+    }
+    public DoubleProperty payedProperty() {
+        return payedProperty;
+    }
+    @Override
+    public double getPayed() {
+        return payedProperty.get();
+    }
+    @Override
+    public void setPayed(double payed) {
+        payedProperty.set(payed);
     }
     @Override
     public void setNumber(int value) {
@@ -141,8 +155,19 @@ public class InvoiceModel extends Invoice{
             models.add(new InvoiceModel(invoice));
         return models;
     }
-    
+    public static List<InvoiceModel> makeModels(Invoice[] invoices) {
+        List<InvoiceModel> models = new ArrayList<>();
+        for (Invoice invoice : invoices)
+            models.add(new InvoiceModel(invoice));
+        return models;
+    }
     public static List<Object> makeModelsAsObjects(List<Invoice> invoices) {
+        List<Object> models = new ArrayList<>();
+        for(Invoice invoice : invoices)
+            models.add(new InvoiceModel(invoice));
+        return models;
+    } 
+    public static List<Object> makeModelsAsObjects(Invoice[] invoices) {
         List<Object> models = new ArrayList<>();
         for(Invoice invoice : invoices)
             models.add(new InvoiceModel(invoice));

@@ -14,15 +14,21 @@ public class EmployeeModel extends Employee {
     private DoubleProperty loanLimitProp;
     private StringProperty passwordProp;
     private ObjectProperty<byte[]> imageProp;
-
+    private boolean empty;
+    
     public EmployeeModel() {
-        nameProp = new SimpleStringProperty();
-        emailProp = new SimpleStringProperty();
-        phoneNumberProp = new SimpleStringProperty();
-        passwordProp = new SimpleStringProperty();
+        nameProp = new SimpleStringProperty("");
+        emailProp = new SimpleStringProperty("");
+        phoneNumberProp = new SimpleStringProperty("");
+        passwordProp = new SimpleStringProperty("");
         occupationProp = new SimpleObjectProperty<Occupation>();
-        loanLimitProp = new SimpleDoubleProperty();
+        loanLimitProp = new SimpleDoubleProperty(0);
         imageProp = new SimpleObjectProperty<>();
+        empty = false;
+    }
+    public EmployeeModel(boolean empty) {
+        this();
+        this.empty = empty;
     }
 
     public EmployeeModel(Employee employee) {
@@ -35,6 +41,9 @@ public class EmployeeModel extends Employee {
         loanLimitProp.set(employee.getLoanLimit());
         passwordProp.set(employee.getPassword());
         imageProp.set(employee.getImage());
+    }
+    public boolean getEmpty() {
+        return empty;
     }
     @Override
     public byte[] getImage() {
@@ -135,5 +144,14 @@ public class EmployeeModel extends Employee {
             models.add(new EmployeeModel(employee));
         return models;
     } 
+    public void unbindAll() {
+        emailProp.unbind();
+        nameProp.unbind();
+        occupationProp.unbind();
+        phoneNumberProp.unbind();
+        loanLimitProp.unbind();
+        passwordProp.unbind();
+        imageProp.unbind();
+    }
 }
 

@@ -31,7 +31,7 @@ public class SingleVehicleView extends VBox implements View{
         name.setEditable(false);
 
         image = new ImageView();
-        if(model.getImage() != null)
+        if(model.getImage() != null) 
            image.setImage(new Image(new ByteArrayInputStream(model.getImage()), 0, 300, true, true));
         getChildren().addAll(
             new HBox(new Label("Bil navn: "), name ),

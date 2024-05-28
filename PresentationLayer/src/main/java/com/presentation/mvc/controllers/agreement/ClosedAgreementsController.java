@@ -16,28 +16,29 @@ import com.presentation.mvc.models.table.RowModel;
 import com.presentation.mvc.models.table.TableModel;
 import com.presentation.mvc.views.agreement.AgreementView;
 import com.presentation.tools.facade.Facade;
+import com.presentation.mvc.views.table.concretes.ClosedAgreementsTable;
 import com.presentation.mvc.views.table.concretes.OpenAgreementTable;
 import com.presentation.mvc.views.table.decorators.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 
-public class OpenAgreementsController extends Controller{
-    private  TableModel model;
+public class ClosedAgreementsController extends Controller{
+    private TableModel model;
     private AgreementView view;
-    public OpenAgreementsController() {
+    public ClosedAgreementsController() {
         view = new AgreementView();
-        Request request = new Request(ServiceType.AgreementOpen, CRUDType.ReadAll, (agreements) -> {
+        Request request = new Request(ServiceType.AgreementClosed, CRUDType.ReadAll, (agreements) -> {
             Platform.runLater( () -> {
-                TableDecorator table = new OpenAgreementTable();
-                model = new TableModel(ServiceType.AgreementOpen, AgreementModel.makeModelsAsObjects((List<Agreement>)agreements));
+                TableDecorator table = new ClosedAgreementsTable();
+                model = new TableModel(ServiceType.AgreementClosed, AgreementModel.makeModelsAsObjects((List<Agreement>)agreements));
                 table = new ParentTableDecorator(model, table);
                 table = new TableHeightDecorator(0.6, table);
                 table = new TableWidthDecorator(0.8, table);
-                table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory(), "Opdater aftale", new SelectCommand((rowmodel)->{
+                table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory(), "Se Aftale", new SelectCommand((rowmodel)->{
                     AgreementModel agreement = (AgreementModel)((RowModel)rowmodel).getItem();
-                    Facade.getInstance().setCenter(new AgreementController(agreement, true).getView());
-                }), "opdater"), table);
+                    Facade.getInstance().setCenter(new AgreementController(agreement, false).getView());
+                }), "Se Aftale"), table);
                 table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory(), "Slet aftale", new DeleteCommand(model), "slet"), table);
                 table.getTable().setup(view);
             });
@@ -45,16 +46,9 @@ public class OpenAgreementsController extends Controller{
         ServiceSingleton.getInstance().query(request);
         setView(view);
 
-        Button makeAgreement = new Button("Ny Aftale");
-        makeAgreement.setOnAction(this::newAgreement);
-        view.addButtons(makeAgreement);
-        
     }
 
-    public void newAgreement(ActionEvent event) {
-        AgreementModel agreement = new AgreementModel();
-        Facade.getInstance().setCenter(new AgreementController(agreement, true).getView());
-    }
+
     @Override
     public AgreementView getView() {
         return view;

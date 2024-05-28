@@ -8,4 +8,5 @@ module com.logic {
     exports com.logic;
     exports com.logic.services.enums;
     exports com.logic.validation;
+    exports com.logic.math;
 }

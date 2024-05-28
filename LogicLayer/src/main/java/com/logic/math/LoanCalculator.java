@@ -14,32 +14,30 @@ public class LoanCalculator {
 
     public static Invoice[] låneBeregner(Agreement agreement) {
         Invoice [] Betalinger = new Invoice[agreement.getFixedTerms()];
-        double rente = rente(agreement);
-        double månedligBetaling = fastYdelse(agreement.getVehicle().getPrice() - agreement.getStartValue(), rente, agreement.getFixedTerms());
+        double rente = renteProcent(agreement);
+        double totalBeløb = agreement.getVehicle().getPrice() - agreement.getStartValue();
+        double månedligBetaling = fastYdelse(totalBeløb, rente, agreement.getFixedTerms());
         int terminer = agreement.getFixedTerms();
-        double totalBeløb = terminer * månedligBetaling;
-        agreement.setEndPrice (totalBeløb);
-        totalBeløb = agreement.getVehicle().getPrice() - agreement.getStartValue();
+        agreement.setEndPrice (terminer * månedligBetaling);
         Date firstDate = agreement.getStart();
+        double primoGæld = totalBeløb;
         for (int i = 1; i <= terminer; i++) {
             LocalDate firstPlus = firstDate.toLocalDate();
             firstPlus = firstPlus.plus(1, ChronoUnit.MONTHS);
             Date lastDate = Date.valueOf(firstPlus);
-
-            double Restgæld = restgæld(totalBeløb, månedligBetaling, rente, i -1);
-            double Afdrag = afdrag(Restgæld, rente);
-            Restgæld = restgæld(totalBeløb, månedligBetaling, rente, i );
-            double plus = månedligBetaling - Afdrag;
-            //double primo = Restgæld - plus;
-
-            Betalinger [i - 1] = new Invoice(agreement, i, firstDate, lastDate, plus, Afdrag, totalBeløb, Restgæld, "");
+            double renten = primoGæld * rente;
+            if(i == terminer)
+                månedligBetaling = primoGæld + renten;
+            double afdrag = månedligBetaling - renten;
+            double ultimoGæld = primoGæld - afdrag;
+            Betalinger [i - 1] = new Invoice(agreement, i, firstDate, lastDate, afdrag, renten, ultimoGæld, primoGæld, månedligBetaling, "");
             firstDate = Date.valueOf(firstPlus);
-            totalBeløb = Restgæld;
+            primoGæld = ultimoGæld;
         }
         return Betalinger;
     }
 
-    public static double rente(Agreement agreement) {
+    public static double renteProcent(Agreement agreement) {
         double dagsRente = agreement.getDaysRate();
         double RKIværdi = switch(agreement.getRki()) {
             case Rating.A -> 1;
@@ -49,16 +47,13 @@ public class LoanCalculator {
         };
         LocalDate first = agreement.getStart().toLocalDate().plus(3, ChronoUnit.YEARS);
         double tidsRente = Date.valueOf(first).getTime() > agreement.getEnd().getTime() ? 1: 0;
+        agreement.setTotalRate(RKIværdi + dagsRente + tidsRente);
         return ((RKIværdi + dagsRente + tidsRente) / 100)/12;
 
     }
     public static double fastYdelse(double låneBeløb, double rente, int antalTerminer) {
-        return låneBeløb / ((1 - Math.pow (1 + rente, - antalTerminer)) / rente);
-    }
-    public static double restgæld(double startbeløb, double betaling, double rente, int n) {
-        return (startbeløb * Math.pow((1 + rente), n)) - (betaling *((Math.pow((1 + rente), n) - 1) / rente));
-    }
-    public static double afdrag(double total, double rente) {
-        return total * rente;
+        //return (låneBeløb * rente) / (Math.pow (1 + rente, antalTerminer) - 1);
+        return (låneBeløb * rente) / (1- Math.pow (1 + rente, -antalTerminer));
+        //return låneBeløb / ((1 - Math.pow (1 + rente, -antalTerminer)) / rente);
     }
 }

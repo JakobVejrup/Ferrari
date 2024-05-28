@@ -15,7 +15,7 @@ import com.presentation.mvc.controllers.table.commands.UpdateCommand;
 import com.presentation.mvc.controllers.table.factories.ButtonFactory;
 import com.presentation.mvc.controllers.table.factories.CheckboxFactory;
 import com.presentation.mvc.controllers.table.factories.tables.OpenAgreementFactory;
-import com.presentation.mvc.models.agreements.OpenAgreementsModel;
+import com.presentation.mvc.models.agreements.AgreementModel;
 import com.presentation.mvc.models.employees.EmployeeModel;
 import com.presentation.mvc.models.table.RowModel;
 import com.presentation.mvc.models.table.TableModel;
@@ -65,9 +65,9 @@ public class EmployeesController extends Controller {
                     for(RowModel row : model.getRows()) {
                         ArrayList<Agreement> toAdd = new ArrayList<>();
                         for(Agreement agreement : agreements)
-                            if(((Employee)row.getItem()).getId() == agreement.getCustomer().getId())
+                            if(((Employee)row.getItem()).getId() == agreement.getEmployee().getId())
                                 toAdd.add(agreement);
-                        row.getItems().put(ServiceType.AgreementOpen, new TableModel(ServiceType.AgreementOpen, OpenAgreementsModel.makeModelsAsObjects(toAdd)));
+                        row.getItems().put(ServiceType.AgreementOpen, new TableModel(ServiceType.AgreementOpen, AgreementModel.makeModelsAsObjects(toAdd)));
                         agreements.removeAll(toAdd);
                     }
                     table = new ChildTableDecorator(new ColumnController(new OpenAgreementFactory(), "Tilbud"), table);

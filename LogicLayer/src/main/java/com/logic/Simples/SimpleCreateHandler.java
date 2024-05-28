@@ -21,6 +21,9 @@ public class SimpleCreateHandler extends HandlerObject {
 
     @Override
     protected void action(Request request) {
-        request.getSetter().action(data.create(request.getObject()));
+        if(request.getSetter() != null)
+            request.getSetter().action(data.create(request.getObject()));
+        else 
+            data.create(request.getObject());
     }
 }

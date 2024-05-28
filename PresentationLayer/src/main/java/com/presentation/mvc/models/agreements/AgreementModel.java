@@ -1,6 +1,7 @@
 package com.presentation.mvc.models.agreements;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import com.model.entities.Agreement;
@@ -8,6 +9,8 @@ import com.model.entities.Customer;
 import com.model.entities.Employee;
 import com.model.entities.Invoice;
 import com.model.entities.Vehicle;
+import com.presentation.mvc.models.customer.CustomerModel;
+import com.presentation.mvc.models.employees.EmployeeModel;
 import com.presentation.mvc.models.table.TableModel;
 import com.presentation.mvc.models.vehicle.VehicleModel;
 import com.rki.rki.Rating;
@@ -19,7 +22,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 
-public class OpenAgreementsModel extends Agreement{
+public class AgreementModel extends Agreement{
     private IntegerProperty fixedTermsProp;
     private DoubleProperty startValueProp;
     private ObjectProperty<Date> startAgreementProp;
@@ -31,7 +34,11 @@ public class OpenAgreementsModel extends Agreement{
     private ObjectProperty<Vehicle> vehicleProp;
     private ObjectProperty<List<Invoice>> invoicesProp;
     private DoubleProperty daysRateProp;
-    public OpenAgreementsModel() {
+    private DoubleProperty totalRateProp;
+    private DoubleProperty endPriceProp;
+
+
+    public AgreementModel() {
         fixedTermsProp = new SimpleIntegerProperty();
         startValueProp = new SimpleDoubleProperty();
         startAgreementProp = new SimpleObjectProperty<Date>();
@@ -43,21 +50,27 @@ public class OpenAgreementsModel extends Agreement{
         vehicleProp = new SimpleObjectProperty<Vehicle>();
         invoicesProp = new SimpleObjectProperty<List<Invoice>>();
         daysRateProp = new SimpleDoubleProperty();
-        setCustomer(new Customer());
-        setEmployee(new Employee());
-        setVehicle(new Vehicle());
+        totalRateProp = new SimpleDoubleProperty();
+        endPriceProp = new SimpleDoubleProperty();
+        setCustomer(new CustomerModel(true));
+        setEmployee(new EmployeeModel(true));
+        setVehicle(new VehicleModel(true));
     }
 
-    public OpenAgreementsModel(Agreement agreement) {
+    public AgreementModel(Agreement agreement) {
         this();
         setId(agreement.getId());
         fixedTermsProp.set(agreement.getFixedTerms());
         startValueProp.set(agreement.getStartValue());
         startAgreementProp.set(agreement.getStartAgreement());
-        RKiProp.set(agreement.getRki());
+        setTotalRate(agreement.getTotalRate());
+        setEnd(agreement.getEnd());
+        setStart(agreement.getStart());
+        setRki(agreement.getRki());
         setCustomer(agreement.getCustomer());
         setEmployee(agreement.getEmployee());
         setVehicle(agreement.getVehicle());
+        setPayments(agreement.getPayments());
     }
 
     @Override
@@ -127,6 +140,22 @@ public class OpenAgreementsModel extends Agreement{
         daysRateProp.set(daysRate);
     }
     @Override
+    public double getTotalRate() {
+        return totalRateProp.get();
+    }
+    @Override
+    public void setTotalRate(double rate) {
+        totalRateProp.set(rate);
+    }
+    @Override
+    public double getEndPrice() {
+        return endPriceProp.get();
+    }
+    @Override
+    public void setEndPrice(double rate) {
+        endPriceProp.set(rate);
+    }
+    @Override
     public void setCustomer(Customer customer) {
         if(customer != null)
             customerProp.set(customer);
@@ -167,10 +196,15 @@ public class OpenAgreementsModel extends Agreement{
     public DoubleProperty daysRateProperty() {
         return daysRateProp;
     }
+    public DoubleProperty totalRateProperty() {
+        return totalRateProp;
+    }
+    public DoubleProperty endPriceProperty() {
+        return endPriceProp;
+    }
     public ObjectProperty<Date> startAgreementProperty() {
         return startAgreementProp;
     }
-
     public ObjectProperty<Date> endProperty() {
         return endProp;
     }
@@ -189,18 +223,17 @@ public class OpenAgreementsModel extends Agreement{
     public ObjectProperty<Vehicle> vehicleProperty() {
         return vehicleProp;
     }
-    public static List<OpenAgreementsModel> makeModels(List<Agreement> agreements) {
-        List<OpenAgreementsModel> models = new ArrayList<>();
+    public static List<AgreementModel> makeModels(List<Agreement> agreements) {
+        List<AgreementModel> models = new ArrayList<>();
         for (Agreement agreement : agreements)
-            models.add(new OpenAgreementsModel(agreement));
+            models.add(new AgreementModel(agreement));
         return models;
     }
     public static List<Object> makeModelsAsObjects(List<Agreement> agreements) {
         List<Object> models = new ArrayList<>();
         for(Agreement agreement : agreements)
-            models.add(new OpenAgreementsModel(agreement));
+            models.add(new AgreementModel(agreement));
         return models;
     }
-//tjek
         
 }

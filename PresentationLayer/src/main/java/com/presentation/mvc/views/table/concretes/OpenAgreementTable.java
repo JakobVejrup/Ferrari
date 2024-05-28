@@ -1,6 +1,6 @@
 package com.presentation.mvc.views.table.concretes;
 import java.sql.Date;
-import com.presentation.mvc.models.agreements.OpenAgreementsModel;
+import com.presentation.mvc.models.agreements.AgreementModel;
 import com.model.entities.Customer;
 import com.model.entities.Employee;
 import com.model.entities.Vehicle;
@@ -29,13 +29,13 @@ public OpenAgreementTable() {
     getColumns().add(employeeCol        = new TableColumn<RowModel, Employee>("Employee"));
     getColumns().add(vehicleCol         = new TableColumn<RowModel, Vehicle>("Vehicle"));
 
-    fixedTermsCol.setCellValueFactory((column)      -> ((OpenAgreementsModel)column.getValue().getItem()).fixedTermsProperty());
-    startValueCol.setCellValueFactory((column)      -> ((OpenAgreementsModel)column.getValue().getItem()).startValueProperty());
-    startAgreementCol.setCellValueFactory((column)  -> ((OpenAgreementsModel)column.getValue().getItem()).startAgreementProperty());
-    RKiCol.setCellValueFactory((column)             -> ((OpenAgreementsModel)column.getValue().getItem()).RKiProperty());
-    customerCol.setCellValueFactory((column)        -> ((OpenAgreementsModel)column.getValue().getItem()).customerProperty());
-    employeeCol.setCellValueFactory((column)        -> ((OpenAgreementsModel)column.getValue().getItem()).employeeProperty());
-    vehicleCol.setCellValueFactory((column)         -> ((OpenAgreementsModel)column.getValue().getItem()).vehicleProperty());
+    fixedTermsCol.setCellValueFactory((column)      -> ((AgreementModel)column.getValue().getItem()).fixedTermsProperty());
+    startValueCol.setCellValueFactory((column)      -> ((AgreementModel)column.getValue().getItem()).startValueProperty());
+    startAgreementCol.setCellValueFactory((column)  -> ((AgreementModel)column.getValue().getItem()).startAgreementProperty());
+    RKiCol.setCellValueFactory((column)             -> ((AgreementModel)column.getValue().getItem()).RKiProperty());
+    customerCol.setCellValueFactory((column)        -> ((AgreementModel)column.getValue().getItem()).customerProperty());
+    employeeCol.setCellValueFactory((column)        -> ((AgreementModel)column.getValue().getItem()).employeeProperty());
+    vehicleCol.setCellValueFactory((column)         -> ((AgreementModel)column.getValue().getItem()).vehicleProperty());
 
         }
 @Override

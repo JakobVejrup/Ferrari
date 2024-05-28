@@ -59,4 +59,10 @@ public class RowModel {
             list.add(new RowModel(obj, type));
         return list;
     }
+    public static ObservableList<RowModel> makeRowModels(ServiceType type, Object[] objects) {
+        ObservableList<RowModel> list = FXCollections.observableArrayList();
+        for(Object obj : objects)
+            list.add(new RowModel(obj, type));
+        return list;
+    }
 }

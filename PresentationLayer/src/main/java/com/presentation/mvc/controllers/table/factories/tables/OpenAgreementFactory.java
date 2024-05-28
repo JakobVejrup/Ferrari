@@ -1,13 +1,13 @@
 package com.presentation.mvc.controllers.table.factories.tables;
 
 import com.logic.services.enums.ServiceType;
-import com.presentation.mvc.controllers.agreement.OpenAgreementController;
+import com.presentation.mvc.controllers.agreement.AgreementController;
 import com.presentation.mvc.controllers.table.CellController;
 import com.presentation.mvc.controllers.table.ColumnController;
 import com.presentation.mvc.controllers.table.commands.SelectCommand;
 import com.presentation.mvc.controllers.table.factories.ButtonFactory;
 import com.presentation.mvc.controllers.table.factories.NodeFactory;
-import com.presentation.mvc.models.agreements.OpenAgreementsModel;
+import com.presentation.mvc.models.agreements.AgreementModel;
 import com.presentation.mvc.models.table.RowModel;
 import com.presentation.mvc.views.table.concretes.OpenAgreementTable;
 import com.presentation.mvc.views.table.decorators.ButtonColumnDecorator;
@@ -27,8 +27,8 @@ public class OpenAgreementFactory extends NodeFactory {
         table.setup(box);
         table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory(), "Se aftale", new SelectCommand(
             (rowModel) -> {
-                OpenAgreementsModel model = (OpenAgreementsModel)(((RowModel)rowModel).getItem());
-                Facade.getInstance().setCenter(new OpenAgreementController(model).getView());
+                AgreementModel model = (AgreementModel)(((RowModel)rowModel).getItem());
+                Facade.getInstance().setCenter(new AgreementController(model, true).getView());
             }
             ), "se "), (TableDecorator) table).getTable();
         return table;

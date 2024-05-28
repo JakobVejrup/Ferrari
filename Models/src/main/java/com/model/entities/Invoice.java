@@ -12,12 +12,13 @@ public class Invoice {
     private double ultimoValue;
     private double primoPrice;
     private String details;
+    private double payed;
 
     public Invoice () {
 
     }
     public Invoice(Agreement agreement, int number, Date datestart, Date dateend, double plus, double minus,
-            double ultimovalue, double primoprice, String details) {
+            double ultimovalue, double primoprice, double payed, String details) {
         this.agreement = agreement;
         this.number = number;
         this.dateStart = datestart;
@@ -27,6 +28,19 @@ public class Invoice {
         this.ultimoValue = ultimovalue;
         this.primoPrice = primoprice;
         this.details = details;
+        this.payed = payed;
+    }
+    public Invoice(int number, Date datestart, Date dateend, double plus, double minus,
+        double ultimovalue, double primoprice, double payed, String details) {
+        this.number = number;
+        this.dateStart = datestart;
+        this.dateEnd = dateend;
+        this.plus = plus;
+        this.minus = minus;
+        this.ultimoValue = ultimovalue;
+        this.primoPrice = primoprice;
+        this.details = details;
+        this.payed = payed;
     }
 
     public Agreement getAgreement() {
@@ -68,6 +82,13 @@ public class Invoice {
     public void setPlus(double plus) {
         this.plus = plus;
     }
+    public double getPayed() {
+        return payed;
+    }
+
+    public void setPayed(double payed) {
+        this.payed = payed;
+    }
 
     public double getMinus() {
         return minus;
@@ -104,12 +125,13 @@ public class Invoice {
     public boolean equals(Object other) {
         Invoice o = (Invoice) other;
         double min = 0.1;
+        boolean payedBool = o.payed >= payed - min || o.payed <= payed + min;
         boolean plusBool = o.plus >= plus - min || o.plus <= plus + min;
         boolean minusBool = o.minus >= minus - min || o.minus <= minus + min;
         boolean ultimoBool = o.ultimoValue >= ultimoValue - min || o.ultimoValue <= ultimoValue + min;
         boolean primoBool = o.primoPrice >= primoPrice - min || o.primoPrice <= primoPrice + min;
         return o.number == number && o.dateStart.equals(dateStart) && o.dateEnd.equals(dateEnd)
                 && plusBool && minusBool && ultimoBool && primoBool &&
-                o.details.equals(details);
+                o.details.equals(details) && payedBool;
     }
 }

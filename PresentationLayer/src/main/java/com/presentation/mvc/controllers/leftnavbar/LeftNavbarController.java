@@ -2,6 +2,7 @@ package com.presentation.mvc.controllers.leftnavbar;
 
 import com.model.entities.Employee;
 import com.model.enums.Occupation;
+import com.presentation.mvc.controllers.agreement.ClosedAgreementsController;
 import com.presentation.mvc.controllers.agreement.OpenAgreementsController;
 import com.presentation.mvc.controllers.customers.CustomersController;
 import com.presentation.mvc.controllers.employee.AccountController;
@@ -49,6 +50,7 @@ public class LeftNavbarController {
             case "Vehicles" -> Facade.getInstance().setCenter(new AllVehiclesController().getView());
             case "Customers" -> Facade.getInstance().setCenter(new CustomersController().getView());
             case "AgreementsOpen" -> Facade.getInstance().setCenter(new OpenAgreementsController().getView());
+            case "AgreementsClosed" -> Facade.getInstance().setCenter(new ClosedAgreementsController().getView());
             
 
 

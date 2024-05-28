@@ -7,6 +7,7 @@ import com.logic.services.city.CityService;
 import com.logic.services.customer.CustomerService;
 import com.logic.services.employee.EmployeeService;
 import com.logic.services.invoice.InvoiceService;
+import com.logic.services.rates.RateService;
 import com.logic.services.vehicle.VehicleService;
 import com.data.ConnectionData;
 import com.data.dao.AgreementClosedData;
@@ -15,6 +16,7 @@ import com.data.dao.CityData;
 import com.data.dao.CustomerData;
 import com.data.dao.EmployeeData;
 import com.data.dao.InvoiceData;
+import com.data.dao.RatesData;
 import com.data.dao.VehicleData;
 import com.logic.handlers.Handler;
 import com.logic.handlers.HandlerHolder;
@@ -34,6 +36,7 @@ public class ServiceSingleton implements Handler {
         InvoiceData invoiceData = new InvoiceData(db);
         VehicleData vehicleData = new VehicleData(db);
         CityData cityData = new CityData(db);
+        RatesData rateData = new RatesData(db);
         AgreementClosedData agreementClosed = new AgreementClosedData(db, invoiceData, customerData, employeeData);
         AgreementOpenData agreementOpen = new AgreementOpenData(db, invoiceData, customerData, employeeData);
 
@@ -44,6 +47,7 @@ public class ServiceSingleton implements Handler {
         );
         services = new ServiceManager(
             new EmployeeService(employeeData, employeeData),
+            new RateService(rateData),
             new VehicleService(vehicleData),
             new AgreementOpenService(agreementOpen),
             new InvoiceService(invoiceData),

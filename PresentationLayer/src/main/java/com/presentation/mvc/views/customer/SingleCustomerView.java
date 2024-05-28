@@ -48,7 +48,7 @@ public class SingleCustomerView extends VBox implements View{
         name.setText(model.getName());
         email.setText(model.getEmail());
         phoneNumber.setText(model.getPhoneNumber());
-        cpr = new TextField(model.getCpr());
+        cpr.setText(model.getCpr());
     }
 
     @Override

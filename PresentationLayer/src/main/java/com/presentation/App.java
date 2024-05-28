@@ -3,15 +3,16 @@ package com.presentation;
 import com.logic.handlers.Request;
 import com.logic.services.enums.CRUDType;
 import com.logic.services.enums.ServiceType;
+import com.model.entities.Agreement;
 import com.model.entities.Customer;
 import com.model.entities.Employee;
 import com.model.entities.Vehicle;
 import com.model.enums.Occupation;
-import com.presentation.mvc.controllers.agreement.OpenAgreementController;
+import com.presentation.mvc.controllers.agreement.AgreementController;
 import com.presentation.mvc.controllers.employee.EmployeesController;
 import com.presentation.mvc.controllers.employee.modals.CreateEmployeeController;
 import com.presentation.mvc.controllers.login.LoginController;
-import com.presentation.mvc.models.agreements.OpenAgreementsModel;
+import com.presentation.mvc.models.agreements.AgreementModel;
 import com.presentation.mvc.models.employees.EmployeeModel;
 import com.presentation.mvc.views.topbar.TopbarView;
 import com.presentation.tools.facade.Facade;
@@ -47,7 +48,7 @@ public class App extends Application {
         //Facade.getInstance().setCenter(new OpenAgreementController(model).getView());
 
         Facade.getInstance().setCenter(new LoginController().getView());
-        //Facade.getInstance().openModal(new CreateEmployeeController());
+        Facade.getInstance().openModal(new CreateEmployeeController());
         //Employee employee = new Employee();
         //employee.setOccupation(Occupation.Manager);
         //Facade.getInstance().login(employee);

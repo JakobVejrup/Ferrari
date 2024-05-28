@@ -23,6 +23,9 @@ public class SimpleDeleteHandler extends HandlerObject {
 
     @Override
     protected void action(Request request) {
-        request.getSetter().action(data.delete(request.getObject()));
+        if(request.getSetter() != null)
+            request.getSetter().action(data.delete(request.getObject()));
+        else 
+            data.delete(request.getObject());
     }
 }
