@@ -2,6 +2,7 @@ package com.presentation.mvc.views.table.concretes;
 
 import java.sql.Date;
 
+import com.presentation.mvc.controllers.table.CurrencyCell;
 import com.presentation.mvc.models.Invoice.InvoiceModel;
 import com.presentation.mvc.models.employees.EmployeeModel;
 import com.presentation.mvc.models.table.RowModel;
@@ -25,8 +26,8 @@ public class InvoiceTable extends GuiTable implements TableDecorator {
 
     public InvoiceTable() {
         getColumns().add(numberCol = new TableColumn<>("Nr"));
-        getColumns().add(dateEndCol = new TableColumn<>("Fra"));
-        getColumns().add(dateStartCol = new TableColumn<>("Til"));
+        getColumns().add(dateStartCol = new TableColumn<>("Fra"));
+        getColumns().add(dateEndCol = new TableColumn<>("Til"));
         getColumns().add(payedCol = new TableColumn<>("Ydelse"));
         getColumns().add(plusCol = new TableColumn<>("Afdrag"));
         getColumns().add(minusCol = new TableColumn<>("Renter"));
@@ -53,12 +54,17 @@ public class InvoiceTable extends GuiTable implements TableDecorator {
                 return ((InvoiceModel)row.getValue().getItem()).detailsProperty();
             }
         });
-        payedCol.setCellValueFactory( (row) -> ((InvoiceModel)row.getValue().getItem()).payedProperty());
+        payedCol.setCellValueFactory((row) -> ((InvoiceModel) row.getValue().getItem()).payedProperty());
+        payedCol.setCellFactory(CurrencyCell.forTableColumn());
         dateEndCol.setCellValueFactory( (row) -> ((InvoiceModel)row.getValue().getItem()).dateEndProperty());
-        plusCol.setCellValueFactory( (row) -> ((InvoiceModel)row.getValue().getItem()).plusProperty());
-        minusCol.setCellValueFactory((row) -> ((InvoiceModel)row.getValue().getItem()).minusProperty());
-        ultimoCol.setCellValueFactory((row) -> ((InvoiceModel)row.getValue().getItem()).ultimoProperty());
-        primoCol.setCellValueFactory((row) -> ((InvoiceModel)row.getValue().getItem()).primoProperty());
+        plusCol.setCellValueFactory((row) -> ((InvoiceModel) row.getValue().getItem()).plusProperty());
+        plusCol.setCellFactory(CurrencyCell.forTableColumn());
+        minusCol.setCellValueFactory((row) -> ((InvoiceModel) row.getValue().getItem()).minusProperty());
+        minusCol.setCellFactory(CurrencyCell.forTableColumn());
+        ultimoCol.setCellValueFactory((row) -> ((InvoiceModel) row.getValue().getItem()).ultimoProperty());
+        ultimoCol.setCellFactory(CurrencyCell.forTableColumn());
+        primoCol.setCellValueFactory((row) -> ((InvoiceModel) row.getValue().getItem()).primoProperty());
+        primoCol.setCellFactory(CurrencyCell.forTableColumn());
 
     }
     @Override

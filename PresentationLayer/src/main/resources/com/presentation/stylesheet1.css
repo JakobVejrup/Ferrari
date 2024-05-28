@@ -124,13 +124,24 @@ PasswordField {
     -fx-padding: 5;
 }
 Button {
-    -fx-text-fill: Black; /* White text color */
-    -fx-font-size: 16px; /* Font size */
-    -fx-font-family: "Arial"; /* Font family */
-    -fx-background-radius: 5px; /* Rounded corners */
-    -fx-border-radius: 5px; /* Rounded corners */
-    -fx-padding: 5px 5px; /* Padding */
-    -fx-border-color: transparent; /* Transparent border color */
+    -fx-text-fill: Black;
+        /* Text color */
+        -fx-font-size: 16px;
+        /* Font size */
+        -fx-font-family: "Arial";
+        /* Font family */
+        -fx-background-radius: 5px;
+        /* Rounded corners */
+        -fx-border-radius: 5px;
+        /* Rounded corners */
+        -fx-padding: 5px 5px;
+        /* Padding */
+        -fx-border-color: #28A745;
+        /* Border color */
+        -fx-border-width: 3px;
+        /* Border width */
+        -fx-border-style: double;
+        /* Border style */
 }
 Glyph
 {

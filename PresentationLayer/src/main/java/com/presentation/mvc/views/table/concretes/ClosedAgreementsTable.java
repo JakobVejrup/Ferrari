@@ -5,11 +5,14 @@ import com.model.entities.Agreement;
 import com.model.entities.Customer;
 import com.model.entities.Employee;
 import com.model.entities.Vehicle;
+import com.presentation.mvc.controllers.table.CurrencyCell;
 import com.presentation.mvc.models.agreements.AgreementModel;
 import com.presentation.mvc.models.table.RowModel;
 import com.presentation.mvc.views.table.decorators.TableDecorator;
 import com.presentation.mvc.views.table.ui.GuiTable;
 import com.rki.rki.Rating;
+
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -41,16 +44,18 @@ public class ClosedAgreementsTable extends GuiTable implements TableDecorator{
         getColumns().add(endCol             = new TableColumn<RowModel, Date>("I Kraft til"));
         getColumns().add(endpriceCol        = new TableColumn<RowModel, Number>("Total pris"));
 
-        fixedTermsCol.setCellValueFactory((column)          -> ((AgreementModel) column.getValue().getItem()).fixedTermsProperty());
-        startValueCol.setCellValueFactory((column)          -> ((AgreementModel) column.getValue().getItem()).startValueProperty());
-        startAgreementCol.setCellValueFactory((column)      -> ((AgreementModel) column.getValue().getItem()).startAgreementProperty());
-        RKiCol.setCellValueFactory((column)                 -> ((AgreementModel) column.getValue().getItem()).RKiProperty());
-        customerCol.setCellValueFactory((column)            -> ((AgreementModel) column.getValue().getItem()).customerProperty());
-        employeeCol.setCellValueFactory((column)            -> ((AgreementModel) column.getValue().getItem()).employeeProperty());
-        vehicleCol.setCellValueFactory((column)             -> ((AgreementModel) column.getValue().getItem()).vehicleProperty());
-        startCol.setCellValueFactory((column)               -> ((AgreementModel) column.getValue().getItem()).startProperty());
-        endCol.setCellValueFactory((column)                 -> ((AgreementModel) column.getValue().getItem()).endProperty());
-        endpriceCol.setCellValueFactory((column)            -> ((AgreementModel) column.getValue().getItem()).endPriceProperty());
+        fixedTermsCol.setCellValueFactory((cellData)          -> ((AgreementModel) cellData.getValue().getItem()).fixedTermsProperty());
+        startValueCol.setCellValueFactory((cellData)          -> ((AgreementModel) cellData.getValue().getItem()).startValueProperty());
+        startValueCol.setCellFactory(CurrencyCell.forTableColumn());
+        startAgreementCol.setCellValueFactory((cellData)      -> ((AgreementModel) cellData.getValue().getItem()).startAgreementProperty());
+        RKiCol.setCellValueFactory((cellData)                 -> ((AgreementModel) cellData.getValue().getItem()).RKiProperty());
+        customerCol.setCellValueFactory((cellData)            -> ((AgreementModel) cellData.getValue().getItem()).customerProperty());
+        employeeCol.setCellValueFactory((cellData)            -> ((AgreementModel) cellData.getValue().getItem()).employeeProperty());
+        vehicleCol.setCellValueFactory((cellData)             -> ((AgreementModel) cellData.getValue().getItem()).vehicleProperty());
+        startCol.setCellValueFactory((cellData)               -> ((AgreementModel) cellData.getValue().getItem()).startProperty());
+        endCol.setCellValueFactory((cellData)                 -> ((AgreementModel) cellData.getValue().getItem()).endProperty());
+        endpriceCol.setCellValueFactory((cellData)            -> ((AgreementModel) cellData.getValue().getItem()).endPriceProperty());
+        endpriceCol.setCellFactory(CurrencyCell.forTableColumn());
     }
     
     @Override
