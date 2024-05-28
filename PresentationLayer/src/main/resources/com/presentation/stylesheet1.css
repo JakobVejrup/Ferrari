@@ -123,32 +123,44 @@ PasswordField {
     -fx-text-fill: black;
     -fx-padding: 5;
 }
+.declineButton {
+    -fx-text-fill: Black;
+    -fx-font-size: 16px;
+    -fx-font-family: "Arial";
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px 5px;
+    -fx-border-width: 2px;
+    -fx-border-color: linear-gradient(to right, #ff7e5f, #feb47b);
+    -fx-border-style: solid;
+}
+.acceptButton {
+    -fx-text-fill: Black;
+    -fx-font-size: 16px;
+    -fx-font-family: "Arial";
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px 5px;
+    -fx-border-width: 2px;
+    -fx-border-color: linear-gradient(to right, #0ba448, #52df45);
+    -fx-border-style: solid;
+}
+
 Button {
     -fx-text-fill: Black;
-        /* Text color */
-        -fx-font-size: 16px;
-        /* Font size */
-        -fx-font-family: "Arial";
-        /* Font family */
-        -fx-background-radius: 5px;
-        /* Rounded corners */
-        -fx-border-radius: 5px;
-        /* Rounded corners */
-        -fx-padding: 5px 5px;
-        /* Padding */
-        -fx-border-color: #28A745;
-        /* Border color */
-        -fx-border-width: 3px;
-        /* Border width */
-        -fx-border-style: double;
-        /* Border style */
+    -fx-font-size: 16px;
+    -fx-font-family: "Arial";
+    -fx-background-radius: 5px;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px 5px;
+    -fx-background-color: white;
+    -fx-border-color: grey;
+    -fx-border-width: 3px;
 }
-Glyph
-{
+Glyph {
     -fx-scale-x: 3;
     -fx-scale-y: 3;
     -fx-text-fill: whitesmoke;
-    /*-fx-effect: dropshadow(three-pass-box, rgba(230,230,230,230), 4, 0, 0, 0);*/
 }
 .table-view .column-header-background .filler {
     -fx-background-color: white;

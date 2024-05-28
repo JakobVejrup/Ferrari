@@ -4,7 +4,6 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.temporal.ChronoUnit;
-
 import com.model.entities.Agreement;
 import com.model.entities.Invoice;
 import com.rki.bank.InterestRate;
@@ -46,14 +45,13 @@ public class LoanCalculator {
             default -> 3;
         };
         LocalDate first = agreement.getStart().toLocalDate().plus(3, ChronoUnit.YEARS);
-        double tidsRente = Date.valueOf(first).getTime() > agreement.getEnd().getTime() ? 1: 0;
-        agreement.setTotalRate(RKIværdi + dagsRente + tidsRente);
-        return ((RKIværdi + dagsRente + tidsRente) / 100)/12;
+        double amountRente = agreement.getStartValue() >= agreement.getVehicle().getPrice() / 2  ? 0 : 1;
+        double tidsRente = Date.valueOf(first).getTime() < agreement.getEnd().getTime() ? 1: 0;
+        agreement.setTotalRate(RKIværdi + dagsRente + tidsRente + amountRente);
+        return ((RKIværdi + dagsRente + tidsRente + amountRente) / 100)/12;
 
     }
     public static double fastYdelse(double låneBeløb, double rente, int antalTerminer) {
-        //return (låneBeløb * rente) / (Math.pow (1 + rente, antalTerminer) - 1);
         return (låneBeløb * rente) / (1- Math.pow (1 + rente, -antalTerminer));
-        //return låneBeløb / ((1 - Math.pow (1 + rente, -antalTerminer)) / rente);
     }
 }

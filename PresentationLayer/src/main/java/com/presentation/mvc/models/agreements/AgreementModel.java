@@ -67,9 +67,9 @@ public class AgreementModel extends Agreement{
         setEnd(agreement.getEnd());
         setStart(agreement.getStart());
         setRki(agreement.getRki());
-        setCustomer(agreement.getCustomer());
-        setEmployee(agreement.getEmployee());
-        setVehicle(agreement.getVehicle());
+        setCustomer(new CustomerModel(agreement.getCustomer()));
+        setEmployee(new EmployeeModel(agreement.getEmployee()));
+        setVehicle(new VehicleModel(agreement.getVehicle()));
         setPayments(agreement.getPayments());
     }
 

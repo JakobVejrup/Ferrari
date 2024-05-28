@@ -13,9 +13,11 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.util.converter.NumberStringConverter;
 import java.sql.Date;
+import java.text.DecimalFormat;
 
 public class OpenAgreementView extends VBox implements View{
     public OpenAgreementView(Pane employeeView, Pane customerView, Pane vehicleView, AgreementModel model, boolean open, Button csv) {
+        DecimalFormat df = new DecimalFormat("#.00"); 
         TextField rki = new TextField(model.getRki() != null ? model.getRki().toString() : "");
         rki.setEditable(false);
         model.RKiProperty().addListener( (observable, old, newval) -> rki.setText(newval != null ? newval.toString() : ""));
@@ -23,17 +25,17 @@ public class OpenAgreementView extends VBox implements View{
         TextField startAgreement = new TextField(model.getStartAgreement().toString());
         startAgreement.setEditable(false);
         
-        TextField rate = new TextField(String.valueOf(model.getDaysRate()));
+        TextField rate = new TextField(df.format(model.getDaysRate()) + "%");
         rate.setEditable(false);
-        model.daysRateProperty().addListener( (observable, old, newval) -> rate.setText(newval.toString()));
+        model.daysRateProperty().addListener( (observable, old, newval) -> rate.setText(df.format(newval) + "%"));
 
-        TextField totalRate = new TextField(String.valueOf(model.getTotalRate()));
+        TextField totalRate = new TextField(df.format(model.getTotalRate()) + "%");
         totalRate.setEditable(false);
-        model.totalRateProperty().addListener( (observable, old, newval) -> totalRate.setText(newval.toString()));
+        model.totalRateProperty().addListener( (observable, old, newval) -> totalRate.setText(df.format(newval) + "%"));
 
-        TextField totalAmount = new TextField(String.valueOf(model.getEndPrice()));
+        TextField totalAmount = new TextField(df.format(model.getEndPrice()) + ".Kr");
         totalAmount.setEditable(false);
-        model.endPriceProperty().addListener( (observable, old, newval) -> totalAmount.setText(newval.toString()));
+        model.endPriceProperty().addListener( (observable, old, newval) -> totalAmount.setText(df.format(newval) + ".Kr"));
 
         DatePicker startDate = new DatePicker(model.getStart() != null ? model.getStart().toLocalDate() : new Date(0).toLocalDate());
         startDate.valueProperty().addListener( (observable, old, newval) -> model.setStart(newval != null ? Date.valueOf(newval) : new Date(System.currentTimeMillis())));
@@ -48,11 +50,12 @@ public class OpenAgreementView extends VBox implements View{
 
         TextField StartValue = new TextField(String.valueOf(model.getStartValue()));
         Bindings.bindBidirectional(StartValue.textProperty(), model.startValueProperty(), new NumberStringConverter());
-        totalAmount.setEditable(open);
+        StartValue.setEditable(open);
 
         TextField FixedTerms = new TextField(String.valueOf(model.getFixedTerms()));
         Bindings.bindBidirectional(FixedTerms.textProperty(), model.fixedTermsProperty(), new NumberStringConverter());
-        totalAmount.setEditable(open);
+        FixedTerms.setEditable(open);
+
         getChildren().add(
             new HBox(
                 employeeView,
