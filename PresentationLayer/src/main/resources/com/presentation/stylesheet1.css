@@ -17,6 +17,10 @@
     -fx-alignment: CENTER;
 
 }
+.login Label {
+    -fx-text-fill: white; 
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.75), 10, 0.5, 0, 0);
+}
 .topbar {
     -fx-alignment: TOP_RIGHT;
     -fx-max-height: 100;

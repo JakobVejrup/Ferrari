@@ -9,7 +9,7 @@ import com.model.threads.Validation;
 import com.presentation.mvc.controllers.modals.ModalController;
 import com.presentation.mvc.models.vehicle.VehicleModel;
 import com.presentation.mvc.views.vehicle.modals.VehicleView;
-import com.presentation.tools.ImageFinder;
+import com.presentation.tools.FileMethods;
 import com.presentation.tools.alert.Alerter;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -36,7 +36,7 @@ public class UpdateVehicleController extends ModalController{
         view.addButtons(updateButton, imageButton, cancelButton);
     }
     public void findImage(ActionEvent event) {
-        byte[] image = ImageFinder.findImage((Stage)view.getScene().getWindow());
+        byte[] image = FileMethods.findImage((Stage)view.getScene().getWindow());
         if (image != null) 
             model.setImage(image);
     }

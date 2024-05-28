@@ -10,7 +10,7 @@ import com.presentation.mvc.controllers.vehicle.AllVehiclesController;
 import com.presentation.mvc.models.customer.CustomerModel;
 import com.presentation.mvc.models.vehicle.VehicleModel;
 import com.presentation.mvc.views.vehicle.modals.VehicleView;
-import com.presentation.tools.ImageFinder;
+import com.presentation.tools.FileMethods;
 import com.presentation.tools.alert.Alerter;
 import com.logic.ServiceSingleton;
 import com.logic.handlers.Request;
@@ -41,7 +41,7 @@ public class CreateVehicleController extends ModalController{
         return view;
     }
     public void findImage(ActionEvent event) {
-        byte[] image = ImageFinder.findImage((Stage)view.getScene().getWindow());
+        byte[] image = FileMethods.findImage((Stage)view.getScene().getWindow());
         if (image != null) 
             model.setImage(image);
     }

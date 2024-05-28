@@ -1,4 +1,4 @@
-package com.presentation.tools.alert.csvwriter;
+package com.presentation.tools.csvwriter;
 
 import java.io.File;
 import java.io.FileWriter;

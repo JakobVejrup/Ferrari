@@ -1,6 +1,7 @@
 package com.presentation.mvc.controllers.agreement;
 
 import com.presentation.mvc.views.agreement.OpenAgreementView;
+import com.presentation.tools.FileMethods;
 import com.presentation.tools.alert.Alerter;
 import com.presentation.tools.facade.Facade;
 import com.rki.rki.Rating;
@@ -14,6 +15,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
+
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -57,6 +60,7 @@ public class AgreementController extends Controller implements Consumer<Agreemen
     private SingleVehicleController vehicleController;
     private InvoicesInAgreementController invoicesController;
     private Button ready;
+    private Button csvButton;
     public AgreementController(AgreementModel modelParam, boolean open) {
         signum = -1;
         if(modelParam.getStartAgreement() == null)
@@ -72,7 +76,11 @@ public class AgreementController extends Controller implements Consumer<Agreemen
         customerController = new SingleCustomerController(model.getCustomer());
         employeeController = new SingleEmployeeController(model.getEmployee());
         vehicleController = new SingleVehicleController(model.getVehicle());
-        view = new OpenAgreementView(employeeController.getView(), customerController.getView(), vehicleController.getView(), model, open);
+
+        csvButton = new Button("Udskriv CSV-Fil");
+        csvButton.setOnAction(this::csv);
+
+        view = new OpenAgreementView(employeeController.getView(), customerController.getView(), vehicleController.getView(), model, open, csvButton);
         setView(view);
         
         if(open) {
@@ -102,7 +110,8 @@ public class AgreementController extends Controller implements Consumer<Agreemen
             return;
         model.rkiBooleanProperty().set(false);
         accept(model);
-        getRKiAndRate();
+        if(!((CustomerModel)model.getCustomer()).getEmpty())
+            getRKiAndRate();
         
     }
     public void readyContinue(ActionEvent event) {
@@ -154,14 +163,19 @@ public class AgreementController extends Controller implements Consumer<Agreemen
             getRKiAndRate();
         }
     }
+
     public void delete(ActionEvent event) {
-        ServiceSingleton.getInstance().query(new Request(ServiceType.AgreementOpen, CRUDType.Delete, model, 
-        (delete) -> {
-            if((boolean)delete) 
-                Platform.runLater( () ->
-                    Facade.getInstance().setCenter(new OpenAgreementsController().getView())
-                );
-        }));
+        ServiceSingleton.getInstance().query(new Request(ServiceType.AgreementOpen, CRUDType.Delete, model,
+                (delete) -> {
+                    if ((boolean) delete)
+                        Platform.runLater(
+                                () -> Facade.getInstance().setCenter(new OpenAgreementsController().getView()));
+                }));
+    }
+
+    public void csv(ActionEvent event) {
+        String fileName = model.getCustomer().getName() + "_" + model.getStart() + "_" + model.getVehicle().getName();
+        FileMethods.makeCSV(fileName, model.getPayments(), (Stage)view.getScene().getWindow());
     }
     public void save(ActionEvent event) {
         if(model.getId() == 0) 
@@ -198,6 +212,7 @@ public class AgreementController extends Controller implements Consumer<Agreemen
             signum = 1;
         }
         ready.setDisable(signum == -1);
+        csvButton.setDisable(signum != 1);
         Date newDate = new Date(agreement.getStart().getTime());
         newDate = Date.valueOf(newDate.toLocalDate().plusMonths(agreement.getFixedTerms()));
         agreement.setEnd(newDate);

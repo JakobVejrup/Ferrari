@@ -15,7 +15,7 @@ import javafx.util.converter.NumberStringConverter;
 import java.sql.Date;
 
 public class OpenAgreementView extends VBox implements View{
-    public OpenAgreementView(Pane employeeView, Pane customerView, Pane vehicleView, AgreementModel model, boolean open) {
+    public OpenAgreementView(Pane employeeView, Pane customerView, Pane vehicleView, AgreementModel model, boolean open, Button csv) {
         TextField rki = new TextField(model.getRki() != null ? model.getRki().toString() : "");
         rki.setEditable(false);
         model.RKiProperty().addListener( (observable, old, newval) -> rki.setText(newval != null ? newval.toString() : ""));
@@ -68,7 +68,8 @@ public class OpenAgreementView extends VBox implements View{
                     new HBox(new Label("Terminer:"), FixedTerms),
                     new HBox(new Label("i kraft dato: "), startDate),
                     new HBox(new Label("slut dato: "), endDate)
-                )   
+                ),
+                new VBox(csv)   
             )
         );
 

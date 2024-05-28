@@ -24,7 +24,7 @@ import com.presentation.tools.facade.Facade;
 import com.presentation.tools.facade.Login;
 import com.presentation.tools.facade.ModalSetter;
 import com.presentation.tools.ScreenWatcher;
-import com.presentation.tools.alert.csvwriter.CSVWriterInvoices;
+import com.presentation.tools.csvwriter.CSVWriterInvoices;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -37,10 +37,6 @@ import javafx.stage.Stage;
 public class App extends Application {
     @Override
     public void start(Stage stage) {
-        List<Invoice> invoices = new ArrayList<>();
-        invoices.add(new Invoice(1, new Date(0),new Date(0), 0.0, 0.0, 0.0, 0.0, "details"));    
-        new CSVWriterInvoices("invoiceCSV","C:\\Users\\kehan\\Downloads\\", invoices).WriteCSV();
-
         ScreenWatcher.getInstance().setStage(stage);
         BorderPane bp = new BorderPane();
         bp.getStyleClass().add("mainPane");

@@ -10,7 +10,7 @@ import com.presentation.mvc.controllers.Controller;
 import com.presentation.mvc.models.employees.EmployeeModel;
 import com.presentation.mvc.views.employee.EmployeeImageView;
 import com.presentation.mvc.views.employee.modals.PasswordEmployeeView;
-import com.presentation.tools.ImageFinder;
+import com.presentation.tools.FileMethods;
 import com.presentation.tools.alert.Alerter;
 import com.presentation.tools.facade.Facade;
 import javafx.application.Platform;
@@ -42,7 +42,7 @@ public class AccountController extends Controller{
 
 
     public void findImage(ActionEvent event) {
-        byte[] image = ImageFinder.findImage((Stage)view.getScene().getWindow());
+        byte[] image = FileMethods.findImage((Stage)view.getScene().getWindow());
         if (image != null) 
             model.setImage(image);
     }

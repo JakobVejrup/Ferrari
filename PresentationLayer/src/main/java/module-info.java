@@ -13,5 +13,5 @@ module com.presentation {
     requires junit;
     opens com.presentation to javafx.fxml;
     exports com.presentation;
-    exports com.presentation.tools.alert.csvwriter to junit;
+    exports com.presentation.tools.csvwriter to junit;
 }
