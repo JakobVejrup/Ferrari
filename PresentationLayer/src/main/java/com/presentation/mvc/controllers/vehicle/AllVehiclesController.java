@@ -62,10 +62,10 @@ public class AllVehiclesController extends Controller {
                 table = new TableHeightDecorator(0.6, table);
                 table = new TableWidthDecorator(0.8, table);
                 if(Facade.getInstance().getLoggedIn().getOccupation() == Occupation.Manager) {
-                    table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory(), "Opdater andre", new UpdateCommand(
+                    table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory("optionButton"), "Opdater andre", new UpdateCommand(
                         (row) -> new UpdateVehicleController((Vehicle)row.getItem())
                         ), "opdater"), table);
-                    table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory(), "Slet andre", new DeleteCommand(model), "slet"), table);
+                    table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory("declineButton"), "Slet andre", new DeleteCommand(model), "slet"), table);
                     table = new CheckboxColumnDecorator(new DeleteCommand(model), "Slet", "Slet", "Slet Alle", table);
                 }
                 table = new ParentTableDecorator(model, table);

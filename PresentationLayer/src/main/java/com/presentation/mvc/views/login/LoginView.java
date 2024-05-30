@@ -3,6 +3,7 @@ package com.presentation.mvc.views.login;
 import com.presentation.mvc.models.employees.EmployeeModel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -26,9 +27,12 @@ public class LoginView extends VBox {
         model.passwordProperty().bind(password.textProperty());
         HBox texts = new HBox(new Label("Email:"), email, new Label("Password:"), password);
         Button login = new Button("Log ind");
+        login.getStyleClass().add("acceptButton");
         login.setOnAction(buttonAction);
         getChildren().addAll(
                 texts,
-                login);
+                login
+        );
+        setMargin(login, new Insets(10));
     }
 }

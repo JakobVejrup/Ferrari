@@ -45,8 +45,8 @@ public class CustomersController extends Controller{
                 table = new ParentTableDecorator(model, table);
                 table = new TableHeightDecorator(0.6, table);
                 table = new TableWidthDecorator(0.8, table);
-                table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory(), "Opdater kunde", new UpdateCommand((row) -> new UpdateCustomerController((Customer)row.getItem())), "opdater"), table);
-                table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory(), "Slet kunde", new DeleteCommand(model), "slet"), table);
+                table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory("optionButton"), "Opdater kunde", new UpdateCommand((row) -> new UpdateCustomerController((Customer)row.getItem())), "opdater"), table);
+                table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory("declineButton"), "Slet kunde", new DeleteCommand(model), "slet"), table);
                 view.setTable(table.getTable());
             });
         });

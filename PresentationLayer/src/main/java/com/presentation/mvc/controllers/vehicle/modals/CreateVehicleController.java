@@ -28,11 +28,17 @@ public class CreateVehicleController extends ModalController{
         model = new VehicleModel();
         view = new VehicleView(model);
         Button createButton = new Button("Opret bil");
+        createButton.getStyleClass().add("acceptButton");
         createButton.setOnAction(this::create);
+
         Button cancelButton = new Button("Fortryd");
+        cancelButton.getStyleClass().add("declineButton");
         cancelButton.setOnAction(this::decline);
+
         Button imageButton = new Button("Vælg Billede");
         imageButton.setOnAction(this::findImage);
+        createButton.getStyleClass().add("optionButton");
+
         view.addButtons(createButton, imageButton, cancelButton);
     }
 

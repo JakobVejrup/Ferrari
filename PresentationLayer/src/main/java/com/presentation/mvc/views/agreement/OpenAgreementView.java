@@ -3,6 +3,9 @@ package com.presentation.mvc.views.agreement;
 import com.dlsc.formsfx.model.structure.DateField;
 import com.presentation.mvc.models.agreements.AgreementModel;
 import com.presentation.mvc.views.View;
+import com.presentation.mvc.views.generalgui.NiceHBox;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.beans.binding.Bindings;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
@@ -16,7 +19,9 @@ import java.sql.Date;
 import java.text.DecimalFormat;
 
 public class OpenAgreementView extends VBox implements View{
-    public OpenAgreementView(Pane employeeView, Pane customerView, Pane vehicleView, AgreementModel model, boolean open, Button csv) {
+    private HBox buttonBox;
+    public OpenAgreementView(Pane employeeView, Pane customerView, Pane vehicleView, AgreementModel model, boolean open) {
+        getStyleClass().add("rightContainer");
         DecimalFormat df = new DecimalFormat("#.00"); 
         TextField rki = new TextField(model.getRki() != null ? model.getRki().toString() : "");
         rki.setEditable(false);
@@ -58,28 +63,31 @@ public class OpenAgreementView extends VBox implements View{
 
         getChildren().add(
             new HBox(
-                employeeView,
                 customerView,
+                employeeView,
                 vehicleView,
                 new VBox(
-                    new HBox(new Label("Tilbud givet den: "), startAgreement),
-                    new HBox(new Label("Dagens rente: "), rate),
-                    new HBox(new Label("Rki:"), rki),
-                    new HBox(new Label("Total rente: "), totalRate),
-                    new HBox(new Label("Total Pris: "), totalAmount),
-                    new HBox(new Label("Start indskud:"), StartValue),
-                    new HBox(new Label("Terminer:"), FixedTerms),
-                    new HBox(new Label("i kraft dato: "), startDate),
-                    new HBox(new Label("slut dato: "), endDate)
-                ),
-                new VBox(csv)   
+                    new NiceHBox("rightContainer", new Insets(5), new Label("Tilbud givet den: "), startAgreement),
+                    new NiceHBox("rightContainer", new Insets(5), new Label("Dagens rente: "), rate),
+                    new NiceHBox("rightContainer", new Insets(5), new Label("Rki:"), rki),
+                    new NiceHBox("rightContainer", new Insets(5), new Label("Total rente: "), totalRate),
+                    new NiceHBox("rightContainer", new Insets(5), new Label("Total Pris: "), totalAmount),
+                    new NiceHBox("rightContainer", new Insets(5), new Label("Start indskud:"), StartValue),
+                    new NiceHBox("rightContainer", new Insets(5), new Label("Terminer:"), FixedTerms),
+                    new NiceHBox("rightContainer", new Insets(5), new Label("i kraft dato: "), startDate),
+                    new NiceHBox("rightContainer", new Insets(5), new Label("slut dato: "), endDate)
+                ) 
             )
         );
 
     }
     @Override
     public void addButtons(Button... buttons) {
-        getChildren().add(new HBox(buttons));
+        if(buttonBox == null) {
+            getChildren().add(buttonBox = new NiceHBox("buttonBar", buttons));
+        }
+        else
+            buttonBox.getChildren().addAll(buttons);
     }
     
 

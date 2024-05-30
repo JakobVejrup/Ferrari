@@ -1,6 +1,7 @@
 package com.presentation.mvc.controllers.agreement;
 
 import com.presentation.mvc.views.agreement.OpenAgreementView;
+import com.presentation.mvc.views.generalgui.NiceButton;
 import com.presentation.tools.FileMethods;
 import com.presentation.tools.alert.Alerter;
 import com.presentation.tools.facade.Facade;
@@ -61,7 +62,7 @@ public class AgreementController extends Controller implements Consumer<Agreemen
     private InvoicesInAgreementController invoicesController;
     private Button ready;
     private Button csvButton;
-    public AgreementController(AgreementModel modelParam, boolean open) {
+    public AgreementController(AgreementModel modelParam, boolean open, boolean customerChosen) {
         signum = -1;
         if(modelParam.getStartAgreement() == null)
             modelParam.setStartAgreement(new Date(System.currentTimeMillis()));
@@ -77,26 +78,21 @@ public class AgreementController extends Controller implements Consumer<Agreemen
         employeeController = new SingleEmployeeController(model.getEmployee());
         vehicleController = new SingleVehicleController(model.getVehicle());
 
-        csvButton = new Button("Udskriv CSV-Fil");
-        csvButton.setOnAction(this::csv);
+        csvButton = new NiceButton("Udskriv CSV-Fil","IDoptionButton", this::csv);
 
-        view = new OpenAgreementView(employeeController.getView(), customerController.getView(), vehicleController.getView(), model, open, csvButton);
+        view = new OpenAgreementView(employeeController.getView(), customerController.getView(), vehicleController.getView(), model, open);
         setView(view);
         
         if(open) {
-            Button selectVehicle = new Button("Vælg bil");
-            selectVehicle.setOnAction(this::chooseVehicle);
-            vehicleController.addButtons(selectVehicle);
-            Button selectCustomer = new Button("Vælg kunde");
-            selectCustomer.setOnAction(this::chooseCustomer);
-            customerController.addButtons(selectCustomer);        
-            Button save = new Button("Gem aftale");
-            save.setOnAction(this::save);
-            ready = new Button("Udregn");
-            ready.setOnAction(this::readyContinue);
-            Button delete = new Button("Slet");
-            delete.setOnAction(this::delete);
-            view.addButtons(save, ready, delete);
+            if(!customerChosen) {
+                NiceButton selectCustomer = new NiceButton("Vælg Kunde", "IDoptionButton", this::chooseCustomer);            
+                view.addButtons(selectCustomer);
+            }
+            Button selectVehicle = new NiceButton("Vælg bil", "IDoptionButton", this::chooseVehicle);
+            Button save = new NiceButton("Gem aftale", "IDoptionButton", this::save);
+            ready = new NiceButton("Udregn", "IDacceptButton", this::readyContinue);
+            Button delete = new NiceButton("Slet", "IDdeclineButton", this::delete);
+            view.addButtons(selectVehicle, save, ready, csvButton, delete);
         }
         if(open)
             tableModel = new TableModel(ServiceType.Invoice, new ArrayList<>());
@@ -110,7 +106,7 @@ public class AgreementController extends Controller implements Consumer<Agreemen
             return;
         model.rkiBooleanProperty().set(false);
         accept(model);
-        if(!((CustomerModel)model.getCustomer()).getEmpty())
+        if(!((CustomerModel)modelParam.getCustomer()).getEmpty())
             getRKiAndRate();
         
     }

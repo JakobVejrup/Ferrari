@@ -14,6 +14,9 @@ public abstract class ModalController extends Controller{
     public void setStage(Stage stage) {
         this.stage = stage;
     }
+    public Stage getStage() {
+        return stage;
+    }
     public Object getResult() {
         return result;
     }

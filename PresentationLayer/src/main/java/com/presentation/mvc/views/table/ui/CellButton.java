@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 public class CellButton extends Button {
     public CellButton(CellController cell, String text) {
         super(text);
+        getStyleClass().add("cellButton");
         setOnAction(cell);
     }
 }

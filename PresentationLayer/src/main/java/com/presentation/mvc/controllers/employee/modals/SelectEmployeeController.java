@@ -61,7 +61,7 @@ public class SelectEmployeeController extends ModalController {
                 table = new ParentTableDecorator(model, table);
                 table = new TableHeightDecorator(0.6, table);
                 table = new TableWidthDecorator(0.8, table);
-                table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory(), "Opdater andre", new SelectCommand( 
+                table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory("acceptButton"), "Opdater andre", new SelectCommand( 
                     (rowModel) -> {
                         setResult(((RowModel)rowModel).getItem()); 
                         close();    

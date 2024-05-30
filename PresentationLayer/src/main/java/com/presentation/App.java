@@ -31,6 +31,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -40,7 +41,6 @@ public class App extends Application {
         ScreenWatcher.getInstance().setStage(stage);
         BorderPane bp = new BorderPane();
         bp.getStyleClass().add("mainPane");
-
         Scene scene = new Scene(bp);
 
         scene.getStylesheets().add(App.class.getResource("stylesheet1.css").toExternalForm());

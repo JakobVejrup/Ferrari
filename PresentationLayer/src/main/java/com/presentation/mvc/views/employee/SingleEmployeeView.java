@@ -4,11 +4,13 @@ import java.io.ByteArrayInputStream;
 
 import com.model.entities.Employee;
 import com.presentation.mvc.views.View;
+import com.presentation.mvc.views.generalgui.NiceHBox;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -26,6 +28,8 @@ public class SingleEmployeeView extends VBox implements View{
     public ImageView image;
 
     public SingleEmployeeView(Employee model) {
+        getStyleClass().add("rightContainer");
+
         this.model = model;
         email = new TextField(model.getEmail());
         email.setEditable(false);
@@ -39,12 +43,11 @@ public class SingleEmployeeView extends VBox implements View{
         if(model.getImage() != null)
            image.setImage(new Image(new ByteArrayInputStream(model.getImage()), 0, 300, true, true));
         getChildren().addAll(
-            new HBox(new Label("Sælger navn: "), name ),
-            new HBox(new Label("Sælger email: "), email ),
-            new HBox(new Label("Sælger tlf: "), phoneNumber ),
-            new HBox(new Label("Sælger billede: "), image )
+            new NiceHBox("rightContainer", new Insets(5), new Label("Sælger navn: "), name ),
+            new NiceHBox("rightContainer", new Insets(5), new Label("Sælger email: "), email ),
+            new NiceHBox("rightContainer", new Insets(5), new Label("Sælger tlf: "), phoneNumber ),
+            new NiceHBox("rightContainer", new Insets(5), new Label("Sælger billede: "), image )
         );
-        setAlignment(Pos.CENTER);
     }
 
     public void setModel(Employee model) {

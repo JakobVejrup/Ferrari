@@ -25,10 +25,10 @@ public class OpenAgreementFactory extends NodeFactory {
         GuiTable table = new OpenAgreementTable();
         table = TableFactory.readyTable(controller, ServiceType.AgreementOpen, table);
         table.setup(box);
-        table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory(), "Se aftale", new SelectCommand(
+        table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory("acceptButton"), "Se aftale", new SelectCommand(
             (rowModel) -> {
                 AgreementModel model = (AgreementModel)(((RowModel)rowModel).getItem());
-                Facade.getInstance().setCenter(new AgreementController(model, true).getView());
+                Facade.getInstance().setCenter(new AgreementController(model, true, true).getView());
             }
             ), "se "), (TableDecorator) table).getTable();
         return table;

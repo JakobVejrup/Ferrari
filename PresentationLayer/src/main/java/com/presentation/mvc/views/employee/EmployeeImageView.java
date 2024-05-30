@@ -14,20 +14,21 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 public class EmployeeImageView extends VBox implements View{
+    private ImageView image;
     public EmployeeImageView(EmployeeModel model) {
-        ImageView imageView = new ImageView();
-        imageView.setFitHeight(300);
-        imageView.setPreserveRatio(true);
+        ImageView image = new ImageView();
+        image.setFitHeight(300);
+        image.setPreserveRatio(true);
         if(model.getImage() != null)
-            imageView.setImage(new Image(new ByteArrayInputStream(model.getImage()), 0, 300, true, true));
+        image.setImage(new Image(new ByteArrayInputStream(model.getImage()), 0, 300, true, true));
         model.imageProperty().addListener(new ChangeListener<byte[]>() {
             @Override
             public void changed(ObservableValue<? extends byte[]> observable, byte[] oldValue, byte[] newValue) {
                 Image img = new Image(new ByteArrayInputStream(newValue), 0, 300, true, true);
-                imageView.setImage(img);
+                image.setImage(img);
             }
         });
-        getChildren().add(imageView);
+        getChildren().add(image);
     }
     public void addButtons(Button... buttons) {
         getChildren().add(new HBox(buttons));

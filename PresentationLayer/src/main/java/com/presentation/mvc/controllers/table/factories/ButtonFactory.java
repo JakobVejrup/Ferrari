@@ -4,11 +4,17 @@ import com.presentation.mvc.controllers.table.CellController;
 import com.presentation.mvc.views.table.ui.CellButton;
 
 import javafx.scene.Node;
+import javafx.scene.control.Button;
 
 public class ButtonFactory extends NodeFactory {
-
+    private String css;
+    public ButtonFactory(String css) {
+        this.css = css;
+    }
     @Override
     public Node createNode(CellController cell) {
-        return new CellButton(cell, getController().getRowText());
+        Button button = new CellButton(cell, getController().getRowText());
+        button.getStyleClass().add(css);
+        return button;
     }
 }

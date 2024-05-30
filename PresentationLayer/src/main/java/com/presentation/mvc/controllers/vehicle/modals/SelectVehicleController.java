@@ -34,6 +34,7 @@ public class SelectVehicleController extends ModalController {
     public SelectVehicleController() {
         Button cancelButton = new Button("Fortryd");
         cancelButton.setOnAction(this::decline);
+        cancelButton.getStyleClass().add("declineButton");
         table = new VehicleTable();
         view = new VehiclesView(cancelButton);
         Request request = new Request(ServiceType.Vehicle, CRUDType.ReadAll, (vehicles) -> {
@@ -46,7 +47,7 @@ public class SelectVehicleController extends ModalController {
                 table = new ParentTableDecorator(model, table);
                 table = new TableHeightDecorator(0.6, table);
                 table = new TableWidthDecorator(0.8, table);
-                table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory(), "Vælg bil", new SelectCommand( 
+                table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory("acceptButton"), "Vælg bil", new SelectCommand( 
                     (rowModel) -> {
                         setResult(((RowModel)rowModel).getItem()); 
                         close();    

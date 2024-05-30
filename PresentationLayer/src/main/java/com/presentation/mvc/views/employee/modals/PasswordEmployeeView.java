@@ -1,8 +1,11 @@
 package com.presentation.mvc.views.employee.modals;
 
 import com.presentation.mvc.models.employees.EmployeeModel;
+import com.presentation.mvc.views.generalgui.NiceHBox;
+
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
 
 public class PasswordEmployeeView extends EmployeeBaseView {
     public PasswordEmployeeView(EmployeeModel model) {
@@ -11,6 +14,6 @@ public class PasswordEmployeeView extends EmployeeBaseView {
         if(model.getPassword() != "")
             password.setText(model.getPassword());
         model.passwordProperty().bind(password.textProperty());
-        getChildren().addFirst(new HBox(new Label("Password:"), password));
+        getChildren().addFirst(new NiceHBox("rightContainer", new Insets(5), new Label("Password:"), password));
     }
 }

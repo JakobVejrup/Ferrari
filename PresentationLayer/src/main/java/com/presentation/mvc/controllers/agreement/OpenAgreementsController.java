@@ -34,11 +34,11 @@ public class OpenAgreementsController extends Controller{
                 table = new ParentTableDecorator(model, table);
                 table = new TableHeightDecorator(0.6, table);
                 table = new TableWidthDecorator(0.8, table);
-                table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory(), "Opdater aftale", new SelectCommand((rowmodel)->{
+                table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory("optionButton"), "Opdater aftale", new SelectCommand((rowmodel)->{
                     AgreementModel agreement = (AgreementModel)((RowModel)rowmodel).getItem();
-                    Facade.getInstance().setCenter(new AgreementController(agreement, true).getView());
+                    Facade.getInstance().setCenter(new AgreementController(agreement, true, false).getView());
                 }), "opdater"), table);
-                table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory(), "Slet aftale", new DeleteCommand(model), "slet"), table);
+                table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory("declineButton"), "Slet aftale", new DeleteCommand(model), "slet"), table);
                 table.getTable().setup(view);
             });
         });
@@ -53,7 +53,7 @@ public class OpenAgreementsController extends Controller{
 
     public void newAgreement(ActionEvent event) {
         AgreementModel agreement = new AgreementModel();
-        Facade.getInstance().setCenter(new AgreementController(agreement, true).getView());
+        Facade.getInstance().setCenter(new AgreementController(agreement, true, false).getView());
     }
     @Override
     public AgreementView getView() {

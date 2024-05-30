@@ -1,10 +1,13 @@
 .mainPane {
     -fx-alignment: BASELINE;
-    -fx-background-color: black;
-    -fx-background-image: url("Ferrari.png");
-    -fx-background-repeat: stretch;
+
+    -fx-background-image: url("background.jpg");
+    -fx-background-size: cover; 
+    -fx-background-repeat: no-repeat;
     -fx-background-position: center;
-    -fx-background-size: 20%;
+}
+.rightContainer {
+    -fx-alignment: TOP_RIGHT;
 }
 .mainPane .center {
     -fx-alignment: CENTER;
@@ -32,6 +35,15 @@
 }
 .navBar {
     -fx-background-color: linear-gradient(to right, #1b1b1b, #555557);
+}
+.buttonBar {
+    -fx-background-color: linear-gradient(from 0% 0% to 0% 100%, 
+                                          #94949400 0%,   
+                                          #8d8d8d 20%,   
+                                          #3d3d3d 80%,   
+                                          #7c7c7c00 100%
+                                          ); 
+    -fx-alignment: CENTER;
 }
 .navButton {
     -fx-padding: 20;
@@ -112,50 +124,98 @@ Label {
     -fx-font-weight: bold;
     -fx-padding: 5;
 }
-TextField {
-    -fx-font-size: 12px;
-    -fx-font-weight: bold;
-    -fx-padding: 5;
-
+TextField , PasswordField {
+    -fx-font-size: 20px;
+    -fx-border-color:black; 
+    -fx-border-radius: 10px;
+    -fx-background-color: rgb(240, 240, 240); 
+    -fx-border-width: 2;
+    -fx-text-fill: #000000; 
+    -fx-background-insets: 0, 1; 
+    -fx-background-radius: 10px; 
 }
-PasswordField {
-    -fx-font-size: 12px;
-    -fx-text-fill: black;
-    -fx-padding: 5;
-}
-.declineButton {
-    -fx-text-fill: Black;
-    -fx-font-size: 16px;
-    -fx-font-family: "Arial";
-    -fx-background-radius: 5px;
-    -fx-border-radius: 5px;
-    -fx-padding: 5px 5px;
-    -fx-border-width: 2px;
-    -fx-border-color: linear-gradient(to right, #ff7e5f, #feb47b);
-    -fx-border-style: solid;
-}
-.acceptButton {
-    -fx-text-fill: Black;
-    -fx-font-size: 16px;
-    -fx-font-family: "Arial";
-    -fx-background-radius: 5px;
-    -fx-border-radius: 5px;
-    -fx-padding: 5px 5px;
-    -fx-border-width: 2px;
-    -fx-border-color: linear-gradient(to right, #0ba448, #52df45);
-    -fx-border-style: solid;
+ComboBox {
+    -fx-font-size: 20px;
+    -fx-border-color:black; 
+    -fx-border-radius: 10px;
+    -fx-background-color: rgb(240, 240, 240); 
+    -fx-border-width: 2;
+    -fx-text-fill: #000000; 
+    -fx-background-insets: 0, 1; 
+    -fx-background-radius: 10px; 
 }
 
-Button {
-    -fx-text-fill: Black;
-    -fx-font-size: 16px;
+DatePicker {
+    -fx-font-size: 20px;
+    -fx-border-color:black; 
+    -fx-border-radius: 10px;
+    -fx-background-color: rgb(240, 240, 240); 
+    -fx-border-width: 2;
+    -fx-text-fill: #000000; 
+    -fx-background-insets: 0, 1; 
+    -fx-background-radius: 10px; 
+}
+.text-field:readonly {
+    -fx-border-color:white; 
+    -fx-background-color: rgba(240, 240, 240, 0.281); 
+    -fx-text-fill:rgb(255, 255, 255); 
+}
+
+DatePicker:disabled {
+    -fx-opacity: 1;
+    -fx-border-color:white; 
+    -fx-background-color: rgba(240, 240, 240, 0.281);  
+}
+DatePicker .text-field {
+    -fx-border-color:transparent; 
+}
+DatePicker:disabled .text-field {
+    -fx-text-fill:rgb(255, 255, 255); 
+}
+
+.optionButton:hover, #IDoptionButton:hover {
+    -fx-transition: background-color 0.4s, -fx-effect 0.4s;
+    -fx-text-fill: rgb(156, 157, 255);
+    -fx-effect: dropshadow(gaussian, rgba(32, 19, 214, 0.75), 10, 0.5, 0, 0);
+}
+
+.declineButton:hover, #IDdeclineButton:hover {
+    -fx-transition: background-color 0.4s, -fx-effect 0.4s;
+    -fx-text-fill: rgb(228, 150, 150);
+    -fx-effect: dropshadow(gaussian, rgba(218, 75, 9, 0.75), 10, 0.5, 0, 0);
+}
+
+.acceptButton:hover, #IDacceptButton:hover {
+    -fx-transition: background-color 0.4s, -fx-effect 0.4s;
+    -fx-text-fill: rgb(160, 250, 152);
+    -fx-effect: dropshadow(gaussian, rgba(0, 190, 25, 0.75), 10, 0.5, 0, 0);
+}
+.cellButton {
+    -fx-font-size: 20px;
+    -fx-border-color: transparent; 
+    -fx-background-color: transparent;
     -fx-font-family: "Arial";
-    -fx-background-radius: 5px;
-    -fx-border-radius: 5px;
-    -fx-padding: 5px 5px;
-    -fx-background-color: white;
-    -fx-border-color: grey;
-    -fx-border-width: 3px;
+    -fx-border-width: 0;           
+    -fx-background-radius: 0;      
+    -fx-padding: 20;                
+    -fx-background-insets: 0;   
+}
+.cellButton:hover{
+    -fx-transition: background-color 0.4s, -fx-effect 0.4s;
+}
+Button, .niceButton {
+    -fx-font-size: 30px;
+    -fx-text-fill: rgb(197, 197, 197);
+    -fx-background-color: transparent;
+    -fx-font-family: "Arial";
+}
+Button .niceButton{
+    -fx-effect: dropshadow(gaussian, rgba(138, 138, 138, 0.75), 10, 0.5, 0, 0);
+}
+Button:hover, .niceButton:hover{
+    -fx-transition: background-color 0.4s, -fx-effect 0.4s;
+    -fx-text-fill: rgb(255, 255, 255);
+    -fx-effect: dropshadow(gaussian, rgba(221, 221, 221, 0.75), 10, 0.5, 0, 0);
 }
 Glyph {
     -fx-scale-x: 3;

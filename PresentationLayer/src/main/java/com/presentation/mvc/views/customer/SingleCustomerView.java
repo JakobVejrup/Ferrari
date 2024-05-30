@@ -5,7 +5,9 @@ import java.io.ByteArrayInputStream;
 import com.model.entities.Customer;
 import com.model.entities.Employee;
 import com.presentation.mvc.views.View;
+import com.presentation.mvc.views.generalgui.NiceHBox;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -23,6 +25,7 @@ public class SingleCustomerView extends VBox implements View{
     public TextField cpr;
 
     public SingleCustomerView(Customer model) {
+        getStyleClass().add("rightContainer");
         this.model = model;
         email = new TextField(model.getEmail());
         email.setEditable(false);
@@ -35,12 +38,11 @@ public class SingleCustomerView extends VBox implements View{
         cpr = new TextField(model.getCpr());
         cpr.setEditable(false);
         getChildren().addAll(
-            new HBox(new Label("Kunde navn: "), name ),
-            new HBox(new Label("Kunde email: "), email ),
-            new HBox(new Label("Kunde tlf: "), phoneNumber ),
-            new HBox(new Label("Kunde cpr: "), cpr )
+            new NiceHBox("rightContainer", new Insets(5), new Label("Kunde navn: "), name ),
+            new NiceHBox("rightContainer", new Insets(5), new Label("Kunde email: "), email ),
+            new NiceHBox("rightContainer", new Insets(5), new Label("Kunde tlf: "), phoneNumber ),
+            new NiceHBox("rightContainer", new Insets(5), new Label("Kunde cpr: "), cpr )
         );
-        setAlignment(Pos.CENTER);
     }
 
     public void setModel(Customer model) {
