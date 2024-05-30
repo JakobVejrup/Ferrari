@@ -18,7 +18,8 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.TableColumn;
-
+//karl
+//ClosedAgreementsTable class that extends GuiTable and implements TableDecorator that displays the columns of the table
 public class ClosedAgreementsTable extends GuiTable implements TableDecorator{
     private TableColumn<RowModel, Number> fixedTermsCol;
     private TableColumn<RowModel, Number> startValueCol;
@@ -31,7 +32,7 @@ public class ClosedAgreementsTable extends GuiTable implements TableDecorator{
     private TableColumn<RowModel, Date> endCol;
     private TableColumn<RowModel, Number> endpriceCol;
    
-
+    //constructor for table that sets the columns and names
     public ClosedAgreementsTable(){
         getColumns().add(fixedTermsCol      = new TableColumn<>("Terminer"));
         getColumns().add(startValueCol      = new TableColumn<RowModel, Number>("Indskud"));
@@ -43,7 +44,7 @@ public class ClosedAgreementsTable extends GuiTable implements TableDecorator{
         getColumns().add(startCol           = new TableColumn<RowModel, Date>("I kraft fra"));
         getColumns().add(endCol             = new TableColumn<RowModel, Date>("I Kraft til"));
         getColumns().add(endpriceCol        = new TableColumn<RowModel, Number>("Total pris"));
-
+        //here we set the cell value factory for each column and how to get the value
         fixedTermsCol.setCellValueFactory((cellData)          -> ((AgreementModel) cellData.getValue().getItem()).fixedTermsProperty());
         startValueCol.setCellValueFactory((cellData)          -> ((AgreementModel) cellData.getValue().getItem()).startValueProperty());
         startValueCol.setCellFactory(CurrencyCell.forTableColumn());

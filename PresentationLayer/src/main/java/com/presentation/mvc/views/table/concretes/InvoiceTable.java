@@ -12,7 +12,8 @@ import com.presentation.mvc.views.table.ui.GuiTable;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TableColumn;
 import javafx.util.Callback;
-
+//karl
+//InvoiceTable class that extends GuiTable and implements TableDecorator that displays the columns of the table
 public class InvoiceTable extends GuiTable implements TableDecorator {
     private TableColumn<RowModel, Number> numberCol;
     private TableColumn<RowModel, Date> dateStartCol;
@@ -23,7 +24,7 @@ public class InvoiceTable extends GuiTable implements TableDecorator {
     private TableColumn<RowModel, Number> ultimoCol;
     private TableColumn<RowModel, Number> primoCol;
     private TableColumn<RowModel, String> detailsCol;
-
+    //constructor for table that sets the columns and names
     public InvoiceTable() {
         getColumns().add(numberCol = new TableColumn<>("Nr"));
         getColumns().add(dateStartCol = new TableColumn<>("Fra"));
