@@ -35,7 +35,7 @@ public class CSVWriterTest extends TestCase {
     //CSV Writer Test for invoices der tjekker om filen bliver skrevet korrekt
     public void testWrite() {
         String filename = "test_invoices";
-        String path = "C:\\Users\\kehan\\Downloads\\";
+        String path = System.getProperty("user.home") + "//Downloads";
         List<Invoice> invoices = Arrays.asList(
             //laver 2 nye fakturaer der skal skrives til filen
                 new Invoice(1, Date.valueOf(LocalDate.of(2023, 1, 1)),
@@ -54,8 +54,8 @@ public class CSVWriterTest extends TestCase {
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             // assert statements til at tjekke om filen er skrevet korrekt
             assertEquals("NR;Dato Start;Dato slut;Plus;Minus;UltimoValue;PrimoPrice;Details", reader.readLine());
-            Assert.assertEquals(reader.readLine(), "1;2023-01-01;2023-01-31;100.0;50.0;500.0;450.0;Some details");
-            Assert.assertEquals(reader.readLine(), "2;2023-02-01;2023-02-28;200.0;75.0;625.0;500.0;More details");
+            Assert.assertEquals(reader.readLine(), "1;2023-01-01;2023-01-31;100;50;500;450;Some details");
+            Assert.assertEquals(reader.readLine(), "2;2023-02-01;2023-02-28;200;75;625;500;More details");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

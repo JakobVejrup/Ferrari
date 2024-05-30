@@ -24,7 +24,6 @@ public class CSVWriter {
 
     public void write() {
         File file = new File(path + ".csv");
-        
 
         try (FileWriter writer = new FileWriter(file)) {
             writeRow(writer, headers);

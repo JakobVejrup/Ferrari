@@ -21,7 +21,7 @@ public class LoanCalculatorTest extends TestCase {
         agreement.setFixedTerms(3);
         //agreement.setDaysRate(0);
         //0,0025
-        Invoice[] tests = {new Invoice(agreement, 1, new Date(2000, 1, 1), new Date(2000, 2, 1), 997504.16, 7500,2002495.84, 3000000, 1005004.16, ""),
+        Invoice[] tests = { new Invoice(agreement, 1, new Date(2000, 1, 1), new Date(2000, 2, 1), 997504.16, 7500,2002495.84, 3000000, 1005004.16, ""),
                            new Invoice(agreement, 2, new Date(2000, 2, 1), new Date(2000, 3, 1), 999997.92, 5006.24, 1002497.92, 2002495.84, 1005004.16, ""),
                            new Invoice(agreement, 3, new Date(2000, 3, 1), new Date(2000, 4, 1), 1002497.92, 2506.24, 0, 1002497.92, 1005004.16, "")};
         Invoice[] loans = LoanCalculator.låneBeregner(agreement);
