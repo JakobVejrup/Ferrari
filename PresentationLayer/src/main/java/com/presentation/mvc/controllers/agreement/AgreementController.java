@@ -7,18 +7,11 @@ import com.presentation.tools.alert.Alerter;
 import com.presentation.tools.facade.Facade;
 import com.rki.rki.Rating;
 import javafx.application.Platform;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 import com.logic.ServiceSingleton;
@@ -44,10 +37,8 @@ import com.presentation.mvc.models.Invoice.InvoiceModel;
 import com.presentation.mvc.models.agreements.AgreementValidationModel;
 import com.presentation.mvc.models.agreements.AgreementModel;
 import com.presentation.mvc.models.customer.CustomerModel;
-import com.presentation.mvc.models.employees.EmployeeModel;
 import com.presentation.mvc.models.table.RowModel;
 import com.presentation.mvc.models.table.TableModel;
-import com.presentation.mvc.models.vehicle.VehicleModel;
 
 public class AgreementController extends Controller implements Consumer<AgreementValidationModel> {
     private OpenAgreementView view;
@@ -119,11 +110,10 @@ public class AgreementController extends Controller implements Consumer<Agreemen
             model.setPayments(invoices);
         }
         else if(signum == 1) {
-            if(model.getRki() == Rating.D && model.getVehicle().getPrice() - model.getStartValue() != 0) {
+            if(model.getRki() == Rating.D) {
                 Alerter.warning("Dårlig Rki kan ikke låne", "Kunden skal levere hele beløbet selv");
                 return;
             }
-
             if(Facade.getInstance().getLoggedIn().getLoanLimit() > model.getVehicle().getPrice() - model.getStartValue() && Facade.getInstance().getLoggedIn().getOccupation() != Occupation.Manager)
                 Alerter.warning("For stort beløb", "Gem aftalen, og en med større godkedelse beløb, kan godkende den");
             ServiceSingleton.getInstance().query(new Request(ServiceType.AgreementClosed, CRUDType.Create, model,
@@ -134,7 +124,15 @@ public class AgreementController extends Controller implements Consumer<Agreemen
                     );
             }));
         }
-
+    }    
+    public void cash(ActionEvent event) {
+        ServiceSingleton.getInstance().query(new Request(ServiceType.AgreementClosed, CRUDType.Create, model,
+        (update) -> {
+            if(update != null) 
+                Platform.runLater( () ->
+                    Facade.getInstance().setCenter(new OpenAgreementsController().getView())
+                );
+        }));
     }
     public void chooseEmployee(ActionEvent event) {
         Object result = Facade.getInstance().openModalResult(new SelectEmployeeController());
@@ -192,25 +190,32 @@ public class AgreementController extends Controller implements Consumer<Agreemen
     }
     @Override
     public void accept(AgreementValidationModel agreement) {
-        if(agreement.fixedTermsBooleanProperty().get() && agreement.startValueBooleanProperty().get() && agreement.startBooleanProperty().get()
-        && agreement.rkiBooleanProperty().get() && agreement.daysRateBooleanProperty().get()) {
-            ready.setText("Udregn");   
-            signum = 0;
-        } 
+        boolean choices = agreement.vehicleBooleanProperty().get() && agreement.customerBooleanProperty().get() && agreement.employeeBooleanProperty().get();
+        if(choices && agreement.buyoutBooleanProperty().get()) {
+            ready.setText("Køb uden lån");   
+            ready.setDisable(false);
+            ready.setOnAction(this::cash);
+        }   
         else {
-            ready.setText("udfyld formel");   
-            signum = -1;
+            ready.setText("Udregn");   
+            ready.setOnAction(this::readyContinue);
+            if(choices && agreement.fixedTermsBooleanProperty().get() && agreement.startValueBooleanProperty().get() && agreement.startBooleanProperty().get()
+            && agreement.rkiBooleanProperty().get() && agreement.daysRateBooleanProperty().get() ) 
+                signum = 0;
+            else {
+                ready.setText("udfyld formel");   
+                signum = -1;
+            }
+            if(agreement.invoicesBooleanProperty().get()) {
+                ready.setText("Godkend");
+                signum = 1;
+            }
+            ready.setDisable(signum == -1);
+            csvButton.setDisable(signum != 1);
+            Date newDate = new Date(agreement.getStart().getTime());
+            newDate = Date.valueOf(newDate.toLocalDate().plusMonths(agreement.getFixedTerms()));
+            agreement.setEnd(newDate);
         }
-
-        if(agreement.invoicesBooleanProperty().get()) {
-            ready.setText("Godkend");
-            signum = 1;
-        }
-        ready.setDisable(signum == -1);
-        csvButton.setDisable(signum != 1);
-        Date newDate = new Date(agreement.getStart().getTime());
-        newDate = Date.valueOf(newDate.toLocalDate().plusMonths(agreement.getFixedTerms()));
-        agreement.setEnd(newDate);
     }
     private void getRKiAndRate() {
         ServiceSingleton.getInstance().query(new Request(ServiceType.Rate, CRUDType.Read, model, 

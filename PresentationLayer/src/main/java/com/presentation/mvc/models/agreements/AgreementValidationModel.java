@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 import java.util.function.Consumer;
 import com.model.entities.Agreement;
 import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 //karl
 public class AgreementValidationModel extends AgreementModel {
@@ -18,6 +17,8 @@ public class AgreementValidationModel extends AgreementModel {
     private BooleanProperty employeeProp;
     private BooleanProperty vehicleProp;
     private BooleanProperty invoicesProp;
+    private BooleanProperty buyOutProp;
+
     public AgreementValidationModel(Consumer<AgreementValidationModel> onChange) {
         super();
         setup(onChange);
@@ -46,6 +47,7 @@ public class AgreementValidationModel extends AgreementModel {
         employeeProp = new SimpleBooleanProperty(getEmployee() != null);
         vehicleProp = new SimpleBooleanProperty(getVehicle() != null);
         invoicesProp = new SimpleBooleanProperty(false);
+        buyOutProp = new SimpleBooleanProperty(getVehicle() != null ? getVehicle().getPrice() <= getStartValue() : false);
 
         daysRateProperty().addListener((observe, oldVal, newVal) -> { 
             daysRateProp.set(newVal.doubleValue() != 0d);
@@ -100,9 +102,20 @@ public class AgreementValidationModel extends AgreementModel {
             onChange.accept(this);
         });
         invoiceProperty().addListener((observe, oldVal, newVal) -> {
-        invoicesProp.set(newVal != null);
-        onChange.accept(this);
-    });
+            invoicesProp.set(newVal != null);
+            onChange.accept(this);
+        });
+        startValueProperty().addListener((observe, oldVal, newVal) -> {
+            buyOutProp.set(getVehicle() != null ? getVehicle().getPrice() <= newVal.doubleValue() : false);
+            onChange.accept(this);
+        });
+        vehicleProperty().addListener((observe, oldVal, newVal) -> {
+            buyOutProp.set(newVal != null ? newVal.getPrice() <= getStartValue() : false);
+            onChange.accept(this);
+        });
+    }
+    public BooleanProperty buyoutBooleanProperty() {
+        return buyOutProp;
     }
     public BooleanProperty fixedTermsBooleanProperty() {
         return fixedTermsProp;

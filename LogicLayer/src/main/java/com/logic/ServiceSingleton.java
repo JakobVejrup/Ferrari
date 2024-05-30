@@ -62,6 +62,9 @@ public class ServiceSingleton implements Handler {
     public void setServices(HandlerHolder services) {
         this.services = services;
     }
+    public HandlerHolder getServices() {
+        return services;
+    }
     // query will run validations and see if its goooood, if that's the case it will go to services and get the sql data which will go in the setter methods parameter inside SQLRequest
     @Override
     public void query(Request request) {
@@ -75,17 +78,20 @@ public class ServiceSingleton implements Handler {
                         return;
                     }
                 }
-                services.query(request);
+                if(services != null)
+                    services.query(request);
             }
         });
         thread.setDaemon(true);
         thread.start();
     }
+    private Object returner;
     public Object queryNoThread(Request request) {
-        final Object[] returnValue = new Object[1];
-        request.setSetter((value) -> returnValue[0] = value);
+        if (services == null)
+            return null;
+        request.setSetter((value) -> returner = value);
         services.query(request);
-        return returnValue[0];
+        return returner;
     }
     public static ServiceSingleton getInstance() {
         return instance == null ? instance = new ServiceSingleton() : instance;
