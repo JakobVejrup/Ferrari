@@ -9,6 +9,7 @@ import com.presentation.mvc.controllers.table.factories.ButtonFactory;
 import com.presentation.mvc.controllers.table.factories.NodeFactory;
 import com.presentation.mvc.models.agreements.AgreementModel;
 import com.presentation.mvc.models.table.RowModel;
+import com.presentation.mvc.views.table.concretes.MiniAgreementTable;
 import com.presentation.mvc.views.table.concretes.OpenAgreementTable;
 import com.presentation.mvc.views.table.decorators.ButtonColumnDecorator;
 import com.presentation.mvc.views.table.decorators.TableDecorator;
@@ -22,7 +23,7 @@ public class OpenAgreementFactory extends NodeFactory {
     @Override
     public Node createNode(CellController controller) {
         VBox box = new VBox();
-        GuiTable table = new OpenAgreementTable();
+        GuiTable table = new MiniAgreementTable();
         table = TableFactory.readyTable(controller, ServiceType.AgreementOpen, table);
         table.setup(box);
         table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory("acceptButton"), "Se aftale", new SelectCommand(

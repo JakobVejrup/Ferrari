@@ -33,6 +33,7 @@ import com.presentation.mvc.controllers.employee.modals.UpdateEmployeeController
 public class CustomersController extends Controller{
     private TableModel model;
     private CustomersView view;
+
     public CustomersController() {
         Button newCustomer = new Button("Ny Bruger");
         newCustomer.setOnAction(this::newCustomer);
@@ -43,8 +44,8 @@ public class CustomersController extends Controller{
                 TableDecorator table = new CustomerTable();
                 model = new TableModel(ServiceType.Customer, CustomerModel.makeModelsAsObjects((List<Customer>)customers));
                 table = new ParentTableDecorator(model, table);
-                table = new TableHeightDecorator(0.6, table);
-                table = new TableWidthDecorator(0.8, table);
+                table = new TableHeightDecorator(0.8, table);
+                table = new TableWidthDecorator(0.9, table);
                 table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory("optionButton"), "Opdater kunde", new UpdateCommand((row) -> new UpdateCustomerController((Customer)row.getItem())), "opdater"), table);
                 table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory("declineButton"), "Slet kunde", new DeleteCommand(model), "slet"), table);
                 view.setTable(table.getTable());

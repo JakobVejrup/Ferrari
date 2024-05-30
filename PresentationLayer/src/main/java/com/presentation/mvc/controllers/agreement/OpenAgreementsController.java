@@ -32,8 +32,8 @@ public class OpenAgreementsController extends Controller{
                 TableDecorator table = new OpenAgreementTable();
                 model = new TableModel(ServiceType.AgreementOpen, AgreementModel.makeModelsAsObjects((List<Agreement>)agreements));
                 table = new ParentTableDecorator(model, table);
-                table = new TableHeightDecorator(0.6, table);
-                table = new TableWidthDecorator(0.8, table);
+                table = new TableHeightDecorator(0.8, table);
+                table = new TableWidthDecorator(0.9, table);
                 table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory("optionButton"), "Opdater aftale", new SelectCommand((rowmodel)->{
                     AgreementModel agreement = (AgreementModel)((RowModel)rowmodel).getItem();
                     Facade.getInstance().setCenter(new AgreementController(agreement, true, false).getView());

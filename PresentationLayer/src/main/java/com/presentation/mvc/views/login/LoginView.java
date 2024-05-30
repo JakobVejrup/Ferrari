@@ -1,6 +1,8 @@
 package com.presentation.mvc.views.login;
 
 import com.presentation.mvc.models.employees.EmployeeModel;
+import com.presentation.mvc.views.generalgui.NiceButton;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -26,9 +28,7 @@ public class LoginView extends VBox {
         password = new PasswordField();
         model.passwordProperty().bind(password.textProperty());
         HBox texts = new HBox(new Label("Email:"), email, new Label("Password:"), password);
-        Button login = new Button("Log ind");
-        login.getStyleClass().add("acceptButton");
-        login.setOnAction(buttonAction);
+        Button login = new NiceButton("Log ind", "IDLogin", buttonAction);
         getChildren().addAll(
                 texts,
                 login

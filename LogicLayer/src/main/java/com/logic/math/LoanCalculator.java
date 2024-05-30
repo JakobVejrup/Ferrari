@@ -35,7 +35,6 @@ public class LoanCalculator {
         }
         return Betalinger;
     }
-
     public static double renteProcent(Agreement agreement) {
         double dagsRente = agreement.getDaysRate();
         double RKIværdi = switch(agreement.getRki()) {

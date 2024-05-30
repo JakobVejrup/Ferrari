@@ -41,7 +41,7 @@ public class SingleEmployeeView extends VBox implements View{
 
         image = new ImageView();
         if(model.getImage() != null)
-           image.setImage(new Image(new ByteArrayInputStream(model.getImage()), 0, 300, true, true));
+           image.setImage(new Image(new ByteArrayInputStream(model.getImage()), 0, 200, true, true));
         getChildren().addAll(
             new NiceHBox("rightContainer", new Insets(5), new Label("Sælger navn: "), name ),
             new NiceHBox("rightContainer", new Insets(5), new Label("Sælger email: "), email ),
@@ -56,7 +56,7 @@ public class SingleEmployeeView extends VBox implements View{
         email.setText(model.getEmail());
         phoneNumber.setText(model.getPhoneNumber());
         if(model.getImage() != null)
-           image.setImage(new Image(new ByteArrayInputStream(model.getImage()), 0, 300, true, true));
+           image.setImage(new Image(new ByteArrayInputStream(model.getImage()), 0, 200, true, true));
     }
 
     @Override

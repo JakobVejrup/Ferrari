@@ -46,7 +46,7 @@ public class AllVehiclesController extends Controller {
     private TableDecorator table;
     public AllVehiclesController() {
 
-        Button insertButton = new Button("lav bil");
+        Button insertButton = new Button("Ny bil");
         insertButton.setOnAction(this::addVehicle);
 
         view = new VehiclesView(insertButton);
@@ -59,8 +59,8 @@ public class AllVehiclesController extends Controller {
                 model.getRows().iterator().forEachRemaining((row) -> {
                     row.getImages().put("vehicle", ((VehicleModel)row.getItem()).imageProperty());
                 });
-                table = new TableHeightDecorator(0.6, table);
-                table = new TableWidthDecorator(0.8, table);
+                table = new TableHeightDecorator(0.8, table);
+                table = new TableWidthDecorator(0.9, table);
                 if(Facade.getInstance().getLoggedIn().getOccupation() == Occupation.Manager) {
                     table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory("optionButton"), "Opdater andre", new UpdateCommand(
                         (row) -> new UpdateVehicleController((Vehicle)row.getItem())

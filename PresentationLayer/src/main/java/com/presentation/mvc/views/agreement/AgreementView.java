@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import com.presentation.mvc.views.generalgui.NiceHBox;
 
 public class AgreementView extends VBox implements View {
     public AgreementView(){
@@ -13,7 +14,6 @@ public class AgreementView extends VBox implements View {
     }
     @Override
     public void addButtons(Button... buttons) {
-        getChildren().addFirst(new HBox(buttons));
+        getChildren().addAll(new NiceHBox("leftContainer", buttons));
     }
-    
 }

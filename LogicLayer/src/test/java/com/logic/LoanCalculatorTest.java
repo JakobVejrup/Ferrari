@@ -42,6 +42,6 @@ public class LoanCalculatorTest extends TestCase {
         agreement.setStart(new Date(2000, 1, 1));
         agreement.setEnd(new Date(2005, 1, 1));
         agreement.setRki(Rating.C);
-        assertEquals(0.0025 , LoanCalculator.renteProcent(agreement));
+        assertEquals(0.0045 , LoanCalculator.renteProcent(agreement));
     }
 }

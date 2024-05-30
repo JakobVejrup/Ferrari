@@ -19,7 +19,9 @@ import com.presentation.mvc.models.agreements.AgreementModel;
 import com.presentation.mvc.models.employees.EmployeeModel;
 import com.presentation.mvc.models.table.RowModel;
 import com.presentation.mvc.models.table.TableModel;
+import com.presentation.mvc.views.customer.CustomersView;
 import com.presentation.mvc.views.employee.EmployeesView;
+import com.presentation.mvc.views.generalgui.NiceButton;
 import com.presentation.mvc.views.table.concretes.EmployeeTable;
 import com.presentation.mvc.views.table.decorators.*;
 import com.presentation.mvc.views.table.ui.GuiTable;
@@ -40,10 +42,13 @@ public class EmployeesController extends Controller {
     private TableDecorator table;
 
     public EmployeesController() {
-        Button newUserButton = new Button("Ny bruger");
-        newUserButton.setOnAction(this::newUser);
+        if (Facade.getInstance().getLoggedIn().getOccupation() == Occupation.Manager ||Facade.getInstance().getLoggedIn().getOccupation() == Occupation.Admin) {
+            Button newUserButton = new NiceButton("Ny Ansat", this::newUser);
+            view = new EmployeesView(newUserButton);
+        }
+        else
+            view = new EmployeesView();
         table = new EmployeeTable();
-        view = new EmployeesView(newUserButton);
         Request request = new Request(ServiceType.Employee, CRUDType.ReadAll, (employees) -> {
             //to allow ui to be run
             Platform.runLater( () -> {
@@ -53,9 +58,9 @@ public class EmployeesController extends Controller {
                 model.getRows().iterator().forEachRemaining((row) -> {
                     row.getImages().put("Ansat", ((EmployeeModel)row.getItem()).imageProperty());
                 });
-                table = new TableHeightDecorator(0.6, table);
-                table = new TableWidthDecorator(0.8, table);
-                if(Facade.getInstance().getLoggedIn().getOccupation() == Occupation.Manager) {
+                table = new TableHeightDecorator(0.8, table);
+                table = new TableWidthDecorator(0.9, table);
+                if(Facade.getInstance().getLoggedIn().getOccupation() == Occupation.Manager || Facade.getInstance().getLoggedIn().getOccupation() == Occupation.Admin) {
                     table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory("optionButton"), "Opdater andre", new UpdateCommand((row) -> new UpdateEmployeeController((Employee)row.getItem())), "opdater"), table);
                     table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory("declineButton"), "Slet andre", new DeleteCommand(model), "slet"), table);
                     table = new CheckboxColumnDecorator(new DeleteCommand(model), "Slet", "Slet", "Slet Alle", table);

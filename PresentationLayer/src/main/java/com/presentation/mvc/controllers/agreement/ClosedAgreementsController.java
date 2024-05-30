@@ -33,8 +33,8 @@ public class ClosedAgreementsController extends Controller{
                 TableDecorator table = new ClosedAgreementsTable();
                 model = new TableModel(ServiceType.AgreementClosed, AgreementModel.makeModelsAsObjects((List<Agreement>)agreements));
                 table = new ParentTableDecorator(model, table);
-                table = new TableHeightDecorator(0.6, table);
-                table = new TableWidthDecorator(0.8, table);
+                table = new TableHeightDecorator(0.8, table);
+                table = new TableWidthDecorator(0.9, table);
                 table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory("optionButton"), "Se Aftale", new SelectCommand((rowmodel)->{
                     AgreementModel agreement = (AgreementModel)((RowModel)rowmodel).getItem();
                     Facade.getInstance().setCenter(new AgreementController(agreement, false, true).getView());

@@ -6,7 +6,6 @@ import com.presentation.tools.FileMethods;
 import com.presentation.tools.alert.Alerter;
 import com.presentation.tools.facade.Facade;
 import com.rki.rki.Rating;
-
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.IntegerProperty;
@@ -17,7 +16,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;

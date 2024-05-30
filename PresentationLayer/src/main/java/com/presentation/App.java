@@ -3,7 +3,6 @@ package com.presentation;
 import java.util.ArrayList;
 import java.sql.Date;
 import java.util.List;
-
 import com.logic.handlers.Request;
 import com.logic.services.enums.CRUDType;
 import com.logic.services.enums.ServiceType;
@@ -25,7 +24,6 @@ import com.presentation.tools.facade.Login;
 import com.presentation.tools.facade.ModalSetter;
 import com.presentation.tools.ScreenWatcher;
 import com.presentation.tools.csvwriter.CSVWriterInvoices;
-
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

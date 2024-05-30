@@ -35,7 +35,10 @@ public class LeftNavbarController {
         }
         if(employee.getOccupation() == Occupation.Admin) {
             controllers.add(new NavButtonController(new NavButtonModel("FontAwesome", "USERS", "Ansatte"), (event) -> navigate("Employees")));
-            controllers.add(new NavButtonController(new NavButtonModel("FontAwesome", "USERS", "Kunder"), (event) -> navigate("Customers")));
+            controllers.add(new NavButtonController(new NavButtonModel("FontAwesome", "USERS", "Kunder"),(event) -> navigate("Customers")));
+            controllers.add(new NavButtonController(new NavButtonModel("FontAwesome", "USER", "Din konto"), (event) -> navigate("Account")));
+            controllers.add(new NavButtonController(new NavButtonModel("FontAwesome", "SIGN_OUT", "Log Af"), (event) -> navigate("Login")));
+            
         }
         List<NavButtonView> views = new ArrayList<>();
         for (NavButtonController c : controllers)
