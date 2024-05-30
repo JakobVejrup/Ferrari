@@ -12,6 +12,7 @@ import com.logic.handlers.Request;
 import com.logic.handlers.SimpleHolder;
 import com.logic.services.enums.ServiceType;
 //Karl
+// Handlers for agreementOpen som bruger COR til at håndtere CRUD
 public class AgreementOpenService extends HandlerObject {
     private HandlerHolder holder;
 

@@ -22,6 +22,8 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 //karl
+
+//table and controller for open agreements 
 public class OpenAgreementsController extends Controller{
     private  TableModel model;
     private AgreementView view;
@@ -44,13 +46,13 @@ public class OpenAgreementsController extends Controller{
         });
         ServiceSingleton.getInstance().query(request);
         setView(view);
-
+        //button for new agreement for making a new agreement
         Button makeAgreement = new Button("Ny Aftale");
         makeAgreement.setOnAction(this::newAgreement);
         view.addButtons(makeAgreement);
         
     }
-
+    
     public void newAgreement(ActionEvent event) {
         AgreementModel agreement = new AgreementModel();
         Facade.getInstance().setCenter(new AgreementController(agreement, true, false).getView());

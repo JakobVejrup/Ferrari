@@ -25,6 +25,6 @@ public class LogicLayerTest extends TestCase
 
     public static Test suite()
     {
-        return new TestSuite( LoanCalculatorTest.class );
+        return new TestSuite( LoanCalculatorTest.class);
     }
 }

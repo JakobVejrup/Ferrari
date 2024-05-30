@@ -7,18 +7,11 @@ import com.presentation.tools.alert.Alerter;
 import com.presentation.tools.facade.Facade;
 import com.rki.rki.Rating;
 import javafx.application.Platform;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 import com.logic.ServiceSingleton;
@@ -44,10 +37,8 @@ import com.presentation.mvc.models.Invoice.InvoiceModel;
 import com.presentation.mvc.models.agreements.AgreementValidationModel;
 import com.presentation.mvc.models.agreements.AgreementModel;
 import com.presentation.mvc.models.customer.CustomerModel;
-import com.presentation.mvc.models.employees.EmployeeModel;
 import com.presentation.mvc.models.table.RowModel;
 import com.presentation.mvc.models.table.TableModel;
-import com.presentation.mvc.models.vehicle.VehicleModel;
 
 public class AgreementController extends Controller implements Consumer<AgreementValidationModel> {
     private OpenAgreementView view;
@@ -61,6 +52,7 @@ public class AgreementController extends Controller implements Consumer<Agreemen
     private Button ready;
     private Button csvButton;
     //karl
+    //agreement controller for open agreements
     public AgreementController(AgreementModel modelParam, boolean open, boolean customerChosen) {
         signum = -1;
         if(modelParam.getStartAgreement() == null)
@@ -76,12 +68,12 @@ public class AgreementController extends Controller implements Consumer<Agreemen
         customerController = new SingleCustomerController(model.getCustomer());
         employeeController = new SingleEmployeeController(model.getEmployee());
         vehicleController = new SingleVehicleController(model.getVehicle());
-
+        //button that makes a csv file of invoice look csv method
         csvButton = new NiceButton("Udskriv CSV-Fil","IDoptionButton", this::csv);
-
+        //view for the agreement
         view = new OpenAgreementView(employeeController.getView(), customerController.getView(), vehicleController.getView(), model, open);
         setView(view);
-        
+        //if the agreement is open, the buttons will be added, and the table will be created
         if(open) {
             if(!customerChosen) {
                 NiceButton selectCustomer = new NiceButton("Vælg Kunde", "IDoptionButton", this::chooseCustomer);            
@@ -109,6 +101,7 @@ public class AgreementController extends Controller implements Consumer<Agreemen
             getRKiAndRate();
         
     }
+    //
     public void readyContinue(ActionEvent event) {
         if(signum == 0) {
             tableModel.removeAllRows();
@@ -118,12 +111,13 @@ public class AgreementController extends Controller implements Consumer<Agreemen
             tableModel.addAllRows(RowModel.makeRowModels(ServiceType.Invoice, InvoiceModel.makeModelsAsObjects(invoices)));
             model.setPayments(invoices);
         }
+        //checking what rki is and if the customer can get a loan
         else if(signum == 1) {
-            if(model.getRki() == Rating.D && model.getVehicle().getPrice() - model.getStartValue() != 0) {
+            if(model.getRki() == Rating.D) {
                 Alerter.warning("Dårlig Rki kan ikke låne", "Kunden skal levere hele beløbet selv");
                 return;
             }
-
+            
             if(Facade.getInstance().getLoggedIn().getLoanLimit() > model.getVehicle().getPrice() - model.getStartValue() && Facade.getInstance().getLoggedIn().getOccupation() != Occupation.Manager)
                 Alerter.warning("For stort beløb", "Gem aftalen, og en med større godkedelse beløb, kan godkende den");
             ServiceSingleton.getInstance().query(new Request(ServiceType.AgreementClosed, CRUDType.Create, model,
@@ -134,8 +128,18 @@ public class AgreementController extends Controller implements Consumer<Agreemen
                     );
             }));
         }
-
+    }    
+    
+    public void cash(ActionEvent event) {
+        ServiceSingleton.getInstance().query(new Request(ServiceType.AgreementClosed, CRUDType.Create, model,
+        (update) -> {
+            if(update != null) 
+                Platform.runLater( () ->
+                    Facade.getInstance().setCenter(new OpenAgreementsController().getView())
+                );
+        }));
     }
+    //choose employee
     public void chooseEmployee(ActionEvent event) {
         Object result = Facade.getInstance().openModalResult(new SelectEmployeeController());
         if(result != null) {
@@ -143,6 +147,7 @@ public class AgreementController extends Controller implements Consumer<Agreemen
             model.setEmployee((Employee)result);
         }
     }
+    //choose vehicle
     public void chooseVehicle(ActionEvent event) {
         Object result = Facade.getInstance().openModalResult(new SelectVehicleController());
         if(result != null) {
@@ -150,6 +155,7 @@ public class AgreementController extends Controller implements Consumer<Agreemen
             model.setVehicle((Vehicle)result);
         }
     }
+    //choose customer 
     public void chooseCustomer(ActionEvent event) {
         Object result = Facade.getInstance().openModalResult(new SelectCustomersController());
         if(result != null) {
@@ -158,7 +164,7 @@ public class AgreementController extends Controller implements Consumer<Agreemen
             getRKiAndRate();
         }
     }
-
+    //delete agreement
     public void delete(ActionEvent event) {
         ServiceSingleton.getInstance().query(new Request(ServiceType.AgreementOpen, CRUDType.Delete, model,
                 (delete) -> {
@@ -167,11 +173,12 @@ public class AgreementController extends Controller implements Consumer<Agreemen
                                 () -> Facade.getInstance().setCenter(new OpenAgreementsController().getView()));
                 }));
     }
-
+    //csv file
     public void csv(ActionEvent event) {
         String fileName = model.getCustomer().getName() + "_" + model.getStart() + "_" + model.getVehicle().getName();
         FileMethods.makeCSV(fileName, model.getPayments(), (Stage)view.getScene().getWindow());
     }
+    //save agreement
     public void save(ActionEvent event) {
         if(model.getId() == 0) 
             ServiceSingleton.getInstance().query(new Request(ServiceType.AgreementOpen, CRUDType.Create, model, 
@@ -190,28 +197,37 @@ public class AgreementController extends Controller implements Consumer<Agreemen
                     );
             }));
     }
+    //validation af agreement
     @Override
     public void accept(AgreementValidationModel agreement) {
-        if(agreement.fixedTermsBooleanProperty().get() && agreement.startValueBooleanProperty().get() && agreement.startBooleanProperty().get()
-        && agreement.rkiBooleanProperty().get() && agreement.daysRateBooleanProperty().get()) {
-            ready.setText("Udregn");   
-            signum = 0;
-        } 
+        boolean choices = agreement.vehicleBooleanProperty().get() && agreement.customerBooleanProperty().get() && agreement.employeeBooleanProperty().get();
+        if(choices && agreement.buyoutBooleanProperty().get()) {
+            ready.setText("Køb uden lån");   
+            ready.setDisable(false);
+            ready.setOnAction(this::cash);
+        }   
         else {
-            ready.setText("udfyld formel");   
-            signum = -1;
+            ready.setText("Udregn");   
+            ready.setOnAction(this::readyContinue);
+            if(choices && agreement.fixedTermsBooleanProperty().get() && agreement.startValueBooleanProperty().get() && agreement.startBooleanProperty().get()
+            && agreement.rkiBooleanProperty().get() && agreement.daysRateBooleanProperty().get() ) 
+                signum = 0;
+            else {
+                ready.setText("udfyld formel");   
+                signum = -1;
+            }
+            if(agreement.invoicesBooleanProperty().get()) {
+                ready.setText("Godkend");
+                signum = 1;
+            }
+            ready.setDisable(signum == -1);
+            csvButton.setDisable(signum != 1);
+            Date newDate = new Date(agreement.getStart().getTime());
+            newDate = Date.valueOf(newDate.toLocalDate().plusMonths(agreement.getFixedTerms()));
+            agreement.setEnd(newDate);
         }
-
-        if(agreement.invoicesBooleanProperty().get()) {
-            ready.setText("Godkend");
-            signum = 1;
-        }
-        ready.setDisable(signum == -1);
-        csvButton.setDisable(signum != 1);
-        Date newDate = new Date(agreement.getStart().getTime());
-        newDate = Date.valueOf(newDate.toLocalDate().plusMonths(agreement.getFixedTerms()));
-        agreement.setEnd(newDate);
     }
+    //få rki og dagsrente 
     private void getRKiAndRate() {
         ServiceSingleton.getInstance().query(new Request(ServiceType.Rate, CRUDType.Read, model, 
         (newAgreement) -> { 

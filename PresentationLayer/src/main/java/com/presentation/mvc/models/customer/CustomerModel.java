@@ -11,6 +11,7 @@ import javafx.beans.property.*;
 
 //magnus
 public class CustomerModel extends Customer{
+    // Properties for kunde
     private StringProperty nameProp;
     private StringProperty emailProp;
     private StringProperty phoneNumberProp;
@@ -18,6 +19,8 @@ public class CustomerModel extends Customer{
     private ObjectProperty<City> cityProp;
     private StringProperty CprProp;
     private boolean empty;
+
+    // Konstruktor for empty CustomerModel
     public CustomerModel(boolean empty) {
         setup();
         this.empty = empty;
@@ -26,6 +29,7 @@ public class CustomerModel extends Customer{
         setup();
         empty = false;
     }
+
 
     public CustomerModel(Customer customer) {
         setup();
@@ -37,6 +41,7 @@ public class CustomerModel extends Customer{
         cityProp.set(customer.getCity());
         CprProp.set(customer.getCpr());
     }
+    // Gettere og settere for CustomerModel
     public boolean getEmpty() {
         return empty;
     }
@@ -88,6 +93,7 @@ public class CustomerModel extends Customer{
     public void setCpr(String cpr) {
         CprProp.set(cpr);
     }
+    // Metode til at sætte properties
     public void setup() {
         nameProp = new SimpleStringProperty("");
         emailProp = new SimpleStringProperty("");
@@ -96,6 +102,7 @@ public class CustomerModel extends Customer{
         cityProp = new SimpleObjectProperty<City>(new City());
         CprProp = new SimpleStringProperty("");
     }
+    // Gettere for properties
     public StringProperty nameProperty() {
         return nameProp;
     }
@@ -114,7 +121,7 @@ public class CustomerModel extends Customer{
     public StringProperty CprProperty() {
         return CprProp;
     }
-
+    // Metode til at lave en liste af CustomerModels
     public static List<CustomerModel> MakeModel(List<Customer> customers) {
         List<CustomerModel> models = new ArrayList<>();
         for(Customer customer : customers) 
@@ -122,13 +129,15 @@ public class CustomerModel extends Customer{
         return models;
     }
 
-
+    // Metode til at lave en liste af objekter
     public static List<Object> makeModelsAsObjects(List<Customer> customers) {
         List<Object> models = new ArrayList<>();
         for(Customer customer : customers) 
             models.add(new CustomerModel(customer));
         return models;
     }
+
+    // Metode til at unbinde alle properties
     public void unbindAll() {
         nameProp.unbind();
         emailProp.unbind();
