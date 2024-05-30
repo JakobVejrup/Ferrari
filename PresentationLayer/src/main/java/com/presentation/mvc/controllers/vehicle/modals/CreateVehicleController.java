@@ -21,7 +21,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 //jakob
 public class CreateVehicleController extends ModalController{
-
+    private double orgWidth;
     private VehicleModel model;
     private VehicleView view;
     public CreateVehicleController() {
@@ -50,6 +50,9 @@ public class CreateVehicleController extends ModalController{
         byte[] image = FileMethods.findImage((Stage)view.getScene().getWindow());
         if (image != null) 
             model.setImage(image);
+        if(orgWidth == 0d)
+            orgWidth = view.getWidth();
+        getStage().setWidth(orgWidth + 450);
     }
     public void create(ActionEvent event) {
         ServiceSingleton.getInstance().query(new Request(ServiceType.Vehicle, CRUDType.Create,

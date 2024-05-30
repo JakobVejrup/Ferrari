@@ -11,7 +11,7 @@ import junit.framework.TestCase;
 import java.sql.Date;
 //anders
 public class LoanCalculatorTest extends TestCase {
-
+    //testing if the arrays are the same, test values came from a website
     public void testLåneBeregner() {
         Agreement agreement = new Agreement();
         agreement.setVehicle(new Vehicle(0,"", 3000000d));
@@ -31,17 +31,19 @@ public class LoanCalculatorTest extends TestCase {
 
         assertTrue(one && two && three);
     }
-
+    //testing if the values for monthly payments are the same
     public void testFastYdelse() {
         assertEquals(266546.36 , LoanCalculator.fastYdelse(3000000, 0.01, 12), 0.1);
     }
-
+    //testing if the rate for monthly payment are the same
     public void testRente() {
         Agreement agreement = new Agreement();
         agreement.setVehicle(new Vehicle(0,"", 3000000d));
         agreement.setStart(new Date(2000, 1, 1));
         agreement.setEnd(new Date(2005, 1, 1));
         agreement.setRki(Rating.C);
-        assertEquals(0.0045 , LoanCalculator.renteProcent(agreement));
+        // (3+1+1)/100/12 = 0.0041666666666667
+        double real = LoanCalculator.renteProcent(agreement);
+        assertEquals(0.0041666666666667, real, 0.0001);
     }
 }

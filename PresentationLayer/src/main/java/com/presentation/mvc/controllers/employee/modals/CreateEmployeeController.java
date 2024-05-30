@@ -50,7 +50,7 @@ public class CreateEmployeeController extends ModalController {
         model.setImage(image);
         if(orgWidth == 0d)
             orgWidth = view.getWidth();
-        getStage().setWidth(orgWidth + 400);
+        getStage().setWidth(orgWidth + 450);
     }
     @Override
     public Pane getView() {

@@ -13,6 +13,8 @@ import com.model.entities.Vehicle;
 import com.rki.rki.Rating;
 
 //Karl
+
+//klasse der håndterer data for åbne aftaler og laver stored procedures til databasen
 public class AgreementOpenData implements Data {
     private ConnectionData db;
     private InvoiceData invoiceData;
@@ -24,7 +26,7 @@ public class AgreementOpenData implements Data {
         this.customerData = customerData;
         this.employeeData = employeeData;
     }
-
+    //opretter en aftale
     @Override
     public Object create(Object parameter) {
         try (CallableStatement cs = db.makeCall("{call Trade.uspOpenAgreementInsert(?,?,?,?,?,?,?,?)}")) {
@@ -47,7 +49,7 @@ public class AgreementOpenData implements Data {
             return null;
         }
     }
-    
+    //læser en aftale
     @Override
     public Object read(Object parameter) {
         try (CallableStatement cs = db.makeCall("{call Trade.uspOpenAgreementGet(?)}")) {
@@ -71,7 +73,7 @@ public class AgreementOpenData implements Data {
             return null;
         }
     }
-
+    //læser alle aftaler
     @Override
     public Object readAll(Object parameter) {
         ArrayList<Agreement> agreements = new ArrayList<>();
@@ -96,7 +98,7 @@ public class AgreementOpenData implements Data {
             return agreements;
         }
     }
-
+    //opdaterer en aftale
     @Override
     public Object update(Object parameter) {
         try (CallableStatement cs = db.makeCall("{call Trade.uspOpenAgreementUpdate(?,?,?,?,?,?,?,?,?)}")) {
@@ -116,7 +118,7 @@ public class AgreementOpenData implements Data {
             return null;
         }
     }
-
+    //sletter en aftale
     @Override
     public boolean delete(Object parameter) {
         try (CallableStatement cs = db.makeCall("{call Trade.uspOpenAgreementDelete(?)}")) {
