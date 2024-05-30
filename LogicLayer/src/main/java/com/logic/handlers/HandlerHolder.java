@@ -12,6 +12,9 @@ public abstract class HandlerHolder implements Handler {
     public void setRoot(HandlerObject handler) {
         root = handler;
     }
+    public HandlerObject getRoot() {
+        return root;
+    }
 
     public void addHandler(HandlerObject handler) {
         if (root == null)

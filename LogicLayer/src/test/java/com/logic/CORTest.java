@@ -1,49 +1,88 @@
 package com.logic;
 
+import com.logic.handlers.HandlerObject;
+import com.logic.handlers.Request;
+import com.logic.handlers.SimpleHolder;
 import com.logic.math.LoanCalculator;
-
+import com.logic.mockups.MockupEmployee;
+import com.logic.mockups.MockupEmployeeData;
+import com.logic.services.customer.CustomerService;
+import com.logic.services.employee.EmployeeService;
+import com.logic.services.enums.CRUDType;
+import com.logic.services.enums.ServiceType;
 import com.model.entities.Agreement;
 import com.model.entities.Invoice;
 import com.model.entities.Vehicle;
 import com.rki.rki.Rating;
+import junit.framework.Test;
 import junit.framework.TestCase;
+import junit.framework.TestSuite;
 
 import java.sql.Date;
-//anders
-public class LoanCalculatorTest extends TestCase {
-    //testing if the arrays are the same, test values came from a website
-    public void testLåneBeregner() {
-        Agreement agreement = new Agreement();
-        agreement.setVehicle(new Vehicle(0,"", 3000000d));
-        agreement.setStart(new Date(2000, 1, 1));
-        agreement.setEnd(new Date(2005, 1, 1));
-        agreement.setRki(Rating.C);
-        agreement.setFixedTerms(3);
-        //agreement.setDaysRate(0);
-        //0,0025
-        Invoice[] tests = { new Invoice(agreement, 1, new Date(2000, 1, 1), new Date(2000, 2, 1), 997504.16, 7500,2002495.84, 3000000, 1005004.16, ""),
-                           new Invoice(agreement, 2, new Date(2000, 2, 1), new Date(2000, 3, 1), 999997.92, 5006.24, 1002497.92, 2002495.84, 1005004.16, ""),
-                           new Invoice(agreement, 3, new Date(2000, 3, 1), new Date(2000, 4, 1), 1002497.92, 2506.24, 0, 1002497.92, 1005004.16, "")};
-        Invoice[] loans = LoanCalculator.låneBeregner(agreement);
-        boolean one = tests[0].equals(loans[0]);
-        boolean two = tests[1].equals(loans[1]);
-        boolean three = tests[2].equals(loans[2]);
 
-        assertTrue(one && two && three);
+//anders
+public class CORTest extends TestCase
+{
+    public CORTest( String testName )
+    {
+        super( testName );
     }
-    //testing if the values for monthly payments are the same
-    public void testFastYdelse() {
-        assertEquals(266546.36 , LoanCalculator.fastYdelse(3000000, 0.01, 12), 0.1);
+
+    public static Test suite()
+    {
+        return new TestSuite( CORTest.class);
     }
-    //testing if the rate for monthly payment are the same
-    public void testRente() {
-        Agreement agreement = new Agreement();
-        agreement.setVehicle(new Vehicle(0,"", 3000000d));
-        agreement.setStart(new Date(2000, 1, 1));
-        agreement.setEnd(new Date(2005, 1, 1));
-        agreement.setRki(Rating.C);
-        // (3+1+1)/100/12 = 0.0041666666666667
-        double real = LoanCalculator.renteProcent(agreement);
-        assertEquals(0.0041666666666667, real, 0.0001);
+    //all tests are only testing the id of the mockup employee, it's only to show that Cor works
+    //the services have dependency injections, so it's easy to inject a mockup class.
+    //servicesingleton must have its services set to use the mockup ones, singleton no problemo
+    //tests if no service with return nothing
+    public void testServiceMissing() {
+        ServiceSingleton.getInstance().setServices(null);
+        ServiceSingleton.getInstance().query(new Request(ServiceType.Employee, CRUDType.Create, (result) ->
+                assertEquals(null, result)
+        ));
     }
+    //tests Create
+    public void testServiceCreate() {
+        ServiceSingleton.getInstance().setServices(new SimpleHolder(new EmployeeService(new MockupEmployeeData(), null)));
+        Object result = ServiceSingleton.getInstance().queryNoThread(new Request(ServiceType.Employee, CRUDType.Create, new MockupEmployee()));
+        assertEquals(new MockupEmployee(1), result);
+    }
+    //tests Read
+    public void testServiceRead() {
+        ServiceSingleton.getInstance().setServices(new SimpleHolder(new EmployeeService(new MockupEmployeeData(), null)));
+        Object result = ServiceSingleton.getInstance().queryNoThread(new Request(ServiceType.Employee, CRUDType.Read));
+        assertEquals(new MockupEmployee(0), result);
+    }
+    //tests ReadAll
+    public void testServiceReadAll() {
+        ServiceSingleton.getInstance().setServices(new SimpleHolder(new EmployeeService(new MockupEmployeeData(), null)));
+        Object result = ServiceSingleton.getInstance().queryNoThread(new Request(ServiceType.Employee, CRUDType.ReadAll));
+        MockupEmployee[] array = new MockupEmployee[] {new MockupEmployee(1), new MockupEmployee(2)};
+        assertEquals(array[0], ((MockupEmployee[])result)[0]);
+        assertEquals(array[1], ((MockupEmployee[])result)[1]);
+    }
+    //tests an updated value
+    public void testServiceUpdate() {
+        ServiceSingleton.getInstance().setServices(new SimpleHolder(new EmployeeService(new MockupEmployeeData(), null)));
+        Object result = ServiceSingleton.getInstance().queryNoThread(new Request(ServiceType.Employee, CRUDType.Update, 5));
+        assertEquals(new MockupEmployee(5), result);
+    }
+    //tests delete
+    public void testServiceDelete() {
+        ServiceSingleton.getInstance().setServices(new SimpleHolder(new EmployeeService(new MockupEmployeeData(), null)));
+        Object result = ServiceSingleton.getInstance().queryNoThread(new Request(ServiceType.Employee, CRUDType.Delete, new MockupEmployee(5)));
+        assertEquals(true, result);
+    }
+    //tests priorityplacements
+    public void testHandlerPriority() {
+        HandlerObject cs = new CustomerService(new MockupEmployeeData());
+        HandlerObject es = new EmployeeService(new MockupEmployeeData(), null);
+        ServiceSingleton.getInstance().setServices(new SimpleHolder(cs, es));
+        assertEquals(cs, ServiceSingleton.getInstance().getServices().getRoot());
+        ServiceSingleton.getInstance().queryNoThread(new Request(ServiceType.Employee, CRUDType.Delete, new MockupEmployee(5)));
+        assertEquals(es, ServiceSingleton.getInstance().getServices().getRoot());
+    }
+
+
 }
