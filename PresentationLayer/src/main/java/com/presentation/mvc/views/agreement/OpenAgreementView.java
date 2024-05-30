@@ -60,7 +60,7 @@ public class OpenAgreementView extends VBox implements View{
         TextField FixedTerms = new TextField(String.valueOf(model.getFixedTerms()));
         Bindings.bindBidirectional(FixedTerms.textProperty(), model.fixedTermsProperty(), new NumberStringConverter());
         FixedTerms.setEditable(open);
-
+        //
         getChildren().add(
             new HBox(
                 customerView,
