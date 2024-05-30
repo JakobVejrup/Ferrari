@@ -6,6 +6,7 @@ public class Information {
     private String phoneNumber;
     private String email;
 
+    // Kunstruktore for Information klassen 
     public Information(int id, String name, String phoneNumber, String email) {
         this.id = id;
         this.name = name;
@@ -25,6 +26,8 @@ public class Information {
         this.id = id;
     }
     public Information() {}
+
+    // Gettere og settere for Information klassen
     public int getId() {
         return id;
     }

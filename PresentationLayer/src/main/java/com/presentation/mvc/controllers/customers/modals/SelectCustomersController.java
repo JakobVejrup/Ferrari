@@ -32,24 +32,33 @@ public class SelectCustomersController extends ModalController {
     private TableModel model;
     private CustomersView view;
     private TableDecorator table;
+
+    // Konstruktor for SelectCustomersController
     public SelectCustomersController() {
         Button cancelButton = new Button("Fortryd");
         cancelButton.setOnAction(this::decline);
+
+        // initialisere table som CustomerTable
         table = new CustomerTable();
         view = new CustomersView(cancelButton);
+
+        // opretter en request til at læse alle kunder
         Request request = new Request(ServiceType.Customer, CRUDType.ReadAll, (customers) -> {
             //to allow ui to be run
             Platform.runLater( () -> {
                 model = new TableModel(ServiceType.Employee, CustomerModel.makeModelsAsObjects((List<Customer>)customers));
+                // dekorerer table med forskellige decorators
                 table = new ParentTableDecorator(model, table);
                 table = new TableHeightDecorator(0.6, table);
                 table = new TableWidthDecorator(0.8, table);
+                // tilføjer en knap til at vælge kunde
                 table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory("acceptButton"), "Vælg kunde", new SelectCommand( 
                     (rowModel) -> {
                         setResult(((RowModel)rowModel).getItem()); 
                         close();    
                     }),
                         "Vælg"), table);
+                // setup table til view
                 table.getTable().setup(view);
             });
         });
