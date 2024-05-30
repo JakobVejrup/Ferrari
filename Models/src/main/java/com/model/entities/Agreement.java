@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.rki.rki.Rating;
 //karl
+
+//simple constructor for agreement open og closed
 public class Agreement {
     private int id;
     private double daysRate;
@@ -77,6 +79,7 @@ public class Agreement {
     public Agreement() {
 
     }
+    //getters and setters
 
     public double getTotalRate() {
         return totalRate;

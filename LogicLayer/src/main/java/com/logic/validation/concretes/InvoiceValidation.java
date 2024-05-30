@@ -5,6 +5,7 @@ import com.logic.handlers.Request;
 import com.logic.services.enums.ServiceType;
 import com.model.entities.Invoice;
 //karl
+//invoice validation der tjekker forskellige ting ved invoice
 public class InvoiceValidation extends HandlerObject {
     private CheckData data;
     public InvoiceValidation(CheckData data) {
@@ -18,6 +19,7 @@ public class InvoiceValidation extends HandlerObject {
         return request.getType() == ServiceType.Invoice;
     }
     @Override
+    //validation af faktura/ invoice
     protected void action(Request request) {
     Invoice invoice = (Invoice) request.getObject();
     if(invoice.getDetails().length() < 20)

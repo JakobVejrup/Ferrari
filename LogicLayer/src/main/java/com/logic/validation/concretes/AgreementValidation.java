@@ -5,6 +5,7 @@ import com.logic.handlers.Request;
 import com.logic.services.enums.ServiceType;
 import com.model.entities.Agreement;
 //karl
+//aggrement validation af open agreement
 public class AgreementValidation extends HandlerObject {
     public AgreementValidation() {
     }
@@ -19,6 +20,7 @@ public class AgreementValidation extends HandlerObject {
     @Override
     protected void action(Request request) {
         //validation example could be done in other classes which this will own
+        //validation af lån lidt beskrivende i teksten
         Agreement agreement = (Agreement) request.getObject();
         if(agreement.getStartValue() < 0)
             request.getValidation().addMessage("et lån skal starte over 0kr");

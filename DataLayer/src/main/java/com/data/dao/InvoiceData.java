@@ -15,6 +15,7 @@ public class InvoiceData implements Data{
     public InvoiceData(ConnectionData db) {
         this.db = db;
     }
+    //opretter en faktura i databasen
     @Override
     public Object create(Object parameter) {
         try (CallableStatement cs = db.makeCall("{call Trade.uspInvoiceInsert(?,?,?,?,?,?,?,?,?,?)}")) {
@@ -35,7 +36,7 @@ public class InvoiceData implements Data{
             return null;
         }
     }
-
+    //læser en faktura
     @Override
     public Object read(Object parameter) {
         try (CallableStatement cs = db.makeCall("{call Trade.uspInvoiceGetOne(?)}")) {
@@ -59,7 +60,7 @@ public class InvoiceData implements Data{
             return null;
         }
     }
-
+    //læser alle fakturaer
     @Override
     public Object readAll(Object parameter) {
         try (CallableStatement cs = db.makeCall("{call Trade.uspInvoiceGetAll()}")) {
@@ -82,7 +83,7 @@ public class InvoiceData implements Data{
             return null;
         }
     }
-
+    //opdaterer en faktura
     @Override
     public Object update(Object parameter) {
         try (CallableStatement cs = db.makeCall("{call Trade.uspInvoiceUpdate(?,?,?,?,?,?,?,?)}")) {
@@ -103,7 +104,7 @@ public class InvoiceData implements Data{
             return null;
         }
     }
-
+    //sletter en faktura
     @Override
     public boolean delete(Object parameter) {
         try (CallableStatement cs = db.makeCall("{call Trade.uspInvoiceDelete(?)}")) {

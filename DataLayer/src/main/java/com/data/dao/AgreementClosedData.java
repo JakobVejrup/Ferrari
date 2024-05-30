@@ -14,6 +14,7 @@ import com.model.entities.Invoice;
 import com.model.entities.Vehicle;
 import com.rki.rki.Rating;
 //Karl
+//klasse der håndterer data for lukkede aftaler
 public class AgreementClosedData implements Data{
     private ConnectionData db;
     private InvoiceData invoiceData;
@@ -25,6 +26,7 @@ public class AgreementClosedData implements Data{
         this.customerData = customerData;
         this.employeeData = employeeData;
     }
+    //opretter en aftale
     @Override
     public Object create(Object parameter) {
         Agreement agreement = (Agreement) parameter;
@@ -57,7 +59,7 @@ public class AgreementClosedData implements Data{
             return null;
         }
     }
-
+    //læser en aftale 
     @Override
     public Object read(Object parameter) {
         try (CallableStatement cs = db.makeCall("{call Trade.uspClosedAgreementGet(?)}")) {
@@ -86,7 +88,7 @@ public class AgreementClosedData implements Data{
         }
        
     }
-
+    //læser alle aftaler
     @Override
     public Object readAll(Object parameter) {
         List<Agreement> agreements = new ArrayList<>();
@@ -114,12 +116,12 @@ public class AgreementClosedData implements Data{
             return agreements;
         }
     }
-
+    //opdaterer en aftale, men er ikke implementeret, da en lukket aftale ikke kan opdateres
     @Override
     public Object update(Object parameter) {
         return null;
     }
-
+    //sletter en aftale
     @Override
     public boolean delete(Object parameter) {
         try (CallableStatement cs = db.makeCall("{call Trade.uspClosedAgreementDelete(?)}")) {
