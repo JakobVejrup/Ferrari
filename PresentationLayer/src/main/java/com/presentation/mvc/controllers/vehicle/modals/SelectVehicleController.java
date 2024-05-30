@@ -37,9 +37,11 @@ public class SelectVehicleController extends ModalController {
         cancelButton.getStyleClass().add("declineButton");
         table = new VehicleTable();
         view = new VehiclesView(cancelButton);
+// Sender forespørgsel på alle vehicles
         Request request = new Request(ServiceType.Vehicle, CRUDType.ReadAll, (vehicles) -> {
             //to allow ui to be run
             Platform.runLater( () -> {
+// Opdatere tabel for vehicles
                 model = new TableModel(ServiceType.Employee, VehicleModel.makeModelsAsObjects((List<Vehicle>)vehicles));
                 model.getRows().iterator().forEachRemaining((row) -> {
                     row.getImages().put("vehicle", ((VehicleModel)row.getItem()).imageProperty());
@@ -53,6 +55,7 @@ public class SelectVehicleController extends ModalController {
                         close();    
                     }),
                         "Vælg"), table);
+// Opsætter tabel i ui
                 table.getTable().setup(view);
             });
         });

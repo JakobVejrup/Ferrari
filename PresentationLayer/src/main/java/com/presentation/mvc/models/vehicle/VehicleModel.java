@@ -19,6 +19,7 @@ public class VehicleModel extends Vehicle {
     private ObjectProperty<byte[]> imageProp;
     private boolean empty;
     public VehicleModel() {
+// Konstruktør
         vehicleIdProp = new SimpleIntegerProperty();
         vehicleNameProp = new SimpleStringProperty();
         priceProp = new SimpleDoubleProperty();  
@@ -26,16 +27,16 @@ public class VehicleModel extends Vehicle {
         empty = false;
     }
     public VehicleModel(boolean empty) {
+// Tjekker om modellen er tom
         this();
         this.empty = empty;
     }
+// Konstruktør til at konventere det eksisterende vehicle objekt
     public VehicleModel(Vehicle vehicle) {
         this();
         setId(vehicle.getId());
         setName(vehicle.getName());
-        //vehicleNameProp.set(vehicle.getName());
         setPrice(vehicle.getPrice());
-        //priceProp.set(vehicle.getPrice());
         setImage(vehicle.getImage());
     }
     public boolean getEmpty() {
@@ -43,6 +44,7 @@ public class VehicleModel extends Vehicle {
     }
     @Override
     public byte[] getImage() {
+// metode til billede
         return imageProp.get();
     }
     @Override
@@ -54,6 +56,7 @@ public class VehicleModel extends Vehicle {
     }
     @Override
     public int getId() {
+// metode til at få Id'et
         return vehicleIdProp.get();
     } 
     @Override

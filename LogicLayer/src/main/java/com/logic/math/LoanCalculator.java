@@ -52,13 +52,16 @@ public class LoanCalculator {
             default -> 3;
         };
         LocalDate first = agreement.getStart().toLocalDate().plus(3, ChronoUnit.YEARS);
+// Vurdere om 1 procentpoint mere i rente hvis startværdien af lånet er mindre end halvdelen af vehicles værdi
         double amountRente = agreement.getStartValue() >= agreement.getVehicle().getPrice() / 2  ? 0 : 1;
         double tidsRente = Date.valueOf(first).getTime() < agreement.getEnd().getTime() ? 1: 0;
+// Udregner alle renter sammen
         agreement.setTotalRate(RKIværdi + dagsRente + tidsRente + amountRente);
         return ((RKIværdi + dagsRente + tidsRente + amountRente) / 100)/12;
 
     }
     public static double fastYdelse(double låneBeløb, double rente, int antalTerminer) {
+// Formel for ydelsen
         return (låneBeløb * rente) / (1- Math.pow (1 + rente, -antalTerminer));
     }
 }
