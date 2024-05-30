@@ -5,7 +5,7 @@ import com.model.threads.Function;
 import com.model.threads.ObjectWithTimer;
 
 import java.sql.*;
-
+//anders
 public class ConnectionData {
     private ObjectWithTimer connectionTimer;
     private static final String CONNECTION_STRING = "jdbc:sqlserver://localhost:1433;" +

@@ -1,5 +1,5 @@
 package com.model.enums;
-
+//anders
 public enum Occupation {
     Manager("Chef"),
     Salesman("Sælger"),

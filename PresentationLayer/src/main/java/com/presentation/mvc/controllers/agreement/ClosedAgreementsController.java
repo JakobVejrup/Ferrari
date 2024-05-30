@@ -22,7 +22,7 @@ import com.presentation.mvc.views.table.decorators.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
-
+//karl
 public class ClosedAgreementsController extends Controller{
     private TableModel model;
     private AgreementView view;

@@ -1,5 +1,5 @@
 package com.model.entities;
-
+//jakob
 public class Vehicle {
     private int id;
     private String name;

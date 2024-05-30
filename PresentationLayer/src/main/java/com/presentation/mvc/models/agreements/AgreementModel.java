@@ -21,7 +21,7 @@ import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
-
+//karl
 public class AgreementModel extends Agreement{
     private IntegerProperty fixedTermsProp;
     private DoubleProperty startValueProp;

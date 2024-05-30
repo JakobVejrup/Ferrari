@@ -6,7 +6,7 @@ import com.presentation.mvc.models.table.RowModel;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableCell;
 import javafx.util.Callback;
-
+//anders
 public class CurrencyCell extends TableCell<RowModel, Number> {
     private final DecimalFormat format = new DecimalFormat("#.00");
 

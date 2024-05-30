@@ -11,7 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.util.Callback;
-
+//anders
 public class ColumnController implements Callback<TableColumn<RowModel, RowModel>, TableCell<RowModel, RowModel>>, ChangeListener<Boolean> {
     private int selected;
     private Button button;

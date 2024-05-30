@@ -14,7 +14,7 @@ import com.presentation.mvc.views.table.decorators.TableWidthDecorator;
 
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-
+//karl
 public class InvoicesInAgreementController extends Controller{
     private TableModel model;
     private VBox view;

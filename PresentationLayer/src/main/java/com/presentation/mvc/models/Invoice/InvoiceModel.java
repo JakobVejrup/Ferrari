@@ -10,7 +10,7 @@ import com.model.entities.Invoice;
 import com.presentation.mvc.models.employees.EmployeeModel;
 
 import javafx.beans.property.*;
-
+//karl
 public class InvoiceModel extends Invoice{
     private IntegerProperty numberProperty;
     private ObjectProperty<Date> dateStartProperty;

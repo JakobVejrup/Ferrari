@@ -1,5 +1,5 @@
 package com.model.threads;
-
+//anders
 public class ObjectWithTimer {
     private int seconds;
     private boolean extra;

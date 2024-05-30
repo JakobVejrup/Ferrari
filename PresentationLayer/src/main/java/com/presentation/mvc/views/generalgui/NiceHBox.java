@@ -3,7 +3,7 @@ package com.presentation.mvc.views.generalgui;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.layout.HBox;
-
+//anders
 public class NiceHBox extends HBox {
     private Insets inset;
     public NiceHBox(String css, Insets insets, Node... nodes) {

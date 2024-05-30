@@ -8,7 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.TableCell;
-
+//anders
 public class CellController extends TableCell<RowModel, RowModel> implements EventHandler<ActionEvent> {
     //graphic object in the cell
 

@@ -9,7 +9,7 @@ import com.model.entities.Customer;
 import javafx.beans.property.*;
 
 
-
+//magnus
 public class CustomerModel extends Customer{
     private StringProperty nameProp;
     private StringProperty emailProp;

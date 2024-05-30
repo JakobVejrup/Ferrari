@@ -1,7 +1,7 @@
 package com.model.entities;
 
 import java.sql.Date;
-
+//karl
 public class Invoice {
     private Agreement agreement;
     private int number;

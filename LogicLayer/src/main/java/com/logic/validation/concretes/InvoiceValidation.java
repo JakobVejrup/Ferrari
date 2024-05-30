@@ -4,7 +4,7 @@ import com.logic.handlers.HandlerObject;
 import com.logic.handlers.Request;
 import com.logic.services.enums.ServiceType;
 import com.model.entities.Invoice;
-
+//karl
 public class InvoiceValidation extends HandlerObject {
     private CheckData data;
     public InvoiceValidation(CheckData data) {

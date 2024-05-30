@@ -60,6 +60,7 @@ public class AgreementController extends Controller implements Consumer<Agreemen
     private InvoicesInAgreementController invoicesController;
     private Button ready;
     private Button csvButton;
+    //karl
     public AgreementController(AgreementModel modelParam, boolean open, boolean customerChosen) {
         signum = -1;
         if(modelParam.getStartAgreement() == null)

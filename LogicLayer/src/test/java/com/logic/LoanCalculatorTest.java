@@ -9,7 +9,7 @@ import com.rki.rki.Rating;
 import junit.framework.TestCase;
 
 import java.sql.Date;
-
+//anders
 public class LoanCalculatorTest extends TestCase {
 
     public void testLåneBeregner() {

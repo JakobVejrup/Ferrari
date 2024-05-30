@@ -6,7 +6,7 @@ import com.presentation.mvc.models.table.RowModel;
 import com.presentation.mvc.views.table.ui.GuiTable;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-
+//anders
 public class TableFactory {
 
     public static GuiTable readyTable(CellController controller, ServiceType type, GuiTable table) {

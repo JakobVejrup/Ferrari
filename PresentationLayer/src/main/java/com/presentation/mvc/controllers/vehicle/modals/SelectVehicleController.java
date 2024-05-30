@@ -26,7 +26,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
-
+//jakob
 public class SelectVehicleController extends ModalController {
     private TableModel model;
     private VehiclesView view;

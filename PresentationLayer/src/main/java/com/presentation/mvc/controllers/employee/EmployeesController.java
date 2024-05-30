@@ -40,7 +40,7 @@ public class EmployeesController extends Controller {
     private TableModel model;
     private EmployeesView view;
     private TableDecorator table;
-
+        //anders
     public EmployeesController() {
         if (Facade.getInstance().getLoggedIn().getOccupation() == Occupation.Manager ||Facade.getInstance().getLoggedIn().getOccupation() == Occupation.Admin) {
             Button newUserButton = new NiceButton("Ny Ansat", this::newUser);

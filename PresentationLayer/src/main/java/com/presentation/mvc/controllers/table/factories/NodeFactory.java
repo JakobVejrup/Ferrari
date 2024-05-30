@@ -4,7 +4,7 @@ import com.presentation.mvc.controllers.table.CellController;
 import com.presentation.mvc.controllers.table.ColumnController;
 
 import javafx.scene.Node;
-
+//anders
 public abstract class NodeFactory {
      private ColumnController controller;
 

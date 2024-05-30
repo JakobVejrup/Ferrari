@@ -1,7 +1,7 @@
 package com.model.threads;
 
 import java.util.ArrayList;
-
+//anders
 public class Validation {
     private ArrayList<String> messages;
     private ActionParameter errorAction;

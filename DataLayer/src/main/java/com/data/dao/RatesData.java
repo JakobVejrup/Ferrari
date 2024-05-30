@@ -12,7 +12,7 @@ import com.model.entities.City;
 import com.model.entities.Customer;
 import com.rki.bank.InterestRate;
 import com.rki.rki.CreditRator;
-
+//Jakob
 public class RatesData implements Data {
     private ConnectionData db;
     public RatesData(ConnectionData db) {

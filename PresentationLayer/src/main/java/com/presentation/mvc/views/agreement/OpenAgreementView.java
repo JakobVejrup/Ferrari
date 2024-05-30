@@ -17,7 +17,7 @@ import javafx.scene.layout.VBox;
 import javafx.util.converter.NumberStringConverter;
 import java.sql.Date;
 import java.text.DecimalFormat;
-
+//karl
 public class OpenAgreementView extends VBox implements View{
     private HBox buttonBox;
     public OpenAgreementView(Pane employeeView, Pane customerView, Pane vehicleView, AgreementModel model, boolean open) {

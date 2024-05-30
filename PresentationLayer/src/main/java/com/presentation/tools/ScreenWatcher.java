@@ -7,7 +7,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-
+//anders
 public class ScreenWatcher {
     private static ScreenWatcher instance;
     private Stage stage;

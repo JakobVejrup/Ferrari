@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import com.rki.rki.Rating;
-
+//karl
 public class Agreement {
     private int id;
     private double daysRate;

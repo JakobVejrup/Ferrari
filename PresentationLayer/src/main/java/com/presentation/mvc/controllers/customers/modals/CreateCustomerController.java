@@ -23,7 +23,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
+//magnus
 public class CreateCustomerController extends ModalController{
     private CustomerModel model;
     private CustomerBaseView view;

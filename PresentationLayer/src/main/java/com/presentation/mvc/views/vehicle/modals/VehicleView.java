@@ -18,7 +18,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.converter.NumberStringConverter;
-
+//jakob
 public class VehicleView extends VBox implements View {
     public VehicleView(VehicleModel model) {
         TextField name = new TextField(model.getName());

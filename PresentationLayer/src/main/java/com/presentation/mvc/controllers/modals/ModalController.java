@@ -3,7 +3,7 @@ import com.presentation.mvc.controllers.Controller;
 
 import javafx.event.ActionEvent;
 import javafx.stage.Stage;
-
+//anders
 public abstract class ModalController extends Controller{
     private Stage stage;
     private Object result;

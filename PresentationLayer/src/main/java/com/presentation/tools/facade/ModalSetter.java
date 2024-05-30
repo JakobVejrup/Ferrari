@@ -17,7 +17,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
+//anders
 public class ModalSetter implements ModalSetup {
     private Stage mainStage;
     private double x;

@@ -6,7 +6,7 @@ import com.presentation.mvc.views.generalgui.NiceHBox;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
-
+//anders
 public class PasswordEmployeeView extends EmployeeBaseView {
     public PasswordEmployeeView(EmployeeModel model) {
         super(model);

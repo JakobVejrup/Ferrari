@@ -17,7 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.geometry.Insets;
-
+//anders
 public class EmployeeBaseView extends VBox implements View {
     public EmployeeBaseView(EmployeeModel model) {
         TextField email = new TextField(model.getEmail());

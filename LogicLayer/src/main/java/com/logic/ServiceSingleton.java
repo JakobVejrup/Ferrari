@@ -24,7 +24,7 @@ import com.logic.handlers.Request;
 import com.logic.validation.ValidationManager;
 import com.logic.validation.concretes.AgreementValidation;
 import com.logic.validation.concretes.EmployeeValidation;
-
+//anders
 public class ServiceSingleton implements Handler {
     private static ServiceSingleton instance;
     private HandlerHolder validations;

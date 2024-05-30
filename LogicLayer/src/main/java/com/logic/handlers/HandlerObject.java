@@ -1,5 +1,5 @@
 package com.logic.handlers;
-
+//anders
 public abstract class HandlerObject implements Handler {
     private int order;
     protected HandlerObject next;

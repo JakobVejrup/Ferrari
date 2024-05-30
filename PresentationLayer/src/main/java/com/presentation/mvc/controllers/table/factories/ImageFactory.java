@@ -11,7 +11,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
-
+//anders
 public class ImageFactory extends NodeFactory{
     private String key;
 

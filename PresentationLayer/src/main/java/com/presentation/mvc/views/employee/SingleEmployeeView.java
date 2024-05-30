@@ -19,7 +19,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
+//anders
 public class SingleEmployeeView extends VBox implements View{
     public Employee model;
     public TextField email;

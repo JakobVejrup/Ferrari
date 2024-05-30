@@ -5,7 +5,7 @@ import java.util.List;
 import com.model.entities.Employee;
 import com.model.enums.Occupation;
 import javafx.beans.property.*;
-
+//anders
 public class EmployeeModel extends Employee {
     private StringProperty emailProp;
     private StringProperty nameProp;

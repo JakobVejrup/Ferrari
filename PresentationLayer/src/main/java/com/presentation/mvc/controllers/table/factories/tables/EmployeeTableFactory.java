@@ -13,7 +13,7 @@ import com.presentation.mvc.views.table.decorators.TableDecorator;
 import com.presentation.mvc.views.table.ui.GuiTable;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
-
+//karl
 public class EmployeeTableFactory extends NodeFactory {
     @Override
     public Node createNode(CellController controller) {

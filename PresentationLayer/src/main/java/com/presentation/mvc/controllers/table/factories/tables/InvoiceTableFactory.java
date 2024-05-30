@@ -7,7 +7,7 @@ import com.presentation.mvc.views.table.concretes.InvoiceTable;
 import com.presentation.mvc.views.table.ui.GuiTable;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
-
+//karl
 public class InvoiceTableFactory extends NodeFactory {
     @Override
     public Node createNode(CellController controller) {

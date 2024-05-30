@@ -8,7 +8,7 @@ import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
+//magnus
 public class CustomerData implements Data {
     private ConnectionData db;
     public CustomerData(ConnectionData db) {

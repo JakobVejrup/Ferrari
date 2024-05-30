@@ -8,7 +8,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
-
+//anders
 public class ViewFactory{
     private BorderPane mainPane;
     public ViewFactory(BorderPane mainPane) {

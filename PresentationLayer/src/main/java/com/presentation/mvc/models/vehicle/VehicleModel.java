@@ -11,7 +11,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-
+//jakob
 public class VehicleModel extends Vehicle {
     private IntegerProperty vehicleIdProp;
     private StringProperty vehicleNameProp;

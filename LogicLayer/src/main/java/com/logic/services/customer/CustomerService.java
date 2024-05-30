@@ -9,7 +9,7 @@ import com.logic.handlers.SimpleHolder;
 import com.logic.services.employee.UpdateSelfHandler;
 import com.logic.services.enums.ServiceType;
 
-
+// magnus
 public class CustomerService extends HandlerObject {
     private HandlerHolder holder;
 

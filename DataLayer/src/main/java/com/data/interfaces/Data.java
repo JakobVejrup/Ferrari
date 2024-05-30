@@ -1,5 +1,5 @@
 package com.data.interfaces;
-
+// anders
 public interface Data {
     public Object create(Object parameter);
     public Object read(Object parameter);

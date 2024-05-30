@@ -3,7 +3,7 @@ package com.presentation.mvc.views.generalgui;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
-
+//anders
 public class NiceVBox extends VBox{
     private Insets inset;
     public NiceVBox(String css, Insets insets, Node... nodes) {

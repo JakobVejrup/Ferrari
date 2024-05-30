@@ -29,7 +29,7 @@ import com.presentation.mvc.controllers.customers.modals.UpdateCustomerControlle
 import com.presentation.mvc.controllers.employee.modals.CreateEmployeeController;
 import com.presentation.mvc.controllers.employee.modals.UpdateEmployeeController;
 
-
+//magnus
 public class CustomersController extends Controller{
     private TableModel model;
     private CustomersView view;

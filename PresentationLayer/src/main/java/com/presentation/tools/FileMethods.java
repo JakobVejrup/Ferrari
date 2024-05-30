@@ -11,7 +11,7 @@ import com.presentation.tools.csvwriter.CSVWriterInvoices;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
+//anders
 public class FileMethods {
     public static byte[] findImage(Stage stage) {
         FileChooser fileChooser = new FileChooser();

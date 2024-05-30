@@ -5,7 +5,7 @@ import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-
+//anders
 public class TopbarView extends HBox {
     public TopbarView() {
         Image png = new Image(App.class.getResource("FerrariMiniLogo.png").toString());

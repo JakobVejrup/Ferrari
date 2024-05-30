@@ -8,7 +8,7 @@ import com.model.entities.Agreement;
 import com.model.entities.Invoice;
 import com.rki.bank.InterestRate;
 import com.rki.rki.Rating;
-
+//jakob
 public class LoanCalculator {
 
     public static Invoice[] låneBeregner(Agreement agreement) {
