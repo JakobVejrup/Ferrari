@@ -31,16 +31,20 @@ import com.presentation.mvc.controllers.employee.modals.UpdateEmployeeController
 
 //magnus
 public class CustomersController extends Controller{
+    // Model for table og view
     private TableModel model;
     private CustomersView view;
 
+    // Konstruktor for CustomersController
     public CustomersController() {
         Button newCustomer = new Button("Ny Bruger");
         newCustomer.setOnAction(this::newCustomer);
         view = new CustomersView(newCustomer);
         Request request = new Request(ServiceType.Customer, CRUDType.ReadAll, (customers) -> {
         
+            //to allow ui to be run
             Platform.runLater( () -> {
+                // create table and model for customers
                 TableDecorator table = new CustomerTable();
                 model = new TableModel(ServiceType.Customer, CustomerModel.makeModelsAsObjects((List<Customer>)customers));
                 table = new ParentTableDecorator(model, table);
@@ -51,16 +55,20 @@ public class CustomersController extends Controller{
                 view.setTable(table.getTable());
             });
         });
+        // query for customers med singletons 
         ServiceSingleton.getInstance().query(request);
         setView(view);
     }
 
+    // Metode til at oprette ny kunde
     public void newCustomer(ActionEvent event) {
         Object customer = Facade.getInstance().openModalResult(new CreateCustomerController());
+        // Hvis kunden ikke er null, så tilføj kunden til tabellen
         if(customer != null)
             model.addRow(new RowModel(customer, ServiceType.Customer));
     }
 
+    // Metode til get view
     @Override
     public CustomersView getView() {
         return view;

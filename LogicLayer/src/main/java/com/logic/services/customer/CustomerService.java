@@ -14,6 +14,7 @@ public class CustomerService extends HandlerObject {
     private HandlerHolder holder;
 
     public CustomerService(Data data) {
+        // initialiserer holder med de forskellige handlers
         holder = new SimpleHolder(
                 new SimpleCreateHandler(data),
                 new SimpleReadHandler(data),
@@ -24,11 +25,13 @@ public class CustomerService extends HandlerObject {
         );
     }
 
+    // metode til at tjekke om request er en kunde
     @Override
     public boolean check(Request request) {
         return request.getType() == ServiceType.Customer;
     }
 
+    // metode til at udføre handlinger på en kunde baeret på request
     @Override
     public void action(Request request) {
         holder.query(request);
