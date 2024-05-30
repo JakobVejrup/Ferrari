@@ -21,6 +21,7 @@ import javafx.util.converter.NumberStringConverter;
 //jakob
 public class VehicleView extends VBox implements View {
     public VehicleView(VehicleModel model) {
+// Klassen opretter visning af vehicle og lytter hvis der er ændringer og opdatere View
         TextField name = new TextField(model.getName());
         model.nameProperty().bind(name.textProperty());
 

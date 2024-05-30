@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 public class SingleVehicleController extends Controller {
     private Vehicle model;
     private SingleVehicleView view;
+// Håndtere visning af en vehicle 
     public SingleVehicleController(Vehicle model) {
         this.model = model;
         view = new SingleVehicleView(model);

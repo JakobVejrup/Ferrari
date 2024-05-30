@@ -20,6 +20,7 @@ public class VehicleValidation extends HandlerObject {
     @Override
     protected void action(Request request) {
         Vehicle vehicle = (Vehicle) request.getObject();
+// Kører validering på vehicle, med forskellige begrænsninger på vehicles objekter
         if (vehicle.getId() < 0 )
             request.getValidation().addMessage("ID kan ikke være negativt, eller 0");
         if (vehicle.getId() < 10000)

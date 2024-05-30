@@ -25,8 +25,10 @@ public class CreateVehicleController extends ModalController{
     private VehicleModel model;
     private VehicleView view;
     public CreateVehicleController() {
+// Håndtere model og visning
         model = new VehicleModel();
         view = new VehicleView(model);
+// Opretter knapper til scenen
         Button createButton = new Button("Opret bil");
         createButton.getStyleClass().add("acceptButton");
         createButton.setOnAction(this::create);
@@ -38,7 +40,7 @@ public class CreateVehicleController extends ModalController{
         Button imageButton = new Button("Vælg Billede");
         imageButton.setOnAction(this::findImage);
         createButton.getStyleClass().add("optionButton");
-
+// Tilføjer knapper til scenen
         view.addButtons(createButton, imageButton, cancelButton);
     }
 
@@ -47,6 +49,7 @@ public class CreateVehicleController extends ModalController{
         return view;
     }
     public void findImage(ActionEvent event) {
+// Til at implementere billeder
         byte[] image = FileMethods.findImage((Stage)view.getScene().getWindow());
         if (image != null) 
             model.setImage(image);
@@ -55,6 +58,7 @@ public class CreateVehicleController extends ModalController{
         getStage().setWidth(orgWidth + 450);
     }
     public void create(ActionEvent event) {
+// Metode til at oprette en vehicle
         ServiceSingleton.getInstance().query(new Request(ServiceType.Vehicle, CRUDType.Create,
         model,
         (newVehicle) -> {
@@ -65,6 +69,7 @@ public class CreateVehicleController extends ModalController{
             }
         },
         new Validation(
+// validering til callback funktion hvis der er fejl
             (request) -> {
                 Validation validation = ((Request) request).getValidation();
                 Platform.runLater(
