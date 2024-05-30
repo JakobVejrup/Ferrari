@@ -15,7 +15,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
-
+//karl emil
 public class CSVWriterTest extends TestCase {
 
     public CSVWriterTest( String testName )
@@ -32,23 +32,27 @@ public class CSVWriterTest extends TestCase {
         return new TestSuite( CSVWriterTest.class );
     }
 
-
+    //CSV Writer Test for invoices der tjekker om filen bliver skrevet korrekt
     public void testWrite() {
         String filename = "test_invoices";
         String path = "C:\\Users\\kehan\\Downloads\\";
         List<Invoice> invoices = Arrays.asList(
-                new Invoice(1, Date.valueOf(LocalDate.of(2023, 1, 1)), Date.valueOf(LocalDate.of(2023, 1, 31)), 100, 50,
+            //laver 2 nye fakturaer der skal skrives til filen
+                new Invoice(1, Date.valueOf(LocalDate.of(2023, 1, 1)),
+                 Date.valueOf(LocalDate.of(2023, 1, 31)), 100, 50,
                         500, 450, "Some details"),
-                new Invoice(2, Date.valueOf(LocalDate.of(2023, 2, 1)), Date.valueOf(LocalDate.of(2023, 2, 28)), 200, 75,
+                new Invoice(2, Date.valueOf(LocalDate.of(2023, 2, 1)), 
+                Date.valueOf(LocalDate.of(2023, 2, 28)), 200, 75,
                         625, 500, "More details"));
-
+        //skriver filen
         CSVWriterInvoices writeCSV = new CSVWriterInvoices(filename, path, invoices);
         writeCSV.WriteCSV();
-
+        //tjekker om filen er blevet skrevet og den passer med det forventede navn
         File file = new File(path, filename + ".csv");
         Assert.assertTrue(file.exists());
-
+        //bufferedreader til at læse filen og tjekke om den er skrevet korrekt
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            // assert statements til at tjekke om filen er skrevet korrekt
             assertEquals("NR;Dato Start;Dato slut;Plus;Minus;UltimoValue;PrimoPrice;Details", reader.readLine());
             Assert.assertEquals(reader.readLine(), "1;2023-01-01;2023-01-31;100.0;50.0;500.0;450.0;Some details");
             Assert.assertEquals(reader.readLine(), "2;2023-02-01;2023-02-28;200.0;75.0;625.0;500.0;More details");
