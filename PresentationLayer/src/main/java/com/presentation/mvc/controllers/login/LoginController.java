@@ -14,12 +14,14 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.layout.HBox;
 //anders
+//handles login 
 public class LoginController {
     private LoginView view;
     private EmployeeModel model;
     public LoginController() {
         model = new EmployeeModel();
         // needs a eventhandler which is a funtional interface type
+        //sets it with a method reference, these can be set with statics or with a instace reference
         view = new LoginView(model, this::login);
     }
 

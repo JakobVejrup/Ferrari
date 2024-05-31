@@ -1,7 +1,6 @@
 package com.presentation.mvc.views.table.concretes;
 
 import java.sql.Date;
-import com.model.entities.Agreement;
 import com.model.entities.Customer;
 import com.model.entities.Employee;
 import com.model.entities.Vehicle;
@@ -11,12 +10,6 @@ import com.presentation.mvc.models.table.RowModel;
 import com.presentation.mvc.views.table.decorators.TableDecorator;
 import com.presentation.mvc.views.table.ui.GuiTable;
 import com.rki.rki.Rating;
-
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.TableColumn;
 //karl
 //ClosedAgreementsTable class that extends GuiTable and implements TableDecorator that displays the columns of the table

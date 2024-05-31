@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
 //anders
+//just adds some nice to haves
 public class NiceVBox extends VBox{
     private Insets inset;
     public NiceVBox(String css, Insets insets, Node... nodes) {

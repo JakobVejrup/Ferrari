@@ -1,7 +1,8 @@
 package com.presentation.tools.facade;
 
 import javafx.scene.Node;
-
+//anders
+//methods signatures fit with borderpanes main actions
 public interface ViewSetup {
     public void setCenter(Node node);
     public void setTop(Node node);

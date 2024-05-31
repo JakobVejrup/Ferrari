@@ -1,11 +1,11 @@
 package com.presentation.mvc.controllers;
 
 import com.presentation.mvc.views.View;
-
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
-
-public abstract class Controller {
+//anders
+//not for polymorphic use just to reuse code
+public class Controller {
     private Pane view;
     public void setView(Pane view) {
         this.view  = view;

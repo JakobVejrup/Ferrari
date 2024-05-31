@@ -1,24 +1,20 @@
 package com.presentation.tools.facade;
 
-import com.logic.handlers.Request;
-
 import com.model.entities.Employee;
 import com.presentation.mvc.controllers.login.LoginController;
 import com.presentation.mvc.controllers.modals.ModalController;
-
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 //anders
+//Facade is for the frontend, sets gui and such using facade pattern, i does a little mediatoring at logoff tho
 public class Facade implements ModalSetup, ViewSetup, LoginManager{
     private static Facade instance;
     private BorderPane mainPane;
     private Stage mainStage;
     private ModalSetup modal;
     private LoginManager login;
-
 
     private Facade() {}
     public static Facade getInstance() {
@@ -89,6 +85,7 @@ public class Facade implements ModalSetup, ViewSetup, LoginManager{
             return login.getLoggedIn();
         return null;
     }
+    // does a little mediating using the gui setters and the login 
     public void logOff() {
         setCenter(new LoginController().getView());
         setLeft(null);

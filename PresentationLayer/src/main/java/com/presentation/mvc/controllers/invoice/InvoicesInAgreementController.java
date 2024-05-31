@@ -1,18 +1,12 @@
 package com.presentation.mvc.controllers.invoice;
 
-import java.util.List;
-import com.logic.services.enums.ServiceType;
-import com.model.entities.Invoice;
 import com.presentation.mvc.controllers.Controller;
-import com.presentation.mvc.models.Invoice.InvoiceModel;
 import com.presentation.mvc.models.table.TableModel;
 import com.presentation.mvc.views.table.concretes.InvoiceTable;
 import com.presentation.mvc.views.table.decorators.ParentTableDecorator;
 import com.presentation.mvc.views.table.decorators.TableDecorator;
 import com.presentation.mvc.views.table.decorators.TableHeightDecorator;
 import com.presentation.mvc.views.table.decorators.TableWidthDecorator;
-
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 //karl
 //table for invoices in agreement

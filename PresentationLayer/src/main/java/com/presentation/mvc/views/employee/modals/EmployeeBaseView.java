@@ -5,7 +5,6 @@ import com.presentation.mvc.models.employees.EmployeeModel;
 import com.presentation.mvc.views.View;
 import com.presentation.mvc.views.generalgui.NiceHBox;
 import com.presentation.tools.facade.Facade;
-
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -18,6 +17,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.geometry.Insets;
 //anders
+//shows an employee as editable, only shows what the logged in is allowed to see though
 public class EmployeeBaseView extends VBox implements View {
     public EmployeeBaseView(EmployeeModel model) {
         TextField email = new TextField(model.getEmail());
@@ -29,6 +29,7 @@ public class EmployeeBaseView extends VBox implements View {
         TextField name = new TextField(model.getName());
         model.nameProperty().bind(name.textProperty());
         TextField loanLimit = new TextField(String.valueOf(model.getLoanLimit()));
+        //uses regex to check if values are numbers, regex is a set of conditions for a string, can check if something is a email too
         loanLimit.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -52,7 +53,6 @@ public class EmployeeBaseView extends VBox implements View {
         }
         occupation.setValue(model.getOccupation());
         model.occupationProperty().bind(occupation.valueProperty());
-
         getChildren().addAll(
                 new NiceHBox("rightContainer", new Insets(5), new Label("Navn:"), name),
                 new NiceHBox("rightContainer", new Insets(5), new Label("Email:"), email),

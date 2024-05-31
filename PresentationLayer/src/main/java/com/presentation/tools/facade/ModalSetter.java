@@ -1,15 +1,8 @@
 package com.presentation.tools.facade;
 
-import com.logic.handlers.Request;
-import com.logic.services.enums.CRUDType;
-import com.model.entities.Employee;
 import com.presentation.App;
-import com.presentation.mvc.controllers.employee.modals.CreateEmployeeController;
-import com.presentation.mvc.controllers.employee.modals.UpdateEmployeeController;
 import com.presentation.mvc.controllers.modals.ModalController;
 import com.presentation.tools.ScreenWatcher;
-
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
@@ -36,8 +29,11 @@ public class ModalSetter implements ModalSetup {
             scene.getStylesheets().add(App.class.getResource("stylesheet1.css").toExternalForm());
             controller.getView().getStyleClass().add("Modal");
             stage.setScene(scene);
+            //sets watcher to watch the modal stage
             ScreenWatcher.getInstance().setStage(stage);
             stage.initOwner(mainStage);
+            //to make the modal movable without its default window style
+            //to get a draggin relevant to click start location
             scene.setOnMousePressed(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
@@ -45,6 +41,7 @@ public class ModalSetter implements ModalSetup {
                     y = event.getSceneY();
                 }
             });
+            //sets its movement
             scene.setOnMouseDragged(new EventHandler<MouseEvent>() {
                 @Override
                 public void handle(MouseEvent event) {
@@ -59,6 +56,7 @@ public class ModalSetter implements ModalSetup {
         catch (Exception e) {
         }
     }
+    //openmodal stops the first stages thread, then the modal one closes its result has been set, so getresult gets the value
     public Object openModalResult(ModalController controller) {
         try {
             openModal(controller);

@@ -1,14 +1,12 @@
 package com.presentation.mvc.views.table.concretes;
 
 import java.sql.Date;
-
 import com.presentation.mvc.controllers.table.CurrencyCell;
 import com.presentation.mvc.models.Invoice.InvoiceModel;
 import com.presentation.mvc.models.employees.EmployeeModel;
 import com.presentation.mvc.models.table.RowModel;
 import com.presentation.mvc.views.table.decorators.TableDecorator;
 import com.presentation.mvc.views.table.ui.GuiTable;
-
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TableColumn;
 import javafx.util.Callback;

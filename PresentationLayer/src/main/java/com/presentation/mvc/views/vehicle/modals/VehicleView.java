@@ -1,10 +1,8 @@
 package com.presentation.mvc.views.vehicle.modals;
 
 import java.io.ByteArrayInputStream;
-
 import com.presentation.mvc.models.vehicle.VehicleModel;
 import com.presentation.mvc.views.View;
-
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;

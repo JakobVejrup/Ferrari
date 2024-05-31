@@ -1,6 +1,5 @@
 package com.presentation.mvc.controllers.vehicle.modals;
 
-import java.util.ArrayList;
 import java.util.List;
 import com.logic.ServiceSingleton;
 import com.logic.handlers.Request;

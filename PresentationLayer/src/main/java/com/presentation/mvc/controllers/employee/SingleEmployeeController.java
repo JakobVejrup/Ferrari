@@ -5,11 +5,10 @@ import com.presentation.mvc.controllers.Controller;
 import com.presentation.mvc.views.employee.SingleEmployeeView;
 import javafx.scene.control.Button;
 //anders
+//simple little controller dosent do much on its own
 public class SingleEmployeeController extends Controller {
-    private Employee model;
     private SingleEmployeeView view;
     public SingleEmployeeController(Employee model) {
-        this.model = model;
         view = new SingleEmployeeView(model);
         setView(view);
     }

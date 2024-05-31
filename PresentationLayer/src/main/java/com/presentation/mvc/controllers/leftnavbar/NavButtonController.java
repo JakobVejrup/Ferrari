@@ -5,15 +5,13 @@ import com.presentation.mvc.views.leftnavbar.NavButtonView;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 //anders
+//setup the navbutton
 public class NavButtonController {
     private NavButtonView view;
-    private NavButtonModel model;
 
     public NavButtonController(NavButtonModel model, EventHandler<MouseEvent> buttonAction) {
-        this.model = model;
         view = new NavButtonView(model, buttonAction);
     }
-
     public NavButtonView getView() {
         return view;
     }

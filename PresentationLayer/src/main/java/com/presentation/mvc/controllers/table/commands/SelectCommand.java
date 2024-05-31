@@ -1,9 +1,10 @@
 package com.presentation.mvc.controllers.table.commands;
 
-
 import com.model.threads.ActionParameter;
 import com.presentation.mvc.models.table.RowModel;
-
+//anders
+// command to Select table items
+//does this with interface method
 public class SelectCommand implements CellCommand {
     private ActionParameter action;
     public SelectCommand(ActionParameter action) {

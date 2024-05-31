@@ -1,16 +1,12 @@
-
 package com.presentation.mvc.views.table.concretes;
 import com.model.entities.City;
 import com.presentation.mvc.models.customer.CustomerModel;
 import com.presentation.mvc.models.table.RowModel;
 import com.presentation.mvc.views.table.decorators.TableDecorator;
 import com.presentation.mvc.views.table.ui.GuiTable;
-
-import javafx.scene.control.Label;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.TextFieldTableCell;
-
+//magnus
 public class CustomerTable extends GuiTable implements TableDecorator {
     private TableColumn<RowModel, String> nameCol;
     private TableColumn<RowModel, String> phoneCol;

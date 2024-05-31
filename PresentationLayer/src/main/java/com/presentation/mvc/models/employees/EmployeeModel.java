@@ -6,6 +6,7 @@ import com.model.entities.Employee;
 import com.model.enums.Occupation;
 import javafx.beans.property.*;
 //anders
+//get set properties to to bind onto, overrides all gui properties (not ID), dont want any messiness with, where the values are, so its either property classes or the data models get set members
 public class EmployeeModel extends Employee {
     private StringProperty emailProp;
     private StringProperty nameProp;

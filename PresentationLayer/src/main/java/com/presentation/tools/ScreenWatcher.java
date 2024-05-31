@@ -15,8 +15,6 @@ public class ScreenWatcher {
     private ObjectProperty<Screen> screenProperty;
     private ScreenWatcher() { screenProperty = new SimpleObjectProperty<>();
     }
-
-
     public static ScreenWatcher getInstance() {
         return instance == null ? instance = new ScreenWatcher() : instance;
     }

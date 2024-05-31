@@ -1,11 +1,7 @@
 package com.presentation.mvc.models.table;
 
 import com.logic.services.enums.ServiceType;
-import com.model.threads.ActionParameter;
-
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-
 import java.util.List;
 //anders
 public class TableModel {

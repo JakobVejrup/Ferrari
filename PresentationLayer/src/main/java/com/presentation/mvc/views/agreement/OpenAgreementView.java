@@ -1,12 +1,12 @@
 package com.presentation.mvc.views.agreement;
 
-import com.dlsc.formsfx.model.structure.DateField;
+import java.sql.Date;
+import java.text.DecimalFormat;
 import com.presentation.mvc.models.agreements.AgreementModel;
 import com.presentation.mvc.views.View;
 import com.presentation.mvc.views.generalgui.NiceHBox;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.beans.binding.Bindings;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -15,8 +15,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.util.converter.NumberStringConverter;
-import java.sql.Date;
-import java.text.DecimalFormat;
 //karl
 public class OpenAgreementView extends VBox implements View{
     private HBox buttonBox;

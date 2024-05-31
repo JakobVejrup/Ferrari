@@ -2,11 +2,11 @@ package com.presentation.mvc.views.table.decorators;
 
 import com.presentation.mvc.views.table.ui.GuiTable;
 import com.presentation.tools.ScreenWatcher;
-
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.stage.Screen;
-
+//anders
+//sets the table height to be a percent of screen height
 public class TableHeightDecorator implements TableDecorator {
     private GuiTable table;
     public TableHeightDecorator(double decimal, TableDecorator other) {

@@ -1,25 +1,18 @@
 package com.presentation.mvc.views.table.concretes;
 
-import java.io.ByteArrayInputStream;
-
 import com.model.enums.Occupation;
-import com.presentation.mvc.controllers.table.ColumnController;
 import com.presentation.mvc.controllers.table.factories.ImageFactory;
-import com.presentation.mvc.controllers.table.factories.NodeFactory;
 import com.presentation.mvc.models.employees.EmployeeModel;
 import com.presentation.mvc.models.table.RowModel;
 import com.presentation.mvc.views.table.decorators.ImageTableDecorator;
 import com.presentation.mvc.views.table.decorators.TableDecorator;
 import com.presentation.mvc.views.table.ui.GuiTable;
-
 import javafx.beans.value.ObservableValue;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.util.Callback;
-
+//anders
+//concrete table sets the columns and binds tem to the properties of the models
 public class EmployeeTable extends GuiTable implements TableDecorator {
     private TableColumn<RowModel, String> nameCol;
     private TableColumn<RowModel, String> phoneCol;
@@ -34,6 +27,7 @@ public class EmployeeTable extends GuiTable implements TableDecorator {
         getColumns().add(emailCol = new TableColumn<RowModel, String>("Email"));
         getColumns().add(occupationCol = new TableColumn<RowModel, Occupation>("Stilling"));
         getColumns().add(loanLimitCol = new TableColumn<RowModel, Number>("Maks Lån"));
+        //could be set with lambdas, but this way is more telling of what its doing to those who dont know, its ugly though
         nameCol.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<RowModel, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<RowModel, String> cell) {

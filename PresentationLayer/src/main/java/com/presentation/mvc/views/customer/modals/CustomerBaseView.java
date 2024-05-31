@@ -1,21 +1,9 @@
 package com.presentation.mvc.views.customer.modals;
 
-import java.util.List;
-
-import com.logic.ServiceSingleton;
-import com.logic.handlers.Request;
-import com.logic.services.enums.CRUDType;
-import com.logic.services.enums.ServiceType;
 import com.model.entities.City;
-import com.model.threads.Validation;
 import com.presentation.mvc.models.customer.CustomerModel;
 import com.presentation.mvc.views.View;
-import com.presentation.tools.alert.Alerter;
-
-import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -23,7 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
+//magnus
 
 public class CustomerBaseView extends VBox implements View{
     public CustomerBaseView(CustomerModel model, ObjectProperty<ObservableList<City>> cityList) {

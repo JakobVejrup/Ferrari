@@ -1,17 +1,10 @@
 package com.presentation.mvc.views.employee;
 
 import java.io.ByteArrayInputStream;
-
 import com.model.entities.Employee;
 import com.presentation.mvc.views.View;
 import com.presentation.mvc.views.generalgui.NiceHBox;
-
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -20,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 //anders
+//shows an employee, not editable, could maybe have been used more places if it had more conditions, set editable fx and changeable texts
 public class SingleEmployeeView extends VBox implements View{
     public Employee model;
     public TextField email;

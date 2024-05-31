@@ -9,9 +9,9 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.TableCell;
 //anders
+// node is the view and rowmodel is the model, the node will show if a model is present
 public class CellController extends TableCell<RowModel, RowModel> implements EventHandler<ActionEvent> {
     //graphic object in the cell
-
     private final Node node;
     private CellCommand command;
     //booleanproperty to link the column with the checkbox

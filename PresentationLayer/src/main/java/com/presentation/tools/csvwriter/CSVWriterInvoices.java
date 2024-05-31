@@ -1,11 +1,9 @@
 package com.presentation.tools.csvwriter;
 
-import java.io.FilenameFilter;
 import java.text.DecimalFormat;
 import java.util.List;
-//karl
 import com.model.entities.Invoice;
-
+//karl
 public class CSVWriterInvoices {
 //private fields with one making a header for invoices 
 private String Filename;

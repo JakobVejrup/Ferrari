@@ -3,11 +3,9 @@ package com.presentation.tools;
 import java.io.File;
 import java.nio.file.Files;
 import java.util.List;
-
 import com.model.entities.Invoice;
 import com.presentation.tools.alert.Alerter;
 import com.presentation.tools.csvwriter.CSVWriterInvoices;
-
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;

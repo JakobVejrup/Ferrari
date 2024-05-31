@@ -10,7 +10,6 @@ import com.presentation.mvc.controllers.table.factories.NodeFactory;
 import com.presentation.mvc.models.agreements.AgreementModel;
 import com.presentation.mvc.models.table.RowModel;
 import com.presentation.mvc.views.table.concretes.MiniAgreementTable;
-import com.presentation.mvc.views.table.concretes.OpenAgreementTable;
 import com.presentation.mvc.views.table.decorators.ButtonColumnDecorator;
 import com.presentation.mvc.views.table.decorators.TableDecorator;
 import com.presentation.mvc.views.table.ui.GuiTable;
@@ -18,7 +17,8 @@ import com.presentation.tools.facade.Facade;
 
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
-//karl
+//anders
+//childtable
 public class OpenAgreementFactory extends NodeFactory {
     @Override
     public Node createNode(CellController controller) {
@@ -26,6 +26,7 @@ public class OpenAgreementFactory extends NodeFactory {
         GuiTable table = new MiniAgreementTable();
         table = TableFactory.readyTable(controller, ServiceType.AgreementOpen, table);
         table.setup(box);
+        //button in table to see the agreement if clicked
         table = new ButtonColumnDecorator(new ColumnController(new ButtonFactory("acceptButton"), "Se aftale", new SelectCommand(
             (rowModel) -> {
                 AgreementModel model = (AgreementModel)(((RowModel)rowModel).getItem());

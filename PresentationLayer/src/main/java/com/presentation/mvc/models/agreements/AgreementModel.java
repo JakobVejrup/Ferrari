@@ -1,7 +1,6 @@
 package com.presentation.mvc.models.agreements;
 
 import java.sql.Date;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import com.model.entities.Agreement;
@@ -11,7 +10,6 @@ import com.model.entities.Invoice;
 import com.model.entities.Vehicle;
 import com.presentation.mvc.models.customer.CustomerModel;
 import com.presentation.mvc.models.employees.EmployeeModel;
-import com.presentation.mvc.models.table.TableModel;
 import com.presentation.mvc.models.vehicle.VehicleModel;
 import com.rki.rki.Rating;
 import javafx.beans.property.DoubleProperty;
@@ -20,7 +18,6 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.ObservableList;
 //karl
 //AgreementModel class that extends Agreement and makes objects eable to be used to bind 
 public class AgreementModel extends Agreement{

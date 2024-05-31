@@ -1,7 +1,6 @@
 package com.presentation;
 
 import java.util.List;
-
 import com.logic.handlers.Request;
 import com.logic.services.enums.CRUDType;
 import com.logic.services.enums.ServiceType;
@@ -13,7 +12,6 @@ import com.presentation.tools.ScreenWatcher;
 import com.presentation.tools.facade.Facade;
 import com.presentation.tools.facade.Login;
 import com.presentation.tools.facade.ModalSetter;
-
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;

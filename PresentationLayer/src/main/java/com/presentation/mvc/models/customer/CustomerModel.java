@@ -2,12 +2,9 @@ package com.presentation.mvc.models.customer;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.model.entities.City;
 import com.model.entities.Customer;
-
 import javafx.beans.property.*;
-
 
 //magnus
 public class CustomerModel extends Customer{

@@ -1,5 +1,4 @@
 package com.presentation.mvc.views.table.concretes;
-import java.sql.Date;
 import com.presentation.mvc.models.agreements.AgreementModel;
 import com.model.entities.Customer;
 import com.model.entities.Employee;
@@ -7,10 +6,10 @@ import com.model.entities.Vehicle;
 import com.presentation.mvc.models.table.RowModel;
 import com.presentation.mvc.views.table.decorators.TableDecorator;
 import com.presentation.mvc.views.table.ui.GuiTable;
-import com.rki.rki.Rating;
 
 import javafx.scene.control.TableColumn;
-
+//anders
+//mini table to show in employees open agreements, fewer values than the real table
 public class MiniAgreementTable extends GuiTable implements TableDecorator {
 private TableColumn<RowModel, Customer> customerCol;
 private TableColumn<RowModel, Employee> employeeCol;

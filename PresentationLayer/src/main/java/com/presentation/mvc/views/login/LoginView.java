@@ -2,7 +2,6 @@ package com.presentation.mvc.views.login;
 
 import com.presentation.mvc.models.employees.EmployeeModel;
 import com.presentation.mvc.views.generalgui.NiceButton;
-
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -14,13 +13,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 //anders
+//view for logging in(DUH!?), binds the appropiate values to gui
 public class LoginView extends VBox {
     private TextField email;
     private PasswordField password;
-    private EmployeeModel model;
 
     public LoginView(EmployeeModel model, EventHandler<ActionEvent> buttonAction) {
-        this.model = model;
         setAlignment(Pos.TOP_CENTER);
         getStyleClass().add("login");
         email = new TextField();

@@ -8,17 +8,15 @@ import com.presentation.mvc.controllers.customers.CustomersController;
 import com.presentation.mvc.controllers.employee.AccountController;
 import com.presentation.mvc.controllers.employee.EmployeesController;
 import com.presentation.mvc.controllers.vehicle.AllVehiclesController;
-import com.presentation.mvc.models.leftnavbar.LeftNavBarModel;
 import com.presentation.mvc.models.leftnavbar.NavButtonModel;
 import com.presentation.mvc.views.leftnavbar.LeftNavBarView;
 import com.presentation.mvc.views.leftnavbar.NavButtonView;
 import com.presentation.tools.facade.Facade;
-
 import java.util.ArrayList;
 import java.util.List;
 //anders
+//makes all the controllers / views / models needed to make the navbar, takes into consideration who's logged in
 public class LeftNavbarController {
-    private LeftNavBarModel model;
     private LeftNavBarView view;
 
     public LeftNavbarController() {
@@ -54,10 +52,6 @@ public class LeftNavbarController {
             case "Customers" -> Facade.getInstance().setCenter(new CustomersController().getView());
             case "AgreementsOpen" -> Facade.getInstance().setCenter(new OpenAgreementsController().getView());
             case "AgreementsClosed" -> Facade.getInstance().setCenter(new ClosedAgreementsController().getView());
-            
-
-
-
             default -> {
                 return;
             }

@@ -1,14 +1,12 @@
 package com.presentation.tools.alert;
 
 import java.util.List;
-import java.util.stream.Stream;
-
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 //anders
 public class Alerter {
-
+    //lots of overloaders for creating different type of alerts with different parameters
     public static boolean confirmation(String title, String header, String content) {
         Alert alert = setup(new Alert(AlertType.CONFIRMATION), title, header, content);
         return alert.showAndWait().isPresent() && alert.getResult() == ButtonType.OK;
@@ -55,7 +53,7 @@ public class Alerter {
     private static Alert setup(Alert alert, String title, String content) {
         return finishAlert(alert, title, content);
     }
-
+    
     private static Alert setup(Alert alert, String title, String header, List<String> content) {
         alert.setHeaderText(header);
         String body = "";
