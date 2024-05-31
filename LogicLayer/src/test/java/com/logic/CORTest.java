@@ -3,24 +3,19 @@ package com.logic;
 import com.logic.handlers.HandlerObject;
 import com.logic.handlers.Request;
 import com.logic.handlers.SimpleHolder;
-import com.logic.math.LoanCalculator;
 import com.logic.mockups.MockupEmployee;
 import com.logic.mockups.MockupEmployeeData;
 import com.logic.services.customer.CustomerService;
 import com.logic.services.employee.EmployeeService;
 import com.logic.services.enums.CRUDType;
 import com.logic.services.enums.ServiceType;
-import com.model.entities.Agreement;
-import com.model.entities.Invoice;
-import com.model.entities.Vehicle;
-import com.rki.rki.Rating;
+
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import java.sql.Date;
-
 //anders
+//all tests ran true
 public class CORTest extends TestCase
 {
     public CORTest( String testName )

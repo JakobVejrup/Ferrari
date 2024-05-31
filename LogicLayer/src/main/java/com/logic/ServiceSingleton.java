@@ -30,6 +30,11 @@ public class ServiceSingleton implements Handler {
     private static ServiceSingleton instance;
     private HandlerHolder validations;
     private HandlerHolder services;
+    //singleton getter
+    public static ServiceSingleton getInstance() {
+        return instance == null ? instance = new ServiceSingleton() : instance;
+    }
+    //private ctr because singleton pattern
     private ServiceSingleton() {
         ConnectionData db = new ConnectionData();
         EmployeeData employeeData = new EmployeeData(db);
@@ -40,14 +45,13 @@ public class ServiceSingleton implements Handler {
         RatesData rateData = new RatesData(db);
         AgreementClosedData agreementClosed = new AgreementClosedData(db, invoiceData, customerData, employeeData);
         AgreementOpenData agreementOpen = new AgreementOpenData(db, invoiceData, customerData, employeeData);
-
+        //backend validation because easya nd better than nothing, but worse than frontend validation
         validations = new ValidationManager(
             new EmployeeValidation(employeeData), 
             new AgreementValidation()
-    
-        );
-        services = new ServiceManager(
-            new EmployeeService(employeeData, employeeData),
+            );
+            services = new ServiceManager(
+                new EmployeeService(employeeData, employeeData),
             new RateService(rateData),
             new VehicleService(vehicleData),
             new AgreementOpenService(agreementOpen),
@@ -72,29 +76,28 @@ public class ServiceSingleton implements Handler {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                if(request.getValidation() != null) {
+                if (request.getValidation() != null) {
                     validations.query(request);
-                    if(request.anyErrors()) {
+                    if (request.anyErrors()) {
                         request.getValidation().getErrorAction().action(request);
                         return;
                     }
                 }
-                if(services != null)
+                if (services != null)
                     services.query(request);
             }
         });
         thread.setDaemon(true);
         thread.start();
     }
+    //object holder for return value of cor 
     private Object returner;
+    //dosent run a thread just uses the cor and sets the value, must be done in a thread to be async
     public Object queryNoThread(Request request) {
         if (services == null)
             return null;
         request.setSetter((value) -> returner = value);
         services.query(request);
         return returner;
-    }
-    public static ServiceSingleton getInstance() {
-        return instance == null ? instance = new ServiceSingleton() : instance;
     }
 }

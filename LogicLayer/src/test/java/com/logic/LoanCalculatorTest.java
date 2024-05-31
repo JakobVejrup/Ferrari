@@ -10,8 +10,10 @@ import junit.framework.TestCase;
 
 import java.sql.Date;
 //anders
+//all tests ran true
 public class LoanCalculatorTest extends TestCase {
     //testing if the arrays are the same, test values came from a website
+    @SuppressWarnings("deprecation")
     public void testLåneBeregner() {
         Agreement agreement = new Agreement();
         agreement.setVehicle(new Vehicle(0,"", 3000000d));
@@ -36,6 +38,7 @@ public class LoanCalculatorTest extends TestCase {
         assertEquals(266546.36 , LoanCalculator.fastYdelse(3000000, 0.01, 12), 0.1);
     }
     //testing if the rate for monthly payment are the same
+    @SuppressWarnings("deprecation")
     public void testRente() {
         Agreement agreement = new Agreement();
         agreement.setVehicle(new Vehicle(0,"", 3000000d));
