@@ -5,7 +5,7 @@ import com.presentation.mvc.views.generalgui.NiceHBox;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 //karl
-
+//class that adds buttons to the view
 public class AgreementView extends VBox implements View {
     public AgreementView(){
         getStyleClass().add("Aftaler");
