@@ -1,9 +1,7 @@
 package com.data.dao;
-
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-
 import com.data.ConnectionData;
 import com.data.interfaces.Data;
 import com.model.entities.Agreement;

@@ -13,6 +13,7 @@ public class ConnectionData {
             "databaseName=FerrariDB;" +
             "integratedSecurity=true;" +
             "trustServerCertificate=true;";
+    
     public ConnectionData() {
         //connectionTimer will check every 20 seconds if its been run in the meanwhile, if it hasn't it will disconnect the sql connection
         connectionTimer = new ObjectWithTimer(new Function() {
@@ -28,11 +29,13 @@ public class ConnectionData {
             @Override
             public void action() {
                 try {
-                    ((Connection)connectionTimer.getValue()).close();
+                    ((Connection) connectionTimer.getValue()).close();
                 } catch (Exception e) {
-                }}
+                }
+            }
         });
     }
+    //gets the SP string and returns call
     public CallableStatement makeCall(String spCall) {
         try {
             return ((Connection)connectionTimer.getValue()).prepareCall(spCall);
