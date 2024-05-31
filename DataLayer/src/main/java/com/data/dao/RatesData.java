@@ -14,7 +14,9 @@ import com.rki.bank.InterestRate;
 import com.rki.rki.CreditRator;
 //Jakob
 public class RatesData implements Data {
+// Klasse for dataoperation CRUD på rate
     private ConnectionData db;
+// Konstruktør som har db som parameter  
     public RatesData(ConnectionData db) {
         this.db = db;
     }
@@ -25,10 +27,15 @@ public class RatesData implements Data {
 
     @Override
     public Object read(Object parameter) {
+// Caster parameteren til agreement, som er et objekt
         Agreement agreement = (Agreement)parameter;
+// Opretter nyt agreement objekt
         Agreement newAgreement = new Agreement();
+// Sætter dagsrente i det nye agreement objekt
         newAgreement.setDaysRate(InterestRate.i().todaysRate());
+// Henter kreditvurdering i det nye agreement objekt
         newAgreement.setRki(CreditRator.i().rate(agreement.getCustomer().getCpr()));
+// returner den nye agreement
         return newAgreement;
     }
 

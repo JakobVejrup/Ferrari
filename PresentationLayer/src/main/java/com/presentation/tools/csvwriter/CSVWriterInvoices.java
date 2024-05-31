@@ -7,6 +7,7 @@ import java.util.List;
 import com.model.entities.Invoice;
 
 public class CSVWriterInvoices {
+//private fields with one making a header for invoices 
 private String Filename;
 private String pathinvoices;
 private List < Invoice > invoices;
@@ -18,7 +19,7 @@ private static final String HEADER[] = { "NR", "Dato Start", "Dato slut", "Plus"
         this.pathinvoices = pathinvoices;
         this.invoices = invoices;
     }
-
+    // writes the csv and makes it and adds as many rows down as needed 
     public void WriteCSV(){
         int rows = invoices.size();
         int columns = 8;

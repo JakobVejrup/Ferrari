@@ -11,6 +11,7 @@ import com.presentation.mvc.models.employees.EmployeeModel;
 
 import javafx.beans.property.*;
 //karl
+//InvoiceModel class that extends Invoice and makes objects eable to be used to bind
 public class InvoiceModel extends Invoice{
     private IntegerProperty numberProperty;
     private ObjectProperty<Date> dateStartProperty;
@@ -21,6 +22,7 @@ public class InvoiceModel extends Invoice{
     private DoubleProperty primoProperty;
     private StringProperty detailsProperty;
     private DoubleProperty payedProperty;
+    //constructor
     public InvoiceModel() {
         numberProperty = new SimpleIntegerProperty();
         dateStartProperty = new SimpleObjectProperty<>();
@@ -32,6 +34,7 @@ public class InvoiceModel extends Invoice{
         primoProperty = new SimpleDoubleProperty();
         detailsProperty = new SimpleStringProperty();
     }
+    //constructor that takes an invoice and sets the values to the properties
     public InvoiceModel(Invoice other) {
         this();
         payedProperty.set(other.getPayed());

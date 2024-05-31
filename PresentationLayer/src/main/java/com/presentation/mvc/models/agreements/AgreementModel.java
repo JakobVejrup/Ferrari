@@ -22,6 +22,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
 //karl
+//AgreementModel class that extends Agreement and makes objects eable to be used to bind 
 public class AgreementModel extends Agreement{
     private IntegerProperty fixedTermsProp;
     private DoubleProperty startValueProp;
@@ -37,7 +38,7 @@ public class AgreementModel extends Agreement{
     private DoubleProperty totalRateProp;
     private DoubleProperty endPriceProp;
 
-
+    //constructor 
     public AgreementModel() {
         fixedTermsProp = new SimpleIntegerProperty();
         startValueProp = new SimpleDoubleProperty();
@@ -56,7 +57,7 @@ public class AgreementModel extends Agreement{
         setEmployee(new EmployeeModel(true));
         setVehicle(new VehicleModel(true));
     }
-
+    //constructor that takes an agreement and sets the values to the properties
     public AgreementModel(Agreement agreement) {
         this();
         setId(agreement.getId());

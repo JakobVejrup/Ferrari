@@ -10,6 +10,7 @@ public class ServiceManager extends HandlerHolder {
     }
     @Override
     public void query(Request request) {
+// Metoden håndtere forespørgsler fra Request klassen
         if(request.getCrud() != null && request.getType() != null && root != null)
             root.query(request);
     }

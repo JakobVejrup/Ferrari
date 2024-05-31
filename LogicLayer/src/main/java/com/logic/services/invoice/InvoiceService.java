@@ -7,7 +7,9 @@ import com.logic.handlers.HandlerObject;
 import com.logic.handlers.Request;
 import com.logic.handlers.SimpleHolder;
 import com.logic.services.enums.ServiceType;
+
 //karl
+// Handlers for invoice som bruger COR til at håndtere CRUD
 public class InvoiceService extends HandlerObject {
     private HandlerHolder holder;
 
@@ -22,7 +24,7 @@ public class InvoiceService extends HandlerObject {
                 new SimpleDeleteHandler(data)
         );
     }
-
+    // checks if the request is for invoice
     @Override
     public boolean check(Request request) {
         return request.getType() == ServiceType.Invoice;

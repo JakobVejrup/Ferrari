@@ -6,6 +6,7 @@ import com.model.entities.Agreement;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 //karl
+//agreements validation model that extends agreementmodel and adds functionality to validate the agreement
 public class AgreementValidationModel extends AgreementModel {
     private BooleanProperty fixedTermsProp;
     private BooleanProperty startValueProp;
@@ -27,6 +28,7 @@ public class AgreementValidationModel extends AgreementModel {
         super(agreement);
         setup(onChange);
     }
+    //setup method that listens to changes and automatically updates the properties
     private void setup(Consumer<AgreementValidationModel> onChange) {
         fixedTermsProp = new SimpleBooleanProperty(getFixedTerms() > 0);
         startValueProp = new SimpleBooleanProperty(getStartValue() >= 0 && getStartValue() <= getVehicle().getPrice());
@@ -59,6 +61,7 @@ public class AgreementValidationModel extends AgreementModel {
             invoicesProp.set(false);
             onChange.accept(this);
         });
+        //
         startProperty().addListener((observe, oldVal, newVal) -> { 
             startProp.set(newVal != null && 
             newVal.toLocalDate().getYear() >= LocalDateTime.now().getYear() ||

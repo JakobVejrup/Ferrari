@@ -23,6 +23,7 @@ public class UpdateVehicleController extends ModalController{
     private Vehicle vehicle;
     private VehicleView view;
     public UpdateVehicleController(Vehicle vehicle) {
+// Klassen gør det muligt at opdatere informationer på vehicle
         this.vehicle = vehicle;
         model = new VehicleModel(vehicle);
         view = new VehicleView(model);
@@ -36,6 +37,7 @@ public class UpdateVehicleController extends ModalController{
         view.addButtons(updateButton, imageButton, cancelButton);
     }
     public void findImage(ActionEvent event) {
+// Opdater billede af bil
         byte[] image = FileMethods.findImage((Stage)view.getScene().getWindow());
         if (image != null) 
             model.setImage(image);
@@ -45,6 +47,7 @@ public class UpdateVehicleController extends ModalController{
         return view;
     }
     public void update(ActionEvent event) {
+// Opdatere vehicle hvis der er sket en ændring
         ServiceSingleton.getInstance().query(new Request(ServiceType.Vehicle, CRUDType.Update,
         model,
         (newVehicle) -> {
@@ -54,6 +57,7 @@ public class UpdateVehicleController extends ModalController{
             }
         },
         new Validation(
+// Validere om der er fejl i forspørgslen
             (request) -> {
                 Validation validation = ((Request) request).getValidation();
                 Platform.runLater(

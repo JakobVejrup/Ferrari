@@ -2,6 +2,7 @@ package com.model.entities;
 
 import java.sql.Date;
 //karl
+//constructor for invoice
 public class Invoice {
     private Agreement agreement;
     private int number;
@@ -58,7 +59,7 @@ public class Invoice {
     public Agreement getAgreement() {
         return agreement;
     }
-
+    //gettere og settere
     public void setAgreement(Agreement agreement) {
         this.agreement = agreement;
     }

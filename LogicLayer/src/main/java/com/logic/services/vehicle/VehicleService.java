@@ -12,10 +12,12 @@ import com.logic.handlers.Request;
 import com.logic.handlers.SimpleHolder;
 import com.logic.services.enums.ServiceType;
 //Jakob
+// Klassen håndtere forespørgsler med COR
 public class VehicleService extends HandlerObject {
     private HandlerHolder holder;
 
     public VehicleService(Data data) {
+// Håndtere CRUD har Data som objekt
         holder = new SimpleHolder(
                 new SimpleCreateHandler(data),
                 new SimpleReadHandler(data),

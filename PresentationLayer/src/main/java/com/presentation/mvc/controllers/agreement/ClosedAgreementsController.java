@@ -23,6 +23,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 //karl
+//table and controller for closed agreements 
 public class ClosedAgreementsController extends Controller{
     private TableModel model;
     private AgreementView view;

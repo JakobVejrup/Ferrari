@@ -53,7 +53,7 @@ public class AllVehiclesController extends Controller {
         setView(view);
         table = new VehicleTable();
         Request request = new Request(ServiceType.Vehicle, CRUDType.ReadAll, (vehicles) -> {
-            //to allow ui to be run
+            //tillader ui at køre
             Platform.runLater( () -> {
                 model = new TableModel(ServiceType.Employee, VehicleModel.makeModelsAsObjects((List<Vehicle>)vehicles));
                 model.getRows().iterator().forEachRemaining((row) -> {
@@ -77,6 +77,7 @@ public class AllVehiclesController extends Controller {
     }
 
     public void addVehicle(ActionEvent event) {
+// Tilføjer en vehicle til modellen og opdatere
         Object vehicle = Facade.getInstance().openModalResult(new CreateVehicleController());
         if (vehicle != null) {
             RowModel newVehicle = new RowModel(vehicle, ServiceType.Vehicle);
@@ -87,6 +88,3 @@ public class AllVehiclesController extends Controller {
     }
 
 }
-
-// table model
-// table.getTable.setup. 

@@ -27,6 +27,8 @@ import javafx.stage.Stage;
 public class CreateCustomerController extends ModalController{
     private CustomerModel model;
     private CustomerBaseView view;
+
+    // Konstruktor for CreateCustomerController
     public CreateCustomerController(){
         model = new CustomerModel();
         Button createButton = new Button("Lav kunde");
@@ -35,15 +37,19 @@ public class CreateCustomerController extends ModalController{
         Button cancelButton = new Button("Fortryd");
         cancelButton.setOnAction(this::decline);
         
+        // ObservableList for byer
         ObjectProperty<ObservableList<City>> listProperty = new SimpleObjectProperty<>(FXCollections.observableArrayList());
         view = new CustomerBaseView(model, listProperty);
         view.addButtons(createButton, cancelButton);
+
+        // query med singletons til alle byer
         ServiceSingleton.getInstance().query(new Request(ServiceType.City, CRUDType.ReadAll,
             null,
             (cities) -> {
                 ObservableList<City> obs = FXCollections.observableArrayList();
                 for(City c : (List<City>)cities)
                     obs.add(c);
+                // setter listen af byer til observable list
                 listProperty.set(obs);
             })
         );    
@@ -51,20 +57,26 @@ public class CreateCustomerController extends ModalController{
         
     }
 
+    // Metode til at hente view og retunere review
     @Override
     public Pane getView() {
         return view;
     }
+
+    // Metode til at oprette kunde
     public void create(ActionEvent event) {
         ServiceSingleton.getInstance().query(new Request(ServiceType.Customer, CRUDType.Create,
                 model,
                 (newCustomer) -> {
+                    // hvis kunden er returneret, så setter resultatet, unbinder og lukker vinduet 
                     if(newCustomer != null) {
                         setResult(newCustomer);
                         ((CustomerModel)newCustomer).unbindAll();
                         Platform.runLater(this::close);
                     }
                 },
+
+                // Validation for at vise fejlbeskeder
                 new Validation(
                     (request) -> {
                         Validation validation = ((Request) request).getValidation();
@@ -76,6 +88,7 @@ public class CreateCustomerController extends ModalController{
             )
         );
     }
+    // Metode til at afvise oprettelse 
     public void decline(ActionEvent event) {
         close();
     }
