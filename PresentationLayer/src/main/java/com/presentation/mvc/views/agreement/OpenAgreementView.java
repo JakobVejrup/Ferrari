@@ -15,7 +15,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.util.converter.NumberStringConverter;
-//karl
+//karl 
+//this class is made to show the agreement in the view and allow editing of certain fields
 public class OpenAgreementView extends VBox implements View{
     private HBox buttonBox;
     public OpenAgreementView(Pane employeeView, Pane customerView, Pane vehicleView, AgreementModel model, boolean open) {
@@ -58,7 +59,7 @@ public class OpenAgreementView extends VBox implements View{
         TextField FixedTerms = new TextField(String.valueOf(model.getFixedTerms()));
         Bindings.bindBidirectional(FixedTerms.textProperty(), model.fixedTermsProperty(), new NumberStringConverter());
         FixedTerms.setEditable(open);
-        //
+        //adds new labels and textfields to the view
         getChildren().add(
             new HBox(
                 customerView,
