@@ -11,7 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.presentation.mvc.models.table.RowModel;
-
+//anders
+//will the column 
 public abstract class GuiTable extends TableView<RowModel> {
     private List<ButtonPlacement> buttons = new ArrayList<>();
     //goes through the columns and adds buttons or regions depending on param, the rgions and buttons will listen to the width and spread put above the table

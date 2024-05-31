@@ -1,14 +1,10 @@
 package com.presentation.mvc.views.vehicle;
 
 import java.io.ByteArrayInputStream;
-
-import com.model.entities.Customer;
 import com.model.entities.Vehicle;
 import com.presentation.mvc.views.View;
 import com.presentation.mvc.views.generalgui.NiceHBox;
-
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
