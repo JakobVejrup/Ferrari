@@ -13,6 +13,7 @@ import com.presentation.mvc.controllers.modals.ModalController;
 import com.presentation.mvc.models.customer.CustomerModel;
 import com.presentation.mvc.views.customer.modals.CustomerBaseView;
 import com.presentation.tools.alert.Alerter;
+
 import javafx.application.Platform;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -21,7 +22,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
 //magnus
 

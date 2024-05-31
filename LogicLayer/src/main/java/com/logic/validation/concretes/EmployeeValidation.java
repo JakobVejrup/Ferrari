@@ -1,7 +1,6 @@
 package com.logic.validation.concretes;
 
 import com.data.interfaces.CheckData;
-import com.data.interfaces.Data;
 import com.logic.handlers.HandlerObject;
 import com.logic.handlers.Request;
 import com.logic.services.enums.ServiceType;

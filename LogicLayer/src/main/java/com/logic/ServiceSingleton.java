@@ -1,14 +1,5 @@
 package com.logic;
 
-import com.logic.services.ServiceManager;
-import com.logic.services.agreements.AgreementClosedService;
-import com.logic.services.agreements.AgreementOpenService;
-import com.logic.services.city.CityService;
-import com.logic.services.customer.CustomerService;
-import com.logic.services.employee.EmployeeService;
-import com.logic.services.invoice.InvoiceService;
-import com.logic.services.rates.RateService;
-import com.logic.services.vehicle.VehicleService;
 import com.data.ConnectionData;
 import com.data.dao.AgreementClosedData;
 import com.data.dao.AgreementOpenData;
@@ -21,10 +12,20 @@ import com.data.dao.VehicleData;
 import com.logic.handlers.Handler;
 import com.logic.handlers.HandlerHolder;
 import com.logic.handlers.Request;
+import com.logic.services.ServiceManager;
+import com.logic.services.agreements.AgreementClosedService;
+import com.logic.services.agreements.AgreementOpenService;
+import com.logic.services.city.CityService;
+import com.logic.services.customer.CustomerService;
+import com.logic.services.employee.EmployeeService;
+import com.logic.services.invoice.InvoiceService;
+import com.logic.services.rates.RateService;
+import com.logic.services.vehicle.VehicleService;
 import com.logic.validation.ValidationManager;
 import com.logic.validation.concretes.AgreementValidation;
 import com.logic.validation.concretes.EmployeeValidation;
 //anders
+//singleton that has COR functionality, makes threads 
 public class ServiceSingleton implements Handler {
     private static ServiceSingleton instance;
     private HandlerHolder validations;

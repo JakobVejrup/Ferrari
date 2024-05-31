@@ -6,7 +6,6 @@ import com.logic.services.enums.CRUDType;
 import com.logic.services.enums.ServiceType;
 import com.model.threads.Validation;
 import com.presentation.mvc.controllers.modals.ModalController;
-import com.presentation.mvc.models.customer.CustomerModel;
 import com.presentation.mvc.models.employees.EmployeeModel;
 import com.presentation.mvc.views.employee.EmployeeImageView;
 import com.presentation.mvc.views.employee.modals.PasswordEmployeeView;
@@ -18,32 +17,26 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 //anders
+//modal controller creates an employee if wanted
 public class CreateEmployeeController extends ModalController {
     private EmployeeModel model;
     private HBox view;
-    EmployeeImageView viewLeft;
     private double orgWidth;
+
     public CreateEmployeeController() {
         model = new EmployeeModel();
-        // needs a actionevent which is a funtional interface type
         Button createButton = new NiceButton("Lav Bruger", "IDacceptButton", this::create);
         Button cancelButton = new NiceButton("Fortryd", "IDdeclineButton", this::decline);
-
         Button imageButton = new NiceButton("Vælg Billede", "IDoptionButton", this::findImage);
-
         PasswordEmployeeView viewRight = new PasswordEmployeeView(model);
         viewRight.addButtons(createButton, cancelButton);
-        
-        viewLeft = new EmployeeImageView(model);
+        EmployeeImageView viewLeft = new EmployeeImageView(model);
         viewLeft.addButtons(imageButton);
         view = new HBox(viewLeft, viewRight);
-        
-        
-        
     }
+    //get image
     public void findImage(ActionEvent event) {
         byte[] image = FileMethods.findImage((Stage)view.getScene().getWindow());
         if (image != null) 
@@ -56,12 +49,14 @@ public class CreateEmployeeController extends ModalController {
     public Pane getView() {
         return view;
     }
+    // makes user
     public void create(ActionEvent event) {
         ServiceSingleton.getInstance().query(new Request(ServiceType.Employee, CRUDType.Create,
                 model,
                 (newEmployee) -> {
                     if(newEmployee != null) {
                         setResult(newEmployee);
+                        //bindings can persevere
                         ((EmployeeModel)newEmployee).unbindAll();
                         Platform.runLater(this::close);
                     }

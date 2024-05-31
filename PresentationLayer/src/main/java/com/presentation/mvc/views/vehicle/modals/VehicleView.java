@@ -38,9 +38,11 @@ public class VehicleView extends VBox implements View {
         });
         getChildren().add(imageView);
         getChildren().addAll(
-        new HBox(new Label("Name:"), name),
-        new HBox(new Label("Price:"), price),
-        new HBox(new Label("Billede:"), imageView)
+        new HBox(new Label("Billede:"), imageView,     
+            new VBox(
+                new HBox(new Label("Name:"), name),
+                new HBox(new Label("Price:"), price)
+            ))
     );
     }
 

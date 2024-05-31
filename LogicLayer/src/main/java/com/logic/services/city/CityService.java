@@ -1,7 +1,6 @@
 package com.logic.services.city;
 
 import com.data.interfaces.Data;
-import com.data.interfaces.UserExtra;
 import com.logic.Simples.SimpleCreateHandler;
 import com.logic.Simples.SimpleDeleteHandler;
 import com.logic.Simples.SimpleReadAllHandler;
@@ -11,8 +10,6 @@ import com.logic.handlers.HandlerHolder;
 import com.logic.handlers.HandlerObject;
 import com.logic.handlers.Request;
 import com.logic.handlers.SimpleHolder;
-import com.logic.services.employee.LoginHandler;
-import com.logic.services.employee.UpdateSelfHandler;
 import com.logic.services.enums.ServiceType;
 // anders
 public class CityService extends HandlerObject {

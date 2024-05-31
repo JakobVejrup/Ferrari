@@ -1,6 +1,7 @@
 package com.presentation.mvc.controllers.agreement;
 
 import java.util.List;
+
 import com.logic.ServiceSingleton;
 import com.logic.handlers.Request;
 import com.logic.services.enums.CRUDType;
@@ -15,13 +16,15 @@ import com.presentation.mvc.models.agreements.AgreementModel;
 import com.presentation.mvc.models.table.RowModel;
 import com.presentation.mvc.models.table.TableModel;
 import com.presentation.mvc.views.agreement.AgreementView;
-import com.presentation.tools.facade.Facade;
 import com.presentation.mvc.views.table.concretes.ClosedAgreementsTable;
-import com.presentation.mvc.views.table.concretes.OpenAgreementTable;
-import com.presentation.mvc.views.table.decorators.*;
+import com.presentation.mvc.views.table.decorators.ButtonColumnDecorator;
+import com.presentation.mvc.views.table.decorators.ParentTableDecorator;
+import com.presentation.mvc.views.table.decorators.TableDecorator;
+import com.presentation.mvc.views.table.decorators.TableHeightDecorator;
+import com.presentation.mvc.views.table.decorators.TableWidthDecorator;
+import com.presentation.tools.facade.Facade;
+
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
 //karl
 //table and controller for closed agreements 
 public class ClosedAgreementsController extends Controller{

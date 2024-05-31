@@ -1,15 +1,8 @@
 package com.data.dao;
 
-import java.sql.CallableStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-
 import com.data.ConnectionData;
 import com.data.interfaces.Data;
 import com.model.entities.Agreement;
-import com.model.entities.City;
-import com.model.entities.Customer;
 import com.rki.bank.InterestRate;
 import com.rki.rki.CreditRator;
 //Jakob

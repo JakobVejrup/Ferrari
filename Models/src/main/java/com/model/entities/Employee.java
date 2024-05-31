@@ -2,8 +2,6 @@ package com.model.entities;
 
 import com.model.enums.Occupation;
 
-import java.util.List;
-
 //Anders
 public class Employee extends Information {
     private Occupation occupation;

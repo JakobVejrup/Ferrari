@@ -3,12 +3,12 @@ package com.data.dao;
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+
 import com.data.ConnectionData;
 import com.data.interfaces.Data;
 import com.model.entities.Agreement;
 import com.model.entities.Customer;
 import com.model.entities.Employee;
-import com.model.entities.Invoice;
 import com.model.entities.Vehicle;
 import com.rki.rki.Rating;
 

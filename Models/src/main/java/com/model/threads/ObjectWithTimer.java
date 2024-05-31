@@ -1,5 +1,6 @@
 package com.model.threads;
 //anders
+//knows how to get stuff and, when to drop it
 public class ObjectWithTimer {
     private int seconds;
     private boolean extra;

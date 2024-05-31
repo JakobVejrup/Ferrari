@@ -1,19 +1,10 @@
 package com.presentation.mvc.controllers.agreement;
 
-import com.presentation.mvc.views.agreement.OpenAgreementView;
-import com.presentation.mvc.views.generalgui.NiceButton;
-import com.presentation.tools.FileMethods;
-import com.presentation.tools.alert.Alerter;
-import com.presentation.tools.facade.Facade;
-import com.rki.rki.Rating;
-import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.stage.Stage;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
+
 import com.logic.ServiceSingleton;
 import com.logic.handlers.Request;
 import com.logic.math.LoanCalculator;
@@ -34,11 +25,22 @@ import com.presentation.mvc.controllers.invoice.InvoicesInAgreementController;
 import com.presentation.mvc.controllers.vehicle.SingleVehicleController;
 import com.presentation.mvc.controllers.vehicle.modals.SelectVehicleController;
 import com.presentation.mvc.models.Invoice.InvoiceModel;
-import com.presentation.mvc.models.agreements.AgreementValidationModel;
 import com.presentation.mvc.models.agreements.AgreementModel;
+import com.presentation.mvc.models.agreements.AgreementValidationModel;
 import com.presentation.mvc.models.customer.CustomerModel;
 import com.presentation.mvc.models.table.RowModel;
 import com.presentation.mvc.models.table.TableModel;
+import com.presentation.mvc.views.agreement.OpenAgreementView;
+import com.presentation.mvc.views.generalgui.NiceButton;
+import com.presentation.tools.FileMethods;
+import com.presentation.tools.alert.Alerter;
+import com.presentation.tools.facade.Facade;
+import com.rki.rki.Rating;
+
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 public class AgreementController extends Controller implements Consumer<AgreementValidationModel> {
     private OpenAgreementView view;
@@ -117,7 +119,6 @@ public class AgreementController extends Controller implements Consumer<Agreemen
                 Alerter.warning("Dårlig Rki kan ikke låne", "Kunden skal levere hele beløbet selv");
                 return;
             }
-            
             if(Facade.getInstance().getLoggedIn().getLoanLimit() > model.getVehicle().getPrice() - model.getStartValue() && Facade.getInstance().getLoggedIn().getOccupation() != Occupation.Manager)
                 Alerter.warning("For stort beløb", "Gem aftalen, og en med større godkedelse beløb, kan godkende den");
             ServiceSingleton.getInstance().query(new Request(ServiceType.AgreementClosed, CRUDType.Create, model,

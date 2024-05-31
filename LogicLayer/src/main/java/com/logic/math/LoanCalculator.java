@@ -2,11 +2,10 @@ package com.logic.math;
 
 import java.sql.Date;
 import java.time.LocalDate;
-import java.time.Month;
 import java.time.temporal.ChronoUnit;
+
 import com.model.entities.Agreement;
 import com.model.entities.Invoice;
-import com.rki.bank.InterestRate;
 import com.rki.rki.Rating;
 //jakob
 public class LoanCalculator {
