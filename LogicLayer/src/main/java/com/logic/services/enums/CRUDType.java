@@ -5,5 +5,9 @@ public enum CRUDType {
     Read,
     ReadAll,
     Update,
-    Delete
+    Delete,
+    Login,
+    UpdateSelf,
+    Check
+
 }

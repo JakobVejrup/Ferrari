@@ -3,6 +3,10 @@ package com.logic.services.enums;
 public enum ServiceType {
     Customer,
     Vehicle,
-    Agreement,
-    Employee
+    AgreementOpen,
+    AgreementClosed,
+    Invoice,
+    Employee,
+    City,
+    Rate
 }

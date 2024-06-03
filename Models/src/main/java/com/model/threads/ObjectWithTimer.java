@@ -1,5 +1,6 @@
 package com.model.threads;
-
+//anders
+//knows how to get stuff and, when to drop it
 public class ObjectWithTimer {
     private int seconds;
     private boolean extra;
@@ -10,8 +11,14 @@ public class ObjectWithTimer {
     public ObjectWithTimer(Function function, int seconds) {
         this.seconds = seconds;
         this.function = function;
-        this.value = function.function();
+        timer = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                value = function.function();
+    }});
+        timer.start();
     }
+
     public ObjectWithTimer(Function function, int seconds, Action afterTime) {
         this(function, seconds);
         this.afterTime = afterTime;

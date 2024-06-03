@@ -1,42 +1,45 @@
 package com.presentation;
 
+import java.util.List;
+import com.logic.handlers.Request;
+import com.logic.services.enums.CRUDType;
+import com.logic.services.enums.ServiceType;
+import com.model.entities.Employee;
+import com.presentation.mvc.controllers.employee.modals.CreateEmployeeController;
+import com.presentation.mvc.controllers.login.LoginController;
+import com.presentation.mvc.views.topbar.TopbarView;
 import com.presentation.tools.ScreenWatcher;
-
+import com.presentation.tools.facade.Facade;
+import com.presentation.tools.facade.Login;
+import com.presentation.tools.facade.ModalSetter;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-
+//alle
 public class App extends Application {
     @Override
     public void start(Stage stage) {
         ScreenWatcher.getInstance().setStage(stage);
-        VBox box = new VBox();
-        Scene scene = new Scene(box, 900, 900);
-        //in a lambda/dynamic method, to use a variable in of polymorphic nature you must ensure that its "final" and wont change class, to do this you can ensure its set once or you can make another "final" reference
-
-        //TableDecorator table = new ParentTableDecorator(items, new TableWidthListenerDecorator(0.5, new TableHeightDecorator(0.8, new ExampleGuiTable())));
-        //table = new TableInCellDecorator(new TestTableFactory(),"Tests", new CheckboxColumnDecorator(new DeleteCommand(), "Slet", "Slet", table));
-        //table = new ButtonColumnDecorator(new UpdateCommand(),"Opdater", "Opdater", table);
-        //TableDecorator finalTable = table;
-
-        // if you dont the instantiation can get rather long as below
-        //TableDecorator table = new ButtonColumnDecorator(new UpdateCommand(),"Opdater", "Opdater", new TableInCellDecorator(new TestTableFactory(),"Tests", new CheckboxColumnDecorator(new DeleteCommand(), "Slet", "Slet", new ParentTableDecorator(new TableWidthListenerDecorator(0.5, new TableHeightDecorator(0.8, new ExampleGuiTable()))))));
-        //table.getTable().setup(box);
-
-        //ServiceSingleton.getInstance().query(new Request(ServiceType.Example, CRUDType.ReadAll,
-        //        //parameter is the value from the call to the data layer
-        //        (parameter) -> table.getTable().setItems(GuiItem.getGuiItems((List<Object>)parameter, ServiceType.Example))
-        //));
+        BorderPane bp = new BorderPane();
+        bp.getStyleClass().add("mainPane");
+        Scene scene = new Scene(bp);
 
         scene.getStylesheets().add(App.class.getResource("stylesheet1.css").toExternalForm());
-        stage.setTitle("Hello!");
+        stage.setTitle("Ferrari");
         stage.setScene(scene);
         stage.show();
+        Facade.getInstance().setMainPane(bp);
+        Facade.getInstance().setModal(new ModalSetter(stage));
+        Facade.getInstance().setLogin(new Login());
+        Facade.getInstance().setTop(new TopbarView());
+        Facade.getInstance().setCenter(new LoginController().getView());
+        Request request = new Request(ServiceType.Employee, CRUDType.ReadAll, (employees) -> {
+            if(((List<Employee>)employees).size() == 0)
+            Platform.runLater( () -> Facade.getInstance().openModal(new CreateEmployeeController()));
+        });
 
-
-        //ServiceSingleton.getInstance().query(new SQLRequest(ServiceType.Example, CRUDType.ReadAll));
-        //service.query(new SQLRequest(ServiceType.Example, CRUDType.Delete, new Example(1, "")));
     }
 
     public static void main(String[] args) {
