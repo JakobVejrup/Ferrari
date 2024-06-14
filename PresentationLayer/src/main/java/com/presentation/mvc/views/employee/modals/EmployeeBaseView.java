@@ -51,6 +51,10 @@ public class EmployeeBaseView extends VBox implements View {
             occupations.add(Occupation.Admin);
             occupation.setItems(occupations);
         }
+        else if (Facade.getInstance().getLoggedIn().getOccupation() == Occupation.Manager) {
+            ObservableList<Occupation> occupations = FXCollections.observableArrayList(Occupation.values());
+            occupation.setItems(occupations);
+        }
         occupation.setValue(model.getOccupation());
         model.occupationProperty().bind(occupation.valueProperty());
         getChildren().addAll(
