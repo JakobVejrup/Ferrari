@@ -3,7 +3,7 @@ package com.presentation.mvc.views.generalgui;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-//anders
+
 //just adds some nice to haves
 public class NiceButton extends Button {
     public NiceButton(String text, String css, EventHandler<ActionEvent> clickEvent) {

@@ -9,7 +9,7 @@ import com.rki.rki.Rating;
 import junit.framework.TestCase;
 
 import java.sql.Date;
-//anders
+
 //all tests ran true
 public class LoanCalculatorTest extends TestCase {
     //testing if the arrays are the same, test values came from a website

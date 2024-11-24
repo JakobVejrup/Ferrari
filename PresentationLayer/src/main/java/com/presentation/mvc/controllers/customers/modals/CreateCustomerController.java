@@ -21,7 +21,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
-//magnus
+
 public class CreateCustomerController extends ModalController{
     private CustomerModel model;
     private CustomerBaseView view;

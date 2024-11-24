@@ -17,8 +17,7 @@ import com.presentation.tools.facade.Facade;
 
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
-//anders
-//childtable
+
 public class OpenAgreementFactory extends NodeFactory {
     @Override
     public Node createNode(CellController controller) {

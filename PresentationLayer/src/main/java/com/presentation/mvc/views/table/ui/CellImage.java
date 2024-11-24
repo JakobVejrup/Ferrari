@@ -6,7 +6,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-//anders 
+ 
 //sets images in the cells, set to 150 becuase images could get big
 public class CellImage extends ImageView{
         public CellImage(ObjectProperty<byte[]> property) {

@@ -3,7 +3,7 @@ package com.presentation.tools.csvwriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-//karl
+
 //CSVWriter class basic
 public class CSVWriter {
     //private fields

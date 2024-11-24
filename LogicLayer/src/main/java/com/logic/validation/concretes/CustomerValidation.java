@@ -4,7 +4,7 @@ import com.logic.handlers.HandlerObject;
 import com.logic.handlers.Request;
 import com.logic.services.enums.ServiceType;
 import com.model.entities.Customer;
-//Magnus
+
 // klasse til at validere en kunde
 public class CustomerValidation extends HandlerObject{
     public CustomerValidation() {

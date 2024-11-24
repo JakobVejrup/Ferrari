@@ -5,7 +5,7 @@ import com.presentation.mvc.controllers.table.commands.CellCommand;
 import com.presentation.mvc.controllers.table.factories.CheckboxFactory;
 import com.presentation.mvc.views.table.ui.ButtonPlacement;
 import com.presentation.mvc.views.table.ui.GuiTable;
-//anders
+
 //adds a checkbox to each cell in column, adss a button to to top
 public class CheckboxColumnDecorator implements TableDecorator {
     private GuiTable table;

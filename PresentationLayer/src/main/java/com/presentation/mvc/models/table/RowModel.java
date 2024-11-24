@@ -11,7 +11,7 @@ import java.util.List;
 
 import com.logic.services.enums.ServiceType;
 import com.model.threads.ActionParameter;
-//anders
+
 //Item holder class used to contain the item AND its boolean, so it will remember if the checkbox should be checked
 public class RowModel {
     private ServiceType type;

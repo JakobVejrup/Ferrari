@@ -7,7 +7,7 @@ import com.presentation.mvc.views.table.concretes.EmployeeTable;
 import com.presentation.mvc.views.table.ui.GuiTable;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
-//anders not used
+
 public class EmployeeTableFactory extends NodeFactory {
     @Override
     public Node createNode(CellController controller) {

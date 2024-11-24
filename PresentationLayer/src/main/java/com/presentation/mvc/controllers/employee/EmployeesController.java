@@ -36,7 +36,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 
-//anders
+
 //setsup the employee table and adds chidtables if theres any openagreements, the id pairing is bad but it was just a quick fix should have been matched up in the datalayer through storedprocedures or such
 public class EmployeesController extends Controller {
     private TableModel model;

@@ -8,7 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.TableCell;
-//anders
+
 // node is the view and rowmodel is the model, the node will show if a model is present
 public class CellController extends TableCell<RowModel, RowModel> implements EventHandler<ActionEvent> {
     //graphic object in the cell

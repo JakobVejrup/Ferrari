@@ -4,8 +4,8 @@ import com.logic.handlers.HandlerObject;
 import com.logic.handlers.Request;
 import com.logic.services.enums.ServiceType;
 import com.model.entities.Agreement;
-//karl
-// because of frontend validation shouldnt be needed anymore 
+
+
 //aggrement validation af open agreement
 public class AgreementValidation extends HandlerObject {
     public AgreementValidation() {

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.presentation.mvc.models.table.RowModel;
-//anders
+
 //sets regions above the table which will make the top button be displayed right
 public abstract class GuiTable extends TableView<RowModel> {
     private List<ButtonPlacement> buttons = new ArrayList<>();

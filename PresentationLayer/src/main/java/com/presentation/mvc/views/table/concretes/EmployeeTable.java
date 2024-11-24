@@ -11,7 +11,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.Callback;
-//anders
+
 //concrete table sets the columns and binds tem to the properties of the models
 public class EmployeeTable extends GuiTable implements TableDecorator {
     private TableColumn<RowModel, String> nameCol;

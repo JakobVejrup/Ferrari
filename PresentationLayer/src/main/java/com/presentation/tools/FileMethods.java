@@ -9,7 +9,7 @@ import com.presentation.tools.csvwriter.CSVWriterInvoices;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-//anders
+
 //helps finding folders and pictures
 public class FileMethods {
     public static byte[] findImage(Stage stage) {

@@ -16,7 +16,7 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
-//emil karl 
+
 public class CSVWriterTest extends TestCase {
 
     public CSVWriterTest(String testName )

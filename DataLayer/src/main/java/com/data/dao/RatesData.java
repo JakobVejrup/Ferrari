@@ -5,7 +5,7 @@ import com.data.interfaces.Data;
 import com.model.entities.Agreement;
 import com.rki.bank.InterestRate;
 import com.rki.rki.CreditRator;
-//Jakob
+
 public class RatesData implements Data {
 // Klasse for dataoperation CRUD på rate
     private ConnectionData db;

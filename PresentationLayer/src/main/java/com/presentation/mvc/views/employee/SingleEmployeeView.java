@@ -12,7 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-//anders
+
 //shows an employee, not editable, could maybe have been used more places if it had more conditions, set editable fx and changeable texts
 public class SingleEmployeeView extends VBox implements View{
     public Employee model;

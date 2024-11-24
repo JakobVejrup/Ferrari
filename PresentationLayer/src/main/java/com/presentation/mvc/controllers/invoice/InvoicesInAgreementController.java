@@ -8,7 +8,7 @@ import com.presentation.mvc.views.table.decorators.TableDecorator;
 import com.presentation.mvc.views.table.decorators.TableHeightDecorator;
 import com.presentation.mvc.views.table.decorators.TableWidthDecorator;
 import javafx.scene.layout.VBox;
-//karl
+
 //table for invoices in agreement
 public class InvoicesInAgreementController extends Controller{
     private TableModel model;

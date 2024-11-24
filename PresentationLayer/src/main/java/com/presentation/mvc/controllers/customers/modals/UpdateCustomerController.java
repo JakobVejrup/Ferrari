@@ -23,7 +23,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 
-//magnus
+
 
 // Controller for updating a customer
 public class UpdateCustomerController extends ModalController {

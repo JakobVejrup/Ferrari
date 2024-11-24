@@ -5,7 +5,7 @@ import java.util.function.Consumer;
 import com.model.entities.Agreement;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-//karl
+
 //agreements validation model that extends agreementmodel and adds functionality to validate the agreement
 public class AgreementValidationModel extends AgreementModel {
     private BooleanProperty fixedTermsProp;

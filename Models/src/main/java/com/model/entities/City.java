@@ -1,5 +1,5 @@
 package com.model.entities;
-//anders
+
 public class City {
     private int zip;
     private String name;

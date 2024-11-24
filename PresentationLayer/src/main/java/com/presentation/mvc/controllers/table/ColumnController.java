@@ -11,7 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.util.Callback;
-//anders
+
 //a little too beefy too many conditions, listen to checkboxes shouldnt be here if i had more time, makes the cells and holds the guicolumn 
 public class ColumnController implements Callback<TableColumn<RowModel, RowModel>, TableCell<RowModel, RowModel>>, ChangeListener<Boolean> {
     private int selected;

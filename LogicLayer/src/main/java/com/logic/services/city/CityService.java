@@ -11,7 +11,7 @@ import com.logic.handlers.HandlerObject;
 import com.logic.handlers.Request;
 import com.logic.handlers.SimpleHolder;
 import com.logic.services.enums.ServiceType;
-// anders
+
 //city has a lot of services it wont be using them tho because everything will be set on the db script, so only getall is used
 public class CityService extends HandlerObject {
     private HandlerHolder holder;

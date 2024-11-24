@@ -7,7 +7,7 @@ import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-//anders
+
 //Facade is for the frontend, sets gui and such using facade pattern, i does a little mediatoring at logoff tho
 public class Facade implements ModalSetup, ViewSetup, LoginManager{
     private static Facade instance;

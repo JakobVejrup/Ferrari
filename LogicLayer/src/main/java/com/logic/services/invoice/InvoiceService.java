@@ -8,7 +8,7 @@ import com.logic.handlers.Request;
 import com.logic.handlers.SimpleHolder;
 import com.logic.services.enums.ServiceType;
 
-//karl
+
 // Handlers for invoice som bruger COR til at håndtere CRUD
 public class InvoiceService extends HandlerObject {
     private HandlerHolder holder;

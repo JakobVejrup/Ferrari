@@ -10,7 +10,7 @@ import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-//Anders
+
 public class EmployeeData implements Data, UserExtra, CheckData {
     private ConnectionData db;
     public EmployeeData(ConnectionData db) {

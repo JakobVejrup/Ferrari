@@ -5,7 +5,7 @@ import com.model.threads.Function;
 import com.model.threads.ObjectWithTimer;
 
 import java.sql.*;
-//anders
+
 //creates the connection gives callablestatements to DAOs
 public class ConnectionData {
     private ObjectWithTimer connectionTimer;

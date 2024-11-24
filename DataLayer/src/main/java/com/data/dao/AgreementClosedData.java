@@ -13,7 +13,7 @@ import com.model.entities.Employee;
 import com.model.entities.Invoice;
 import com.model.entities.Vehicle;
 import com.rki.rki.Rating;
-//Karl
+
 //klasse der håndterer data for lukkede aftaler
 public class AgreementClosedData implements Data{
     private ConnectionData db;

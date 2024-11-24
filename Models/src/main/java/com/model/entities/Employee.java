@@ -2,7 +2,7 @@ package com.model.entities;
 
 import com.model.enums.Occupation;
 
-//Anders
+
 public class Employee extends Information {
     private Occupation occupation;
     private String password;

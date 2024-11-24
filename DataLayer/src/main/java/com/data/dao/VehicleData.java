@@ -9,7 +9,7 @@ import com.data.ConnectionData;
 import com.data.interfaces.Data;
 import com.model.entities.Vehicle;
 
-// Jakob DataAccessObeject
+
 public class VehicleData implements Data {
 // Opstiller reference til ConnectionData
     private ConnectionData db;

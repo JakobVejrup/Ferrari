@@ -8,7 +8,7 @@ import com.presentation.mvc.views.table.decorators.TableDecorator;
 import com.presentation.mvc.views.table.ui.GuiTable;
 
 import javafx.scene.control.TableColumn;
-//anders
+
 //mini table to show in employees open agreements, fewer values than the real table
 public class MiniAgreementTable extends GuiTable implements TableDecorator {
 private TableColumn<RowModel, Customer> customerCol;

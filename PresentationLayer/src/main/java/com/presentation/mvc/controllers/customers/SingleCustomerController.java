@@ -4,7 +4,7 @@ import com.model.entities.Customer;
 import com.presentation.mvc.controllers.Controller;
 import com.presentation.mvc.views.customer.SingleCustomerView;
 import javafx.scene.control.Button;
-//magnus
+
 
 // Controller for single customer
 public class SingleCustomerController extends Controller{

@@ -12,7 +12,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-//karl
+
 //InvoiceModel class that extends Invoice and makes objects eable to be used to bind
 public class InvoiceModel extends Invoice{
     private IntegerProperty numberProperty;

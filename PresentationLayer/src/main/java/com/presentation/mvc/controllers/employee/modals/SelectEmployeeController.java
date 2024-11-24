@@ -25,7 +25,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
-//anders
+
 //opens table where you can select an employee with a button in its tablerow
 public class SelectEmployeeController extends ModalController {
     private TableModel model;

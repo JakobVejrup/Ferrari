@@ -4,7 +4,7 @@ import com.data.interfaces.Data;
 import com.logic.handlers.HandlerObject;
 import com.logic.handlers.Request;
 import com.logic.services.enums.CRUDType;
-//anders
+
 public class SimpleReadAllHandler extends HandlerObject {
     private Data data;
     public SimpleReadAllHandler(Data data) {

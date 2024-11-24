@@ -15,7 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.util.converter.NumberStringConverter;
-//karl 
+
 //this class is made to show the agreement in the view and allow editing of certain fields
 public class OpenAgreementView extends VBox implements View{
     private HBox buttonBox;

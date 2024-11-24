@@ -1,5 +1,5 @@
 package com.model.entities;
-//Magnus
+
 public class Information {
     private int id;
     private String name;

@@ -29,7 +29,7 @@ import com.presentation.tools.facade.Facade;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
-//jakob
+
 public class AllVehiclesController extends Controller {
     private TableModel model;
     private VehiclesView view;

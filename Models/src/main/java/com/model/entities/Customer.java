@@ -4,7 +4,7 @@ public class Customer extends Information{
     private String address;
     private String cpr;
     private City city;
-    //Magnus
+    
 
     // Kunstruktor for Customer klassen
     // kalder superklassens konstruktor

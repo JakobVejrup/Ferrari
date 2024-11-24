@@ -6,7 +6,7 @@ import com.data.ConnectionData;
 import com.data.interfaces.Data;
 import com.model.entities.Agreement;
 import com.model.entities.Invoice;
-//karl 
+
 public class InvoiceData implements Data{
     private ConnectionData db;
     public InvoiceData(ConnectionData db) {

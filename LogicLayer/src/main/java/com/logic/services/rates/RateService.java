@@ -7,7 +7,7 @@ import com.logic.handlers.HandlerObject;
 import com.logic.handlers.Request;
 import com.logic.handlers.SimpleHolder;
 import com.logic.services.enums.ServiceType;
-//anders
+
 public class RateService extends HandlerObject {
     private HandlerHolder holder;
 

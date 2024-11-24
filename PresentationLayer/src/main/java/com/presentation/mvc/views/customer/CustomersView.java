@@ -4,7 +4,7 @@ import com.presentation.mvc.views.generalgui.NiceHBox;
 import com.presentation.mvc.views.table.ui.GuiTable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
-//magnus
+
 public class CustomersView extends VBox {
     public CustomersView() {
         getStyleClass().add("Kunder");

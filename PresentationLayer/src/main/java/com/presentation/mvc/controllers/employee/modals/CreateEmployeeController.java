@@ -18,7 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-//anders
+
 //modal controller creates an employee if wanted
 public class CreateEmployeeController extends ModalController {
     private EmployeeModel model;

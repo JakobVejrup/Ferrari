@@ -14,7 +14,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
-// anders
+
 
 public class UpdateEmployeeController extends ModalController {
     private EmployeeModel model;

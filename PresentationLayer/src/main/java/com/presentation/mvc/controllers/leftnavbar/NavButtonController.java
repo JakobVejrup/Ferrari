@@ -4,7 +4,7 @@ import com.presentation.mvc.models.leftnavbar.NavButtonModel;
 import com.presentation.mvc.views.leftnavbar.NavButtonView;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
-//anders
+
 //setup the navbutton
 public class NavButtonController {
     private NavButtonView view;

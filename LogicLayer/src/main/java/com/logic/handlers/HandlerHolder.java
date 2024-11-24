@@ -1,5 +1,5 @@
 package com.logic.handlers;
-//anders
+
 public abstract class HandlerHolder implements Handler {
     protected HandlerObject root;
 

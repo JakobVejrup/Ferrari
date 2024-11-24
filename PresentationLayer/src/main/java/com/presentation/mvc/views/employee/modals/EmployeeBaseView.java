@@ -16,7 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.geometry.Insets;
-//anders
+
 //shows an employee as editable, only shows what the logged in is allowed to see though
 public class EmployeeBaseView extends VBox implements View {
     public EmployeeBaseView(EmployeeModel model) {

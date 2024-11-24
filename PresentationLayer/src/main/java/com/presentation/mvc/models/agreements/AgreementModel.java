@@ -18,7 +18,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
-//karl
+
 //AgreementModel class that extends Agreement and makes objects eable to be used to bind 
 public class AgreementModel extends Agreement{
     private IntegerProperty fixedTermsProp;

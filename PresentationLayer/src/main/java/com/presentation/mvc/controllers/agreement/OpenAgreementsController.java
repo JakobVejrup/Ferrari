@@ -27,7 +27,7 @@ import com.presentation.tools.facade.Facade;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
-//karl
+
 
 //table and controller for open agreements 
 public class OpenAgreementsController extends Controller{

@@ -6,7 +6,7 @@ import com.model.entities.City;
 import com.model.entities.Customer;
 import javafx.beans.property.*;
 
-//magnus
+
 public class CustomerModel extends Customer{
     // Properties for kunde
     private StringProperty nameProp;

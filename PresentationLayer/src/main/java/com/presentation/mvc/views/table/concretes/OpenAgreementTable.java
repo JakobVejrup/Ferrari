@@ -10,7 +10,7 @@ import com.presentation.mvc.views.table.ui.GuiTable;
 import com.rki.rki.Rating;
 
 import javafx.scene.control.TableColumn;
-//karl 
+
 //OpenAgreementTable class that extends GuiTable and implements TableDecorator that displays the columns of the table
 public class OpenAgreementTable extends GuiTable implements TableDecorator {
 private TableColumn<RowModel, Number> fixedTermsCol;

@@ -24,7 +24,7 @@ import com.logic.services.vehicle.VehicleService;
 import com.logic.validation.ValidationManager;
 import com.logic.validation.concretes.AgreementValidation;
 import com.logic.validation.concretes.EmployeeValidation;
-//anders
+
 //singleton that has COR functionality, makes threads 
 public class ServiceSingleton implements Handler {
     private static ServiceSingleton instance;

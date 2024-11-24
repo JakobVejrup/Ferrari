@@ -14,7 +14,7 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-//anders
+
 //all tests ran true
 public class CORTest extends TestCase
 {

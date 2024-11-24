@@ -2,7 +2,7 @@ package com.presentation.mvc.controllers.modals;
 
 import com.presentation.mvc.controllers.Controller;
 import javafx.stage.Stage;
-//anders
+
 //modal can get a result and close the modal stage
 public abstract class ModalController extends Controller{
     private Stage stage;

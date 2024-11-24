@@ -1,5 +1,5 @@
 package com.presentation.mvc.models.leftnavbar;
-//anders
+
 //model for navbuttons, keep their values, they never change
 public class NavButtonModel {
     private String fontFamily, icon, label;

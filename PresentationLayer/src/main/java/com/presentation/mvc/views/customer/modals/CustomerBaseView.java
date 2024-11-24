@@ -11,7 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-//magnus
+
 
 public class CustomerBaseView extends VBox implements View{
     public CustomerBaseView(CustomerModel model, ObjectProperty<ObservableList<City>> cityList) {

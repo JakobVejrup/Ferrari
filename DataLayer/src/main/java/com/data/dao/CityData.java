@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import com.data.ConnectionData;
 import com.data.interfaces.Data;
 import com.model.entities.City;
-//anders
+
 public class CityData implements Data {
 
     private ConnectionData db;

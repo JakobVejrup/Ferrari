@@ -3,7 +3,7 @@ package com.presentation.mvc.controllers;
 import com.presentation.mvc.views.View;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
-//anders
+
 //not for polymorphic use just to reuse code
 public class Controller {
     private Pane view;

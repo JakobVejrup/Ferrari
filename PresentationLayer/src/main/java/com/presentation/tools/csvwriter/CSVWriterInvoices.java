@@ -3,7 +3,7 @@ package com.presentation.tools.csvwriter;
 import java.text.DecimalFormat;
 import java.util.List;
 import com.model.entities.Invoice;
-//karl
+
 public class CSVWriterInvoices {
 //private fields with one making a header for invoices 
 private String Filename;

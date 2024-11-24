@@ -6,7 +6,7 @@ import com.presentation.mvc.views.table.decorators.TableDecorator;
 import com.presentation.mvc.views.table.ui.GuiTable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.cell.TextFieldTableCell;
-//magnus
+
 public class CustomerTable extends GuiTable implements TableDecorator {
     private TableColumn<RowModel, String> nameCol;
     private TableColumn<RowModel, String> phoneCol;

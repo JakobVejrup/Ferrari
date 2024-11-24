@@ -14,7 +14,7 @@ import com.presentation.mvc.views.leftnavbar.NavButtonView;
 import com.presentation.tools.facade.Facade;
 import java.util.ArrayList;
 import java.util.List;
-//anders
+
 //makes all the controllers / views / models needed to make the navbar, takes into consideration who's logged in
 public class LeftNavbarController {
     private LeftNavBarView view;

@@ -5,7 +5,7 @@ import com.presentation.tools.ScreenWatcher;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.stage.Screen;
-//anders
+
 //sets table width to be a percent of the screenwidth
 public class TableWidthDecorator implements TableDecorator {
     private GuiTable table;

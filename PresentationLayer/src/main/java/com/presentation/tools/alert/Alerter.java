@@ -4,7 +4,7 @@ import java.util.List;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
-//anders
+
 public class Alerter {
     //lots of overloaders for creating different type of alerts with different parameters
     public static boolean confirmation(String title, String header, String content) {

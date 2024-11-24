@@ -12,7 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-//jakob
+
 public class SingleVehicleView extends VBox implements View{
     public Vehicle model;
     public TextField price;

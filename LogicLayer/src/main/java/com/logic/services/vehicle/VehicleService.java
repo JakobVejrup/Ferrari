@@ -11,7 +11,7 @@ import com.logic.handlers.HandlerObject;
 import com.logic.handlers.Request;
 import com.logic.handlers.SimpleHolder;
 import com.logic.services.enums.ServiceType;
-//Jakob
+
 // Klassen håndtere forespørgsler med COR
 public class VehicleService extends HandlerObject {
     private HandlerHolder holder;

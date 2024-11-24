@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import com.rki.rki.Rating;
-//karl
+
 
 //simple constructor for agreement open og closed
 public class Agreement {

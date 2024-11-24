@@ -3,7 +3,7 @@ package com.presentation.mvc.models.table;
 import com.logic.services.enums.ServiceType;
 import javafx.collections.ObservableList;
 import java.util.List;
-//anders
+
 public class TableModel {
     private ObservableList<RowModel> rows;
     private ServiceType type;

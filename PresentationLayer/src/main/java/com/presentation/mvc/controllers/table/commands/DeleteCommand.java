@@ -6,7 +6,7 @@ import com.logic.services.enums.CRUDType;
 import com.presentation.mvc.models.table.RowModel;
 import com.presentation.mvc.models.table.TableModel;
 import com.presentation.tools.alert.Alerter;
-//anders
+
 // command to Delete table items
 public class DeleteCommand implements CellCommand{
     private TableModel table;

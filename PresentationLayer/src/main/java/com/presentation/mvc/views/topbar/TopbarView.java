@@ -4,7 +4,7 @@ import com.presentation.App;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-//anders
+
 public class TopbarView extends HBox {
     //view for the top bar, holds a picture at the right
     public TopbarView() {

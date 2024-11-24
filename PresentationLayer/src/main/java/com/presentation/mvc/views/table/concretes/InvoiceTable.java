@@ -10,7 +10,7 @@ import com.presentation.mvc.views.table.ui.GuiTable;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TableColumn;
 import javafx.util.Callback;
-//karl
+
 //InvoiceTable class that extends GuiTable and implements TableDecorator that displays the columns of the table
 public class InvoiceTable extends GuiTable implements TableDecorator {
     private TableColumn<RowModel, Number> numberCol;

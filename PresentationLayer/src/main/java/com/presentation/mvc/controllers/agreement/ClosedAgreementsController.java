@@ -25,7 +25,7 @@ import com.presentation.mvc.views.table.decorators.TableWidthDecorator;
 import com.presentation.tools.facade.Facade;
 
 import javafx.application.Platform;
-//karl
+
 //table and controller for closed agreements 
 public class ClosedAgreementsController extends Controller{
     private TableModel model;

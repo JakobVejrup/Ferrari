@@ -1,7 +1,7 @@
 package com.model.entities;
 
 import java.sql.Date;
-//karl
+
 //constructor for invoice
 public class Invoice {
     private Agreement agreement;

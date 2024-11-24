@@ -4,7 +4,7 @@ import com.model.entities.Employee;
 import com.presentation.mvc.controllers.Controller;
 import com.presentation.mvc.views.employee.SingleEmployeeView;
 import javafx.scene.control.Button;
-//anders
+
 //simple little controller dosent do much on its own
 public class SingleEmployeeController extends Controller {
     private SingleEmployeeView view;

@@ -18,7 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-//anders
+
 // controller of account overview, uses different views with the model
 public class AccountController extends Controller{
     private HBox view;

@@ -30,7 +30,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 
-//magnus
+
 public class CustomersController extends Controller{
     // Model for table og view
     private TableModel model;

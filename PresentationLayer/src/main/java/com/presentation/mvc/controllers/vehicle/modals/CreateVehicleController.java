@@ -15,7 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-//jakob
+
 public class CreateVehicleController extends ModalController{
     private double orgWidth;
     private VehicleModel model;

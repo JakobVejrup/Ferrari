@@ -17,7 +17,7 @@ import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-//alle
+
 public class App extends Application {
     @Override
     public void start(Stage stage) {
